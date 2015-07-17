@@ -18,9 +18,9 @@
 				$correspondencia->FechaEntrega = $inputs['FechaEntrega'];
 				$correspondencia->Asunto = $inputs['Asunto'];
 				$correspondencia->RequiereRespuesta = $inputs['RequiereRespuesta'];
-				$correspondencia->URLPDF = 'lalala';
-				$correspondencia->FechaLimiteR = $inputs['FechaLimiteR'];
-				$correspondencia->EnRespuestaA = $inputs['EnRespuestaA'];
+				//$correspondencia->URLPDF = 'lalala';
+				//$correspondencia->FechaLimiteR = $inputs['FechaLimiteR'];
+				//$correspondencia->EnRespuestaA = $inputs['EnRespuestaA'];
 				$correspondencia->Estatus_Id = $inputs['Estatus_Id'];
 				$correspondencia->Prioridad_Id = $inputs['Prioridad_Id'];
 				$correspondencia->Caracter_Id = $inputs['Caracter_Id'];

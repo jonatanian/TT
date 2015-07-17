@@ -483,7 +483,7 @@ class OficiosController extends BaseController {
 	public function oficialia_registrar_oficio_saliente()
 		{
 			//////////////
-			$TipoOficio = Request::get('TipoOficio');
+			$TipoOficio = 2;//Request::get('TipoOficio');
 			$DependenciaId = Request::get('IdDependenciaAEnviar');
 			$AreaId = Request::get('IdAreaAEnviar');
 			$EntidadId = Request::get('IdEntidad');
@@ -493,20 +493,22 @@ class OficiosController extends BaseController {
 			$Asunto = Request::get('Asunto');
 			$Prioridad = Request::get('Prioridad');
 			$Caracter = Request::get('Caracter');
-			$FechaLimiteR = Request::get('FechaLimiteR');
-			$EnRespuestaA = Request::get('EnRespuestaA');
+			//$FechaLimiteR = Request::get('FechaLimiteR');
+			//$EnRespuestaA = Request::get('EnRespuestaA');
 			$TieneAnexos = Request::get('TieneAnexos');
 			$RequiereRespuesta = false;
-			if($FechaLimiteR)
+			/*if($FechaLimiteR)
+			{
 				$RequiereRespuesta = true;
-			////////////
+			}
+			*/
 
 			$correspondencia= new Correspondencia();
 			$oficio = new OficioSaliente();
 			$oficios = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('entidad_externa','Dependencia_Id','=','entidad_externa.IdEntidadExterna')
 									->get();
-			$id = $correspondencia->nuevaCorrespondencia(array('FechaEmision'=>$FechaEmision, 'FechaEntrega'=>$FechaEntrega, 'Asunto'=>$Asunto, 'RequiereRespuesta'=>$RequiereRespuesta, 'FechaLimiteR'=>$FechaLimiteR, 'EnRespuestaA'=>$EnRespuestaA, 'Estatus_Id'=>1, 'Prioridad_Id'=>$Prioridad, 'Caracter_Id'=>$Caracter));
+			$id = $correspondencia->nuevaCorrespondencia(array('FechaEmision'=>$FechaEmision, 'FechaEntrega'=>$FechaEntrega, 'Asunto'=>$Asunto, 'RequiereRespuesta'=>$RequiereRespuesta, 'Estatus_Id'=>1, 'Prioridad_Id'=>$Prioridad, 'Caracter_Id'=>$Caracter));
 			if($id){//Primero registra correspondencia
 				$IdOficioSaliente = $oficio->nuevoOficioSaliente(array('Correspondencia_Id'=>$id, 'Usuario_Id'=>Auth::id(), 'Dependencia_Id'=>$DependenciaId));//Registra oficio saliente
 				Session::flash('msg','Registro de oficio saliente realizado correctamente.');
