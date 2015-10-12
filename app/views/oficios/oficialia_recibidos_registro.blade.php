@@ -234,7 +234,7 @@
         return form.valid();
       },
       onFinished: function(event, currentIndex) {
-        alert("Submitted!");
+        alert("Wizard molando al mil!");
       }
     });
 
