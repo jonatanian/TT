@@ -1,4 +1,4 @@
-﻿<?php 
+﻿<?php
 	/**
 	* 
 	*/
@@ -19,6 +19,7 @@
 	        Estatus::create(array('NombreEstatus' => 'Enviado'));
 	        Estatus::create(array('NombreEstatus' => 'Acuse pendiente'));
 	        Estatus::create(array('NombreEstatus' => 'Acuse recibido'));
+          Estatus::create(array('NombreEstatus' => 'Cancelado'));
 
 	        $this->command->info('EstatusTableSeeder: Estatus de documentos cargados correctamente');
     	}
