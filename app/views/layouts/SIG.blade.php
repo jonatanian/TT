@@ -59,7 +59,7 @@
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
           	<img src="{{asset('images/placeholder.png')}}" alt="avatar" class="mw30 br64">
-          	<span class="hidden-xs pl15">{{Auth::User()->getNombreCompleto()}}</span>
+          	<span class="hidden-xs pl15">Usuario CMPL</span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
@@ -76,11 +76,11 @@
             <li class="list-group-item">
               <a href="#" class="animated animated-short fadeInUp">
                 <span class="fa fa-gear"></span> Configuración </a>
-            </li>
+            </li><!--
             <li class="dropdown-footer">
               <a href="{{action('LoginController@logout')}}" class="">
               <span class="fa fa-power-off pr5"></span> Cerrar sesión </a>
-            </li>
+            </li>-->
           </ul>
         </li>
       </ul>
@@ -106,7 +106,7 @@
                 <div class="media-links">
                    <p class="sidebar-menu-toggle">Bienvenido</p>
                 </div>
-                <div class="media-author">{{Auth::User()->getNombreCompleto()}}</div>
+                <div class="media-author">Usuario CMPL</div>
               </div>
             </div>
           </div>
@@ -158,7 +158,7 @@
                   </li>
                 </ul>
               </li>
-              
+              <!--
               <li class="sidebar-proj">
                 <a href="#projectOne">
                   <span class="fa fa-dot-circle-o text-primary"></span>
@@ -188,7 +188,7 @@
                   <span class="fa fa-dot-circle-o text-warning"></span>
                   <span class="sidebar-title">Organización</span>
                 </a>
-              </li>
+              </li>-->
     	      </ul>
          </nav>
     	      <!-- Start: Sidebar Collapse Button -->

@@ -1,18 +1,33 @@
 @extends('layouts.oficialia')
 
+@section('Topbar')
+	<!-- Start: Topbar -->
+	<header id="topbar" class="ph10">
+		<div class="topbar-left">
+			<ul class="nav nav-list nav-list-topbar pull-left">
+				<li class="active">
+					<a href="ecommerce_dashboard.html">Oficios entrantes</a>
+				</li>
+			</ul>
+		</div>
+		<div class="topbar-right hidden-xs hidden-sm">
+			<a href="{{action('OficiosEntrantesController@oficialia_nuevoOficio')}}" class="btn btn-default btn-sm fw600 ml10">
+			<span class="fa fa-plus pr5"></span> Nuevo oficio entrante</a>
+		</div>
+	</header>
+	<!-- End: Topbar -->
+@stop
 @section('content')
 	<div class="panel">
-	  <!-- Panel Heading -->
-	  <div class="panel-heading"><h2>Oficios entrantes</h2></div>
+	  <!-- Panel Heading --><!--
 	  <div class="panel-menu table-responsive">
 		  <div class="form-group">
 			<table class="table table-striped">
 				<tr>
-					<td><a href="{{action('OficiosController@oficialia_Dependencia')}}" class="btn btn-success">Nuevo oficio</a></td>
 					{{Form::open(array('class'=>'form-horizontal row-border','id'=>"validate-form",'data-parsley-validate'=>'true'))}}
-					<td><label for="inputEmail3" class="col-sm-9 control-label">Buscar oficios por:</label></td>
-					<!--<td><input type="text" class="form-control" id="inputEmail3" placeholder="Ingrese búsqueda..."></td>-->
-					<!--<td><label for="inputEmail3" class="col-sm-2 control-label">Por:</label></td>-->
+					<td><label for="inputEmail3" class="col-sm-9 control-label">Filtrar oficios por:</label></td>
+					<td><input type="text" class="form-control" id="inputEmail3" placeholder="Ingrese búsqueda..."></td>
+					<td><label for="inputEmail3" class="col-sm-2 control-label">Por:</label></td>
 					<td><select id = "opcion" name ="opcion" class="form-control">
 						   <option value="1">Prioridad</option>
 						   <option value="2">Estatus</option>
@@ -24,7 +39,7 @@
 				</tr>
 			</table>
 		  </div>
-      </div>
+      </div>-->
 
 	  <!-- Panel Body with Table (no padding) -->
 	  <div class="panel-body pn">

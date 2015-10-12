@@ -10,7 +10,7 @@ Route::get('/login','LoginController@login_index');
 Route::post('/login','LoginController@login');
 Route::get('/salir','LoginController@logout');
 
-//Sistema Integrado de GestiÃ³n de la Calidad y del Ambiente
+//Sistema Integrado de Gestión de la Calidad y del Ambiente
 Route::group(array("prefix"=>'SIG'), function(){
 	Route::get('/','SIGController@SIG_index');
 	Route::get('/Direccion','SIGController@SIG_Direccion');
@@ -43,7 +43,7 @@ Route::group(array("prefix"=>'SIG'), function(){
 		//Funciones para registrar anexos
 		Route::get('/anexos','OficiosController@personal_registrar_anexos');
 });
-//////////////////SubdirecciÃ³n//////////////////////////////
+//////////////////Subdirección//////////////////////////////
 	Route::group(array("prefix"=>'subdireccion'), function(){
 		Route::get('/','SubdireccionController@subdireccion_index');
 		//RECIBIDOS Y ENVIADOS
@@ -55,7 +55,7 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::get('/anexos','OficiosController@personal_registrar_anexos');
 });
 
-/////////////////SubdirecciÃ³n con jefaturas//////////////////
+/////////////////Subdirección con jefaturas//////////////////
 Route::group(array("prefix"=>'direccion'), function(){
 	Route::get('/','DireccionController@direccion_index');
 	//RECIBIDOS Y ENVIADOS 
@@ -92,6 +92,9 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	Route::post('/oficios/salientes/nuevo/dependencia/area/entidad','OficiosController@personal_nuevo_saliente');
 	
 /////////////////////Funciones para los oficios entrantes///////////
+	Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
+
+
 	Route::get('/oficios/nuevo/dependencia/','OficiosController@oficialia_Dependencia');
 		//Funciones para registrar una dependencia nueva
 		Route::get('/oficios/nuevo/dependencia/nueva','OficiosController@oficialia_nuevaDependencia');
@@ -118,7 +121,7 @@ Route::group(array("prefix"=>'oficialia'), function(){
 		Route::post('/oficios/recibidos/nuevo','OficiosController@oficialia_registrar_oficio_entrante');
 	//Pantalla de registro de anexos
 	Route::get('/oficios/nuevo/anexo','OficiosController@personal_registrar_nuevo_anexo');
-	
+
 	//Funciones para los oficios enviados
 	Route::get('/oficios/enviados','OficiosController@oficialia_enviados');
 	Route::get('/oficios/enviados/nuevo','OficiosController@oficialia_nuevo_saliente');
@@ -130,12 +133,12 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	//Route::post('/oficios/porvalidar/observaciones','OficiosController@oficialia_');
 	
 	//Funciones para los oficios recibidos
-	Route::get('/oficios/recibidos','OficiosController@oficialia_recibidos');
+	Route::get('/oficios/entrantes','OficiosController@oficialia_recibidos');
 	Route::post('/oficios/recibidos','OficiosController@oficialia_recibidos_buscar');
 	Route::get('/oficios/recibidos/turnar_a','CorrespondenciaController@turnar_a');
 	Route::post('/oficios/recibidos/turnar_a','CorrespondenciaController@turnar_a_registrar');
 	
-	//Funciones para los memorÃ¡ndums
+	//Funciones para los memorándums
 	Route::get('/memorandums/enviados','MemosController@oficialia_enviados');
 	Route::get('/memorandums/enviados/nuevo','MemosController@oficialia_nuevo_saliente');
 	Route::get('/memorandums/recibidos','MemosController@oficialia_recibidos');

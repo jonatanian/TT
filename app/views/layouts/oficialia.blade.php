@@ -21,7 +21,9 @@
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  
   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  {{HTML::script('https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js')}}
 <![endif]-->
 </head>
 
@@ -188,7 +190,7 @@
             </ul>
           </li>
 
-          <!-- sidebar bullets -->
+          <!-- sidebar bullets --><!--
           <li class="sidebar-label pt20">CMPL</li>
           <li class="sidebar-proj">
             <a href="#projectOne">
@@ -213,7 +215,7 @@
               <span class="fa fa-dot-circle-o text-warning"></span>
               <span class="sidebar-title">Material de apoyo</span>
             </a>
-          </li>
+          </li>-->
         </ul>
           
 	      <!-- Start: Sidebar Collapse Button -->
@@ -230,7 +232,11 @@
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-
+    
+      <!-- Start: Topbar -->
+      	@yield('Topbar')
+      <!-- End: Topbar -->
+	  
       <!-- Begin: Content -->
       <section id="content" class="animated fadeIn">
         @if(Session::has('msg'))
@@ -271,6 +277,10 @@
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
   
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
+  
+  <!-- Page Plugins -->
+  {{HTML::script('assets/admin-tools/admin-forms/js/jquery.validate.min.js')}}
+  {{HTML::script('assets/admin-tools/admin-forms/js/jquery.steps.min.js')}}
   <!-- Theme Javascript -->
   
   {{HTML::script('assets/js/utility/utility.js')}}
