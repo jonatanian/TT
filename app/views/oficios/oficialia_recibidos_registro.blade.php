@@ -33,7 +33,7 @@
                     <label for="Dependencia" class="field-label">Dependencia</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Dependencia" class="field prepend-icon">
-                        <input type="text" name="Dependencia" id="Dependencia" class="gui-input" placeholder="Nombre de la dependencia que emite...">
+                        <input type="text" name="Dependencia" id="Dependencia" class="gui-input" placeholder="Nombre de la dependencia que emite..." required>
                         <label for="Dependencia" class="field-icon">
                           <i class="fa fa-building"></i>
                         </label>
@@ -47,7 +47,7 @@
                     <label for="Area" class="field-label">Área</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Area" class="field prepend-icon">
-                        <input type="text" name="Area" id="Area" class="gui-input" placeholder="Nombre del área que emite...">
+                        <input type="text" name="Area" id="Area" class="gui-input" placeholder="Nombre del área que emite..." required>
                         <label for="Area" class="field-icon">
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
@@ -61,7 +61,7 @@
                     <label for="Remitente" class="field-label">Remitente</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Remitente" class="field prepend-icon">
-                        <input type="text" name="Remitente" id="Remitente" class="gui-input" placeholder="Nombre de la persona que emite...">
+                        <input type="text" name="Remitente" id="Remitente" class="gui-input" placeholder="Nombre de la persona que emite..." required>
                         <label for="Remitente" class="field-icon">
                           <i class="fa fa-user"></i>
                         </label>
@@ -75,7 +75,7 @@
                     <label for="Cargo" class="field-label">Cargo</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Nombre del cargo del remitente...">
+                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Nombre del cargo del remitente..." required>
                         <label for="Cargo" class="field-icon">
                           <i class="fa fa-bookmark"></i>
                         </label>
@@ -95,21 +95,18 @@
 				  
 				  <div class="section">
                     <label for="Cargo" class="field-label">¿Es un oficio de respuesta?</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Sí, no...">
-                        <label for="Cargo" class="field-icon">
-                          <i class="fa fa-bookmark"></i>
-                        </label>
-                      </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
-                    </div>
+                    <!--<div class="smart-widget sm-right smr-120">-->
+                      <span class="input-group-addon">
+                        <input type="radio" name="EsRespuesta" id="Si" value="Si" checked>Sí
+						<input type="radio" name="EsRespuesta" id="No" value="No">No
+                      </span>
+                    
                     <!-- end .smart-widget section -->
                   </div>
                   
                   <div class="section">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="ID de oficio al que se responde...">
+                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="ID de oficio al que se responde..." required>
                       <label for="firstname" class="field-icon">
                         <i class="fa fa-user"></i>
                       </label>
@@ -119,15 +116,10 @@
                   
                   <div class="section">
                     <label for="Cargo" class="field-label">¿Requiere respuesta?</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Sí, no, no sé...">
-                        <label for="Cargo" class="field-icon">
-                          <i class="fa fa-bookmark"></i>
-                        </label>
-                      </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
-                    </div>
+                    <span class="input-group-addon">
+                        <input type="radio" name="RequiereRespuesta" id="Si" value="Si" checked>Sí
+						<input type="radio" name="RequiereRespuesta" id="No" value="No">No
+                      </span>
                     <!-- end .smart-widget section -->
                   </div>
                   
@@ -135,7 +127,7 @@
                     <label for="Cargo" class="field-label">Fecha límite de respuesta</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Calendar...">
+                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Calendar..." required>
                         <label for="Cargo" class="field-icon">
                           <i class="fa fa-bookmark"></i>
                         </label>
@@ -149,7 +141,7 @@
                     <label for="Cargo" class="field-label">CCP</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Agregar destinatario CCP...">
+                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Agregar destinatario CCP..." required>
                         <label for="Cargo" class="field-icon">
                           <i class="fa fa-bookmark"></i>
                         </label>
@@ -170,7 +162,7 @@
                     <label for="Cargo" class="field-label">Nuevo anexo</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Descripción del anexo...">
+                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Descripción del anexo..." required>
                         <label for="Cargo" class="field-icon">
                           <i class="fa fa-bookmark"></i>
                         </label>
