@@ -18,15 +18,16 @@
 	<!-- End: Topbar -->
 @stop
 @section('content')
+
 	<!-- Form Wizard -->
           <div class="admin-form">
-
-            <form method="post" action="/" id="form-wizard">
-              <div class="wizard steps-bg steps-left">
+			{{Form::open(array('class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
+            <!--<form method="get" action="/" id="form-wizard">-->
+              <div class="wizard steps-bg steps-justified">
 
                 <!-- Wizard step 1 -->
                 <h4 class="wizard-section-title">
-                  <i class="fa fa-user pr5"></i>Datos del oficio</h4>
+                  <i class="fa fa-user pr5"></i> Datos del oficio</h4>
                 <section class="wizard-section">
 
                   <div class="section">
@@ -38,8 +39,48 @@
                           <i class="fa fa-building"></i>
                         </label>
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
-                    </div>
+	                  
+			            <button data-toggle="dropdown" class="btn btn-success dropdown-toggle">
+			              <span class="fa fa-plus fs14 va-m"></span>
+			            </button>
+			            <div class="dropdown-menu dropdown-persist w350 animated animated-shorter fadeIn" role="menu">  
+			              <div class="panel mbn">
+			                  <div class="panel-menu">
+			                     <span class="panel-icon"><i class="fa fa-plus-square"></i></span>
+			                     <span class="panel-title fw600"> Registrar nueva Dependencia</span>
+			                  </div>
+			                  <div class="panel-body panel-scroller scroller-navbar scroller-overlay scroller-pn pn">
+			                      <ol class="timeline-list">
+			                        <li class="timeline-item">
+			                          <div class="timeline-icon bg-dark light">
+			                            <span class="fa fa-tags"></span>
+			                          </div>
+			                          <div class="timeline-desc">
+			                            <b>Michael</b> Added to his store:
+			                            <a href="#">Ipod</a>
+			                          </div>
+			                          <div class="timeline-date">1:25am</div>
+			                        </li>
+			                        
+			                        <li class="timeline-item">
+			                          <div class="timeline-icon bg-success">
+			                            <span class="fa fa-usd"></span>
+			                          </div>
+			                          <div class="timeline-desc">
+			                            <b>Admin</b> created invoice for:
+			                            <a href="#">Apple</a>
+			                          </div>
+			                          <div class="timeline-date">7:45am</div>
+			                        </li>
+			                      </ol>
+			                  </div>
+			                  <div class="panel-footer text-center p7">
+			                    <a href="#" class="btn btn-rounded btn-success btn-block"> Registrar </a>
+			                  </div>
+			              </div>
+			            </div>
+			          
+	                </div>
                     <!-- end .smart-widget section -->
                   </div>
                   
@@ -90,130 +131,40 @@
 
                 <!-- Wizard step 2 -->
                 <h4 class="wizard-section-title">
-                  <i class="fa fa-dollar pr5"></i>Configuración del oficio</h4>
+                  <i class="fa fa-cog pr5"></i> Configuración del oficio</h4>
                 <section class="wizard-section">
-				  
-				  <div class="section">
-                    <label for="Cargo" class="field-label">¿Es un oficio de respuesta?</label>
-                    <!--<div class="smart-widget sm-right smr-120">-->
-                      <span class="input-group-addon">
-                        <input type="radio" name="EsRespuesta" id="Si" value="Si" checked>Sí
-						<input type="radio" name="EsRespuesta" id="No" value="No">No
-                      </span>
-                    
-                    <!-- end .smart-widget section -->
-                  </div>
+
                   
-                  <div class="section">
-                    <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="ID de oficio al que se responde..." required>
-                      <label for="firstname" class="field-icon">
-                        <i class="fa fa-user"></i>
-                      </label>
-                    </label>
-                  </div>
-                  <!-- end section -->
-                  
-                  <div class="section">
-                    <label for="Cargo" class="field-label">¿Requiere respuesta?</label>
-                    <span class="input-group-addon">
-                        <input type="radio" name="RequiereRespuesta" id="Si" value="Si" checked>Sí
-						<input type="radio" name="RequiereRespuesta" id="No" value="No">No
-                      </span>
-                    <!-- end .smart-widget section -->
-                  </div>
-                  
-                  <div class="section">
-                    <label for="Cargo" class="field-label">Fecha límite de respuesta</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Calendar..." required>
-                        <label for="Cargo" class="field-icon">
-                          <i class="fa fa-bookmark"></i>
-                        </label>
-                      </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
-                    </div>
-                    <!-- end .smart-widget section -->
-                  </div>
-                  
-                  <div class="section">
-                    <label for="Cargo" class="field-label">CCP</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Agregar destinatario CCP..." required>
-                        <label for="Cargo" class="field-icon">
-                          <i class="fa fa-bookmark"></i>
-                        </label>
-                      </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
-                    </div>
-                    <!-- end .smart-widget section -->
-                  </div>
 
                 </section>
 
                 <!-- Wizard step 3 -->
                 <h4 class="wizard-section-title">
-                  <i class="fa fa-shopping-cart pr5"></i>Registro de anexos</h4>
+                  <i class="fa fa-paperclip pr5"></i> Anexos</h4>
                 <section class="wizard-section">
 
-                  <div class="section">
-                    <label for="Cargo" class="field-label">Nuevo anexo</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Descripción del anexo..." required>
-                        <label for="Cargo" class="field-icon">
-                          <i class="fa fa-bookmark"></i>
-                        </label>
-                      </label>
-                      <a href="#" class="button">Agregar</a>
-                    </div>
-                    <!-- end .smart-widget section -->
-                  </div>
+                  
                 </section>
               </div>
               <!-- End: Wizard -->
 
-            </form>
+            {{Form::close()}}
             <!-- End Account2 Form -->
 
           </div>
           <!-- end: .admin-form -->
+          
+          
 @stop
 
 @section('scripts')
-  <style>
-  /*page demo styles*/
-  .wizard .steps .fa,
-  .wizard .steps .glyphicon,
-  .wizard .steps .glyphicon {
-    display: none;
-  }
-  </style>
-  <script type="text/javascript">
+<script type="text/javascript">
   jQuery(document).ready(function() {
 
     "use strict";
 
-    // Init Theme Core    
-    Core.init();
-
-    // Init Demo JS     
-    Demo.init();
-
     // Form Wizard 
     var form = $("#form-wizard");
-    form.validate({
-      errorPlacement: function errorPlacement(error, element) {
-        element.before(error);
-      },
-      rules: {
-        confirm: {
-          equalTo: "#password"
-        }
-      }
-    });
     form.children(".wizard").steps({
       headerTag: ".wizard-section-title",
       bodyTag: ".wizard-section",
@@ -226,50 +177,11 @@
         return form.valid();
       },
       onFinished: function(event, currentIndex) {
-        alert("Wizard molando al mil!");
+        alert("Submitted!");
       }
     });
 
-    // Demo Wizard Functionality
-    var formWizard = $('.wizard');
-    var formSteps = formWizard.find('.steps');
-
-    $('.wizard-options .holder-style').on('click', function(e) {
-      e.preventDefault();
-
-      var stepStyle = $(this).data('steps-style');
-
-      var stepRight = $('.holder-style[data-steps-style="steps-right"');
-      var stepLeft = $('.holder-style[data-steps-style="steps-left"');
-      var stepJustified = $('.holder-style[data-steps-style="steps-justified"');
-
-      if (stepStyle === "steps-left") {
-        stepRight.removeClass('holder-active');
-        stepJustified.removeClass('holder-active');
-        formWizard.removeClass('steps-right steps-justified');
-      }
-      if (stepStyle === "steps-right") {
-        stepLeft.removeClass('holder-active');
-        stepJustified.removeClass('holder-active');
-        formWizard.removeClass('steps-left steps-justified');
-      }
-      if (stepStyle === "steps-justified") {
-        stepLeft.removeClass('holder-active');
-        stepRight.removeClass('holder-active');
-        formWizard.removeClass('steps-left steps-right');
-      }
-
-      // Assign new style 
-      if ($(this).hasClass('holder-active')) {
-        formWizard.removeClass(stepStyle);
-      } else {
-        formWizard.addClass(stepStyle);
-      }
-
-      // Assign new active holder
-      $(this).toggleClass('holder-active');
-    });
-
+    
   });
-  </script>
+</script>
 @stop

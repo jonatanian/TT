@@ -12,6 +12,8 @@
 
   <!-- Font CSS (Via CDN) -->
   {{HTML::style("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700")}}
+  <!-- Vendor CSS -->
+  {{HTML::style("vendor/plugins/magnific/magnific-popup.css")}}
   <!-- Theme CSS -->
   {{HTML::style("assets/skin/default_skin/css/theme.css")}}
   <!-- Admin Forms CSS -->
@@ -281,6 +283,8 @@
   <!-- Page Plugins -->
   {{HTML::script('assets/admin-tools/admin-forms/js/jquery.validate.min.js')}}
   {{HTML::script('assets/admin-tools/admin-forms/js/jquery.steps.min.js')}}
+  {{HTML::script('vendor/plugins/magnific/jquery.magnific-popup.js')}}
+  
   <!-- Theme Javascript -->
   
   {{HTML::script('assets/js/utility/utility.js')}}
@@ -288,7 +292,9 @@
   {{HTML::script('assets/js/demo/demo.js')}}
   
   {{HTML::script('assets/js/main.js')}}
+  
   @yield('scripts')
+  
   <script type="text/javascript">
   jQuery(document).ready(function() {
 
