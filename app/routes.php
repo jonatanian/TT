@@ -31,6 +31,9 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::get('/corrregiroficio','OficiosController@corregir_oficio');
 		//Funciones para registrar anexos
 		Route::get('/anexos','OficiosController@personal_registrar_anexos');
+		//Funciones de control de usuarios
+		Route::get('/usuarios','UsersController@dsbd_usuarios');
+		Route::get('/usuarios/nuevo','UsersController@dsbd_nuevoUsuario');
 });
 //////////////////Jefes de departamento////////////////////
 	Route::group(array("prefix"=>'jefatura'), function(){

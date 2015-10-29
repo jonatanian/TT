@@ -233,7 +233,7 @@
             </a>
           </div>
           <div class="col-xs-4 col-sm-2">
-            <a href="#" class="metro-tile bg-info light">
+            <a href="{{action('UsersController@dsbd_usuarios')}}" class="metro-tile bg-info light">
               <span class="glyphicon glyphicon-user text-muted"></span>
               <span class="metro-title">Gestionar usuarios</span>
             </a>
@@ -280,6 +280,7 @@
             {{Session::get('msgf')}}
           </div>
         @endif
+		@yield('Topbar')
         @yield('content')
       </section>
       
@@ -305,6 +306,11 @@
   
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
   <!-- Theme Javascript -->
+  
+  <!-- Page Plugins -->
+  {{HTML::script('assets/admin-tools/admin-forms/js/jquery.validate.min.js')}}
+  {{HTML::script('assets/admin-tools/admin-forms/js/jquery.steps.min.js')}}
+  {{HTML::script('vendor/plugins/magnific/jquery.magnific-popup.js')}}
   
   {{HTML::script('assets/js/utility/utility.js')}}
   
