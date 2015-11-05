@@ -41,7 +41,11 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/usuarios/contrasena','UsersController@dsbd_actualizarContrasenaUsuario');
 		Route::get('/usuarios/estatus','UsersController@dsbd_cambiarEstatus');
 		Route::post('/usuarios/estatus','UsersController@dsbd_actualizarEstatus');
+		Route::post('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+		
+		
 });
+
 //////////////////Jefes de departamento////////////////////
 	Route::group(array("prefix"=>'jefatura'), function(){
 		Route::get('/','JefaturaController@jefatura_index');
