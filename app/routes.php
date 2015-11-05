@@ -79,6 +79,7 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
 	
+	Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 	
 	//Funciones de Oficios Salientes
 	//Vista de oficios enviados

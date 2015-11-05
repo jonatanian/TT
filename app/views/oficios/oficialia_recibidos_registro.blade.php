@@ -27,10 +27,10 @@
 
                 <!-- Wizard step 1 -->
                 <h4 class="wizard-section-title">
-                  <i class="fa fa-user pr5"></i> Datos del oficio</h4>
+                  <i class="fa fa-user pr5"></i> Datos del remitente</h4>
                 <section class="wizard-section">
 
-                  <div class="section">
+                  <div class="section col-md-6">
                     <label for="Dependencia" class="field-label">Dependencia que emite</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Dependencia" class="field prepend-icon">
@@ -49,8 +49,8 @@
                     <!-- end .smart-widget section -->
                   </div>
                   
-                  <div class="section">
-                    <label for="Area" class="field-label">Área</label>
+                  <div class="section col-md-6">
+                    <label for="Area" class="field-label">Área que emite</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Area" class="field prepend-icon">
                         <select id="Area" name="Area" class="gui-input">
@@ -68,8 +68,8 @@
                     <!-- end .smart-widget section -->
                   </div>
                   
-                  <div class="section">
-                    <label for="Remitente" class="field-label">Remitente</label>
+                  <div class="section col-md-6">
+                    <label for="Remitente" class="field-label">Nombre del emisor</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Remitente" class="field prepend-icon">
                         <select id="Area" name="Area" class="gui-input">
@@ -82,13 +82,13 @@
                           <i class="fa fa-user"></i>
                         </label>
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
+                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
                   
-                  <div class="section">
-                    <label for="Cargo" class="field-label">Cargo</label>
+                  <div class="section col-md-6">
+                    <label for="Cargo" class="field-label">Cargo del emisor</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Cargo" class="field prepend-icon">
                         <select id="Area" name="Area" class="gui-input">
@@ -101,7 +101,7 @@
                           <i class="fa fa-bookmark"></i>
                         </label>
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
+                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -109,20 +109,160 @@
 
                 </section>
 
-                <!-- Wizard step 2 -->
+				<!-- Wizard step 2 -->
                 <h4 class="wizard-section-title">
-                  <i class="fa fa-cog pr5"></i> Configuración del oficio</h4>
+                  <i class="fa fa-file-o pr5"></i> Datos del oficio</h4>
                 <section class="wizard-section">
 
+                  <div class="section col-md-6">
+                    <label for="IdOficio" class="field-label">Número de oficio</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="IdOficio" class="field prepend-icon">
+                        <input type="text" name="IdOficio" id="IdOficioR" class="gui-input" placeholder="No. de oficio entrante...">
+                        <label for="IdOficio" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Requerido</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
                   
-
+                  <div class="section col-md-6">
+                    <label for="Remitente" class="field-label">Dirigido a</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="Remitente" class="field prepend-icon">
+                        <select id="DirigidoA" name="DirigidoA" class="gui-input">
+							@foreach($usuarios as $usuario)
+								@if($usuario->Cargo_Id == 1)
+									<option selected="selected" value="{{$usuario->IdUsuario}}">{{$usuario->getNombreCompletoPMN()}}</option>
+								@else
+									<option value="{{$usuario->IdUsuario}}">{{$usuario->getNombreCompletoPMN()}}</option>
+								@endif
+							@endforeach
+						</select>                        
+						<label for="Remitente" class="field-icon">
+                          <i class="fa fa-user"></i>
+                        </label>
+                      </label>
+                      <a href="#" class="button">Requerido</a>
+                    </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                  <div class="section col-md-6">
+                    <label for="FechaEmision" class="field-label">Fecha de emisión</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="FechaEmision" class="field prepend-icon">
+                        <input type="text" name="FechaEmision" id="FechaEmision" class="gui-input" placeholder="Elije una fecha...">
+                        <label for="FechaEmision" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Requerido</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                  <div class="section col-md-6">
+                    <label for="FechaRecepcion" class="field-label">Fecha de recepción</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="FechaRecepcion" class="field prepend-icon">
+                        <input type="text" name="FechaRecepcion" id="FechaRecepcion" class="gui-input" placeholder="Elije una fecha...">
+                        <label for="FechaRecepcion" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Requerido</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                  <div class="section col-md-12">
+                    <label for="Asunto" class="field-label">Asunto</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="Asunto" class="field prepend-icon">
+						{{Form::textarea('Asunto', null, array('class'=>'gui-textarea','id'=>'Asunto','placeholder'=>'Asunto...','required'=>'required'))}}
+						<label for="Asunto" class="field-icon">
+							<i class="fa fa-comments"></i>
+						</label>
+						<span class="input-footer">
+							<strong>Recomendación:</strong> Sea breve, claro y conciso en la redacción del asunto.
+						</span>
+					  </label>
+					  	<a href="#" class="button">Requerido</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
                 </section>
 
                 <!-- Wizard step 3 -->
                 <h4 class="wizard-section-title">
+                  <i class="fa fa-cog pr5"></i> Configuración</h4>
+                <section class="wizard-section">
+
+                  <div class="section">
+                    <label for="IdOficioR" class="field-label">¿Es un oficio de respuesta?</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="IdOficioR" class="field prepend-icon">
+                        <input type="text" name="IdOficioR" id="IdOficioR" class="gui-input" placeholder="Escribe el número del oficio al que se responde...">
+                        <label for="IdOficioR" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Opcional</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                  <div class="section">
+                    <label for="FechaLimiteR" class="field-label">¿Requiere respuesta?</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="FechaLimiteR" class="field prepend-icon">
+                        <input type="text" name="FechaLimiteR" id="FechaLimiteR" class="gui-input" placeholder="Seleccione fecha límite para responder a este oficio...">
+                        <label for="FechaLimiteR" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Opcional</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                  <div class="section">
+                    <label for="PDF" class="field-label">Subir copia digital</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="file1" class="field file">
+						<span class="button bg-system"> Adjuntar </span>
+						<input type="file" class="gui-file" name="DocPDF" id="DocPDF" onChange="document.getElementById('uploader1').value = this.value;">
+						<input type="text" class="gui-input" id="uploader1" placeholder="No se ha seleccionado documento PDF" readonly>
+					  </label>
+					  	<a href="#" class="button">Requerido</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                </section>
+
+                <!-- Wizard step 4 -->
+                <h4 class="wizard-section-title">
                   <i class="fa fa-paperclip pr5"></i> Anexos</h4>
                 <section class="wizard-section">
 
+                  <div class="section">
+                    <label for="Anexos" class="field-label">Nuevo anexo</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="Anexos" class="field prepend-icon">
+                        <input type="text" name="Anexos" id="Cargo" class="gui-input" placeholder="Descripción del anexo..." required>
+                        <label for="Anexos" class="field-icon">
+                          <i class="fa fa-bookmark"></i>
+                        </label>
+                      </label>
+                      <a href="#" class="button">Agregar</a>
+                    </div>
+                    <!-- end .smart-widget section -->
+                  </div>
                   
                 </section>
               </div>
@@ -138,6 +278,8 @@
 @stop
 
 @section('scripts')
+{{HTML::script('avalon/plugins/bootstrap-datepicker/bootstrap-datepicker.js')}}
+
 <script type="text/javascript">
   jQuery(document).ready(function() {
 
@@ -157,11 +299,29 @@
         return form.valid();
       },
       onFinished: function(event, currentIndex) {
-        alert("Submitted!");
+        alert("Ya furula!");
       }
     });
 
-    
+    $(document).ready(function() {
+		$('#FechaEmision').datepicker({
+			todayHighlight: true,
+    		startView: 3,
+    		format: 'yyyy-mm-dd'
+		});
+
+		$('#FechaRecepcion').datepicker({
+			todayHighlight: true,
+    		startView: 3,
+    		format: 'yyyy-mm-dd'
+		});
+		
+		$('#FechaLimiteR').datepicker({
+			todayHighlight: true,
+    		startView: 3,
+    		format: 'yyyy-mm-dd'
+		});
+	});
   });
 </script>
 @stop
