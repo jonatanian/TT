@@ -244,27 +244,6 @@
                   </div>
                   
                 </section>
-
-                <!-- Wizard step 4 -->
-                <h4 class="wizard-section-title">
-                  <i class="fa fa-paperclip pr5"></i> Anexos</h4>
-                <section class="wizard-section">
-
-                  <div class="section">
-                    <label for="Anexos" class="field-label">Nuevo anexo</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="Anexos" class="field prepend-icon">
-                        <input type="text" name="Anexos" id="Cargo" class="gui-input" placeholder="Descripción del anexo..." required>
-                        <label for="Anexos" class="field-icon">
-                          <i class="fa fa-bookmark"></i>
-                        </label>
-                      </label>
-                      <a href="#" class="button">Agregar</a>
-                    </div>
-                    <!-- end .smart-widget section -->
-                  </div>
-                  
-                </section>
               </div>
               <!-- End: Wizard -->
 
@@ -299,7 +278,7 @@
         return form.valid();
       },
       onFinished: function(event, currentIndex) {
-        alert("Ya furula!");
+        return form.submit();
       }
     });
 
