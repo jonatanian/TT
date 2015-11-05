@@ -31,7 +31,11 @@
 				<td>Acciones para el usuario</td>
 			<tr>
 			@foreach($usuarios as $usuario)
-			<tr>
+			@if($usuario->Activo == 1)
+			<tr class="success">
+			@else
+			<tr class="danger">
+			@endif
 				<td>{{$usuario->IdUsuario}}</td>
 				<td>{{$usuario->getNombreCompleto()}}</td>
 				<td>{{$usuario->Email}}</td>
@@ -43,20 +47,17 @@
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
 					    <li>
-					      <a href="#">Editar</a>
+					      <a href="{{action('UsersController@dsbd_editarUsuario', array('IdUsuario'=>$usuario->IdUsuario))}}">Editar</a>
 					    </li>
 					    <li>
-					      <a href="#">Cambiar estatus</a>
-					    </li>
-					    <li>
-					      <a href="#">Cambiar contraseña</a>
+					      <a href="{{action('UsersController@dsbd_recuperarContrasenaUsuario', array('IdUsuario'=>$usuario->IdUsuario))}}">Recuperar contraseña</a>
 					    </li>
 					    <li>
 					      <a href="#">Ver detalles</a>
 					    </li>					    
 					    <li class="divider"></li>
 					    <li>
-					      <a href="#">Otro</a>
+					      <a href="{{action('UsersController@dsbd_cambiarEstatus', array('IdUsuario'=>$usuario->IdUsuario, 'Activo'=>$usuario->Activo))}}">Cambiar estatus</a>
 					    </li>
 					  </ul>
 					</div>

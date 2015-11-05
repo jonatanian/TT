@@ -16,9 +16,9 @@
 @section('content')
 	
 	<div class="admin-form">
-			{{Form::open(array('action'=>'UsersController@dsbd_registrarUsuario', 'class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
+			{{Form::open(array('action'=>'UsersController@dsbd_actualizarUsuario', 'class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
             <!--<form method="get" action="/" id="form-wizard">-->
-
+			{{Form::hidden('IdUsuario', $usuario->IdUsuario)}}
                 <!-- Wizard step 1 -->
                 <h4 class="wizard-section-title">
                   <i class="fa fa-user pr5"></i> Datos del nuevo usuario</h4>
@@ -27,7 +27,7 @@
 						<label for="Nombre" class="field-label">Nombre</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="Nombre" class="field prepend-icon">
-							<input type="text" name="Nombre" id="Nombre" class="gui-input" placeholder="Nombre(s) del usuario" required>
+							{{Form::text('Nombre', $usuario->Nombre, array('class'=>'gui-input', 'name'=>'Nombre', 'required'=>'required'))}}
 						  </label>
 						</div>
 					</div>
@@ -36,7 +36,7 @@
 						<label for="ApPaterno" class="field-label">Apellido paterno</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="ApPaterno" class="field prepend-icon">
-							<input type="text" name="ApPaterno" id="ApPaterno" class="gui-input" placeholder="Apellido Paterno" required>
+							{{Form::text('ApPaterno', $usuario->ApPaterno, array('class'=>'gui-input', 'name'=>'ApPaterno', 'required'=>'required'))}}
 						  </label>
 						</div>
 					</div>
@@ -45,7 +45,7 @@
 						<label for="ApMaterno" class="field-label">Apellido Materno</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="ApMaterno" class="field prepend-icon">
-							<input type="text" name="ApMaterno" id="ApMaterno" class="gui-input" placeholder="Apellido Materno" required>
+							{{Form::text('ApMaterno', $usuario->ApMaterno, array('class'=>'gui-input', 'name'=>'ApMaterno', 'required'=>'required'))}}
 						  </label>
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 						<label for="Extension" class="field-label">Extensión</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="Extension" class="field prepend-icon">
-							<input type="text" name="Extension" id="Extension" class="gui-input" placeholder="Extensión" required>
+							{{Form::text('Extension', $usuario->Extension, array('class'=>'gui-input', 'name'=>'Extension', 'required'=>'required'))}}
 						  </label>
 						</div>
 					</div>
@@ -63,16 +63,7 @@
 						<label for="Email" class="field-label">Email</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="Email" class="field prepend-icon">
-							<input type="text" name="Email" id="Email" class="gui-input" placeholder="Email" required>
-						  </label>
-						</div>
-					</div>
-					
-					<div class="section">
-						<label for="Password" class="field-label">Password</label>
-						<div class="smart-widget sm-right smr-120">
-						  <label for="Password" class="field prepend-icon">
-							<input type="password" name="Password" id="Password" class="gui-input" placeholder="Password" required>
+							{{Form::text('Email', $usuario->Email, array('class'=>'gui-input', 'name'=>'Email', 'required'=>'required'))}}
 						  </label>
 						</div>
 					</div>
@@ -81,7 +72,7 @@
 						<label for="Area" class="field-label">Área</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="Area" class="field prepend-icon">
-						  {{Form::select('IdArea', $areas, array(''), array('class'=>'gui-input', 'name'=>'Area_Id'))}}
+						  {{Form::select('IdArea', $areas, $usuario->Area_Id, array('class'=>'gui-input', 'name'=>'Area_Id'))}}
 						  </label>
 						</div>
 					</div>
@@ -90,7 +81,7 @@
 						<label for="Cargo" class="field-label">Cargo</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="Cargo" class="field prepend-icon">
-						  {{Form::select('IdCargo', $cargos, array(''), array('class'=>'gui-input', 'name'=>'Cargo_Id'))}}
+						  {{Form::select('IdCargo', $cargos, $usuario->Cargo_Id, array('class'=>'gui-input', 'name'=>'Cargo_Id'))}}
 						  </label>
 						</div>
 					</div>
@@ -99,12 +90,12 @@
 						<label for="Rol" class="field-label">Rol</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="Rol" class="field prepend-icon">
-						  {{Form::select('IdRol', $roles, array(''), array('class'=>'gui-input', 'name'=>'Rol_Id'))}}
+						  {{Form::select('IdRol', $roles, $usuario->Rol_Id, array('class'=>'gui-input', 'name'=>'Rol_Id'))}}
 						  </label>
 						</div>
 					</div>
                 </section>
-				{{Form::submit('Registrar', array('class'=>'btn btn-default"'))}}
+				{{Form::submit('Actualizar', array('class'=>'btn btn-default"'))}}
 				
             {{Form::close()}}
             <!-- End Account2 Form -->

@@ -304,6 +304,8 @@
   
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
   
+  {{HTML::script('vendor/kendo/kendo.all.min.js')}}
+  
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
   <!-- Theme Javascript -->
   
@@ -325,8 +327,6 @@
     // Init Theme Core    
     Core.init();
 
-    // Init Demo JS  
-    Demo.init();
 
   });
   </script>

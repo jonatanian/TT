@@ -34,6 +34,13 @@ Route::group(array("prefix"=>'SIG'), function(){
 		//Funciones de control de usuarios
 		Route::get('/usuarios','UsersController@dsbd_usuarios');
 		Route::get('/usuarios/nuevo','UsersController@dsbd_nuevoUsuario');
+		Route::post('/usuarios/nuevo','UsersController@dsbd_registrarUsuario');
+		Route::get('/usuarios/editar','UsersController@dsbd_editarUsuario');
+		Route::post('/usuarios/editar','UsersController@dsbd_actualizarUsuario');
+		Route::get('/usuarios/contrasena','UsersController@dsbd_recuperarContrasenaUsuario');
+		Route::post('/usuarios/contrasena','UsersController@dsbd_actualizarContrasenaUsuario');
+		Route::get('/usuarios/estatus','UsersController@dsbd_cambiarEstatus');
+		Route::post('/usuarios/estatus','UsersController@dsbd_actualizarEstatus');
 });
 //////////////////Jefes de departamento////////////////////
 	Route::group(array("prefix"=>'jefatura'), function(){
