@@ -139,59 +139,17 @@
             </a>
             <ul class="nav sub-nav">
               <li>
-                  <a href="{{action('OficiosController@oficialia_Dependencia')}}">
-                  <span class="fa fa-send-o"></span> Nuevo entrante</a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_Dependencia')}}">
-                  <span class="fa fa-send-o"></span> Nuevo saliente</a>
-              </li>
-              <li>
                   <a href="{{action('OficiosController@oficialia_recibidos')}}">
-                  <span class="fa fa-send-o"></span> Oficios entrantes </a>
+                  <span class="fa fa-folder"></span> Oficios entrantes </a>
               </li>
               <li>
                   <a href="{{action('OficiosController@oficialia_enviados')}}">
-                  <span class="fa fa-send"></span> Oficios salientes </a>
-              </li>
-              <li>
-                  <a href="{{action('OficiosController@oficialia_oficios_por_validar')}}">
-                  <span class="fa fa-send"></span> Oficios por validar </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Registrar anexos </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Oficios sin acuse </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Oficios con acuse </a>
+                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
               </li>
             </ul>
           </li>
           
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-envelope-o"></span>
-              <span class="sidebar-title">Memorándums</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="{{action('MemosController@oficialia_recibidos')}}">
-                  <span class="fa fa-send"></span>Memos recibidos </a>
-              </li>
-              <li>
-                <a href="{{action('MemosController@oficialia_enviados')}}">
-                  <span class="fa fa-send-o"></span>Memos enviados </a>
-              </li>
-              <li>
-            </ul>
-          </li>
-
+          
           <!-- sidebar bullets --><!--
           <li class="sidebar-label pt20">CMPL</li>
           <li class="sidebar-proj">
