@@ -110,7 +110,7 @@
 
         <!-- Start: Sidebar Menu -->
         <nav role="navigation" class="widget-body">
-	        <ul class="nav sidebar-menu acc-menu ">
+	        <ul class="nav sidebar-menu acc-menu">
 	          <li class="sidebar-label pt20">Men&uacute;</li>
 	          <li>
 	            <a href="http://www.sidirtel.ipn.mx" target="_blank">

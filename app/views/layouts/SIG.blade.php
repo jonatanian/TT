@@ -113,8 +113,8 @@
         </header>
 
         <!-- Start: Sidebar Menu -->
-        <nav role="navigation">
-            <ul class="nav sidebar-menu">
+        <nav role="navigation" class="widget-body">
+            <ul class="nav sidebar-menu acc-menu">
               <li class="sidebar-label pt20">Men&uacute;</li>
               <li>
                 <a href="{{action('SIGController@SIG_index')}}">
@@ -126,35 +126,35 @@
               <!-- sidebar resources -->
               <li class="sidebar-label pt15"></li>
               <li>
-                <a class="accordion-toggle" href="#">
+                <a href="javascript:;">
                   <span class="fa fa-envelope"></span>
                   <span class="sidebar-title">Áreas del CMPL</span>
                   <span class="caret"></span>
                 </a>
-                <ul class="nav sub-nav">
+                <ul class="nav sub-nav acc-menu">
                   <li>
                       <a href="{{action('SIGController@SIG_Direccion')}}">
-                      <span class="fa fa-send-o"></span> Dirección </a>
+                      <span class="fa fa-bank"></span> Dirección </a>
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Tecnica')}}">
-                      <span class="fa fa-send"></span> Subdirección Técnica</a>
+                      <span class="fa fa-bolt"></span> Subdirección Técnica</a>
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Posgrado')}}">
-                      <span class="fa fa-send"></span> Subdirección de Posgrado</a>
+                      <span class="fa fa-graduation-cap"></span> Subdirección de Posgrado</a>
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Vinculacion')}}">
-                      <span class="fa fa-send"></span> Subdirección de Vinculación y Apoyo</a>
+                      <span class="fa fa-globe"></span> Subdirección de Vinculación y Apoyo</a>
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Administrativa')}}">
-                      <span class="fa fa-send"></span> Departamento de Servicios Administrativos y Técnicos</a>
+                      <span class="fa fa-cubes"></span> Departamento de Servicios Administrativos y Técnicos</a>
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Sistemas')}}">
-                      <span class="fa fa-send"></span> Departamento de Sistemas y Banco de Datos</a>
+                      <span class="fa fa-database"></span> Departamento de Sistemas y Banco de Datos</a>
                   </li>
                 </ul>
               </li>
@@ -286,10 +286,15 @@
   <!-- BEGIN: PAGE SCRIPTS -->
 
   <!-- jQuery -->
-  
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
-  
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
+  
+  {{HTML::script('avalon/plugins/jquery-slimscroll/jquery.slimscroll.js')}}
+  {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
+  {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
+  {{HTML::script('avalon/js/enquire.min.js')}}
+  {{HTML::script('avalon/js/application.js')}}
+
   <!-- Theme Javascript -->
   
   {{HTML::script('assets/js/utility/utility.js')}}
