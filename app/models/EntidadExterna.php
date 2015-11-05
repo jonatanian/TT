@@ -29,5 +29,10 @@
 		{
 			return $this->NombreEntidad.' '.$this->ApPaternoEntidad.' '.$this->ApMaternoEntidad;
 		}
+		
+		public function getNombreCompletoPMN()
+	{
+		return $this->ApPaternoEntidad.' '.$this->ApMaternoEntidad.' '.$this->NombreEntidad;
+	}
 	}
  ?>

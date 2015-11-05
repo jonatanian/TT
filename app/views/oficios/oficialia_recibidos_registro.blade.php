@@ -31,55 +31,20 @@
                 <section class="wizard-section">
 
                   <div class="section">
-                    <label for="Dependencia" class="field-label">Dependencia</label>
+                    <label for="Dependencia" class="field-label">Dependencia que emite</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Dependencia" class="field prepend-icon">
-                        <input type="text" name="Dependencia" id="Dependencia" class="gui-input" placeholder="Nombre de la dependencia que emite..." required>
+                      	<select id="Dependencia" name="Dependencia" class="gui-input">
+                      		<option id="0">Selecciona una dependencia...</option>
+							@foreach($dependencias as $dependencia)
+								<option id="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}</option>
+							@endforeach
+						</select>
                         <label for="Dependencia" class="field-icon">
-                          <i class="fa fa-building"></i>
-                        </label>
+                          <i class="fa fa-bank"></i>
+                        </label>                        
                       </label>
-	                  
-			            <button data-toggle="dropdown" class="btn btn-success dropdown-toggle">
-			              <span class="fa fa-plus fs14 va-m"></span>
-			            </button>
-			            <div class="dropdown-menu dropdown-persist w350 animated animated-shorter fadeIn" role="menu">  
-			              <div class="panel mbn">
-			                  <div class="panel-menu">
-			                     <span class="panel-icon"><i class="fa fa-plus-square"></i></span>
-			                     <span class="panel-title fw600"> Registrar nueva Dependencia</span>
-			                  </div>
-			                  <div class="panel-body panel-scroller scroller-navbar scroller-overlay scroller-pn pn">
-			                      <ol class="timeline-list">
-			                        <li class="timeline-item">
-			                          <div class="timeline-icon bg-dark light">
-			                            <span class="fa fa-tags"></span>
-			                          </div>
-			                          <div class="timeline-desc">
-			                            <b>Michael</b> Added to his store:
-			                            <a href="#">Ipod</a>
-			                          </div>
-			                          <div class="timeline-date">1:25am</div>
-			                        </li>
-			                        
-			                        <li class="timeline-item">
-			                          <div class="timeline-icon bg-success">
-			                            <span class="fa fa-usd"></span>
-			                          </div>
-			                          <div class="timeline-desc">
-			                            <b>Admin</b> created invoice for:
-			                            <a href="#">Apple</a>
-			                          </div>
-			                          <div class="timeline-date">7:45am</div>
-			                        </li>
-			                      </ol>
-			                  </div>
-			                  <div class="panel-footer text-center p7">
-			                    <a href="#" class="btn btn-rounded btn-success btn-block"> Registrar </a>
-			                  </div>
-			              </div>
-			            </div>
-			          
+                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
 	                </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -88,12 +53,17 @@
                     <label for="Area" class="field-label">Área</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Area" class="field prepend-icon">
-                        <input type="text" name="Area" id="Area" class="gui-input" placeholder="Nombre del área que emite..." required>
+                        <select id="Area" name="Area" class="gui-input">
+                      		<option id="0">Selecciona una área...</option>
+							@foreach($dep_areas as $dep_area)
+								<option id="{{$dep_area->IdDependenciaArea}}">{{$dep_area->NombreDependenciaArea}}</option>
+							@endforeach
+						</select>
                         <label for="Area" class="field-icon">
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i></a>
+                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -102,7 +72,12 @@
                     <label for="Remitente" class="field-label">Remitente</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Remitente" class="field prepend-icon">
-                        <input type="text" name="Remitente" id="Remitente" class="gui-input" placeholder="Nombre de la persona que emite..." required>
+                        <select id="Area" name="Area" class="gui-input">
+                      		<option id="0">Selecciona un remitente...</option>
+							@foreach($entidades_externas as $entidad_externa)
+								<option id="{{$entidad_externa->IdEntidadExterna}}">{{$entidad_externa->getNombreCompletoPMN()}}</option>
+							@endforeach
+						</select>
                         <label for="Remitente" class="field-icon">
                           <i class="fa fa-user"></i>
                         </label>
@@ -116,7 +91,12 @@
                     <label for="Cargo" class="field-label">Cargo</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Cargo" class="field prepend-icon">
-                        <input type="text" name="Cargo" id="Cargo" class="gui-input" placeholder="Nombre del cargo del remitente..." required>
+                        <select id="Area" name="Area" class="gui-input">
+                      		<option id="0">Selecciona un cargo...</option>
+							@foreach($cargos_entidades as $cargo_entidad)
+								<option id="{{$cargo_entidad->IdCargoEntidad}}">{{$cargo_entidad->NombreCargoEntidad}}</option>
+							@endforeach
+						</select>
                         <label for="Cargo" class="field-icon">
                           <i class="fa fa-bookmark"></i>
                         </label>

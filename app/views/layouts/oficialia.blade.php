@@ -135,7 +135,7 @@
 	          <li class="sidebar-label pt15">Control de correspondencia</li>
 	          <li>
 	            <a href="javascript:;">
-	              <span class="fa fa-envelope"></span>
+	              <span class="fa fa-folder-open"></span>
 	              <span class="sidebar-title">Oficios</span>
 	              <span class="caret"></span>
 	            </a>
