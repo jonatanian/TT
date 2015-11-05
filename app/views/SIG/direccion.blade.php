@@ -7,8 +7,8 @@
     </div>
     
 	<blockquote class="blockquote-primary">
-		<p class="btn btn-primary">Manual integrado</p>
-		<p class="btn btn-primary">Organigrama CMPL</p>
+		<a class="btn btn-primary" href="../procedimientos/DIRECCION/ManualIntegrado2015.pdf" target="_blank">Manual integrado</a>
+		<a class="btn btn-primary" href="../procedimientos/DIRECCION/OrganigramaCMPLEnero2015.png" target="_blank">Organigrama CMPL</a>
 	</blockquote>
 	
 	<div class="content-header">
