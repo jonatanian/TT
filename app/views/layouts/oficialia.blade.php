@@ -20,6 +20,7 @@
   {{HTML::style("assets/admin-tools/admin-forms/css/admin-forms.css")}}
   <!-- Favicon -->
   {{HTML::style("assets/img/favicon.ico")}}
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -108,117 +109,49 @@
         </header>
 
         <!-- Start: Sidebar Menu -->
-        <ul class="nav sidebar-menu">
-          <li class="sidebar-label pt20">Men&uacute;</li>
-          <li>
-            <a href="http://www.sidirtel.ipn.mx" target="_blank">
-              <span class="fa fa-users"></span>
-              <span class="sidebar-title">Directorio IPN</span>
-            </a>
-          </li>
-          <li>
-            <a href="http://148.204.90.213/Directorio/Directorio.html" target="_blank">
-              <span class="glyphicon glyphicon-book"></span>
-              <span class="sidebar-title">Directorio CMPL</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{action('SIGController@SIG_index')}}" target="_blank">
-              <span class="glyphicon glyphicon-book"></span>
-              <span class="sidebar-title">SIG</span>
-            </a>
-          </li>
-          
-          <!-- sidebar resources -->
-          <li class="sidebar-label pt15">Control de correspondencia</li>
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-envelope"></span>
-              <span class="sidebar-title">Oficios</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                  <a href="{{action('OficiosController@oficialia_Dependencia')}}">
-                  <span class="fa fa-send-o"></span> Nuevo entrante</a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_Dependencia')}}">
-                  <span class="fa fa-send-o"></span> Nuevo saliente</a>
-              </li>
-              <li>
-                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
-                  <span class="fa fa-send-o"></span> Oficios entrantes </a>
-              </li>
-              <li>
-                  <a href="{{action('OficiosController@oficialia_enviados')}}">
-                  <span class="fa fa-send"></span> Oficios salientes </a>
-              </li>
-              <li>
-                  <a href="{{action('OficiosController@oficialia_oficios_por_validar')}}">
-                  <span class="fa fa-send"></span> Oficios por validar </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Registrar anexos </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Oficios sin acuse </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Oficios con acuse </a>
-              </li>
-            </ul>
-          </li>
-          
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-envelope-o"></span>
-              <span class="sidebar-title">Memorándums</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="{{action('MemosController@oficialia_recibidos')}}">
-                  <span class="fa fa-send"></span>Memos recibidos </a>
-              </li>
-              <li>
-                <a href="{{action('MemosController@oficialia_enviados')}}">
-                  <span class="fa fa-send-o"></span>Memos enviados </a>
-              </li>
-              <li>
-            </ul>
-          </li>
-
-          <!-- sidebar bullets --><!--
-          <li class="sidebar-label pt20">CMPL</li>
-          <li class="sidebar-proj">
-            <a href="#projectOne">
-              <span class="fa fa-dot-circle-o text-primary"></span>
-              <span class="sidebar-title">Avisos</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectTwo">
-              <span class="fa fa-dot-circle-o text-info"></span>
-              <span class="sidebar-title">Galería fotográfica</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectTwo">
-              <span class="fa fa-dot-circle-o text-danger"></span>
-              <span class="sidebar-title">Cursos</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectThree">
-              <span class="fa fa-dot-circle-o text-warning"></span>
-              <span class="sidebar-title">Material de apoyo</span>
-            </a>
-          </li>-->
-        </ul>
+        <nav role="navigation" class="widget-body">
+	        <ul class="nav sidebar-menu acc-menu">
+	          <li class="sidebar-label pt20">Men&uacute;</li>
+	          <li>
+	            <a href="http://www.sidirtel.ipn.mx" target="_blank">
+	              <span class="fa fa-users"></span>
+	              <span class="sidebar-title">Directorio IPN</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="http://148.204.90.213/Directorio/Directorio.html" target="_blank">
+	              <span class="glyphicon glyphicon-book"></span>
+	              <span class="sidebar-title">Directorio CMPL</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="{{action('SIGController@SIG_index')}}" target="_blank">
+	              <span class="glyphicon glyphicon-book"></span>
+	              <span class="sidebar-title">SIG</span>
+	            </a>
+	          </li>
+	          
+	          <!-- sidebar resources -->
+	          <li class="sidebar-label pt15">Control de correspondencia</li>
+	          <li>
+	            <a href="javascript:;">
+	              <span class="fa fa-folder-open"></span>
+	              <span class="sidebar-title">Oficios</span>
+	              <span class="caret"></span>
+	            </a>
+	            <ul class="nav sub-nav acc-menu">
+	              <li>
+	                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
+	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
+	              </li>
+	              <li>
+	                  <a href="{{action('OficiosController@oficialia_enviados')}}">
+	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
+	              </li>
+	            </ul>
+	          </li>
+	        </ul>
+	    </nav>
           
 	      <!-- Start: Sidebar Collapse Button -->
 	      <div class="sidebar-toggle-mini">
@@ -284,6 +217,12 @@
   {{HTML::script('assets/admin-tools/admin-forms/js/jquery.validate.min.js')}}
   {{HTML::script('assets/admin-tools/admin-forms/js/jquery.steps.min.js')}}
   {{HTML::script('vendor/plugins/magnific/jquery.magnific-popup.js')}}
+  	
+  {{HTML::script('avalon/plugins/jquery-slimscroll/jquery.slimscroll.js')}}
+  {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
+  {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
+  {{HTML::script('avalon/js/enquire.min.js')}}
+  {{HTML::script('avalon/js/application.js')}}
   
   <!-- Theme Javascript -->
   
