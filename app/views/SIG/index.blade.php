@@ -6,7 +6,10 @@
       <h2 class="text-primary">Política Integral de Calidad y del Ambiente</h2>
     </div>
 	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">El Centro Mexicano para la Producción más Limpia ofrece asistencia técnica y programas de formación de recursos humanos de excelencia, comprometido con la satisfacción de los clientes con productos diseñados bajo criterios ambientales y de calidad  que cumplan la legislación ambiental y otros requerimientos  aplicables, teniendo como ejes centrales la prevención de la contaminación y la mejora continua.</p>
+		<p style="text-align:justify">El Centro Mexicano para la Producción más Limpia ofrece asistencia técnica y programas de formación de recursos humanos de excelencia, 
+						comprometido con la satisfacción de los clientes con productos diseñados bajo criterios ambientales y de calidad  que cumplan 
+						la legislación ambiental y otros requerimientos  aplicables, teniendo como ejes centrales la prevención de la contaminación y 
+						la mejora continua.</p>
 		<footer>Dr. Rogelio Sotelo Boyás. Director interino</footer>
 	</blockquote>
 	
