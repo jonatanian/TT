@@ -28,15 +28,15 @@
 	<table class="table table-striped">
 		<tr>
 			<td>PROCEDIMIENTO DE CAPACITACIÓN INTERNA</td>
-			<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/4PCAP_INT _ 260914 - RVM.docx' class='btn btn-primary'>Descargar</a></td>
+			<td><a href = '../procedimientos/POSGRADO/EDITABLES/PROCEDIMIENTOS/P-SP-IMPARTIR CAPACITACION INTERNA.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 		</tr>
 		<tr>
 			<td>PROCEDIMIENTO PARA IMPARTIR CURSOS DE CAPACITACIÓN EXTERNA</td>
-			<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/14PIMP_CC_EXT_ 260914 RVM.docx' class='btn btn-primary'>Descargar</a></td>
+			<td><a href = '../procedimientos/POSGRADO/EDITABLES/PROCEDIMIENTOS/P-SP-IMPARTIR CAPACITACION DE CAP EXTERNA.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 		</tr>
 		<tr>
 			<td>PROCEDIMIENTO DE PREPARACIÓN Y RESPUESTA ANTE EMERGENCIAS</td>
-			<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/16PPP_RTA_EMG_ 09062015 - RVM.docx' class='btn btn-primary'>Descargar</a></td>
+			<td><a href = '../procedimientos/POSGRADO/EDITABLES/PROCEDIMIENTOS/16PPP_RTA_EMG_ 09062015 - RVM.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 		</tr>
 	</table>
 	<blockquote class="blockquote-primary">

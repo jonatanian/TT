@@ -85,12 +85,32 @@
       <h2 class="text-primary">Procedimientos</h2>
 	  <table class="table table-striped">
 			<tr>
+				<td>PROCEDIMIENTO DE CONTROL DE EQUIPOS DE MEDICIÓN</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-CONTROL DE EQUIPOS.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>PROCEDIMIENTO DE SOLICITUD DE SERVICIO DE LABORATORIO</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-SOLICITUD DE SERVICIO.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>PROCEDIMIENTO DE ELABORACIÓN DE PROPUESTAS TÉCNICO ECONÓMICAS</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-ELABORACION DE PROPUESTAS.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>PROCEDIMIENTO PARA LA REALIZACIÓN DE DIAGNÓSTICOS</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-REALIZACION DE DIAGNOSTICOS.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
 				<td>PROCEDIMIENTO PARA LA REALIZACIÓN DE VISITA DE RECONOCIMIENTO</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/18PVST_REC_ 160115 (1)FINAL.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-REALIZACION DE VISITA.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>PROCEDIMIENTO PARA SEGUIMIENTO TÉCNICO DE PROYECTOS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/19PSEG_PYT_ 160115 (1)FINAL.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-SEGUIMIENTO TECNICO DE PROYECTOS.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>PROCEDIMIENTO DE CONTROL DE PRODUCTO NO CONFORME</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-CONTROL DE PRODUCTO NO CONFORME.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 		  </table>
     </div>
@@ -104,75 +124,75 @@
 	  <table class="table table-striped">
 			<tr>
 				<td>CAPACITACIÓN PÁRA EL MANEJO DE EQUIPOS DE MEDICIÓN ÁREA TÉCNICA</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/capacitación uso eq técnica.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/capacitación uso eq técnica.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>CARTA DE CONFIDENCIALIDAD 2015</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Carta_confidencialidad_2015.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Carta_confidencialidad_2015.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>CARTA DE ENTREGA DE REPORTE FINAL</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Carta_entrega_reporte_final_2014.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Carta_entrega_reporte_final_2014.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>CARTA DE ENTREGA DE REPORTE PRELIMINAR</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Carta_entrega_reporte_preliminar_2014.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Carta_entrega_reporte_preliminar_2014.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>PROCEDIMIENTO DE CONTROL DE EQUIPOS DE MEDICIÓN</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/CONTROL EQ DE MEDICIÓN 160115 (1)FINAL.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/CONTROL EQ DE MEDICIÓN 160115 (1)FINAL.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>CONTROL DE VISITAS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Control_visitas (1).docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Control_visitas (1).docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>EVALUACIÓN DE PRODUCTOS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Evaluacion_producto.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Evaluacion_producto.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>INFORME DE ENSAYO</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Formato Informe-ensayo-clientes externos (4).docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Formato Informe-ensayo-clientes externos (4).docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>INFORME PARA AGUAS RESIDUALES</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Informe-formato para agua res.-CMPL (1).docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Informe-formato para agua res.-CMPL (1).docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>MINUTA DE REUNIONES</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Minuta_reuniones2013.doc' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Minuta_reuniones2013.doc' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>MINUTA DE VISITAS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Minuta_visitas (1).doc' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Minuta_visitas (1).doc' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>MONITOREO MEDICIÓN DE SERVICIOS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Monitoreo_medicion-serv.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Monitoreo_medicion-serv.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>PROGRAMA DE CALIBRACIÓN</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/programa calibración eq técnica.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/programa calibración eq técnica.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>RECHAZO DE MATERIALES, PRODUCTOS Y SERVICIOS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/RECHAZO DE MATERIALES, PRODUCTOS Y SERVICIOS.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/RECHAZO DE MATERIALES, PRODUCTOS Y SERVICIOS.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>RECHAZO DE MATERIALES, PRODUCTOS O SERVICIOS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/RechazoMaterialServiciosOProductos.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/RechazoMaterialServiciosOProductos.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>SOLICITUD DE SERVICIO</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Solicitud_servicio_2013 (1).docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Solicitud_servicio_2013 (1).docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>VALE RESGUARDO DE EQUIPO DE CÓMPUTO</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Vale_resguardo-equipo_computo.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Vale_resguardo-equipo_computo.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
 				<td>VERIFICACIÓN DE FUNCIONALIDAD DE EQUIPOS</td>
-				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Verificacion_funcionalidad_equipos.docx' class='btn btn-primary'>Descargar</a></td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/FORMATOS/Verificacion_funcionalidad_equipos.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 		  </table>
     </div>
@@ -182,7 +202,13 @@
 	</blockquote>
 
 	<div class="content-header">
-      <h2 class="text-primary">Instructivos</h2>
+      <h2 class="text-primary">Indicadores</h2>
+	  <table class="table table-striped">
+			<tr>
+				<td>INDICADORES ENERO-SEPTIEMBRE 2015</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/INDICADORES/INDICADORES ENE-SEP2015.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>

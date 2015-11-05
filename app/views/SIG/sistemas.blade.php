@@ -24,6 +24,12 @@
  	
  	<div class="content-header">
       <h2 class="text-primary">Procedimientos</h2>
+	  <table class="table table-striped">
+			<tr>
+				<td>PROCEDIMIENTO DE AUDITORÍA INTERNA</td>
+				<td><a href = '../procedimientos/DSBD/EDITABLES/PROCEDIMIENTOS/P-DSBD-AUDITORIA INTERNA.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>

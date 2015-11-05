@@ -104,5 +104,12 @@ class UsersController extends BaseController {
 		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
 	}
 	
+	public function personal_cambiarContrasena()
+	{
+		$IdUsuario = Request::get('IdUsuario');
+		$usuario = User::find($IdUsuario);
+		return View::make('usuarios.personal_cambiar_contrasena_usuario', array('usuario'=>$usuario));
+	}
+	
 }
 ?>
