@@ -44,13 +44,13 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-				<li>
-					<div class="navbar-btn btn-group">
-	          <a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
-		          <span class="fa fa-cog"></span>
-	          </a>
-	        </div>
-				</li>
+		<li><!--
+			<div class="navbar-btn btn-group">
+      			<a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
+          			<span class="fa fa-cog"></span>
+      			</a>
+    		</div>-->
+		</li>
 
         <li class="menu-divider hidden-xs">
           <i class="fa fa-circle"></i>
@@ -62,7 +62,7 @@
           	<span class="hidden-xs pl15">{{Auth::User()->getNombreCompleto()}}</span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
-          <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
+          <ul class="dropdown-menu list-group dropdown-persist w250" role="menu"><!--
             <li class="list-group-item">
               <a href="#" class="animated animated-short fadeInUp">
                 <span class="fa fa-envelope"></span> Mensajes
@@ -76,7 +76,7 @@
             <li class="list-group-item">
               <a href="#" class="animated animated-short fadeInUp">
                 <span class="fa fa-gear"></span> Configuración </a>
-            </li>
+            </li>-->
             <li class="dropdown-footer">
               <a href="{{action('LoginController@logout')}}" class="">
               <span class="fa fa-power-off pr5"></span> Cerrar sesión </a>
@@ -145,7 +145,7 @@
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Tecnica')}}">
-                      <span class="fa fa-gg"></span> Subdirección Técnica</a>
+                      <span class="fa fa-wrench"></span> Subdirección Técnica</a>
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Posgrado')}}">
