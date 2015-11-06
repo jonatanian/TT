@@ -3,7 +3,7 @@
 @section('content')
 	<div class="content-header">
       <h1 class="text-muted">Subdirección de Posgrado</h1>
-      <img class="responsive" src="{{asset('images/organigrama/Posgrado.png')}}" alt="Organigrama de la Subdirección de Posgrado" height="1000px">
+      <img class="responsive" src="{{asset('images/organigrama/Posgrado.png')}}" alt="Organigrama de la Subdirección de Posgrado" height="450px">
     </div>
     
     <div class="content-header">
