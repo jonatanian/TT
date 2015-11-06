@@ -37,7 +37,17 @@
 	</blockquote>
 
 	<div class="content-header">
-      <h2 class="text-primary">Instructivos</h2>
+      <h2 class="text-primary">FORMATOS</h2>
+	  <table class="table table-striped">
+			<tr>
+				<td>FORMATO DE SATISFACCIÓN DEL CLIENTE</td>
+				<td><a href = '../procedimientos/VINCULACION/EDITABLES/FORMATOS/Satisfaccion_cliente.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>FORMATO DE SOLICITUD DE SERVICIO</td>
+				<td><a href = '../procedimientos/VINCULACION/EDITABLES/FORMATOS/Solicitud_servicio.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>
@@ -45,7 +55,13 @@
 	</blockquote>
 	
 	<div class="content-header">
-      <h2 class="text-primary">Listas</h2>
+      <h2 class="text-primary">INDICADORES</h2>
+	  <table class="table table-striped">
+			<tr>
+				<td>INDICADORES ENERO-SEPTIEMBRE 2015</td>
+				<td><a href = '../procedimientos/VINCULACION/EDITABLES/INDICADORES/Indic_Vinc_Ene-Sep2015 (002).pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>
