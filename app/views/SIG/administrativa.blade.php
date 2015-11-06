@@ -91,7 +91,25 @@
 	</blockquote>
 	
 	<div class="content-header">
-      <h2 class="text-primary">Listas</h2>
+      <h2 class="text-primary">Indicadores</h2>
+	  <table class="table table-striped">
+			<tr>
+				<td>PRESUPUESTO FEDERAL</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/INDICADORES/Objetivo1 presupuesto federal.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>REQUISICIONES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/INDICADORES/Objetivo2-Requisiciones.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>MANTENIMIENTO</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/INDICADORES/Objetivo4-MANTENIMIENTOS.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>ESTADOS FINANCIEROS</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/INDICADORES/objetivo5 esdos financieros 2014.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>
