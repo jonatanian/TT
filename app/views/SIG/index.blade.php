@@ -10,7 +10,7 @@
 						comprometido con la satisfacción de los clientes con productos diseñados bajo criterios ambientales y de calidad  que cumplan 
 						la legislación ambiental y otros requerimientos  aplicables, teniendo como ejes centrales la prevención de la contaminación y 
 						la mejora continua.</p>
-		<footer>Dr. Rogelio Sotelo Boyás. Director interino</footer>
+		<footer>Dr. Abelardo I. Flores Vela - Director</footer>
 	</blockquote>
 	
 	<blockquote>

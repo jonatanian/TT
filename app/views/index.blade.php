@@ -62,7 +62,7 @@
                 <div class="row">
                   <div class="col-md-12">
                   	<a href="#" class="button btn-success mr10 btn-block">Acceder al SISA</a>
-                  	<a href="{{action('SIGController@SIG_index')}}" class="button btn-info mr10 btn-block">Volver al SIG</a>
+                  	<a href="{{action('SIGController@SIG_index')}}" class="button btn-info mr10 btn-block">Ir al SIG</a>
                   </div>
                 </div>
               </div>
