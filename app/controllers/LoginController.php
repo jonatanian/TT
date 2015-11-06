@@ -26,6 +26,8 @@
 	        if (Auth::attempt(array('Email' => Input::get('email') , 'password' =>Input::get('password')))){
 	      
 	            $rol=Auth::User()->Rol_Id;
+	            return Redirect::to('/SIG');
+	            /*
 	                switch ($rol) {
 	                    case 1:
 	                    		Session::put('admninistrador',Auth::user());
@@ -55,12 +57,17 @@
 	                    default:
 	                            return Redirect::to('/login');
 	                        break;
-	                }
+	                }*/
 	
 	            }else{
 					return Redirect::to('/login')->with(array('msgf'=>'Usuario o contraseña incorrectos. Verifique su correo y/o contraseña.'))->withInput();
 	            }
 		}
+		
+			public function SISA_Startup()
+			{
+				return View::make('index');
+			}
 	
 			public function logout()
 			{

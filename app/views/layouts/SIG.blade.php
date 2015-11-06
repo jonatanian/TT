@@ -34,13 +34,13 @@
     <header class="navbar navbar-fixed-top bg-primary">
       <div class="navbar-branding">
         <a class="navbar-brand" href="#">
-          <img src="{{asset('images/LogoSISAv4.png')}}" alt="SISA CMPL" height="60px">
+          <img src="{{asset('images/LogoSISA-SIG.png')}}" alt="SISA CMPL" height="60px">
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
       </div>
       <ul class="nav navbar-nav navbar-left">
         <li class="hidden-xs">
-          <span class="fs26">SIG de la Calidad y del Ambiente</span>
+          <span class="fs26">Sistema Integrado de Gestión de la Calidad y del Ambiente</span>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -59,7 +59,7 @@
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
           	<img src="{{asset('images/placeholder.png')}}" alt="avatar" class="mw30 br64">
-          	<span class="hidden-xs pl15">Usuario CMPL</span>
+          	<span class="hidden-xs pl15">{{Auth::User()->getNombreCompleto()}}</span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
@@ -76,11 +76,11 @@
             <li class="list-group-item">
               <a href="#" class="animated animated-short fadeInUp">
                 <span class="fa fa-gear"></span> Configuración </a>
-            </li><!--
+            </li>
             <li class="dropdown-footer">
               <a href="{{action('LoginController@logout')}}" class="">
               <span class="fa fa-power-off pr5"></span> Cerrar sesión </a>
-            </li>-->
+            </li>
           </ul>
         </li>
       </ul>
@@ -106,7 +106,7 @@
                 <div class="media-links">
                    <p class="sidebar-menu-toggle">Bienvenido</p>
                 </div>
-                <div class="media-author">Usuario CMPL</div>
+                <div class="media-author">{{Auth::User()->getNombreCompleto()}}</div>
               </div>
             </div>
           </div>
@@ -120,6 +120,13 @@
                 <a href="{{action('SIGController@SIG_index')}}">
                   <span class="glyphicon glyphicon-book"></span>
                   <span class="sidebar-title">Página principal del SIG</span>
+                </a>
+              </li>
+              
+              <li>
+                <a href="{{action('LoginController@SISA_Startup')}}">
+                  <span class="glyphicon glyphicon-book"></span>
+                  <span class="sidebar-title">SISA</span>
                 </a>
               </li>
               

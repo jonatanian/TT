@@ -5,7 +5,7 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-
+Route::get('/SISA_Startup','LoginController@SISA_Startup');
 Route::get('/login','LoginController@login_index');
 Route::post('/login','LoginController@login');
 Route::get('/salir','LoginController@logout');

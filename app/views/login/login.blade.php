@@ -51,7 +51,7 @@
           <div class="row mb15 table-layout">
 
             <div class="col-xs-6 va-m pln">
-              <img src="{{asset('images/LogoSISA.png')}}" alt="SISA CMPL" class="img-responsive w150">
+              <img src="{{asset('images/LogoSISA-SIG.png')}}" alt="SISA CMPL" class="img-responsive w250">
             </div>
 
             <div class="col-xs-6 text-right va-b pr5">
