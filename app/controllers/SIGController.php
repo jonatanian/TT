@@ -4,37 +4,86 @@ class SIGController extends BaseController {
 
 	public function SIG_index()
 		{
-			return View::make('SIG.index');
+			if(Auth::check())
+			{
+				return View::make('SIG.index');
+			}
+			else
+			{
+				return Redirect::to('/login');
+			}
 		}
 		
 	public function SIG_Direccion()
 		{
-			return View::make('SIG.direccion');
+			if(Auth::check())
+			{
+				return View::make('SIG.direccion');
+			}
+			else
+			{
+				return Redirect::to('/login');
+			}
 		}
 	
 	public function SIG_Tecnica()
 		{
-			return View::make('SIG.tecnica');
+			if(Auth::check())
+			{
+				return View::make('SIG.tecnica');
+			}
+			else
+			{
+				return Redirect::to('/login');
+			}
 		}
 	
 	public function SIG_Posgrado()
 		{
-			return View::make('SIG.posgrado');
+			if(Auth::check())
+			{
+				return View::make('SIG.posgrado');
+			}
+			else
+			{
+				return Redirect::to('/login');
+			}
 		}
 
 	public function SIG_Vinculacion()
 		{
-			return View::make('SIG.vinculacion');
+			if(Auth::check())
+			{
+				return View::make('SIG.vinculacion');
+			}
+			else
+			{
+				return Redirect::to('/login');
+			}
 		}
 
 	public function SIG_Administrativa()
 		{
-			return View::make('SIG.administrativa');
+			if(Auth::check())
+			{
+				return View::make('SIG.administrativa');
+			}
+			else
+			{
+				return Redirect::to('/login');
+			}
 		}
 
 	public function SIG_Sistemas()
 		{
-			return View::make('SIG.sistemas');
+			if(Auth::check())
+			{
+				return View::make('SIG.sistemas');
+			}
+			else
+			{
+				return Redirect::to('/login');
+			}
 		}
 
 }
