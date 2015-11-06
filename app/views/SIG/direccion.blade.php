@@ -8,7 +8,7 @@
     
 	<blockquote class="blockquote-primary">
 		<a class="btn btn-primary" href="../procedimientos/DIRECCION/ManualIntegrado2015.pdf" target="_blank">Manual integrado</a>
-		<a class="btn btn-primary" href="../procedimientos/DIRECCION/OrganigramaCMPLEnero2015.png" target="_blank">Organigrama CMPL</a>
+		<a class="btn btn-primary" href="../procedimientos/DIRECCION/OrganigramaGeneral.png" target="_blank">Organigrama CMPL</a>
 	</blockquote>
 	
 	<div class="content-header">
