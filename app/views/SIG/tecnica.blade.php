@@ -112,6 +112,14 @@
 				<td>PROCEDIMIENTO DE CONTROL DE PRODUCTO NO CONFORME</td>
 				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-ST-CONTROL DE PRODUCTO NO CONFORME.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
+			<tr>
+				<td>PROCEDIMIENTO PARA LA COMUNICACIÓN</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-JIP-COMUNICACION.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>PROCEDIMIENTO PARA LA IDENTIFICACIÓN Y EVALUACIÓN DE REQUISITOS LEGALES Y OTROS</td>
+				<td><a href = '../procedimientos/TECNICA/EDITABLES/PROCEDIMIENTOS/P-JIP-IDENTIFICACION Y EVALUACION DE REQUISITOS.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
 		  </table>
     </div>
 	<blockquote class="blockquote-primary">
