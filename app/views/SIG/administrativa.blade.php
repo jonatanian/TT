@@ -24,6 +24,16 @@
  	
  	<div class="content-header">
       <h2 class="text-primary">Procedimientos</h2>
+		<table class="table table-striped">
+			<tr>
+				<td>PROCEDIMIENTO DE ADQUISICIONES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/PROCEDIMIENTOS/P-JSA-ADQUISICIONES.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>PROCEDIMIENTO PARA LA EVALUACIÓN DE PROVEEDORES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/PROCEDIMIENTOS/P-JSA-EVALUACION DE PROVEEDORES.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>
@@ -31,7 +41,49 @@
 	</blockquote>
 
 	<div class="content-header">
-      <h2 class="text-primary">Instructivos</h2>
+      <h2 class="text-primary">Formatos</h2>
+	  <table class="table table-striped">
+			<tr>
+				<td>FORMATO DE AVISO DE COMISIÓN</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Aviso_de_Comision_2015.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>BITÁCORA DE AUTOMÓVILES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/bitacora de automoviles.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>BITACORA DE SALIDA DE ALMACEN</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/bitacora de salida de almacen 2014.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>EVALUACIÓN DE PROVEEDORES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Evaluacion_proveedores_2015.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>FORMATO DE COMISIÓN</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Formato Comision ANTIGUO.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>FORMATO PV3</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Formato Final PV3.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>FORMATO DE PASAJES INTERNACIONALES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Pasajes_Internacionales_2015.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>FORMATO DE PASAJES NACIONALES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Pasajes_Nacionales_ 2015.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>FORMATO DE VIÁTICOS INTERNACIONALES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Viaticos_Internacionales_2015.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+			<tr>
+				<td>FORMATO DE VIÁTICOS NACIONALES</td>
+				<td><a href = '../procedimientos/ADMINISTRATIVA/EDITABLES/FORMATOS/Viaticos_Nacionales_2015.xlsx' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>
