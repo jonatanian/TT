@@ -40,7 +40,7 @@
       </div>
       <ul class="nav navbar-nav navbar-left">
         <li class="hidden-xs">
-          <span class="fs26">Sistema Integrado de Gestión de la Calidad y del Ambiente</span>
+          <span class="fs26"></span>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -145,7 +145,7 @@
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Tecnica')}}">
-                      <span class="fa fa-bolt"></span> Subdirección Técnica</a>
+                      <span class="fa fa-gg"></span> Subdirección Técnica</a>
                   </li>
                   <li>
                       <a href="{{action('SIGController@SIG_Posgrado')}}">
