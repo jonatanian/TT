@@ -77,6 +77,10 @@
               <a href="#" class="animated animated-short fadeInUp">
                 <span class="fa fa-gear"></span> Configuración </a>
             </li>-->
+			<li class="list-group-item">
+              <a href="{{action('UsersController@personal_cambiarContrasena', array('IdUsuario'=>Auth::id()))}}" class="animated animated-short fadeInUp">
+                <span class="fa fa-gear"></span> Cambiar contraseña </a>
+            </li>
             <li class="dropdown-footer">
               <a href="{{action('LoginController@logout')}}" class="">
               <span class="fa fa-power-off pr5"></span> Cerrar sesión </a>

@@ -19,6 +19,8 @@ Route::group(array("prefix"=>'SIG'), function(){
 	Route::get('/Vinculacion','SIGController@SIG_Vinculacion');
 	Route::get('/Administrativa','SIGController@SIG_Administrativa');
 	Route::get('/Sistemas','SIGController@SIG_Sistemas');
+	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 });
 
 //////////////////Administrador////////////////////////////
@@ -41,7 +43,8 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/usuarios/contrasena','UsersController@dsbd_actualizarContrasenaUsuario');
 		Route::get('/usuarios/estatus','UsersController@dsbd_cambiarEstatus');
 		Route::post('/usuarios/estatus','UsersController@dsbd_actualizarEstatus');
-		Route::post('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+		Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 		
 		
 });
@@ -56,6 +59,9 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::get('/corrregiroficio','OficiosController@corregir_oficio');
 		//Funciones para registrar anexos
 		Route::get('/anexos','OficiosController@personal_registrar_anexos');
+		
+		Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 });
 //////////////////Subdirección//////////////////////////////
 	Route::group(array("prefix"=>'subdireccion'), function(){
@@ -67,6 +73,9 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::get('/corrregiroficio','OficiosController@corregir_oficio');
 		//Funciones para registrar anexos
 		Route::get('/anexos','OficiosController@personal_registrar_anexos');
+		
+		Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 });
 
 /////////////////Subdirección con jefaturas//////////////////
@@ -78,6 +87,9 @@ Route::group(array("prefix"=>'direccion'), function(){
 	Route::get('/corrregiroficio','OficiosController@corregir_oficio');
 	//Funciones para registrar anexos
 	Route::get('/anexos','OficiosController@personal_registrar_anexos');
+	
+	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 });
 
 Route::group(array("prefix"=>'oficialia'), function(){
@@ -96,6 +108,9 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	//Vista de oficios enviados
 	Route::get('/oficios/enviados','OficiosController@oficialia_enviados');
 	
+	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+	
 });
 
 Route::group(array("prefix"=>'iescmpl'), function(){
@@ -107,5 +122,8 @@ Route::group(array("prefix"=>'iescmpl'), function(){
 	Route::get('/corrregiroficio','OficiosController@corregir_oficio');
 	//Funciones para registrar anexos
 	Route::get('/anexos','OficiosController@personal_registrar_anexos');
+	
+	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 });
 ?>

@@ -6,149 +6,112 @@
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li class="active">
-					<a href="#">Recuperar Contraseña de Usuario</a>
+					<a href="#">Por seguridad puedes cambiar tu contraseña</a>
 				</li>
 			</ul>
 		</div>
 	</header>
 	<!-- End: Topbar -->
 @stop
-
 @section('content')
-            <form method="post" action="/" id="account2">
-              <div class="panel-body p25 bg-light">
-                <div class="section-divider mt10 mb40">
-                  <span>Set up your account</span>
-                </div>
-                <!-- .section-divider -->
+	
+	<div class="admin-form">
+			{{Form::open(array('action'=>'UsersController@personal_actualizarContrasenaUsuario', 'class'=>'form-horizontal row-border','id'=>'form-wizard', 'name'=>'form-wizard','data-parsley-validate'=>'true'))}}
+            <!--<form method="get" action="/" id="form-wizard">-->
+			{{Form::hidden('IdUsuario', $usuario->IdUsuario)}}
+                <!-- Wizard step 1 -->
+                <h4 class="wizard-section-title">
+                  <i class="fa fa-user pr5"></i> Cambiar contraseña</h4>
+                <section class="wizard-section">
+					<div class="section">
+						<label for="Nombre" class="field-label">Nombre de usuario</label>
+						<div class="smart-widget sm-right smr-120">
+						  <label for="Nombre" class="field prepend-icon">
+							{{Form::text('Nombre', $usuario->getNombreCompleto(), array('class'=>'gui-input', 'name'=>'Nombre', 'required'=>'required'))}}
+						  </label>
+						</div>
+					</div>
+					
+					<div class="section">
+						<label for="Password" class="field-label">Introduce tu password anterior</label>
+						<div class="smart-widget sm-right smr-120">
+						  <label for="PasswordA" class="field prepend-icon">
+							{{Form::password('PasswordA', array('class'=>'gui-input', 'name'=>'PasswordA', 'id'=>'Password', 'required'=>'required'))}}
+							<span class="k-invalid-msg" data-for="PasswordA"></span><br />
+						  </label>
+						</div>
+					</div>
+					
+					<div class="section">
+						<label for="Password" class="field-label">Introduce un nuevo password</label>
+						<div class="smart-widget sm-right smr-120">
+						  <label for="Password" class="field prepend-icon">
+							{{Form::password('Password', array('class'=>'gui-input', 'name'=>'Password', 'id'=>'Password', 'required'=>'required'))}}
+							<span class="k-invalid-msg" data-for="Password"></span><br />
+						  </label>
+						</div>
+					</div>
+					
+					<div class="section">
+						<label for="Password-confirm" class="field-label">Confirmar password</label>
+						<div class="smart-widget sm-right smr-120">
+						  <label for="Password-confirm" class="field prepend-icon">
+							{{Form::password('PasswordC', array('class'=>'gui-input', 'name'=>'PasswordC', 'id'=>'PasswordC', 'required'=>'required'))}}
+							<span class="k-invalid-msg" data-for="Password-confirm"></span><br />
+						  </label>
+						</div>
+					</div>
 
-                <div class="section row">
-                  <div class="col-md-6">
-                    <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="First name...">
-                      <label for="firstname" class="field-icon">
-                        <i class="fa fa-user"></i>
-                      </label>
-                    </label>
-                  </div>
-                  <!-- end section -->
+                </section>
+				{{Form::submit('Recuperar', array('class'=>'btn btn-default"'))}}
+				
+            {{Form::close()}}
+            <!-- End Account2 Form -->
 
-                  <div class="col-md-6">
-                    <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Last name...">
-                      <label for="lastname" class="field-icon">
-                        <i class="fa fa-user"></i>
-                      </label>
-                    </label>
-                  </div>
-                  <!-- end section -->
-                </div>
-                <!-- end .section row section -->
-
-                <div class="section">
-                  <label for="email" class="field prepend-icon">
-                    <input type="email" name="email" id="email" class="gui-input" placeholder="Email address">
-                    <label for="email" class="field-icon">
-                      <i class="fa fa-envelope"></i>
-                    </label>
-                  </label>
-                </div>
-                <!-- end section -->
-
-                <div class="section">
-                  <div class="smart-widget sm-right smr-120">
-                    <label for="username" class="field prepend-icon">
-                      <input type="text" name="username" id="username" class="gui-input" placeholder="Choose your username">
-                      <label for="username" class="field-icon">
-                        <i class="fa fa-user"></i>
-                      </label>
-                    </label>
-                    <label for="username" class="button">.envato.com</label>
-                  </div>
-                  <!-- end .smart-widget section -->
-                </div>
-                <!-- end section -->
-
-                <div class="section">
-                  <label for="password" class="field prepend-icon">
-                    <input type="password" name="password" id="password" class="gui-input" placeholder="Create a password">
-                    <label for="password" class="field-icon">
-                      <i class="fa fa-unlock-alt"></i>
-                    </label>
-                  </label>
-                </div>
-                <!-- end section -->
-
-                <div class="section">
-                  <label for="confirmPassword" class="field prepend-icon">
-                    <input type="password" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="Retype your password">
-                    <label for="confirmPassword" class="field-icon">
-                      <i class="fa fa-lock"></i>
-                    </label>
-                  </label>
-                </div>
-                <!-- end section -->
-
-                <div class="section-divider mv40">
-                  <span>Review the Terms</span>
-                </div>
-                <!-- .section-divider -->
-
-                <div class="section mb15">
-                  <label class="option block">
-                    <input type="checkbox" name="trial">
-                    <span class="checkbox"></span>Sign me up for a
-                    <a href="#" class="theme-link"> 7-day free PRO trial. </a>
-                  </label>
-                  <label class="option block mt15">
-                    <input type="checkbox" name="terms">
-                    <span class="checkbox"></span>I agree to the
-                    <a href="#" class="theme-link"> terms of use. </a>
-                  </label>
-                </div>
-                <!-- end section -->
-
-              </div>
-              <!-- end .form-body section -->
-              <div class="panel-footer clearfix">
-                <button type="submit" class="button btn-primary pull-right">Create Account</button>
-              </div>
-              <!-- end .form-footer section -->
-            </form>
+          
+		</div>
+          
 @stop
 
 @section('scripts')
-
-  <!-- jQuery -->
-  <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
-  <script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
-
-  <!-- CanvasBG Plugin(creates mousehover effect) -->
-  <script src="vendor/plugins/canvasbg/canvasbg.js"></script>
-
-  <!-- Theme Javascript -->
-  <script src="assets/js/utility/utility.js"></script>
-  <script src="assets/js/demo/demo.js"></script>
-  <script src="assets/js/main.js"></script>
-
-  <!-- Page Javascript -->
-  <script type="text/javascript">
+<script type="text/javascript">
   jQuery(document).ready(function() {
+
     "use strict";
-    // Init Theme Core      
-    Core.init();
 
-    // Init Demo JS
-    Demo.init();
-
-    // Init CanvasBG and pass target starting location
-    CanvasBG.init({
-      Loc: {
-        x: window.innerWidth / 2.1,
-        y: window.innerHeight / 4.2
+    // Form Wizard 
+    var form = $("#form-wizard");
+    form.children(".wizard").steps({
+      headerTag: ".wizard-section-title",
+      bodyTag: ".wizard-section",
+      onStepChanging: function(event, currentIndex, newIndex) {
+        form.validate().settings.ignore = ":disabled,:hidden";
+        return form.valid();
       },
+      onFinishing: function(event, currentIndex) {
+        form.validate().settings.ignore = ":disabled";
+        return form.valid();
+      },
+      onFinished: function(event, currentIndex) {
+        alert("Submitted!");
+      }
     });
-  });
-  </script>
+	
 
+          $("#form-wizard").kendoValidator({
+              rules: {
+                  verifyPasswords: function(input){
+                     var ret = true;
+                             if (input.is("[name=Password-confirm]")) {
+                                 ret = input.val() === $("#Password").val();
+                             }
+                             return ret;
+                  }
+              },
+              messages: {
+                  verifyPasswords: "Passwords do not match!"
+              }
+          });
+   });
+</script>
 @stop
