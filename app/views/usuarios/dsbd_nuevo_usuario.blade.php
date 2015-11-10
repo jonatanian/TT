@@ -18,82 +18,118 @@
 	<div class="admin-form">
 			{{Form::open(array('action'=>'UsersController@dsbd_registrarUsuario', 'class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
             <!--<form method="get" action="/" id="form-wizard">-->
+			
+			<!------------------------------------------------------------->
+	<section id="content_wrapper">
+ 
 
-                <!-- Wizard step 1 -->
-                <h4 class="wizard-section-title">
-                  <i class="fa fa-user pr5"></i> Datos del nuevo usuario</h4>
-                <section class="wizard-section">
-					<div class="section">
-						<label for="Nombre" class="field-label">Nombre</label>
-						<div class="smart-widget sm-right smr-120">
-						  <label for="Nombre" class="field prepend-icon">
-							<input type="text" name="Nombre" id="Nombre" class="gui-input" placeholder="Nombre(s) del usuario" required>
-						  </label>
-						</div>
+      <!-- Begin: Content -->
+      
+
+        <div class="admin-form theme-info mw700" style="margin-top: 3%;" id="login1">
+
+          <div class="panel panel-info mt10 br-n">
+
+              <div class="panel-body p25 bg-light">
+                <div class="section-divider mt10 mb40">
+                  <span>Datos del nuevo usuario</span>
+                </div>
+                <!-- .section-divider -->
+				
+				<div class="section">
+                  <label for="Nombre" class="field prepend-icon">
+                    <input type="text" name="Nombre" id="Nombre" class="gui-input" placeholder="Nombre(s)...">
+                    <label for="Nombre" class="field-icon">
+                      <i class="fa fa-user"></i>
+                    </label>
+                  </label>
+                </div>
+
+                <div class="section row">
+                  <div class="col-md-6">
+                    <label for="ApPaterno" class="field prepend-icon">
+                      <input type="text" name="ApPaterno" id="ApPaterno" class="gui-input" placeholder="Apellido paterno...">
+                      <label for="ApPaterno" class="field-icon">
+                        <i class="fa fa-user"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+
+                  <div class="col-md-6">
+                    <label for="ApMaterno" class="field prepend-icon">
+                      <input type="text" name="ApMaterno" id="ApMaterno" class="gui-input" placeholder="Apellido Materno...">
+                      <label for="ApMaterno" class="field-icon">
+                        <i class="fa fa-user"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+                </div>
+                <!-- end .section row section -->
+
+        
+				
+				<div class="section">
+                  <label for="Extension" class="field prepend-icon">
+                    <input type="text" name="Extension" id="Extension" class="gui-input" placeholder="Extensión">
+                    <label for="Extension" class="field-icon">
+                      <i class="fa fa-phone"></i>
+                    </label>
+                  </label>
+                </div>
+                <!-- end section -->
+
+                <div class="section">
+                  <div class="smart-widget sm-right smr-120">
+                    <label for="Email" class="field prepend-icon">
+                      <input type="email" name="Email" id="Email" class="gui-input" placeholder="e-mail">
+                      <label for="Email" class="field-icon">
+                        <i class="fa fa-envelope"></i>
+                      </label>
+                    </label>
+                    <label for="Email" class="button">@ipn.mx</label>
+                  </div>
+                  <!-- end .smart-widget section -->
+                </div>
+                <!-- end section -->
+				<div class="section row">
+					<div class="col-md-6">
+					  <label for="Password" class="field prepend-icon">
+						<input type="password" name="Password" id="Password" class="gui-input" placeholder="Introduce una contraseña">
+						<label for="Password" class="field-icon">
+						  <i class="fa fa-unlock-alt"></i>
+						</label>
+					  </label>
 					</div>
-					
-					<div class="section">
-						<label for="ApPaterno" class="field-label">Apellido paterno</label>
-						<div class="smart-widget sm-right smr-120">
-						  <label for="ApPaterno" class="field prepend-icon">
-							<input type="text" name="ApPaterno" id="ApPaterno" class="gui-input" placeholder="Apellido Paterno" required>
-						  </label>
-						</div>
+
+					<div class="col-md-6">
+					  <label for="PasswordC" class="field prepend-icon">
+						<input type="password" name="PasswordC" id="PasswordC" class="gui-input" placeholder="Repita contraseña">
+						<label for="PasswordC" class="field-icon">
+						  <i class="fa fa-lock"></i>
+						</label>
+					  </label>
 					</div>
-					
-					<div class="section">
-						<label for="ApMaterno" class="field-label">Apellido Materno</label>
-						<div class="smart-widget sm-right smr-120">
-						  <label for="ApMaterno" class="field prepend-icon">
-							<input type="text" name="ApMaterno" id="ApMaterno" class="gui-input" placeholder="Apellido Materno" required>
-						  </label>
-						</div>
-					</div>
-					
-					<div class="section">
-						<label for="Extension" class="field-label">Extensión</label>
-						<div class="smart-widget sm-right smr-120">
-						  <label for="Extension" class="field prepend-icon">
-							<input type="text" name="Extension" id="Extension" class="gui-input" placeholder="Extensión" required>
-						  </label>
-						</div>
-					</div>
-					
-					<div class="section">
-						<label for="Email" class="field-label">Email</label>
-						<div class="smart-widget sm-right smr-120">
-						  <label for="Email" class="field prepend-icon">
-							<input type="text" name="Email" id="Email" class="gui-input" placeholder="Email" required>
-						  </label>
-						</div>
-					</div>
-					
-					<div class="section">
-						<label for="Password" class="field-label">Password</label>
-						<div class="smart-widget sm-right smr-120">
-						  <label for="Password" class="field prepend-icon">
-							<input type="password" name="Password" id="Password" class="gui-input" placeholder="Password" required>
-						  </label>
-						</div>
-					</div>
-					
-					<div class="section">
+				</div>
+				<div class="section row">
+					<div class="col-md-6">
 						<label for="Area" class="field-label">Área</label>
-						<div class="smart-widget sm-right smr-120">
+						
 						  <label for="Area" class="field prepend-icon">
 						  {{Form::select('IdArea', $areas, array(''), array('class'=>'gui-input', 'name'=>'Area_Id'))}}
 						  </label>
-						</div>
+						
 					</div>
 					
-					<div class="section">
+					<div class="col-md-6">
 						<label for="Cargo" class="field-label">Cargo</label>
-						<div class="smart-widget sm-right smr-120">
 						  <label for="Cargo" class="field prepend-icon">
 						  {{Form::select('IdCargo', $cargos, array(''), array('class'=>'gui-input', 'name'=>'Cargo_Id'))}}
 						  </label>
-						</div>
+						
 					</div>
+				</div>
 					
 					<div class="section">
 						<label for="Rol" class="field-label">Rol</label>
@@ -103,14 +139,26 @@
 						  </label>
 						</div>
 					</div>
-                </section>
-				{{Form::submit('Registrar', array('class'=>'btn btn-default"'))}}
-				
-            {{Form::close()}}
-            <!-- End Account2 Form -->
 
-          
-		</div>
+                <!-- .section-divider -->
+
+                <!-- end section -->
+
+              </div>
+              <!-- end .form-body section -->
+              <div class="panel-footer clearfix">
+				{{Form::submit('Registrar', array('class'=>'button btn-primary pull-right"'))}}
+              </div>
+              <!-- end .form-footer section -->
+            
+          </div>
+        </div>
+
+
+    </section>
+
+    {{Form::close()}}          
+	</div>
           
 @stop
 

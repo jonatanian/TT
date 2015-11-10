@@ -22,6 +22,14 @@
 			Cargo::create(array('NombreCargo' => 'Contabilidad de Vinculados','DescripcionCargo'=>'Contabilidad de proyectos vinculados'));
 			Cargo::create(array('NombreCargo' => 'Responsable de Activo Fijo','DescripcionCargo'=>'Responsable activo fijo CMPL'));
 			Cargo::create(array('NombreCargo' => 'Capital Humano','DescripcionCargo'=>'Contratación y nomina'));
+			Cargo::create(array('NombreCargo' => 'Ingeniero de Enlace con CONUEE','DescripcionCargo'=>'CONUEE'));
+			Cargo::create(array('NombreCargo' => 'Auxilar Administrativo','DescripcionCargo'=>'Auxilar en el área de administación'));
+			Cargo::create(array('NombreCargo' => 'Ingeniero de Sistemas','DescripcionCargo'=>'Diferentes actividades en el DSBD'));
+			Cargo::create(array('NombreCargo' => 'Responsable del POA y Responsable de Dirección de Calidad','DescripcionCargo'=>'Persona encargada de las activadades del POA'));
+			Cargo::create(array('NombreCargo' => 'Protección Civil','DescripcionCargo'=>''));
+			Cargo::create(array('NombreCargo' => 'Ingreso Auto-Generado y Presupuesto Federal','DescripcionCargo'=>''));
+			Cargo::create(array('NombreCargo' => 'Proyectos de Investigación','DescripcionCargo'=>''));
+			Cargo::create(array('NombreCargo' => 'Activo fijo','DescripcionCargo'=>'Contratación y nomina'));
 	        	        
 	        $this->command->info('CargosTableSeeder: Cargos cargadas correctamente');
     	}

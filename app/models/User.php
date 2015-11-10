@@ -127,7 +127,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			//$user->FechaInicio = $inputs['FechaInicio'];
 			//$user->FechaFin = $inputs['FechaFin'];
 			//$user->URLCV = $inputs['UrlCV'];
-			//$user->Activo = $inputs['Activo'];
+			$user->Activo = 1;
 			$user->Cargo_Id = $inputs['Cargo_Id'];
 			$user->Rol_Id = $inputs['Rol_Id'];
 			$user->Area_Id = $inputs['Area_Id'];

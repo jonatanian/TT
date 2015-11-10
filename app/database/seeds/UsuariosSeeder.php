@@ -706,49 +706,61 @@
 			$c = new User();
 			$c->crearUsuario($datos);
 
-			/*$datos= array(
-					'Nombre' =>'',
-					'ApPaterno'	=> '',
-					'ApMaterno'	=> '',
-					'Email'	=> '',
+			$datos= array(
+					'Nombre' =>'Kenia',
+					'ApPaterno'	=> 'Gonzáles',
+					'ApMaterno'	=> 'Brugada',
+					'Email'	=> 'kgonzalezb@ipn.mx',
 					'Password' =>'cmpl2015',
-					'Extension' => 52626,
-					'Cargo_Id' => ,
-					'Rol_Id' => ,
-					'Area_Id' => 
+					'Extension' => 52602,
+					'Cargo_Id' => 3,
+					'Rol_Id' => 6,
+					'Area_Id' => 1
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
 
 			$datos= array(
-					'Nombre' =>'',
-					'ApPaterno'	=> '',
-					'ApMaterno'	=> '',
-					'Email'	=> '',
+					'Nombre' =>'Jorge Alonso',
+					'ApPaterno'	=> 'Marbán',
+					'ApMaterno'	=> 'Hernández',
+					'Email'	=> 'amarban@ipn.mx',
 					'Password' =>'cmpl2015',
-					'Extension' => 52621,
-					'Cargo_Id' => ,
-					'Rol_Id' => ,
-					'Area_Id' => 
+					'Extension' => 52607,
+					'Cargo_Id' => 5,
+					'Rol_Id' => 5,
+					'Area_Id' => 2
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
 
 			$datos= array(
-					'Nombre' =>'',
-					'ApPaterno'	=> '',
-					'ApMaterno'	=> '',
-					'Email'	=> '',
+					'Nombre' =>'Alejandro',
+					'ApPaterno'	=> 'Pérez',
+					'ApMaterno'	=> 'Olivarez',
+					'Email'	=> 'aperezo@ipn.mx',
 					'Password' =>'cmpl2015',
-					'Extension' => 52618,
-					'Cargo_Id' => ,
-					'Rol_Id' => ,
-					'Area_Id' => 
+					'Extension' => 52606,
+					'Cargo_Id' => 5,
+					'Rol_Id' => 5,
+					'Area_Id' => 7
 				);
 			$c = new User();
-			$c->crearUsuario($datos);*/
-
-
+			$c->crearUsuario($datos);
+			
+			$datos= array(
+					'Nombre' =>'Bibiana',
+					'ApPaterno'	=> 'Hernández',
+					'ApMaterno'	=> 'Queda',
+					'Email'	=> 'bhernandezq@ipn.mx',
+					'Password' =>'cmpl2015',
+					'Extension' => 52606,
+					'Cargo_Id' => 3,
+					'Rol_Id' => 6,
+					'Area_Id' => 7
+				);
+			$c = new User();
+			$c->crearUsuario($datos);
 
 			$this->command->info('UsersSeeder: Registro de usuarios cargado correctamente');
 		}

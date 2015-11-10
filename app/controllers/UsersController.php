@@ -28,9 +28,18 @@ class UsersController extends BaseController {
 		$usuarios = User::get();
 		$usuario = new User();
 		$datos = Input::all();
-		$usuario->crearUsuario($datos);
-		Session::flash('msg','El usuario de registró con éxito.');
-		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+		if($usuario->compararContrasena($datos))
+		{
+			$usuario->crearUsuario($datos);
+			Session::flash('msg','El usuario de registró con éxito.');
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+		}
+		else
+			Session::flash('msgf','Error. No coinciden las contraseñas.');
+			$roles = Rol::lists('NombreRol', 'IdRol');
+			$cargos = Cargo::lists('NombreCargo', 'IdCargo');
+			$areas = Area::lists('NombreArea', 'IdArea');
+			return View::make('usuarios.dsbd_nuevo_usuario', array('roles'=>$roles, 'cargos'=>$cargos, 'areas'=>$areas));
 	}
 	public function	dsbd_editarUsuario()
 	{
@@ -108,7 +117,7 @@ class UsersController extends BaseController {
 	{
 		$IdUsuario = Request::get('IdUsuario');
 		$usuario = User::find($IdUsuario);
-		return View::make('usuarios.personal_cambiar_contrasena_usuario', array('usuario'=>$usuario));
+		return View::make('usuarios.personal_cambiar_contrasena_usuario2', array('usuario'=>$usuario));
 	}
 	
 	public function personal_actualizarContrasenaUsuario()

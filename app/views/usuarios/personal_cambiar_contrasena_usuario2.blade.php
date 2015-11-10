@@ -15,10 +15,20 @@
 @stop
 
 @section('content')
-            <form method="post" action="/" id="account2">
+    <!-- Start: Content-Wrapper -->
+    <section id="content_wrapper">
+ 
+
+      <!-- Begin: Content -->
+      
+
+        <div class="admin-form theme-info mw700" style="margin-top: 3%;" id="login1">
+
+          <div class="panel panel-info mt10 br-n">
+
               <div class="panel-body p25 bg-light">
                 <div class="section-divider mt10 mb40">
-                  <span>Set up your account</span>
+                  <span>Registar usuario</span>
                 </div>
                 <!-- .section-divider -->
 
@@ -87,17 +97,26 @@
                     </label>
                   </label>
                 </div>
-                <!-- end section -->
 
-                <div class="section-divider mv40">
-                  <span>Review the Terms</span>
-                </div>
+                <!-- .section-divider -->
+
+                <!-- end section -->
 
               </div>
               <!-- end .form-body section -->
-              
+              <div class="panel-footer clearfix">
+                <button type="submit" class="button btn-primary pull-right">Registar usuario</button>
+              </div>
               <!-- end .form-footer section -->
-            </form>
+            
+          </div>
+        </div>
+
+      
+      <!-- End: Content -->
+
+    </section>
+    
 @stop
 
 @section('scripts')
