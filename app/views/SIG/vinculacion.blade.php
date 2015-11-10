@@ -7,7 +7,49 @@
     </div>
     
     <div class="content-header">
-      <h2 class="text-primary">Objetivo</h2>
+      <h2 class="text-primary">Objetivos 2015</h2>
+	  <table class="table table-striped">
+		  <tr>
+			  <td>No.</td>
+			  <td>Objetivo</td>
+		  </tr>
+		  <tr>
+			  <td>1</td>
+			  <td>Formalizar tres convenios vinculados con el sector público o privado.</td>
+		  </tr>
+		  <tr>
+			  <td>2</td>
+			  <td>Realizar quince presentaciones de servicios del CMP+L al sector industrial.</td>
+		  </tr>
+		  <tr>
+			  <td>3</td>
+			  <td>Realizar dos presentaciones de servicios del CMP+L al sector académico.</td>
+		  </tr>
+		  <tr>
+			  <td>4</td>
+			  <td>Realizar dos presentaciones de servicios del CMPL+L en Cámaras Nacionales.</td>
+		  </tr>
+		  <tr>
+			  <td>5</td>
+			  <td>Realizar dos convenios de bases de colaboración con Centros de Educación Contínua.</td>
+		  </tr>
+		  <tr>
+			  <td>6</td>
+			  <td>Participar en dos exposiciones.</td>
+		  </tr>
+		  <tr>
+			  <td>7</td>
+			  <td>Participar en dos congresos internacionales.</td>
+		  </tr>
+		  <tr>
+			  <td>8</td>
+			  <td>Organización de un congreso internacional.</td>
+		  </tr>
+		  <tr>
+			  <td>9</td>
+			  <td>Participar en una actividad de cooperación institucional.</td>
+		  </tr>
+	  </table>
     </div>
 	<blockquote class="blockquote-primary">
 		<p style="text-align:justify">Descripción</p>
