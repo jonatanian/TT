@@ -1,41 +1,84 @@
-@extends('layouts.dsbd')
+<!DOCTYPE html>
+<html>
 
-@section('Topbar')
-	<!-- Start: Topbar -->
-	<header id="topbar" class="ph10">
-		<div class="topbar-left">
-			<ul class="nav nav-list nav-list-topbar pull-left">
-				<li class="active">
-					<a href="#">Nuevo Usuario</a>
-				</li>
-			</ul>
-		</div>
-	</header>
-	<!-- End: Topbar -->
-@stop
-@section('content')
-	
-	<div class="admin-form">
-			{{Form::open(array('action'=>'UsersController@dsbd_registrarUsuario', 'class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
-            <!--<form method="get" action="/" id="form-wizard">-->
-			
-			<!------------------------------------------------------------->
-	<section id="content_wrapper">
- 
+<head>
+<!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <title>SISA-CMPL | Instituto Politécnico Nacional</title>
+  <meta name="keywords" content="SISA-CMPL IPN" />
+  <meta name="description" content="Centro Mexicano para la Producción más Limpia del Instituto Politécnico Nacional">
+  <meta name="author" content="Alcántara Carrillo Oscar; Castañeda Chavero Jonatan Ian">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font CSS (Via CDN) -->
+  {{HTML::style("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700")}}
+  <!-- Theme CSS -->
+  {{HTML::style("assets/skin/default_skin/css/theme.css")}}
+  <!-- Admin Forms CSS -->
+  {{HTML::style("assets/admin-tools/admin-forms/css/admin-forms.css")}}
+  <!-- Favicon -->
+  {{HTML::style("assets/img/favicon.ico")}}
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="external-page sb-l-c sb-r-c">
+
+
+  <!-- Start: Main -->
+  <div id="main" class="animated fadeIn">
+
+    <!-- Start: Content-Wrapper -->
+    <section id="content_wrapper">
+
+      <!-- begin canvas animation bg -->
+      <div id="canvas-wrapper">
+        <canvas id="demo-canvas"></canvas>
+      </div>
 
       <!-- Begin: Content -->
-      
+      <section id="content" class="">
 
         <div class="admin-form theme-info mw700" style="margin-top: 3%;" id="login1">
 
+          <div class="row mb15 table-layout">
+              <a href="#" class="" title="home"><img src="{{asset('images/LogoSISAv4.png')}}" alt="AdminDesigns Logo" class="img-responsive w200 ml10"></a>
+          </div>
+
           <div class="panel panel-info mt10 br-n">
 
+            <div class="panel-heading heading-border bg-white">
+              <div class="section row mn">
+                <div class="col-sm-4">
+                  <a href="#" class="button btn-social facebook span-left mr5 btn-block">
+                    <span>
+                      <i class="fa fa-facebook"></i>
+                    </span>Facebook</a>
+                </div>
+                <div class="col-sm-4">
+                  <a href="#" class="button btn-social twitter span-left mr5 btn-block">
+                    <span>
+                      <i class="fa fa-twitter"></i>
+                    </span>Twitter</a>
+                </div>
+                <div class="col-sm-4">
+                  <a href="#" class="button btn-social googleplus span-left btn-block">
+                    <span>
+                      <i class="fa fa-google-plus"></i>
+                    </span>Google+</a>
+                </div>
+              </div>
+            </div>
+
+            {{Form::open(array('action'=>'UsersController@dsbd_registrarUsuario', 'class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
               <div class="panel-body p25 bg-light">
                 <div class="section-divider mt10 mb40">
                   <span>Datos del nuevo usuario</span>
                 </div>
                 <!-- .section-divider -->
-				
 				<div class="section">
                   <label for="Nombre" class="field prepend-icon">
                     <input type="text" name="Nombre" id="Nombre" class="gui-input" placeholder="Nombre(s)...">
@@ -94,6 +137,7 @@
                 </div>
                 <!-- end section -->
 				<div class="section row">
+				
 					<div class="col-md-6">
 					  <label for="Password" class="field prepend-icon">
 						<input type="password" name="Password" id="Password" class="gui-input" placeholder="Introduce una contraseña">
@@ -111,7 +155,14 @@
 						</label>
 					  </label>
 					</div>
+				
 				</div>
+				@if(Session::has('msgf'))
+	                <div class="alert alert-danger">
+	                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                    {{Session::get('msgf')}}
+	                </div>
+				@endif
 				<div class="section row">
 					<div class="col-md-6">
 						<label for="Area" class="field-label">Área</label>
@@ -139,54 +190,73 @@
 						  </label>
 						</div>
 					</div>
-
-                <!-- .section-divider -->
-
+                
                 <!-- end section -->
 
               </div>
               <!-- end .form-body section -->
-              <div class="panel-footer clearfix">
-				{{Form::submit('Registrar', array('class'=>'button btn-primary pull-right"'))}}
+			  <div class="panel-footer clearfix">
+				{{Form::submit('Registrar', array('class'=>'button btn-primary pull-right'))}}
               </div>
               <!-- end .form-footer section -->
-            
+            {{Form::close()}} 
           </div>
         </div>
 
+      </section>
+      <!-- End: Content -->
 
     </section>
+    <!-- End: Content-Wrapper -->
 
-    {{Form::close()}}          
-	</div>
-          
-@stop
+  </div>
+  <!-- End: Main -->
 
-@section('scripts')
-<script type="text/javascript">
+  <!-- BEGIN: PAGE SCRIPTS -->
+
+  <!-- jQuery -->
+  
+    <!-- jQuery -->
+  <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
+  {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
+  <script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+  {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
+  <!-- Countdown Plugin -->
+  <script src="vendor/plugins/countdown/jquery.plugin.min.js"></script>
+  {{HTML::script('vendor/plugins/countdown/jquery.plugin.min.js')}}
+  <script src="vendor/plugins/countdown/jquery.countdown.min.js"></script>
+  {{HTML::script('vendor/plugins/countdown/jquery.countdown.min.js')}}
+  <!-- CanvasBG Plugin(creates mousehover effect) -->
+  <script src="vendor/plugins/canvasbg/canvasbg.js"></script>
+  {{HTML::script('vendor/plugins/canvasbg/canvasbg.js')}}
+  <!-- Theme Javascript -->
+  <script src="assets/js/utility/utility.js"></script>
+  {{HTML::script('assets/js/utility/utility.js')}}
+  <script src="assets/js/demo/demo.js"></script>
+  {{HTML::script('assets/js/demo/demo.js')}}
+  <script src="assets/js/main.js"></script>
+  {{HTML::script('assets/js/main.js')}}
+
+  <!-- Page Javascript -->
+  <script type="text/javascript">
   jQuery(document).ready(function() {
-
     "use strict";
+    // Init Theme Core      
+    Core.init();
 
-    // Form Wizard 
-    var form = $("#form-wizard");
-    form.children(".wizard").steps({
-      headerTag: ".wizard-section-title",
-      bodyTag: ".wizard-section",
-      onStepChanging: function(event, currentIndex, newIndex) {
-        form.validate().settings.ignore = ":disabled,:hidden";
-        return form.valid();
+
+    // Init CanvasBG and pass target starting location
+    CanvasBG.init({
+      Loc: {
+        x: window.innerWidth / 2.1,
+        y: window.innerHeight / 4.2
       },
-      onFinishing: function(event, currentIndex) {
-        form.validate().settings.ignore = ":disabled";
-        return form.valid();
-      },
-      onFinished: function(event, currentIndex) {
-        alert("Submitted!");
-      }
     });
-
-    
   });
-</script>
-@stop
+  </script>
+
+  <!-- END: PAGE SCRIPTS -->
+
+</body>
+
+</html>

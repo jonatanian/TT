@@ -39,6 +39,7 @@ class UsersController extends BaseController {
 			$roles = Rol::lists('NombreRol', 'IdRol');
 			$cargos = Cargo::lists('NombreCargo', 'IdCargo');
 			$areas = Area::lists('NombreArea', 'IdArea');
+			Session::flash('msgf','Error. No coinciden las contraseñas.');
 			return View::make('usuarios.dsbd_nuevo_usuario', array('roles'=>$roles, 'cargos'=>$cargos, 'areas'=>$areas));
 	}
 	public function	dsbd_editarUsuario()
@@ -117,7 +118,7 @@ class UsersController extends BaseController {
 	{
 		$IdUsuario = Request::get('IdUsuario');
 		$usuario = User::find($IdUsuario);
-		return View::make('usuarios.personal_cambiar_contrasena_usuario2', array('usuario'=>$usuario));
+		return View::make('usuarios.personal_cambiar_contrasena_usuario', array('usuario'=>$usuario));
 	}
 	
 	public function personal_actualizarContrasenaUsuario()

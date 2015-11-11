@@ -16,27 +16,30 @@
 @section('content')
 	
 	<div class="admin-form">
-			{{Form::open(array('action'=>'UsersController@dsbd_actualizarContrasenaUsuario', 'class'=>'form-horizontal row-border','id'=>'form-wizard', 'name'=>'form-wizard','data-parsley-validate'=>'true'))}}
+			
+
+            {{Form::open(array('action'=>'UsersController@dsbd_actualizarContrasenaUsuario', 'class'=>'form-horizontal row-border','id'=>'form-wizard', 'name'=>'form-wizard','data-parsley-validate'=>'true'))}}
             <!--<form method="get" action="/" id="form-wizard">-->
 			{{Form::hidden('IdUsuario', $usuario->IdUsuario)}}
-                <!-- Wizard step 1 -->
-                <h4 class="wizard-section-title">
-                  <i class="fa fa-user pr5"></i> Recuperar contraseña</h4>
-                <section class="wizard-section">
-					<div class="section">
+
+              <!-- end .form-body section -->
+              <div class="panel-footer p25 pv15">
+
+               <div class="section">
 						<label for="Nombre" class="field-label">Nombre de usuario</label>
-						<div class="smart-widget sm-right smr-120">
+						<div class="smart-widget sm-right">
 						  <label for="Nombre" class="field prepend-icon">
 							{{Form::text('Nombre', $usuario->getNombreCompleto(), array('class'=>'gui-input', 'name'=>'Nombre', 'required'=>'required'))}}
 						  </label>
 						</div>
 					</div>
+
 					
 					<div class="section">
 						<label for="Password" class="field-label">Introduce un nuevo password</label>
-						<div class="smart-widget sm-right smr-120">
+						<div class="smart-widget sm-right">
 						  <label for="Password" class="field prepend-icon">
-							{{Form::password('Password', array('class'=>'gui-input', 'name'=>'Password', 'id'=>'Password', 'required'=>'required'))}}
+							{{Form::password('Password', array('class'=>'gui-input', 'name'=>'Password', 'id'=>'Password', 'placeholder'=>'Nueva contraseña...','required'=>'required'))}}
 							<span class="k-invalid-msg" data-for="Password"></span><br />
 						  </label>
 						</div>
@@ -44,19 +47,22 @@
 					
 					<div class="section">
 						<label for="Password-confirm" class="field-label">Confirmar password</label>
-						<div class="smart-widget sm-right smr-120">
+						<div class="smart-widget sm-right">
 						  <label for="Password-confirm" class="field prepend-icon">
-							{{Form::password('PasswordC', array('class'=>'gui-input', 'name'=>'PasswordC', 'id'=>'PasswordC', 'required'=>'required'))}}
+							{{Form::password('PasswordC', array('class'=>'gui-input', 'name'=>'PasswordC', 'id'=>'PasswordC', 'placeholder'=>'Confirmar contraseña...','required'=>'required'))}}
 							<span class="k-invalid-msg" data-for="Password-confirm"></span><br />
 						  </label>
 						</div>
 					</div>
+                <!-- end section -->
+					{{Form::submit('Cambiar', array('class'=>'button btn-primary pull-right'))}}
+              </div>
+              <!-- end .form-footer section -->
+			  
 
-                </section>
-				{{Form::submit('Recuperar', array('class'=>'btn btn-default"'))}}
-				
-            {{Form::close()}}
-            <!-- End Account2 Form -->
+			  {{Form::close()}}
+
+         
 
           
 		</div>
