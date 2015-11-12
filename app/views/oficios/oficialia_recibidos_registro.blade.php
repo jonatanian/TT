@@ -37,10 +37,13 @@
                       	<select id="Dependencia" name="Dependencia" class="gui-input">
                       		<option id="0">Selecciona una dependencia...</option>
 							@foreach($dependencias as $dependencia)
-								<option id="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}</option>
+								@if($dep == $dependencia->IdDependencia)
+									<option id="{{$dependencia->IdDependencia}}" selected="selected">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
+								@endif
+								<option id="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
 							@endforeach
 						</select>
-                        <label for="Dependencia" class="field-icon">
+						<label for="Dependencia" class="field-icon">
                           <i class="fa fa-bank"></i>
                         </label>                        
                       </label>
