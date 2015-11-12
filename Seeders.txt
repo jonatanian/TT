@@ -7,3 +7,4 @@ php artisan db:seed --class=PrioridadSeeder --force
 php artisan db:seed --class=TipoSeeder --force
 php artisan db:seed --class=EstatusSeeder --force
 php artisan db:seed --class=CaracteresSeeder --force
+php artisan db:seed --class=GradoSeeder --force
