@@ -44,7 +44,7 @@
                           <i class="fa fa-bank"></i>
                         </label>                        
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevaDependencia')}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
 	                </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -63,7 +63,7 @@
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="#" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -82,7 +82,7 @@
                           <i class="fa fa-user"></i>
                         </label>
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="#" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -101,7 +101,7 @@
                           <i class="fa fa-bookmark"></i>
                         </label>
                       </label>
-                      <a href="#" class="button"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="#" class="button  btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>

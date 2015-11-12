@@ -92,6 +92,8 @@ Route::group(array("prefix"=>'direccion'), function(){
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 });
 
+
+////////////////////Oficialía de Partes///////////////////////
 Route::group(array("prefix"=>'oficialia'), function(){
 	Route::get('/','OficialiaController@oficialia_index');
 	
@@ -101,7 +103,8 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
-	
+		Route::get('/oficios/entrantes/nueva_dependencia','InstanciasExternasController@nuevaDependencia');
+		Route::post('/oficios/entrantes/nueva_dependencia','InstanciasExternasController@registrarDependencia');
 	Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 	
 	//Funciones de Oficios Salientes
