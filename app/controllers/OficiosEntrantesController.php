@@ -14,7 +14,7 @@ class OficiosEntrantesController extends BaseController {
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'c'=>$e,'ce'=>$ce));
+			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce));
 		}
 		
 	public function oficialia_nuevoOficio_registrar()

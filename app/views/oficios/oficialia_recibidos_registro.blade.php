@@ -29,63 +29,25 @@
                 <h4 class="wizard-section-title">
                   <i class="fa fa-user pr5"></i> Datos del remitente</h4>
                 <section class="wizard-section">
-
-                  <div class="section col-md-6">
-                    <label for="DependenciaE" class="field-label">Dependencia que emite</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="DependenciaE" class="field prepend-icon">
-                      	<select id="DependenciaE" name="DependenciaE" class="gui-input">
-                      		@foreach($dependencias as $dependencia)
-								@if($dep == $dependencia->IdDependencia)
-									<option id="{{$dependencia->IdDependencia}}" selected="selected">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
-								@endif
-								<option id="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
-							@endforeach
-						</select>
-						<label for="DependenciaE" class="field-icon">
-                          <i class="fa fa-bank"></i>
-                        </label>                        
-                      </label>
-                      <a href="{{action('InstanciasExternasController@nuevaDependencia')}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
-	                </div>
-                    <!-- end .smart-widget section -->
-                  </div>
-                  
-                  <div class="section col-md-6">
-                    <label for="AreaE" class="field-label">Área que emite</label>
-                    <div class="smart-widget sm-right smr-120">
-                      <label for="AreaE" class="field prepend-icon">
-                        <select id="AreaE" name="AreaE" class="gui-input">
-                      		@foreach($dep_areas as $dep_area)
-								@if($a == $dep_area->IdDependenciaArea)
-									<option id="{{$dep_area->IdDependenciaArea}}" selected="selected">{{$dep_area->NombreDependenciaArea}}</option>
-								@endif
-								<option id="{{$dep_area->IdDependenciaArea}}">{{$dep_area->NombreDependenciaArea}}</option>
-							@endforeach
-						</select>
-                        <label for="AreaE" class="field-icon">
-                          <i class="fa fa-circle-o-notch"></i>
-                        </label>
-                      </label>
-                      <a href="{{action('InstanciasExternasController@nuevaArea',array('DependenciaE'=> 1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
-                    </div>
-                    <!-- end .smart-widget section -->
-                  </div>
-                  
-                  <div class="section col-md-6">
+                
+                   <div class="section col-md-6">
                     <label for="Remitente" class="field-label">Nombre del emisor</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Remitente" class="field prepend-icon">
                         <select id="Area" name="Area" class="gui-input">
                       		@foreach($entidades_externas as $entidad_externa)
-								<option id="{{$entidad_externa->IdEntidadExterna}}">{{$entidad_externa->getNombreCompletoPMN()}}</option>
+                      			@if($e == $entidad_externa->IdEntidadExterna)
+                      				<option id="{{$entidad_externa->IdEntidadExterna}}" selected="selected">{{$entidad_externa->getNombreCompletoPMN()}}</option>
+                      			@else
+									<option id="{{$entidad_externa->IdEntidadExterna}}">{{$entidad_externa->getNombreCompletoPMN()}}</option>
+								@endif
 							@endforeach
 						</select>
                         <label for="Remitente" class="field-icon">
                           <i class="fa fa-user"></i>
                         </label>
                       </label>
-                      <a href="#" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevoEmisor',array('DependenciaE'=>1,'AreaE'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -96,7 +58,11 @@
                       <label for="Cargo" class="field prepend-icon">
                         <select id="Area" name="Area" class="gui-input">
                       		@foreach($cargos_entidades as $cargo_entidad)
-								<option id="{{$cargo_entidad->IdCargoEntidad}}">{{$cargo_entidad->NombreCargoEntidad}}</option>
+                      			@if($ce == $cargo_entidad->IdCargoEntidad)
+                      				<option id="{{$cargo_entidad->IdCargoEntidad}}" selected="selected">{{$cargo_entidad->NombreCargoEntidad}}</option>
+                      			@else
+                      				<option id="{{$cargo_entidad->IdCargoEntidad}}">{{$cargo_entidad->NombreCargoEntidad}}</option>
+                      			@endif
 							@endforeach
 						</select>
                         <label for="Cargo" class="field-icon">
@@ -108,7 +74,50 @@
                     <!-- end .smart-widget section -->
                   </div>
                   <!-- end section -->
+                
+                  <div class="section col-md-6">
+                    <label for="AreaE" class="field-label">Área que emite</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="AreaE" class="field prepend-icon">
+                        <select id="AreaE" name="AreaE" class="gui-input">
+                      		@foreach($dep_areas as $dep_area)
+								@if($a == $dep_area->IdDependenciaArea)
+									<option id="{{$dep_area->IdDependenciaArea}}" selected="selected">{{$dep_area->NombreDependenciaArea}}</option>
+								@else
+									<option id="{{$dep_area->IdDependenciaArea}}">{{$dep_area->NombreDependenciaArea}}</option>
+								@endif
+							@endforeach
+						</select>                        <label for="AreaE" class="field-icon">
+                          <i class="fa fa-circle-o-notch"></i>
+                        </label>
+                      </label>
+                      <a href="{{action('InstanciasExternasController@nuevaArea',array('DependenciaE'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                    </div>
+                    <!-- end .smart-widget section -->
+                  </div>
 
+                  <div class="section col-md-6">
+                    <label for="DependenciaE" class="field-label">Dependencia que emite</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="DependenciaE" class="field prepend-icon">
+                      	<select id="DependenciaE" name="DependenciaE" class="gui-input" onclick="{{action('InstanciasExternasController@nuevaDependencia')}}" >
+                      		@foreach($dependencias as $dependencia)
+								@if($dep == $dependencia->IdDependencia)
+									<option id="{{$dependencia->IdDependencia}}" selected="selected">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
+								@else
+									<option id="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
+								@endif
+							@endforeach
+						</select>
+						<label for="DependenciaE" class="field-icon">
+                          <i class="fa fa-bank"></i>
+                        </label>                        
+                      </label>
+                      <a href="{{action('InstanciasExternasController@nuevaDependencia')}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
                 </section>
 
 				<!-- Wizard step 2 -->

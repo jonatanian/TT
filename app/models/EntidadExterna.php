@@ -17,7 +17,7 @@
 				$dep ->ApPaternoEntidad = $inputs['ApPaternoE'];
 				$dep ->ApMaternoEntidad = $inputs['ApMaternoE'];
 				$dep ->DepArea_Cargo_Id = $cargo;
-				$dep ->Dependencia_Area_Id = $inputs['DepAreaId'];
+				$dep ->Dependencia_Area_Id = $inputs['AreaS'];
 				$dep ->save();
 				
 	    	});

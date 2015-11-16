@@ -1,9 +1,29 @@
 @extends('layouts.oficialia')
 
+@section('Topbar')
+	<!-- Start: Topbar -->
+	<header id="topbar" class="ph10">
+		<div class="topbar-left">
+			<ul class="nav nav-list nav-list-topbar pull-left">
+				<li>
+					<a href="#">Oficios entrantes</a>
+				</li>
+				<li class="active">
+					<a href="#">Nueva área</a>
+				</li>
+			</ul>
+		</div>
+		<div class="topbar-right hidden-xs hidden-sm">
+			<a href="{{action('OficiosEntrantesController@oficialia_nuevoOficio')}}" class="btn btn-default btn-sm fw600 ml10">
+			<span class="fa fa-plus pr5"></span> Nuevo oficio entrante</a>
+		</div>
+	</header>
+	<!-- End: Topbar -->
+@endsection
+
 @section('content')
 	<!-- Validation Example -->
     <div class="admin-form theme-success mw1000 center-block">
-		<h2>Nuevo oficio</h2>
 		<div class="panel panel-success heading-border">
 			{{Form::open(array('class'=>'form-horizontal row-border','id'=>"validate-form",'data-parsley-validate'=>'true'))}}   
 				<div class="panel-body">

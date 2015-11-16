@@ -109,7 +109,9 @@ Route::group(array("prefix"=>'oficialia'), function(){
 		//Registro de nueva área
 		Route::get('/oficios/entrantes/nueva_area','InstanciasExternasController@nuevaArea');
 		Route::post('/oficios/entrantes/nueva_area','InstanciasExternasController@registrarArea');
-		
+		//Registro de nuevo emisor
+		Route::get('/oficios/entrantes/nuevo_emisor','InstanciasExternasController@nuevoEmisor');
+		Route::post('/oficios/entrantes/nuevo_emisor','InstanciasExternasController@registrarEmisor');
 	Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 	
 	//Funciones de Oficios Salientes

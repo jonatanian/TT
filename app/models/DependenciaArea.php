@@ -20,5 +20,6 @@
 	    $Id = DB::table('dependencia_area')->max('IdDependenciaArea');
 		return $Id;
 		}
+
 	}
  ?>
