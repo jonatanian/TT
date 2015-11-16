@@ -31,19 +31,18 @@
                 <section class="wizard-section">
 
                   <div class="section col-md-6">
-                    <label for="Dependencia" class="field-label">Dependencia que emite</label>
+                    <label for="DependenciaE" class="field-label">Dependencia que emite</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="Dependencia" class="field prepend-icon">
-                      	<select id="Dependencia" name="Dependencia" class="gui-input">
-                      		<option id="0">Selecciona una dependencia...</option>
-							@foreach($dependencias as $dependencia)
+                      <label for="DependenciaE" class="field prepend-icon">
+                      	<select id="DependenciaE" name="DependenciaE" class="gui-input">
+                      		@foreach($dependencias as $dependencia)
 								@if($dep == $dependencia->IdDependencia)
 									<option id="{{$dependencia->IdDependencia}}" selected="selected">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
 								@endif
 								<option id="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
 							@endforeach
 						</select>
-						<label for="Dependencia" class="field-icon">
+						<label for="DependenciaE" class="field-icon">
                           <i class="fa fa-bank"></i>
                         </label>                        
                       </label>
@@ -53,20 +52,22 @@
                   </div>
                   
                   <div class="section col-md-6">
-                    <label for="Area" class="field-label">Área que emite</label>
+                    <label for="AreaE" class="field-label">Área que emite</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="Area" class="field prepend-icon">
-                        <select id="Area" name="Area" class="gui-input">
-                      		<option id="0">Selecciona una área...</option>
-							@foreach($dep_areas as $dep_area)
+                      <label for="AreaE" class="field prepend-icon">
+                        <select id="AreaE" name="AreaE" class="gui-input">
+                      		@foreach($dep_areas as $dep_area)
+								@if($a == $dep_area->IdDependenciaArea)
+									<option id="{{$dep_area->IdDependenciaArea}}" selected="selected">{{$dep_area->NombreDependenciaArea}}</option>
+								@endif
 								<option id="{{$dep_area->IdDependenciaArea}}">{{$dep_area->NombreDependenciaArea}}</option>
 							@endforeach
 						</select>
-                        <label for="Area" class="field-icon">
+                        <label for="AreaE" class="field-icon">
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>
-                      <a href="#" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevaArea',array('DependenciaE'=> 1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -76,8 +77,7 @@
                     <div class="smart-widget sm-right smr-120">
                       <label for="Remitente" class="field prepend-icon">
                         <select id="Area" name="Area" class="gui-input">
-                      		<option id="0">Selecciona un remitente...</option>
-							@foreach($entidades_externas as $entidad_externa)
+                      		@foreach($entidades_externas as $entidad_externa)
 								<option id="{{$entidad_externa->IdEntidadExterna}}">{{$entidad_externa->getNombreCompletoPMN()}}</option>
 							@endforeach
 						</select>
@@ -95,8 +95,7 @@
                     <div class="smart-widget sm-right smr-120">
                       <label for="Cargo" class="field prepend-icon">
                         <select id="Area" name="Area" class="gui-input">
-                      		<option id="0">Selecciona un cargo...</option>
-							@foreach($cargos_entidades as $cargo_entidad)
+                      		@foreach($cargos_entidades as $cargo_entidad)
 								<option id="{{$cargo_entidad->IdCargoEntidad}}">{{$cargo_entidad->NombreCargoEntidad}}</option>
 							@endforeach
 						</select>

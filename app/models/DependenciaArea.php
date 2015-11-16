@@ -13,7 +13,7 @@
 			
 	    	DB::transaction(function () use ($inputs){
 				$dep = new DependenciaArea();
-				$dep ->NombreDependenciaArea = $inputs['NuevaArea'];
+				$dep ->NombreDependenciaArea = $inputs['AreaE'];
 				$dep ->save();
 				
 	    	});

@@ -103,8 +103,13 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
+		//Registro de nueva dependencia
 		Route::get('/oficios/entrantes/nueva_dependencia','InstanciasExternasController@nuevaDependencia');
 		Route::post('/oficios/entrantes/nueva_dependencia','InstanciasExternasController@registrarDependencia');
+		//Registro de nueva área
+		Route::get('/oficios/entrantes/nueva_area','InstanciasExternasController@nuevaArea');
+		Route::post('/oficios/entrantes/nueva_area','InstanciasExternasController@registrarArea');
+		
 	Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 	
 	//Funciones de Oficios Salientes
