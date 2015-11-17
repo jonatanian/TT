@@ -23,9 +23,19 @@ class OficiosEntrantesController extends BaseController {
 			$url_docpdf = Hash::make($file->getClientOriginalName());
 			$destinoPath = public_path().'/oficios/entrantes/';
 			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
-		
-			Session::flash('msg','Registro de oficio entrante realizado correctamente.');
-			return Redirect::action('OficiosController@oficialia_recibidos');
+			
+			$datos = Input::all();
+			$correspondenciaEntrante = new Correspondencia();
+			$oficio = new OficioEntrante();
+			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$subir)){
+				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia);
+				Session::flash('msg','Registro de oficio entrante realizado correctamente.');
+				return Redirect::action('OficiosController@oficialia_recibidos');
+			}	
+			else{
+				Session::flash('msgf','Error al registrar nuevo oficio entrante.');
+				return Redirect::action('OficiosController@oficialia_recibidos');
+			}
 		}
 	
 }

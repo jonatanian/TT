@@ -176,11 +176,11 @@
                   </div>
                   
                   <div class="section col-md-6">
-                    <label for="FechaRecepcion" class="field-label">Fecha de recepción</label>
+                    <label for="FechaEntrega" class="field-label">Fecha de recepción</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="FechaRecepcion" class="field prepend-icon">
-                        <input type="text" name="FechaRecepcion" id="FechaRecepcion" class="gui-input" placeholder="Elije una fecha...">
-                        <label for="FechaRecepcion" class="field-icon">
+                      <label for="FechaEntrega" class="field prepend-icon">
+                        <input type="text" name="FechaEntrega" id="FechaEntrega" class="gui-input" placeholder="Elije una fecha...">
+                        <label for="FechaEntrega" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>
                       </label>
@@ -300,7 +300,7 @@
     		format: 'yyyy-mm-dd'
 		});
 
-		$('#FechaRecepcion').datepicker({
+		$('#FechaEntrega').datepicker({
 			todayHighlight: true,
     		startView: 3,
     		format: 'yyyy-mm-dd'
