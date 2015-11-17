@@ -11,19 +11,19 @@
 		//protected $fillable = array('IdRol', 'NombreRol', 'DescripcionRol');
 
 		
-	public function nuevaCorrespondencia($inputs){
-	    	DB::transaction(function () use ($inputs){
+	public function nuevaCorrespondencia($inputs, $subir){
+	    	DB::transaction(function () use ($inputs, $subir){
 				$correspondencia = new Correspondencia();
 				$correspondencia->FechaEmision = $inputs['FechaEmision'];
-				$correspondencia->FechaEntrega = $inputs['FechaEntrega'];
+				$correspondencia->FechaEntrega = $inputs['FechaRecepcion'];
 				$correspondencia->Asunto = $inputs['Asunto'];
-				$correspondencia->RequiereRespuesta = $inputs['RequiereRespuesta'];
-				//$correspondencia->URLPDF = 'lalala';
+				//$correspondencia->RequiereRespuesta = $inputs['RequiereRespuesta'];
+				$correspondencia->URLPDF = $subir;
 				//$correspondencia->FechaLimiteR = $inputs['FechaLimiteR'];
 				//$correspondencia->EnRespuestaA = $inputs['EnRespuestaA'];
-				$correspondencia->Estatus_Id = $inputs['Estatus_Id'];
-				$correspondencia->Prioridad_Id = $inputs['Prioridad_Id'];
-				$correspondencia->Caracter_Id = $inputs['Caracter_Id'];
+				$correspondencia->Estatus_Id = 1;
+				//$correspondencia->Prioridad_Id = $inputs['Prioridad_Id'];
+				//$correspondencia->Caracter_Id = $inputs['Caracter_Id'];
 				$correspondencia->save();
 	    	});
 			$id = DB::table('correspondencia')->max('IdCorrespondencia');

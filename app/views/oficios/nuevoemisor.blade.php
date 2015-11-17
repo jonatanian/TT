@@ -30,8 +30,8 @@
 				<div class="panel-body"> 
 					<div class="section-divider mt20 mb40">
 						<span> Registre un nuevo emisor</span>
-						{{Form::text('DependenciaS',$dependencia,null,array('id'=>'DependenciaS'))}}
-						{{Form::text('AreaS',$area,null,array('id'=>'AreaS'))}}
+						{{Form::hidden('DependenciaS',$dependencia,null,array('id'=>'DependenciaS'))}}
+						{{Form::hidden('AreaS',$area,null,array('id'=>'AreaS'))}}
 					</div>
 					<div class="section row">
 						<div class="col-md-12">
