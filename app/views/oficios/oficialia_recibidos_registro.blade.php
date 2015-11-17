@@ -34,12 +34,12 @@
                     <label for="Remitente" class="field-label">Nombre del emisor</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="Remitente" class="field prepend-icon">
-                        <select id="Area" name="Area" class="gui-input">
+                        <select id="Remitente" name="Remitente" class="gui-input">
                       		@foreach($entidades_externas as $entidad_externa)
                       			@if($e == $entidad_externa->IdEntidadExterna)
-                      				<option id="{{$entidad_externa->IdEntidadExterna}}" selected="selected">{{$entidad_externa->getNombreCompletoPMN()}}</option>
+                      				<option value="{{$entidad_externa->IdEntidadExterna}}" selected="selected">{{$entidad_externa->getNombreCompletoPMN()}}</option>
                       			@else
-									<option id="{{$entidad_externa->IdEntidadExterna}}">{{$entidad_externa->getNombreCompletoPMN()}}</option>
+									<option value="{{$entidad_externa->IdEntidadExterna}}">{{$entidad_externa->getNombreCompletoPMN()}}</option>
 								@endif
 							@endforeach
 						</select>
@@ -59,9 +59,9 @@
                         <select id="Area" name="Area" class="gui-input">
                       		@foreach($cargos_entidades as $cargo_entidad)
                       			@if($ce == $cargo_entidad->IdCargoEntidad)
-                      				<option id="{{$cargo_entidad->IdCargoEntidad}}" selected="selected">{{$cargo_entidad->NombreCargoEntidad}}</option>
+                      				<option value="{{$cargo_entidad->IdCargoEntidad}}" selected="selected">{{$cargo_entidad->NombreCargoEntidad}}</option>
                       			@else
-                      				<option id="{{$cargo_entidad->IdCargoEntidad}}">{{$cargo_entidad->NombreCargoEntidad}}</option>
+                      				<option value="{{$cargo_entidad->IdCargoEntidad}}">{{$cargo_entidad->NombreCargoEntidad}}</option>
                       			@endif
 							@endforeach
 						</select>
@@ -82,9 +82,9 @@
                         <select id="AreaE" name="AreaE" class="gui-input">
                       		@foreach($dep_areas as $dep_area)
 								@if($a == $dep_area->IdDependenciaArea)
-									<option id="{{$dep_area->IdDependenciaArea}}" selected="selected">{{$dep_area->NombreDependenciaArea}}</option>
+									<option value="{{$dep_area->IdDependenciaArea}}" selected="selected">{{$dep_area->NombreDependenciaArea}}</option>
 								@else
-									<option id="{{$dep_area->IdDependenciaArea}}">{{$dep_area->NombreDependenciaArea}}</option>
+									<option value="{{$dep_area->IdDependenciaArea}}">{{$dep_area->NombreDependenciaArea}}</option>
 								@endif
 							@endforeach
 						</select>                        <label for="AreaE" class="field-icon">
@@ -103,9 +103,9 @@
                       	<select id="DependenciaE" name="DependenciaE" class="gui-input" onclick="{{action('InstanciasExternasController@nuevaDependencia')}}" >
                       		@foreach($dependencias as $dependencia)
 								@if($dep == $dependencia->IdDependencia)
-									<option id="{{$dependencia->IdDependencia}}" selected="selected">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
+									<option value="{{$dependencia->IdDependencia}}" selected="selected">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
 								@else
-									<option id="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
+									<option value="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>
 								@endif
 							@endforeach
 						</select>
@@ -176,11 +176,11 @@
                   </div>
                   
                   <div class="section col-md-6">
-                    <label for="FechaEntrega" class="field-label">Fecha de recepción</label>
+                    <label for="FechaRecepcion" class="field-label">Fecha de recepción</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="FechaEntrega" class="field prepend-icon">
-                        <input type="text" name="FechaEntrega" id="FechaEntrega" class="gui-input" placeholder="Elije una fecha...">
-                        <label for="FechaEntrega" class="field-icon">
+                      <label for="FechaRecepcion" class="field prepend-icon">
+                        <input type="text" name="FechaRecepcion" id="FechaRecepcion" class="gui-input" placeholder="Elije una fecha...">
+                        <label for="FechaRecepcion" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>
                       </label>
@@ -300,7 +300,7 @@
     		format: 'yyyy-mm-dd'
 		});
 
-		$('#FechaEntrega').datepicker({
+		$('#FechaRecepcion').datepicker({
 			todayHighlight: true,
     		startView: 3,
     		format: 'yyyy-mm-dd'

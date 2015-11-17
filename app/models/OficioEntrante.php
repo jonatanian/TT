@@ -18,8 +18,7 @@
 				$oficio->IdOficioDependencia = $inputs['IdOficio'];
 				$oficio->DirigidoA = $inputs['DirigidoA'];
 				$oficio->Correspondencia_Id = $IdOficio;
-				$oficio->Dependencia_Id = $inputs['IdDependenciaEmite'];
-				$oficio->NombrePortador = $inputs['NombrePortador'];
+				$oficio->Emisor = $inputs['Remitente'];
 				$oficio->save();
 	    	});
 	    	$Id = DB::table('oficio_entrante')->max('IdOficioEntrante');
