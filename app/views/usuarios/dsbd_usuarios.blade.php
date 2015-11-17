@@ -25,16 +25,19 @@
 				
                 <div class="col-md-4">
                   <label class="field select">
-                    <select id="filter-purchases" name="filter-purchases">
+                    <!--<select id="filter-purchases" name="filter-purchases">
                       <option value="0">Filtrar por...</option>
                       <option value="1">Orden alfabético</option>
-                      <option value="1">Dirección</option>
-                      <option value="2">Subdirección Técnica</option>
-                      <option value="3">Subdirección de Posgrado</option>
-                      <option value="4">Subdirección de Vinculación</option>
-					  <option value="5">Departamento de Servicios Administrativos y Técnicos</option>
-					  <option value="6">Departamento de Sistemas y Banco de Datos</option>
-                    </select>
+                      <option value="2">Dirección</option>
+                      <option value="3">Subdirección Técnica</option>
+                      <option value="4">Subdirección de Posgrado</option>
+                      <option value="5">Subdirección de Vinculación</option>
+					  <option value="6">Departamento de Servicios Administrativos y Técnicos</option>
+					  <option value="7">Departamento de Sistemas y Banco de Datos</option>
+                    </select>-->
+					{{Form::text('auto', '', array('id' => 'auto'))}}
+					
+					{{Form::text('response', '', array('id' =>'response', 'disabled' => 'disabled'))}}
                     <i class="arrow double"></i>
                   </label>
                 </div>
@@ -110,29 +113,16 @@
 
 @section('scripts')
 <script type="text/javascript">
-  jQuery(document).ready(function() {
+  $(function() {
 
-    "use strict";
-
-    // Form Wizard 
-    var form = $("#form-wizard");
-    form.children(".wizard").steps({
-      headerTag: ".wizard-section-title",
-      bodyTag: ".wizard-section",
-      onStepChanging: function(event, currentIndex, newIndex) {
-        form.validate().settings.ignore = ":disabled,:hidden";
-        return form.valid();
-      },
-      onFinishing: function(event, currentIndex) {
-        form.validate().settings.ignore = ":disabled";
-        return form.valid();
-      },
-      onFinished: function(event, currentIndex) {
-        alert("Submitted!");
-      }
-    });
-
+	$("#auto").autocomplete({
+                    source: "getdata",
+                    minLength: 1,
+                    select: function( event, ui ) {
+                        $('#response').val(ui.item.id);
+                    }
+                });
     
-  });
+  });  
 </script>
 @stop
