@@ -22,11 +22,12 @@
 	<div class="panel">
             <div class="panel-menu admin-form theme-primary">
               <div class="row">
-			  
-				<div class="col-md-4">
+				
+                <div class="col-md-4">
                   <label class="field select">
-                    <select id="filter-group" name="filter-group">
-                      <option value="0">Filtrar por área</option>
+                    <select id="filter-purchases" name="filter-purchases">
+                      <option value="0">Filtrar por...</option>
+                      <option value="1">Orden alfabético</option>
                       <option value="1">Dirección</option>
                       <option value="2">Subdirección Técnica</option>
                       <option value="3">Subdirección de Posgrado</option>
@@ -37,66 +38,35 @@
                     <i class="arrow double"></i>
                   </label>
                 </div>
-				
-                <div class="col-md-4">
-                  <label class="field select">
-                    <select id="filter-purchases" name="filter-purchases">
-                      <option value="0">Filtrar por apellido</option>
-                      <option value="1">A-E</option>
-                      <option value="2">F-J</option>
-                      <option value="3">K-Ñ</option>
-                      <option value="4">O-S</option>
-					  <option value="5">T-Z</option>
-                    </select>
-                    <i class="arrow double"></i>
-                  </label>
-                </div>
-                
-                <div class="col-md-4">
-                  <label class="field select">
-                    <select id="filter-status" name="filter-status">
-                      <option value="0">Filtrar por estatus</option>
-                      <option value="1">Activo</option>
-                      <option value="2">Inactivo</option>
-                    </select>
-                    <i class="arrow double"></i>
-                  </label>
-                </div>
               </div>
             </div>
+			
             <div class="panel-body pn">
               <div class="table-responsive">
                 <table class="table admin-form theme-warning tc-checkbox-1 fs13">
                   <thead>
                     <tr class="bg-light">
-                      <th class="text-center">Select</th>
-                      <th class="">Avatar</th>
+                      <th class="">&nbsp;</th>
                       <th class="">Nombre</th>
                       <th class="">Email</th>
                       <th class="">Extensión</th>
-                      <th class="">Cargo</th>
+                      <th class="">Estátus</th>
                       
-                      <th class="text-right">Status</th>
+                      <th class="text-right">Cargo</th>
 
                     </tr>
                   </thead>
                   <tbody>
 				  @foreach($usuarios as $usuario)
                     <tr>
-                      <td class="text-center">
-                        <label class="option block mn">
-                          <input type="checkbox" name="mobileos" value="FR">
-                          <span class="checkbox mn"></span>
-                        </label>
-                      </td>
                       <td class="w50">
-                        <img class="img-responsive mw30 ib mr10" title="user" src="{{asset('assets/img/avatars/1.jpg')}}">
+						
+                        <img class="img-responsive mw30 ib mr10" title="user" src="{{asset('images/placeholder.png')}}">
                       </td>
-                      <td class="">{{$usuario->getNombreCompleto()}}</td>
+                      <td class="">{{$usuario->getNombreCompletoPMN()}}</td>
                       <td class="">{{$usuario->Email}}</td>
                       <td class="">{{$usuario->Extension}}</td>
-                      <td class="">{{$usuario->Cargo}}</td>
-                      <td class="text-right">
+					  <td class="text-left">
                         <div class="btn-group text-right">
 						@if($usuario->Activo == 1)
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Activo
@@ -124,6 +94,8 @@
 					  </ul>
                         </div>
                       </td>
+                      <td class="text-right">{{$usuario->getCargo()}}</td>
+                      
                     </tr>
                     @endforeach
                     

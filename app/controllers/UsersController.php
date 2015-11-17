@@ -110,6 +110,7 @@ class UsersController extends BaseController {
 		$usuario = new User();
 		$usuario->actualizarEstatus($datos);
 		$usuarios = User::get();
+		$areas = Area::get();
 		Session::flash('msg','Se cambió el estátus del usuario con éxito.');
 		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
 	}

@@ -57,20 +57,12 @@
             </div>
           </div>
 
-          <div class="panel panel-info heading-border br-n">
+          <div class="panel panel-info">
 
             {{Form::open(array('action'=>'UsersController@personal_actualizarContrasenaUsuario', 'class'=>'form-horizontal row-border','id'=>'form-wizard', 'name'=>'form-wizard','data-parsley-validate'=>'true'))}}
             <!--<form method="get" action="/" id="form-wizard">-->
 			{{Form::hidden('IdUsuario', $usuario->IdUsuario)}}
-              <div class="panel-body p15 pt25">
-
-                <div class="alert alert-micro alert-border-left alert-info pastel alert-dismissable mn">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <i class="fa fa-info pr10"></i> Introduce tu
-                  <b>antigua contraseña</b> para poder cambiarla!
-                </div>
-
-              </div>
+              
               <!-- end .form-body section -->
               <div class="panel-footer p25 pv15">
 
@@ -81,10 +73,10 @@
 						{{Session::get('msgf')}}
 					</div>
 				@endif
-						<label for="Nombre" class="field-label">Nombre de usuario</label>
+						<label for="Nombre" class="field-label">Nombre del usuario</label>
 						<div class="smart-widget sm-right">
 						  <label for="Nombre" class="field prepend-icon">
-							{{Form::text('Nombre', $usuario->getNombreCompleto(), array('class'=>'gui-input', 'name'=>'Nombre', 'required'=>'required'))}}
+							{{Form::label('Nombre', $usuario->getNombreCompleto(), array('class'=>'gui-input', 'name'=>'Nombre', 'required'=>'required'))}}
 						  </label>
 						</div>
 					</div>

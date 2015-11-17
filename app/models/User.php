@@ -200,5 +200,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->ApPaterno.' '.$this->ApMaterno.' '.$this->Nombre;
 	}
+	public function getCargo()
+	{
+		$area = Cargo::where('IdCargo', '=', $this->Cargo_Id)->first();
+		return $area->NombreCargo;
+	}
 	
 }

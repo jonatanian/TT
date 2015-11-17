@@ -50,28 +50,6 @@
 
           <div class="panel panel-info mt10 br-n">
 
-            <div class="panel-heading heading-border bg-white">
-              <div class="section row mn">
-                <div class="col-sm-4">
-                  <a href="#" class="button btn-social facebook span-left mr5 btn-block">
-                    <span>
-                      <i class="fa fa-facebook"></i>
-                    </span>Facebook</a>
-                </div>
-                <div class="col-sm-4">
-                  <a href="#" class="button btn-social twitter span-left mr5 btn-block">
-                    <span>
-                      <i class="fa fa-twitter"></i>
-                    </span>Twitter</a>
-                </div>
-                <div class="col-sm-4">
-                  <a href="#" class="button btn-social googleplus span-left btn-block">
-                    <span>
-                      <i class="fa fa-google-plus"></i>
-                    </span>Google+</a>
-                </div>
-              </div>
-            </div>
 
             {{Form::open(array('action'=>'UsersController@dsbd_registrarUsuario', 'class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
               <div class="panel-body p25 bg-light">
