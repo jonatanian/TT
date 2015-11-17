@@ -35,6 +35,30 @@
 		<p style="text-align:justify">Descripción</p>
 		<footer>Anotaciones importantes</footer>
 	</blockquote>
+	
+	<div class="content-header">
+      <h2 class="text-primary">Formatos</h2>
+    </div>
+	<blockquote class="blockquote-primary">
+		<p style="text-align:justify">Descripción</p>
+		<footer>Anotaciones importantes</footer>
+	</blockquote>
+	
+	<div class="content-header">
+      <h2 class="text-primary">Documentos externos</h2>
+    </div>
+	<blockquote class="blockquote-primary">
+		<p style="text-align:justify">Descripción</p>
+		<footer>Anotaciones importantes</footer>
+	</blockquote>
+	
+	<div class="content-header">
+      <h2 class="text-primary">Normatividad</h2>
+    </div>
+	<blockquote class="blockquote-primary">
+		<p style="text-align:justify">Descripción</p>
+		<footer>Anotaciones importantes</footer>
+	</blockquote>
 
 	<div class="content-header">
       <h2 class="text-primary">Instructivos</h2>

@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="topbar-right hidden-xs hidden-sm">
-			<a href="{{action('OficiosEntrantesController@oficialia_nuevoOficio')}}" class="btn btn-default btn-sm fw600 ml10">
+			<a href="{{action('OficiosEntrantesController@oficialia_nuevoOficio',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL))}}" class="btn btn-default btn-sm fw600 ml10">
 			<span class="fa fa-plus pr5"></span> Nuevo oficio entrante</a>
 		</div>
 	</header>

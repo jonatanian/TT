@@ -708,7 +708,7 @@
 
 			$datos= array(
 					'Nombre' =>'Kenia',
-					'ApPaterno'	=> 'Gonzáles',
+					'ApPaterno'	=> 'González',
 					'ApMaterno'	=> 'Brugada',
 					'Email'	=> 'kgonzalezb@ipn.mx',
 					'Password' =>'cmpl2015',
