@@ -21,7 +21,7 @@
 
 	<!-- Form Wizard -->
           <div class="admin-form">
-			{{Form::open(array('class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
+			{{Form::open(array('class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true','files'=>true))}}
             <!--<form method="get" action="/" id="form-wizard">-->
               <div class="wizard steps-bg steps-justified">
 

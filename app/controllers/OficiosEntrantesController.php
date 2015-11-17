@@ -19,6 +19,11 @@ class OficiosEntrantesController extends BaseController {
 		
 	public function oficialia_nuevoOficio_registrar()
 		{
+			$file = Input::file('DocPDF');
+			$url_docpdf = Hash::make($file->getClientOriginalName());
+			$destinoPath = public_path().'/oficios/entrantes/';
+			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+		
 			Session::flash('msg','Registro de oficio entrante realizado correctamente.');
 			return Redirect::action('OficiosController@oficialia_recibidos');
 		}
