@@ -21,26 +21,136 @@
 	
 	<div class="panel">
             <div class="panel-menu admin-form theme-primary">
+			{{Form::open(array('action'=>'UsersController@dsbd_consultarUsuarios', 'class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true'))}}
               <div class="row">
 				
                 <div class="col-md-4">
                   <label class="field select">
-                    <!--<select id="filter-purchases" name="filter-purchases">
-                      <option value="0">Filtrar por...</option>
-                      <option value="1">Orden alfabético</option>
-                      <option value="2">Dirección</option>
-                      <option value="3">Subdirección Técnica</option>
-                      <option value="4">Subdirección de Posgrado</option>
-                      <option value="5">Subdirección de Vinculación</option>
-					  <option value="6">Departamento de Servicios Administrativos y Técnicos</option>
-					  <option value="7">Departamento de Sistemas y Banco de Datos</option>
-                    </select>-->
-					{{Form::text('auto', '', array('id' => 'auto'))}}
+                    <select id="filter-purchases" name="Consulta">
+					@if(isset($Consulta))
+						@if($Consulta == 0)
+							  <option>Filtrar por...</option>
+							  <option value="0" selected="selected">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+						@elseif($Consulta == 1)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1" selected="selected">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+						@elseif($Consulta == 2)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2" selected="selected">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+						@elseif($Consulta == 3)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3" selected="selected">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+						@elseif($Consulta == 4)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4" selected="selected">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+						@elseif($Consulta == 5)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5" selected="selected">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+							  
+						@elseif($Consulta == 6)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6" selected="selected">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+						@elseif($Consulta == 7)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7" selected="selected">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+						@elseif($Consulta == 8)
+							  <option>Filtrar por...</option>
+							  <option value="0">Orden alfabético</option>
+							  <option value="1">Dirección</option>
+							  <option value="2">Subdirección Técnica</option>
+							  <option value="3">Subdirección de Posgrado</option>
+							  <option value="4">Subdirección de Vinculación</option>
+							  <option value="5">Departamento de Ingeniería de Procesos</option>
+							  <option value="6">Departamento de Ingeniería de Energía</option>
+							  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+							  <option value="8" selected="selected">Departamento de Sistemas y Banco de Datos</option>
+						@endif
+					@else
+                      <option>Filtrar por...</option>
+                      <option value="0">Orden alfabético</option>
+                      <option value="1">Dirección</option>
+                      <option value="2">Subdirección Técnica</option>
+                      <option value="3">Subdirección de Posgrado</option>
+                      <option value="4">Subdirección de Vinculación</option>
+					  <option value="5">Departamento de Ingeniería de Procesos</option>
+					  <option value="6">Departamento de Ingeniería de Energía</option>
+					  <option value="7">Departamento de Servicios Administrativos y Técnicos</option>
+					  <option value="8">Departamento de Sistemas y Banco de Datos</option>
+					@endif
+                    </select>
 					
-					{{Form::text('response', '', array('id' =>'response', 'disabled' => 'disabled'))}}
+					
+					<!--{{Form::text('auto', '', array('id' => 'auto'))}}
+					
+					{{Form::text('response', '', array('id' =>'response', 'disabled' => 'disabled'))}}-->
                     <i class="arrow double"></i>
                   </label>
                 </div>
+				{{Form::submit('Buscar', array('class'=>'button btn-primary pull-left'))}}
               </div>
             </div>
 			
@@ -105,7 +215,9 @@
                   </tbody>
                 </table>
               </div>
+			  {{Form::close()}}
             </div>
+			
           </div>
 		
           

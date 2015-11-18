@@ -45,6 +45,7 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/usuarios/estatus','UsersController@dsbd_actualizarEstatus');
 		Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+		Route::post('usuario/ordenar', 'UsersController@dsbd_consultarUsuarios');
 		
 		//////////////Autocompletado//////////////////
 		Route::get('getdata', function()

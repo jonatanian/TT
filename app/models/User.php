@@ -111,6 +111,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->belongsTo('Rol','Rol_Id');
 	}
+	
+	public function area()
+	{
+		return $this->belongsTo('Area','Area_Id');
+	}
 
 
 	public function crearUsuario($inputs){
@@ -205,5 +210,48 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$area = Cargo::where('IdCargo', '=', $this->Cargo_Id)->first();
 		return $area->NombreCargo;
 	}
+	public function ordenarAlafabeticamente()
+	{
+		return User::orderBy('ApPaterno')->get();
+	}
 	
+	public function ordenarDireccion()
+	{
+		return User::where('Area_Id', '=', 1)->get();
+	}
+	
+	public function ordenarSubdireccionTecnica()
+	{
+		return User::where('Area_Id', '=', 2)->get();
+	}
+	
+	public function ordenarSubdireccionPosgrado()
+	{
+		return User::where('Area_Id', '=', 3)->get();
+	}
+	
+	public function ordenarSubdireccionVinculacion()
+	{
+		return User::where('Area_Id', '=', 4)->get();
+	}
+	
+	public function ordenarDepartamentoProcesos()
+	{
+		return User::where('Area_Id', '=', 5)->get();
+	}
+	
+	public function ordenarDepartamentoEnergia()
+	{
+		return User::where('Area_Id', '=', 6)->get();
+	}
+	
+	public function ordenarDepartamentoServicios()
+	{
+		return User::where('Area_Id', '=', 7)->get();
+	}
+	
+	public function ordenarDepartamentoSistemas()
+	{
+		return User::where('Area_Id', '=', 8)->get();
+	}
 }

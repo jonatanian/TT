@@ -158,5 +158,49 @@ class UsersController extends BaseController {
 			return View::make('usuarios.personal_cambiar_contrasena_usuario', array('usuario'=>$usuario));
 	}
 	
+	public function dsbd_consultarUsuarios()
+	{
+		$consulta = Request::get('Consulta');
+		$datos = Input::all();
+		$usuarios = new User();
+		if($consulta == 0)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarAlafabeticamente(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 1)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDireccion(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 2)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionTecnica(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 3)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionPosgrado(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 4)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionVinculacion(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 5)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoProcesos(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 6)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoEnergia(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 7)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoServicios(), 'Consulta'=>$consulta));
+		}
+		elseif($consulta == 8)
+		{
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoSistemas(), 'Consulta'=>$consulta));
+		}
+		
+	}
+	
 }
 ?>
