@@ -53,10 +53,10 @@
                   </div>
                   
                   <div class="section col-md-6">
-                    <label for="Cargo" class="field-label">Cargo del emisor</label>
+                    <label for="CargoEmisor" class="field-label">Cargo del emisor</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="Cargo" class="field prepend-icon">
-                        <select id="Area" name="Area" class="gui-input">
+                      <label for="CargoEmisor" class="field prepend-icon">
+                        <select id="CargoEmisor" name="CargoEmisor" class="gui-input">
                       		@foreach($cargos_entidades as $cargo_entidad)
                       			@if($ce == $cargo_entidad->IdCargoEntidad)
                       				<option value="{{$cargo_entidad->IdCargoEntidad}}" selected="selected">{{$cargo_entidad->NombreCargoEntidad}}</option>
@@ -65,7 +65,7 @@
                       			@endif
 							@endforeach
 						</select>
-                        <label for="Cargo" class="field-icon">
+                        <label for="CargoEmisor" class="field-icon">
                           <i class="fa fa-bookmark"></i>
                         </label>
                       </label>

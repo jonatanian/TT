@@ -25,6 +25,16 @@
 		return $Id;
 		}
 		
+		public function updateCargo($inputs){
+			DB::transaction(function () use ($inputs){
+				$emisor = EntidadExterna::find($inputs['Remitente']);
+				$emisor ->DepArea_Cargo_Id = $inputs['CargoEmisor'];
+				$emisor ->save();
+			});
+			
+			return true;
+		}
+		
 		public function getNombreCompletoE()
 		{
 			return $this->NombreEntidad.' '.$this->ApPaternoEntidad.' '.$this->ApMaternoEntidad;

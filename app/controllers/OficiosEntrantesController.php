@@ -19,16 +19,23 @@ class OficiosEntrantesController extends BaseController {
 		
 	public function oficialia_nuevoOficio_registrar()
 		{
-			$file = Input::file('DocPDF');
+			/*$file = Input::file('DocPDF');
 			$url_docpdf = Hash::make($file->getClientOriginalName());
-			$destinoPath = public_path().'/oficios/entrantes/';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
-			
+			$destinoPath = public_path().'\\oficios\\entrantes\\';
+			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());*/
+			$subir = 1;
 			$datos = Input::all();
 			$correspondenciaEntrante = new Correspondencia();
 			$oficio = new OficioEntrante();
 			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$subir)){
 				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia);
+				
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Remitente'])->first();
+				$IdCargoEmisor = EntidadExterna::select('DepArea_Cargo_Id')->where('IdEntidadExterna','=',$datos['Remitente'])->get();
+				if($IdCargoEmisor != $datos['CargoEmisor']){
+					$upEmisor = $Emisor->updateCargo($datos);
+				}
+				
 				Session::flash('msg','Registro de oficio entrante realizado correctamente.');
 				return Redirect::action('OficiosController@oficialia_recibidos');
 			}	
