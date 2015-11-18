@@ -6,7 +6,7 @@
 	{
 
 		protected $table='DEPENDENCIA_AREA';
-
+		protected $primaryKey = 'IdDependenciaArea';
 		public $timestamps = false;
 		
 		public function nuevaArea($inputs){

@@ -6,7 +6,7 @@
 	{
 
 		protected $table='CARGO';
-
+		protected $primaryKey = 'IdCargo';
 		public $timestamps = false;
 		protected $fillable = array('IdCargo', 'NombreCargo', 'DescripcionCargo');
 

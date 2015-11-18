@@ -6,7 +6,7 @@
 	{
 
 		protected $table='AREA';
-
+		protected $primaryKey = 'IdArea';
 		public $timestamps = false;
 		protected $fillable = array('IdArea', 'NombreArea', 'DescripcionArea');
 

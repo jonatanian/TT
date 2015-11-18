@@ -6,7 +6,7 @@
 	{
 
 		protected $table='GRADO_ACADEMICO';
-
+		protected $primaryKey = 'IdGrado';
 		public $timestamps = false;
 		protected $fillable = array('IdGrado', 'NombreGrado', 'Abreviatura');
 

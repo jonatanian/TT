@@ -6,7 +6,7 @@
 	{
 
 		protected $table='CARGO_ENTIDAD';
-
+		protected $primaryKey = 'IdCargoEntidad';
 		public $timestamps = false;
 		
 		public function nuevoCargoEntidad($inputs){

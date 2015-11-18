@@ -30,10 +30,11 @@ class OficiosEntrantesController extends BaseController {
 			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$subir)){
 				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia);
 				
-				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Remitente'])->first();
-				$IdCargoEmisor = EntidadExterna::select('DepArea_Cargo_Id')->where('IdEntidadExterna','=',$datos['Remitente'])->get();
-				if($IdCargoEmisor != $datos['CargoEmisor']){
+				$Emisor = EntidadExterna::find($datos['Remitente'])->first();
+				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
 					$upEmisor = $Emisor->updateCargo($datos);
+					Session::flash('msg','Registro de oficio entrante realizado correctamente. Actualización de datos de Emisor.');
+					return Redirect::action('OficiosController@oficialia_recibidos');					
 				}
 				
 				Session::flash('msg','Registro de oficio entrante realizado correctamente.');

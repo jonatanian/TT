@@ -6,7 +6,7 @@
 	{
 
 		protected $table='DEPENDENCIA_TIENE_AREA';
-
+		protected $primaryKey = 'Dependencia_Id,DepArea_Id';
 		public $timestamps = false;
 		
 		public function nuevaDependenciaTieneArea($IdDepArea,$IdDep){

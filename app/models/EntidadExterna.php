@@ -6,7 +6,7 @@
 	{
 
 		protected $table='ENTIDAD_EXTERNA';
-
+		protected $primaryKey = 'IdEntidadExterna';
 		public $timestamps = false;
 		
 		public function nuevaEntidad($inputs,$cargo){
@@ -27,9 +27,9 @@
 		
 		public function updateCargo($inputs){
 			DB::transaction(function () use ($inputs){
-				$emisor = EntidadExterna::find($inputs['Remitente']);
-				$emisor ->DepArea_Cargo_Id = $inputs['CargoEmisor'];
-				$emisor ->save();
+				$entidadE = EntidadExterna::find($inputs['Remitente']);
+				$entidadE -> DepArea_Cargo_Id = $inputs['CargoEmisor'];
+				$entidadE -> save();
 			});
 			
 			return true;

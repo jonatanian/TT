@@ -6,7 +6,7 @@
 	{
 
 		protected $table='oficio_saliente';
-
+		protected $primaryKey = 'IdConsecutivo';
 		public $timestamps = false;
 		//protected $fillable = array('IdRol', 'NombreRol', 'DescripcionRol');
 
