@@ -69,7 +69,7 @@
                           <i class="fa fa-bookmark"></i>
                         </label>
                       </label>
-                      <a href="#" class="button  btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevoCargo',array('DependenciaE'=>1,'AreaE'=>1))}}" class="button  btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -217,7 +217,12 @@
                     <label for="IdOficioR" class="field-label">¿Es un oficio de respuesta?</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="IdOficioR" class="field prepend-icon">
-                        <input type="text" name="IdOficioR" id="IdOficioR" class="gui-input" placeholder="Escribe el número del oficio al que se responde...">
+                        <select id="IdOficioR" name="IdOficioR" class="gui-input">
+                        	<option value="0">Selecciona el oficio al que se responde...</option>
+                      		@foreach($OEs as $OE)
+								<option value="{{$OE->Correspondencia_Id}}">{{$OE->Correspondencia_Id}}</option>
+							@endforeach
+						</select>
                         <label for="IdOficioR" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>

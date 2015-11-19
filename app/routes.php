@@ -136,6 +136,9 @@ Route::group(array("prefix"=>'oficialia'), function(){
 		//Registro de nuevo emisor
 		Route::get('/oficios/entrantes/nuevo_emisor','InstanciasExternasController@nuevoEmisor');
 		Route::post('/oficios/entrantes/nuevo_emisor','InstanciasExternasController@registrarEmisor');
+		//Registro de nuevo cargo
+		Route::get('oficios/entrantes/nuevo_cargo','InstanciasExternasController@nuevoCargo');
+		Route::post('oficios/entrantes/nuevo_cargo','InstanciasExternasController@registrarCargo');
 	Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 	
 	//Funciones de Oficios Salientes

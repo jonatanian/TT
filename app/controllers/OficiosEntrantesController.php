@@ -9,12 +9,13 @@ class OficiosEntrantesController extends BaseController {
 			$entidades_externas = EntidadExterna::select('*')->orderBy('ApPaternoEntidad')->get();
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
+			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
 			
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce));
+			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes));
 		}
 		
 	public function oficialia_nuevoOficio_registrar()
@@ -32,11 +33,20 @@ class OficiosEntrantesController extends BaseController {
 				
 				$Emisor = EntidadExterna::find($datos['Remitente'])->first();
 				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
-					$upEmisor = $Emisor->updateCargo($datos);
-					Session::flash('msg','Registro de oficio entrante realizado correctamente. Actualización de datos de Emisor.');
-					return Redirect::action('OficiosController@oficialia_recibidos');					
+					$upEmisor = $Emisor->updateCargo($datos);			
 				}
+				if($Emisor->Dependencia_Area_Id != $datos['AreaE']){
+					$UpEmisor = $Emisor->updateArea($datos);
+				}
+				/*$EmisorDependencia = EntidadExterna::join()
 				
+				Dependencia_Area_Id
+				OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_area','entidad_externa.Dependencia_Area_Id','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia_tiene_area','dependencia_area.IdDependenciaArea','=','dependencia_tiene_area.DepArea_Id')
+									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->get();*/
 				Session::flash('msg','Registro de oficio entrante realizado correctamente.');
 				return Redirect::action('OficiosController@oficialia_recibidos');
 			}	

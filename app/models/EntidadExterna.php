@@ -17,7 +17,6 @@
 				$dep ->ApPaternoEntidad = $inputs['ApPaternoE'];
 				$dep ->ApMaternoEntidad = $inputs['ApMaternoE'];
 				$dep ->DepArea_Cargo_Id = $cargo;
-				$dep ->Dependencia_Area_Id = $inputs['AreaS'];
 				$dep ->save();
 				
 	    	});
@@ -29,6 +28,16 @@
 			DB::transaction(function () use ($inputs){
 				$entidadE = EntidadExterna::find($inputs['Remitente']);
 				$entidadE -> DepArea_Cargo_Id = $inputs['CargoEmisor'];
+				$entidadE -> save();
+			});
+			
+			return true;
+		}
+		
+		public function updateArea($inputs){
+			DB::transaction(function () use ($inputs){
+				$entidadE = EntidadExterna::find($inputs['Remitente']);
+				$entidadE -> Dependencia_Area_Id = $inputs['AreaE'];
 				$entidadE -> save();
 			});
 			

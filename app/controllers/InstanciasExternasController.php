@@ -81,5 +81,27 @@ class InstanciasExternasController extends BaseController {
 	        	}
 	        }
 		}
+	//Get
+	public function nuevoCargo()
+		{
+			$dependencia = Request::get('DependenciaE');
+			$area = Request::get('AreaE');
+			return View::make('oficios.nuevocargo',array('dependencia'=>$dependencia, 'area'=>$area));
+		}
+	//Post
+	public function registrarCargo()
+		{
+			$IdDependencia = Input::get('DependenciaS');
+			$IdArea = Input::get('AreaS');
+			$datos = Input::all();
+			$cargo = new CargoEntidad();
+			if($IdCargo = $cargo->nuevoCargoEntidad($datos)){
+				Session::flash('msg','Nuevo cargo registrado correctamente.');
+				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio',array('DependenciaE'=>$IdDependencia,'AreaE'=>$IdArea,'EntidadE'=>NULL,'CargoEntidadE'=>$IdCargo));
+			}else{
+				Session::flash('msgf','Error al intentar registrar el nuevo cargo. Intente de nuevo.');
+				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL));
+			}
+		}
 }
 ?>
