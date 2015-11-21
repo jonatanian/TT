@@ -33,11 +33,11 @@
 			
 			return true;
 		}
-		
-		public function updateArea($inputs){
-			DB::transaction(function () use ($inputs){
+				
+		public function updateArea($inputs,$IdDTA){
+			DB::transaction(function () use ($inputs,$IdDTA){
 				$entidadE = EntidadExterna::find($inputs['Remitente']);
-				$entidadE -> Dependencia_Area_Id = $inputs['AreaE'];
+				$entidadE -> Dependencia_Area_Id = $IdDTA;
 				$entidadE -> save();
 			});
 			

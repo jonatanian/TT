@@ -87,7 +87,8 @@
 									<option value="{{$dep_area->IdDependenciaArea}}">{{$dep_area->NombreDependenciaArea}}</option>
 								@endif
 							@endforeach
-						</select>                        <label for="AreaE" class="field-icon">
+						</select>
+						<label for="AreaE" class="field-icon">
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>

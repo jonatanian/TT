@@ -32,21 +32,26 @@ class OficiosEntrantesController extends BaseController {
 				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia);
 				
 				$Emisor = EntidadExterna::find($datos['Remitente'])->first();
+				
+				if($Emisor->Dependencia_Area_Id == NULL){
+					$DependenciaTieneArea = new DependenciaTieneArea();
+					$IdDepTieneArea = $DependenciaTieneArea->nuevaDependenciaTieneArea($datos);
+					$AgregarArea = $Emisor->updateArea($datos,$IdDepTieneArea);
+				}
+				
 				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
 					$upEmisor = $Emisor->updateCargo($datos);			
 				}
-				if($Emisor->Dependencia_Area_Id != $datos['AreaE']){
-					$UpEmisor = $Emisor->updateArea($datos);
-				}
-				/*$EmisorDependencia = EntidadExterna::join()
 				
-				Dependencia_Area_Id
-				OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
-									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
-									->join('dependencia_area','entidad_externa.Dependencia_Area_Id','=','dependencia_area.IdDependenciaArea')
-									->join('dependencia_tiene_area','dependencia_area.IdDependenciaArea','=','dependencia_tiene_area.DepArea_Id')
-									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
-									->get();*/
+				$EmisorDA = EntidadExterna::find($datos['Remitente'])->first();
+				$DepTieneArea = DependenciaTieneArea::find($EmisorDA->Dependencia_Area_Id)->first();
+				if($EmisorDA->Dependencia_Area_Id != $datos['AreaE']){
+					$UpETA = $DepTieneArea->upDateETA($datos,$EmisorDA->Dependencia_Area_Id);
+				}
+				if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
+					$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
+				}
+
 				Session::flash('msg','Registro de oficio entrante realizado correctamente.');
 				return Redirect::action('OficiosController@oficialia_recibidos');
 			}	
