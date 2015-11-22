@@ -68,6 +68,41 @@
 			{
 				return View::make('index');
 			}
+			
+			public function SISA_index()
+			{
+				$rol=Auth::User()->Rol_Id;
+	            	switch ($rol) {
+	                    case 1:
+	                    		Session::put('admninistrador',Auth::user());
+	                            return Redirect::to('/dsbd');
+	                    break;
+
+	                    case 2:
+	                            Session::put('oficialia',Auth::user());
+	                            return Redirect::to('/oficialia');
+	                    break;
+	                    case 3:
+	                            Session::put('direccion',Auth::user());
+	                            return Redirect::to('/direccion');
+	                    break;
+						case 4:
+	                            Session::put('subdireccion',Auth::user());
+	                            return Redirect::to('/subdireccion');
+	                    break;
+						case 5:
+	                            Session::put('jefatura',Auth::user());
+	                            return Redirect::to('/jefatura');
+	                    break;
+						case 6:
+	                            Session::put('iescmpl',Auth::user());
+	                            return Redirect::to('/iescmpl');
+	                    break;
+	                    default:
+	                            return Redirect::to('/login');
+	                        break;
+	                }
+			}
 	
 			public function logout()
 			{

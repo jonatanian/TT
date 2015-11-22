@@ -6,6 +6,8 @@ Route::get('/', function()
 });
 
 Route::get('/SISA_Startup','LoginController@SISA_Startup');
+Route::get('/HomePage','LoginController@SISA_index');
+
 Route::get('/login','LoginController@login_index');
 Route::post('/login','LoginController@login');
 Route::get('/salir','LoginController@logout');
@@ -103,7 +105,7 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 });
 
-/////////////////Subdirección con jefaturas//////////////////
+/////////////////Dirección//////////////////
 Route::group(array("prefix"=>'direccion'), function(){
 	Route::get('/','DireccionController@direccion_index');
 	//RECIBIDOS Y ENVIADOS 
@@ -120,6 +122,7 @@ Route::group(array("prefix"=>'direccion'), function(){
 
 ////////////////////Oficialía de Partes///////////////////////
 Route::group(array("prefix"=>'oficialia'), function(){
+
 	Route::get('/','OficialiaController@oficialia_index');
 	
 	//Funciones de Oficios Entrantes
@@ -148,7 +151,6 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	
 	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
-	
 });
 
 Route::group(array("prefix"=>'iescmpl'), function(){

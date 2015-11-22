@@ -113,6 +113,12 @@
 	        <ul class="nav sidebar-menu acc-menu">
 	          <li class="sidebar-label pt20">Men&uacute;</li>
 	          <li>
+                <a href="{{action('OficialiaController@oficialia_index')}}">
+                  <span class="glyphicon glyphicon-home"></span>
+                  <span class="sidebar-title">Página principal de SISA</span>
+                </a>
+              </li>
+	          <li>
 	            <a href="http://www.sidirtel.ipn.mx" target="_blank">
 	              <span class="fa fa-users"></span>
 	              <span class="sidebar-title">Directorio IPN</span>
@@ -125,7 +131,7 @@
 	            </a>
 	          </li>
 	          <li>
-	            <a href="{{action('SIGController@SIG_index')}}" target="_blank">
+	            <a href="{{action('SIGController@SIG_index')}}">
 	              <span class="glyphicon glyphicon-book"></span>
 	              <span class="sidebar-title">SIG</span>
 	            </a>
