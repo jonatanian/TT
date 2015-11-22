@@ -12,7 +12,7 @@
 		</div>
 		<div class="topbar-right hidden-xs hidden-sm">
 			<a href="{{action('OficiosEntrantesController@oficialia_nuevoOficio',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL))}}" class="btn btn-default btn-sm fw600 ml10">
-			<span class="fa fa-plus pr5"></span> Nuevo oficio entrante</a>
+			<span class="fa fa-plus pr5"></span> Nuevo oficio entrante </a>
 		</div>
 	</header>
 	<!-- End: Topbar -->
@@ -34,12 +34,9 @@
                   </label>
                 </div>
                 
-                <div class="col-md-2">
+                <div class="col-md-1">
                   <label class="field select">
-                    <select id="bulk-action" name="bulk-action">
-                      <option value="0">Buscar</option>
-                    </select>
-                    <i class="arrow double"></i>
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
                   </label>
                 </div>
                 
@@ -55,6 +52,12 @@
                   </label>
                 </div>
                 
+                <div class="col-md-1">
+                  <label class="field select">
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                  </label>
+                </div>
+                
               </div>
             </div>
             <div class="panel-body pn">
@@ -65,8 +68,8 @@
                       <th class="text-center"><i class="fa fa-asterisk"></i></th>
                       <th class="">No. de oficio</th>
                       <th class="">Dependencia</th>
-                      <th class="">Fecha de entrega</th>
                       <th class="">Asunto</th>
+                      <th class="">Fecha de entrega</th>
                       <th class="text-center">Acciones para el oficio</th>
                     </tr>
                   </thead>

@@ -20,38 +20,55 @@ class OficiosEntrantesController extends BaseController {
 		
 	public function oficialia_nuevoOficio_registrar()
 		{
-			/*$file = Input::file('DocPDF');
+			
+			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
+			
+			$file = Input::file('DocPDF');
+			if($file == NULL){
+				Session::flash('msgf','Debe subir un archivo en formato PDF.');
+				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
+			}
+			
+			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
+			if($fileExt != 'pdf' or $fileExt == NULL){
+				Session::flash('msgf','Debe subir un archivo en formato PDF.');
+				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
+			}
+
 			$url_docpdf = Hash::make($file->getClientOriginalName());
 			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());*/
-			$subir = 1;
+			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaEntrante = new Correspondencia();
 			$oficio = new OficioEntrante();
 			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$subir)){
 				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia);
 				
-				$Emisor = EntidadExterna::find($datos['Remitente'])->first();
-				
-				if($Emisor->Dependencia_Area_Id == NULL){
-					$DependenciaTieneArea = new DependenciaTieneArea();
-					$IdDepTieneArea = $DependenciaTieneArea->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Emisor->updateArea($datos,$IdDepTieneArea);
-				}
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Remitente'])->first();
 				
 				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
 					$upEmisor = $Emisor->updateCargo($datos);			
 				}
 				
-				$EmisorDA = EntidadExterna::find($datos['Remitente'])->first();
-				$DepTieneArea = DependenciaTieneArea::find($EmisorDA->Dependencia_Area_Id)->first();
-				if($EmisorDA->Dependencia_Area_Id != $datos['AreaE']){
-					$UpETA = $DepTieneArea->upDateETA($datos,$EmisorDA->Dependencia_Area_Id);
+				if($Emisor->Dependencia_Area_Id == NULL){
+					$DTA = new DependenciaTieneArea();
+					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
+					$AgregarArea = $Emisor->updateArea($datos,$IdDepTieneArea);
 				}
-				if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
-					$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
+				else{					
+					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Emisor->Dependencia_Area_Id)->first();
+					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
+						$UpETA = $DepTieneArea->upDateETA($datos,$Emisor->Dependencia_Area_Id);
+					}
+					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
+						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
+					}
 				}
-
+				
+				$fecha = new DateTime();
+				$UTC = new UsuarioTurnaCorrespondencia();
+				$IdUTC = $UTC->turnarA(Auth::User()->IdUsuario,$IdCorrespondencia,$datos['DirigidoA'],1,$fecha);
+				
 				Session::flash('msg','Registro de oficio entrante realizado correctamente.');
 				return Redirect::action('OficiosController@oficialia_recibidos');
 			}	

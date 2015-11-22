@@ -130,7 +130,7 @@
                     <label for="IdOficio" class="field-label">Número de oficio</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="IdOficio" class="field prepend-icon">
-                        <input type="text" name="IdOficio" id="IdOficioR" class="gui-input" placeholder="No. de oficio entrante...">
+                      	{{Form::text('IdOficio', null, array('class'=>'gui-input','placeholder'=>'No. de oficio entrante...','id'=>'IdOficio','required'=>'required'))}}
                         <label for="IdOficio" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>
@@ -141,9 +141,9 @@
                   </div>
                   
                   <div class="section col-md-6">
-                    <label for="Remitente" class="field-label">Dirigido a</label>
+                    <label for="DirigidoA" class="field-label">Dirigido a</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="Remitente" class="field prepend-icon">
+                      <label for="DirigidoA" class="field prepend-icon">
                         <select id="DirigidoA" name="DirigidoA" class="gui-input">
 							@foreach($usuarios as $usuario)
 								@if($usuario->Cargo_Id == 1)
@@ -153,7 +153,7 @@
 								@endif
 							@endforeach
 						</select>                        
-						<label for="Remitente" class="field-icon">
+						<label for="DirigidoA" class="field-icon">
                           <i class="fa fa-user"></i>
                         </label>
                       </label>
@@ -166,7 +166,7 @@
                     <label for="FechaEmision" class="field-label">Fecha de emisión</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="FechaEmision" class="field prepend-icon">
-                        <input type="text" name="FechaEmision" id="FechaEmision" class="gui-input" placeholder="Elije una fecha...">
+	                    {{Form::text('FechaEmision', null, array('class'=>'gui-input','placeholder'=>'Elije una fecha...','id'=>'FechaEmision','required'=>'required'))}}
                         <label for="FechaEmision" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>
@@ -180,7 +180,7 @@
                     <label for="FechaRecepcion" class="field-label">Fecha de recepción</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="FechaRecepcion" class="field prepend-icon">
-                        <input type="text" name="FechaRecepcion" id="FechaRecepcion" class="gui-input" placeholder="Elije una fecha...">
+                      	{{Form::text('FechaRecepcion', null, array('class'=>'gui-input','placeholder'=>'Elije una fecha...','id'=>'FechaRecepcion','required'=>'required'))}}
                         <label for="FechaRecepcion" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>
@@ -237,7 +237,7 @@
                     <label for="FechaLimiteR" class="field-label">¿Requiere respuesta?</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="FechaLimiteR" class="field prepend-icon">
-                        <input type="text" name="FechaLimiteR" id="FechaLimiteR" class="gui-input" placeholder="Seleccione fecha límite para responder a este oficio...">
+                      	{{Form::text('FechaLimiteR', null, array('class'=>'gui-input','placeholder'=>'Selecciona una fecha límite para responder a este oficio...','id'=>'FechaLimiteR'))}}
                         <label for="FechaLimiteR" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>

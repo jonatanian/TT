@@ -13,10 +13,10 @@
 	public function nuevaCorrespondenciaEntrante($inputs, $subir){
 			DB::transaction(function () use ($inputs, $subir){
 				$correspondencia = new Correspondencia();
-				//$correspondencia->FechaEmision = $inputs['FechaEmision'];
-				//$correspondencia->FechaEntrega = $inputs['FechaRecepcion'];
-				//$correspondencia->Asunto = $inputs['Asunto'];
-				//$correspondencia->URLPDF = $subir;
+				$correspondencia->FechaEmision = $inputs['FechaEmision'];
+				$correspondencia->FechaEntrega = $inputs['FechaRecepcion'];
+				$correspondencia->Asunto = $inputs['Asunto'];
+				$correspondencia->URLPDF = $subir;
 				$correspondencia->Estatus_Id = 1;
 				//$correspondencia->Prioridad_Id = $inputs['Prioridad_Id'];
 				//$correspondencia->Caracter_Id = $inputs['Caracter_Id'];
