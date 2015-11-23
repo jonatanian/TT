@@ -143,9 +143,13 @@ Route::group(array("prefix"=>'oficialia'), function(){
 		//Registro de nuevo cargo
 		Route::get('oficios/entrantes/nuevo_cargo','InstanciasExternasController@nuevoCargo');
 		Route::post('oficios/entrantes/nuevo_cargo','InstanciasExternasController@registrarCargo');
-	Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
+		Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 	
 	//Funciones de Oficios Salientes
+	Route::get('/oficios/salientes','OficiosController@oficialia_salientes');
+	//Wizard: Registro de oficios entrantes
+	Route::get('/oficios/entrantes/nuevo','OficiosSalientesController@oficialia_nuevoOficio');
+	Route::post('/oficios/entrantes/nuevo','OficiosSalientesController@oficialia_nuevoOficio_registrar');
 	//Vista de oficios enviados
 	Route::get('/oficios/enviados','OficiosController@oficialia_enviados');
 	

@@ -151,7 +151,7 @@
 	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
 	              </li>
 	              <li>
-	                  <a href="{{action('OficiosController@oficialia_enviados')}}">
+	                  <a href="{{action('OficiosController@oficialia_salientes')}}">
 	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
 	              </li>
 	            </ul>
