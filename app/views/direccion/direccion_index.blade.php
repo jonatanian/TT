@@ -48,74 +48,14 @@
                     <button type="button" class="btn btn-default light">
                       <i class="fa fa-refresh"></i>
                     </button>
-                    <button type="button" class="btn btn-default light">
-                      <i class="fa fa-pencil"></i>
-                    </button>
                   </div>
                 </div>
                 <div class="col-xs-12 col-md-9 text-right">
                   <button type="button" class="btn btn-danger light visible-xs-inline-block mr10">Compose</button>
                   <span class="hidden-xs va-m text-muted mr15"> Mostrando
-                    <strong>15</strong> de
-                    <strong>253</strong>
-                  </span>
-                  <div class="btn-group mr10">
-                    <button type="button" class="btn btn-default light hidden-xs">
-                      <i class="fa fa-star"></i>
-                    </button>
-                    <button type="button" class="btn btn-default light hidden-xs">
-                      <i class="fa fa-calendar"></i>
-                    </button>
-                    <button type="button" class="btn btn-default light">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                  </div>
-                  <div class="btn-group mr10">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default light dropdown-toggle ph8" data-toggle="dropdown">
-                        <span class="fa fa-tags"></span>
-                        <span class="caret ml5"></span>
-                      </button>
-                      <ul class="dropdown-menu pull-right" role="menu">
-                        <li>
-                          <a href="#">Work</a>
-                        </li>
-                        <li>
-                          <a href="#">Important</a>
-                        </li>
-                        <li>
-                          <a href="#">Favorites</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                          <a href="#">
-                            <span class="fa fa-plus pr5"></span> Create New</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default light dropdown-toggle ph8 br-tp-left" data-toggle="dropdown">
-                        <span class="fa fa-folder"></span>
-                        <span class="caret ml5"></span>
-                      </button>
-                      <ul class="dropdown-menu pull-right" role="menu">
-                        <li>
-                          <a href="#">Work</a>
-                        </li>
-                        <li>
-                          <a href="#">Important</a>
-                        </li>
-                        <li>
-                          <a href="#">Favorites</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                          <a href="#">
-                            <span class="fa fa-plus pr5"></span> Create New</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                    <strong>1</strong> de
+                    <strong>1</strong>
+                  </span> 
                   <div class="btn-group">
                     <button type="button" class="btn btn-default light">
                       <i class="fa fa-chevron-left"></i>
@@ -133,33 +73,51 @@
 	          <table id="message-table" class="table tc-checkbox-1 admin-form theme-warning br-t">
 	            <thead>
 	              <tr class="">
-	                <th class="hidden-xs">Star</th>
-	                <th>Sender</th>
-	                <th class="hidden-xs">Label</th>
-	                <th>Subject</th>
-	                <th class="hidden-xs"></th>
-	                <th class="text-center">Date</th>
+	                <th class="hidden-xs">&nbsp;</th>
+	                <th>Tipo</th>
+	                <th class="hidden-xs">Turnado el</th>
+	                <th>Emisor</th>
+	                <th class="hidden-xs">Asunto</th>
+	                <th class="text-center">Acciones</th>
 	              </tr>
 	            </thead>
 	            <tbody>
 	              <tr class="message-unread">
+	                <td class="hidden-xs">1</td>
+	                <td class="">Oficio entrante</td>
 	                <td class="hidden-xs">
-	                  <span class="rating block mn pull-left">
-	                    <input class="rating-input" id="r1" type="radio" name="custom">
-	                    <label class="rating-star" for="r1">
-	                      <i class="fa fa-star va-m"></i>
-	                    </label>
-	                  </span>
+	                  <span class="badge badge-warning mr10 fs11"> 10/11/2015 </span>
 	                </td>
-	                <td class="">Sony Inc</td>
-	                <td class="hidden-xs">
-	                  <span class="badge badge-warning mr10 fs11"> Work </span>
+	                <td class="">ESCOM</td>
+	                <td class="hidden-xs">Presentación de SISA</td>
+	                <td class="text-center fw600">
+	                	<div class="btn-group text-center">
+                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
+                            <span class="caret ml50"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li>
+						      <a href="#">Turnar a</a>
+						    </li>
+						    <li>
+						      <a href="#">Enviar copia a</a>
+						    </li>
+						    <li>
+						      <a href="#">Cambiar estatus</a>
+						    </li>
+						    <li>
+						      <a href="#">Descargar PDF</a>
+						    </li>
+						    <li>
+						      <a href="#">Ver detalles</a>
+						    </li>					    
+						    <li class="divider"></li>
+						    <li>
+						      <a href="#">Cancelar oficio</a>
+						    </li>
+						  </ul>
+                        </div>
 	                </td>
-	                <td class="">Lorem ipsum dolor sit amet, adipiscing eli</td>
-	                <td class="hidden-xs">
-	                  <i class="fa fa-paperclip fs15 text-muted va-b"></i>
-	                </td>
-	                <td class="text-right fw600">March 11</td>
 	              </tr>
 	            </tbody>
 	          </table>
