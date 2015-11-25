@@ -199,7 +199,10 @@ class UsersController extends BaseController {
 		{
 			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoSistemas(), 'Consulta'=>$consulta));
 		}
-		
+		else
+		{
+			return View::make('login.login');
+		}
 	}
 	
 }

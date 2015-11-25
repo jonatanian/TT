@@ -9,23 +9,21 @@
 		protected $primaryKey = 'IdConsecutivo';
 		public $timestamps = false;
 		//protected $fillable = array('IdRol', 'NombreRol', 'DescripcionRol');
-
 		
-		public function nuevoOficioSaliente($inputs){
+		public function nuevoOficioSaliente($inputs,$IdOficio){
 			
-	    	DB::transaction(function () use ($inputs){
+	    	DB::transaction(function () use ($inputs,$IdOficio){
 				$oficio = new OficioSaliente();
-				$oficio->IdOficioSaliente = $oficio->getIdOficio();
-				$oficio->Correspondencia_Id = $inputs['Correspondencia_Id'];
-				$oficio->Usuario_Id = $inputs['Usuario_Id'];
-				$oficio->URLAcuse = null;
-				$oficio->FechaAcuse = null;
-				$oficio->Dependencia_Id = $inputs['Dependencia_Id'];
+				$oficio->IdOficioSaliente = $inputs['IdOficio'];
+				$oficio->Destinatario = $inputs['Destinatario'];
+				$oficio->Correspondencia_Id = $IdOficio;
+				$oficio->Usuario_Id = $inputs['Remitente'];
 				$oficio->save();
 	    	});
-			$id = DB::table('oficio_saliente')->max('IdConsecutivo');
-		return $id;
+	    	$Id = DB::table('oficio_entrante')->max('IdOficioEntrante');
+		return $Id;
 		}
+		
 		////////Obtiene el último id de correspondencia saliente////////
 		public function getIdOficio(){
 			$id = DB::table('oficio_saliente')->max('IdConsecutivo');//Regresa el último id

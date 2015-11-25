@@ -22,13 +22,17 @@ class OficiosController extends BaseController {
 			return View::make('oficios.oficialia_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus));
 		}
 
-	public function oficialia_enviados()
+
+	public function oficialia_salientes()
 		{
 			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
-									->join('entidad_externa','Dependencia_Id','=','entidad_externa.IdEntidadExterna')
-									->get();
-			return View::make('oficios.oficialia_enviados', array('oficios' => $oficios));
-		}
-		
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
+									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')
+									->get();;
+			$estatus = Estatus::all();
+			return View::make('oficios.oficialia_salientes',array('oficios'=>$oficios,'estatus'=>$estatus));
+		}	
 }
 ?>
