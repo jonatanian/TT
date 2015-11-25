@@ -2,6 +2,7 @@
 
 @section('content')
 	<div class="content-header">
+      <h1>Sistema Integrado de Gestión de la Calidad y del Ambiente</h1>
       <h1>SIG</h1>
       <h2 class="text-primary">Política Integral de Calidad y del Ambiente</h2>
     </div>
