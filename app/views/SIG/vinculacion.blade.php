@@ -40,7 +40,7 @@
 		  </tr>
 		  <tr>
 			  <td>5</td>
-			  <td>Realizar dos convenios de bases de colaboración con Centros de Educación Contínua.</td>
+			  <td>Realizar dos convenios de bases de colaboración con Centros de Educación Continua.</td>
 		  </tr>
 		  <tr>
 			  <td>6</td>
