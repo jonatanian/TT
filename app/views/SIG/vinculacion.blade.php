@@ -2,8 +2,17 @@
 
 @section('content')
 	<div class="content-header">
-      <h1 class="text-muted">Subdirección de Vinculación y Apoyo</h1>
-      <img class="responsive" src="{{asset('images/organigrama/Vinculacion.png')}}" alt="Organigrama de la Subdirección de Vinculación y Apoyo" height="200px">
+		<h2 class="text-primary">Objetivo</h2>
+		<table class="table table-striped">
+		  <tr>
+			  <td>
+				Promover la vinculación del Centro Mexicano para la Producción más Limpia con el sectores: industrial, académico, social y gubernamental
+				a nivel nacional e internacional.
+			  </td>
+		  </tr>
+		</table>
+		<h1 class="text-muted">Subdirección de Vinculación y Apoyo</h1>
+		<img class="responsive" src="{{asset('images/organigrama/Vinculacion.png')}}" alt="Organigrama de la Subdirección de Vinculación y Apoyo" height="200px">
     </div>
     
     <div class="content-header">
@@ -68,7 +77,7 @@
       <h2 class="text-primary">Procedimientos</h2>
 		<table class="table table-striped">
 			<tr>
-				<td>PROCEDIMIENTO DE VINCULACIÓN</td>
+				<td>Procedimiento de vinculación</td>
 				<td><a href = '../procedimientos/VINCULACION/EDITABLES/PROCEDIMIENTOS/P-SV-PROCEDIMIENTO DE VINCULACION.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 		</table>
@@ -79,14 +88,14 @@
 	</blockquote>
 
 	<div class="content-header">
-      <h2 class="text-primary">FORMATOS</h2>
+      <h2 class="text-primary">Formatos</h2>
 	  <table class="table table-striped">
 			<tr>
-				<td>FORMATO DE SATISFACCIÓN DEL CLIENTE</td>
+				<td>Encuesta de satisfacción del cliente</td>
 				<td><a href = '../procedimientos/VINCULACION/EDITABLES/FORMATOS/Satisfaccion_cliente.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 			<tr>
-				<td>FORMATO DE SOLICITUD DE SERVICIO</td>
+				<td>Solicitud de servicio</td>
 				<td><a href = '../procedimientos/VINCULACION/EDITABLES/FORMATOS/Solicitud_servicio.docx' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 		</table>
@@ -97,10 +106,10 @@
 	</blockquote>
 	
 	<div class="content-header">
-      <h2 class="text-primary">INDICADORES</h2>
+      <h2 class="text-primary">Indicadores</h2>
 	  <table class="table table-striped">
 			<tr>
-				<td>INDICADORES ENERO-SEPTIEMBRE 2015</td>
+				<td>Indicadores enero-septiembre 2015</td>
 				<td><a href = '../procedimientos/VINCULACION/EDITABLES/INDICADORES/Indic_Vinc_Ene-Sep2015 (002).pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 		</table>
