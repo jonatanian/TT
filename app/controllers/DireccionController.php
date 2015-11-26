@@ -4,7 +4,7 @@ class DireccionController extends BaseController {
 
 	public function direccion_index()
 		{
-			
+			$correspondencia = Correspondencia::join(
 		
 			return View::make('direccion.direccion_index');
 		}
