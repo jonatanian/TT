@@ -11,7 +11,8 @@ class OficiosController extends BaseController {
 									->orderBy('oficio_entrante.IdOficioEntrante','desc')
 									->get();;
 			$estatus = Estatus::all();
-			return View::make('oficios.oficialia_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus));
+			$dependencias = Dependencia::all();
+			return View::make('oficios.oficialia_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 		}
 
 
@@ -23,8 +24,9 @@ class OficiosController extends BaseController {
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
 									->orderBy('oficio_saliente.IdOficioSaliente','desc')
 									->get();;
+			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
-			return View::make('oficios.oficialia_salientes',array('oficios'=>$oficios,'estatus'=>$estatus));
+			return View::make('oficios.oficialia_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 		}	
 }
 ?>
