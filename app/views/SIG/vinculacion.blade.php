@@ -60,18 +60,7 @@
 		  </tr>
 	  </table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
 	
-	<div class="content-header">
-      <h2 class="text-primary">Objetivos de calidad</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
  	
  	<div class="content-header">
       <h2 class="text-primary">Procedimientos</h2>
@@ -82,10 +71,6 @@
 			</tr>
 		</table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
 
 	<div class="content-header">
       <h2 class="text-primary">Formatos</h2>
@@ -100,10 +85,6 @@
 			</tr>
 		</table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
 	
 	<div class="content-header">
       <h2 class="text-primary">Indicadores</h2>
@@ -114,26 +95,18 @@
 			</tr>
 		</table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
+
 	
 	<div class="content-header">
       <h2 class="text-primary">Proceso</h2>
+	  <table class="table table-striped">
+			<tr>
+				<td>Proceso del área de vinculación</td>
+				<td><a href = '../procedimientos/VINCULACION/PROCESO/Proceso_vinculacion.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	    	
-	<div class="content-header">
-      <h2 class="text-primary">Etapas de diseño y desarrollo</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
+
 	
 	<div class="content-header">
       <h2 class="text-primary">Directorio de la Subdirección de Vinculación y Apoyo</h2>
