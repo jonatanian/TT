@@ -62,6 +62,19 @@
 	  </table>
     </div>
 	
+	<div class="content-header">
+      <h2 class="text-primary">Indicadores</h2>
+	  <table class="table table-striped">
+			<tr>
+				<th width="900">Indicador</th>
+				<th>Acciones</th>
+			</tr>
+			<tr>
+				<td>Indicadores enero-septiembre 2015</td>
+				<td><a href = '../procedimientos/VINCULACION/EDITABLES/INDICADORES/Indic_Vinc_Ene-Sep2015 (002).pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>
+		</table>
+    </div>
  	
  	<div class="content-header">
       <h2 class="text-primary">Procedimientos</h2>
@@ -96,21 +109,6 @@
     </div>
 	
 	<div class="content-header">
-      <h2 class="text-primary">Indicadores</h2>
-	  <table class="table table-striped">
-			<tr>
-				<th width="900">Indicador</th>
-				<th>Acciones</th>
-			</tr>
-			<tr>
-				<td>Indicadores enero-septiembre 2015</td>
-				<td><a href = '../procedimientos/VINCULACION/EDITABLES/INDICADORES/Indic_Vinc_Ene-Sep2015 (002).pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
-			</tr>
-		</table>
-    </div>
-
-	
-	<div class="content-header">
       <h2 class="text-primary">Proceso</h2>
 	  <table class="table table-striped">
 	  		<tr>
@@ -123,9 +121,4 @@
 			</tr>
 		</table>
     </div>
-
-	
-	<div class="content-header">
-      <h2 class="text-primary">Directorio</h2>
-    </div>
-@stop
+@endsection

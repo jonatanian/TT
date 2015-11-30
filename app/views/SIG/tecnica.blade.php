@@ -10,9 +10,9 @@
       <h2 class="text-primary">Objetivos 2015</h2>
 	  <table class="table table-striped">
 		  <tr>
-			  <td>No.</td>
-			  <td>Objetivo</td>
-			  <td>Meta</td>
+			  <th>No.</th>
+			  <th>Objetivo</th>
+			  <th>Meta</th>
 		  </tr>
 		  <tr>
 			  <td>1</td>
