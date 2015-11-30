@@ -128,7 +128,7 @@
               </li>
               
               <li>
-                <a href="{{action('LoginController@SISA_index')}}">
+                <a href="{{action('LoginController@SISA_Startup')}}">
                   <span class="glyphicon glyphicon-book"></span>
                   <span class="sidebar-title">SISA</span>
                 </a>
