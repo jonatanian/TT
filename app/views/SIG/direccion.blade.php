@@ -3,6 +3,7 @@
 @section('content')
 	<div class="content-header">
       <h1 class="text-muted">Dirección</h1>
+	  <h2 class="text-primary">Organigrama</h2>
       <img class="responsive" src="{{asset('images/organigrama/Direccion.png')}}" alt="Organigrama de la Dirección" height="500px">
     </div>
     
@@ -118,4 +119,28 @@
 		  </tr>
 	  </table>
     </div>
+	<div class="content-header">
+      <h2 class="text-primary">Objetivos ambientales 2015 del SGA para el CMPL</h2>
+     
+      <table class="table table-striped">
+		  <tr>
+			  <th>No.</th>
+			  <th>Objetivo</th>
+		  </tr>
+		  <tr>
+			  <td>1</td>
+			  <td>Reducir el consumo per cápita de agua en 2.5% a junio de 2016.</td>
+		  </tr>
+		  <tr>
+			  <td>2</td>
+			  <td>Reducir el consumo de energía eléctrica en un 3% a diciembre de 2015.</td>
+		  </tr>
+		  <tr>
+			  <td>4</td>
+			  <td>Reducir al 50% la generación de residuos de Gaceta Politécnica impresa a diciembre de 2016.</td>
+		  </tr>
+		  <tr>
+			  <td>5</td>
+			  <td>Capacitar al personal de limpieza en la separación de residuos y el uso eficiente de agua a diciembre de 2016.</td>
+		  </tr>	  
 @stop
