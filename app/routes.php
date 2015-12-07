@@ -49,6 +49,12 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 		Route::post('usuario/ordenar', 'UsersController@dsbd_consultarUsuarios');
 		
+		//Funciones de Oficios Salientes
+	Route::get('/oficios/salientes','OficiosController@dsbd_salientes');
+	//Wizard: Registro de oficios entrantes
+	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@dsbd_nuevoOficio');
+	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@dsbd_nuevoOficio_registrar');
+		
 		//////////////Autocompletado//////////////////
 		Route::get('getdata', function()
 		{
@@ -89,6 +95,12 @@ Route::group(array("prefix"=>'SIG'), function(){
 		
 		Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+		
+		//Funciones de Oficios Salientes
+	Route::get('/oficios/salientes','OficiosController@jefatura_salientes');
+	//Wizard: Registro de oficios entrantes
+	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@jefatura_nuevoOficio');
+	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@jefatura_nuevoOficio_registrar');
 });
 //////////////////Subdirección//////////////////////////////
 	Route::group(array("prefix"=>'subdireccion'), function(){
@@ -103,6 +115,12 @@ Route::group(array("prefix"=>'SIG'), function(){
 		
 		Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+		
+		//Funciones de Oficios Salientes
+	Route::get('/oficios/salientes','OficiosController@subdireccion_salientes');
+	//Wizard: Registro de oficios entrantes
+	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@subdireccion_nuevoOficio');
+	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@subdireccion_nuevoOficio_registrar');
 });
 
 /////////////////Dirección//////////////////
@@ -117,6 +135,12 @@ Route::group(array("prefix"=>'direccion'), function(){
 	
 	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+		
+		//Funciones de Oficios Salientes
+	Route::get('/oficios/salientes','OficiosController@direccion_salientes');
+	//Wizard: Registro de oficios entrantes
+	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@direccion_nuevoOficio');
+	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@direccion_nuevoOficio_registrar');
 });
 
 
@@ -169,5 +193,11 @@ Route::group(array("prefix"=>'iescmpl'), function(){
 	
 	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+	
+	//Funciones de Oficios Salientes
+	Route::get('/oficios/salientes','OficiosController@personal_salientes');
+	//Wizard: Registro de oficios entrantes
+	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio');
+	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio_registrar');
 });
 ?>

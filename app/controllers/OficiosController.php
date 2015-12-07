@@ -36,5 +36,70 @@ class OficiosController extends BaseController {
 			$estatus = Estatus::all();
 			return View::make('oficios.oficialia_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 		}	
+		
+	public function dsbd_salientes()
+		{
+			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
+									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Usuario_Id','=',Auth::id())
+									->get();;
+			$dependencias = Dependencia::all();
+			$estatus = Estatus::all();
+			return View::make('oficios.dsbd_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+		
+	public function direccion_salientes()
+		{
+			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
+									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')
+									->get();;
+			$dependencias = Dependencia::all();
+			$estatus = Estatus::all();
+			return View::make('oficios.director_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+		
+	public function subdireccion_salientes()
+		{
+			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
+									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')
+									->get();;
+			$dependencias = Dependencia::all();
+			$estatus = Estatus::all();
+			return View::make('oficios.subdirector_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+		
+	public function jefatura_salientes()
+		{
+			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
+									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')
+									->get();;
+			$dependencias = Dependencia::all();
+			$estatus = Estatus::all();
+			return View::make('oficios.jefe_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+	
+	public function personal_salientes()
+		{
+			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
+									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')
+									->get();;
+			$dependencias = Dependencia::all();
+			$estatus = Estatus::all();
+			return View::make('oficios.personal_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
 }
 ?>
