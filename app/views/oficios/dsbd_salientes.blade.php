@@ -107,7 +107,7 @@
 				<div class="col-md-5" id="dependencia-filter">
                   <label class="field select">
                     <select id="filter-category" name="filter-dependencia">
-                      <option value="0">Selecciones la dependencia...</option>
+                      <option value="0">Seleccione la dependencia...</option>
 						  @foreach($dependencias as $dependencia)
 							<option value="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}</option>
 						  @endforeach

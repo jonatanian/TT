@@ -26,40 +26,21 @@
                   <label class="field select">
                     <select id="filter-category" name="filter-category">
                       <option value="0">Filtrar por...</option>
-                      <option value="1">Consecutivo</option>
-                      <option value="2">Fecha de recepción</option>
-                      <option value="3">Dependencia</option>
+                      <option value="1">Dependencia</option>
+                      <option value="2">Estátus</option>
+                      <option value="3">Identificador oficial</option>
                     </select>
                     <i class="arrow"></i>
                   </label>
                 </div>
                 
-                <div class="col-md-1">
-                  <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
-                  </label>
-                </div>
-                
-                <div class="col-md-5">
-                  <label class="field select">
-                    <select id="filter-status" name="filter-status">
-                      <option value="0">Filtrar por estado</option>
-                      @foreach($estatus as $status)
-                      	<option value="{{$status->IdEstatus}}">{{$status->NombreEstatus}}</option>
-                      @endforeach
-                    </select>
-                    <i class="arrow"></i>
-                  </label>
-                </div>
-                
-                <div class="col-md-1">
-                  <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
-                  </label>
-                </div>
+                <div id="select-filter">
+					<!------------------------Filtro dinámico------------------------->
+				</div>
                 
               </div>
             </div>
+			
             <div class="panel-body pn">
               <div class="table-responsive">
                 <table class="table admin-form theme-warning tc-checkbox-1 fs13">
@@ -123,8 +104,96 @@
                 </table>
               </div>
             </div>
-	  
+		<div hidden>
+				<div class="col-md-5" id="dependencia-filter">
+                  <label class="field select">
+                    <select id="filter-category" name="filter-dependencia">
+                      <option value="0">Seleccione la dependencia...</option>
+						  @foreach($dependencias as $dependencia)
+							<option value="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}</option>
+						  @endforeach
+                    </select>
+                    <i class="arrow"></i>
+                  </label>
+                </div>
+				<div class="col-md-1" id="dependencia-button">
+                  <label class="field select">
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                  </label>
+                </div>
+				
+				<div class="col-md-5" id="estatus-filter">
+					  <label class="field select" id="filter2">
+						<select id="filter-status" name="filter-estatus">
+						  <option value="0">Seleccione el estado...</option>
+						  @foreach($estatus as $status)
+							<option value="{{$status->IdEstatus}}">{{$status->NombreEstatus}}</option>
+						  @endforeach
+						</select>
+						<i class="arrow"></i>
+					  </label>
+					</div>
+				<div class="col-md-1" id="estatus-button">
+                  <label class="field select">
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                  </label>
+                </div>
+				
+				<div class="col-md-5" id="identificador-filter">
+					<label for="IdOficial" class="field prepend-icon">
+						{{Form::text('IdOficial',null, array('class'=>'gui-input','id'=>'IdOficial', 'placeholder'=>'Introduce el identificador...'))}}
+						<label for="AreaE" class="field-icon">
+							<i class="fa fa-institution"></i>
+						</label>
+					</label>
+				</div>
+				<div class="col-md-1" id="identificador-button">
+                  <label class="field select">
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                  </label>
+                </div>
+		</div>
 	  
 	  
 	</div>
+@stop
+@section('scripts')
+<script>
+$( "#filter-category" ).click(function() {
+  var option = $('#filter-category').val()
+  if(option == 1)
+  {
+	  $( "#estatus-filter" ).hide();
+	  $( "#identificador-filter" ).hide();
+	  $( "#dependencia-filter").show();
+	  $( "#estatus-button" ).hide();
+	  $( "#identificador-button" ).hide();
+	  $( "#dependencia-button").show();
+	  $("#select-filter").append($('#dependencia-filter'));
+	  $( "#select-filter").append($("#dependencia-button"));
+  }
+  else if(option == 2)
+  {
+	  $( "#dependencia-filter" ).hide();
+	  $( "#identificador-filter" ).hide();
+	  $( "#estatus-filter").show();
+	  $( "#dependencia-button" ).hide();
+	  $( "#identificador-button" ).hide();
+	  $( "#estatus-button").show();
+	  $("#select-filter").append($('#estatus-filter'));
+	  $( "#select-filter").append($("#estatus-button"));
+  }
+  else if(option == 3)
+  {
+	  $( "#dependencia-filter" ).hide();
+	  $( "#estatus-filter" ).hide();
+	  $( "#identificador-filter").show();
+	  $( "#dependencia-button" ).hide();
+	  $( "#estatus-button" ).hide();
+	  $( "#identificador-button").show();
+	  $("#select-filter").append($('#identificador-filter'));
+	  $( "#select-filter").append($("#identificador-button"));
+  }
+});
+</script>
 @stop

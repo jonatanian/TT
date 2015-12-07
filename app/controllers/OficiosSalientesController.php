@@ -62,7 +62,7 @@ class OficiosSalientesController extends BaseController {
 					if($DepTieneArea->DepArea_Id != $datos['AreaD']){
 						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
 					}
-					if($DepTieneArea->Dependencia_Id != $datos['DependenciaD']){
+					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}

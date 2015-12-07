@@ -92,16 +92,16 @@
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>
-                      <a href="{{action('InstanciasExternasController@nuevaArea',array('DependenciaD'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevaArea',array('DependenciaE'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
 
                   <div class="section col-md-6">
-                    <label for="DependenciaD" class="field-label">Dependencia del destinatario</label>
+                    <label for="DependenciaE" class="field-label">Dependencia del destinatario</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="DependenciaD" class="field prepend-icon">
-                      	<select id="DependenciaD" name="DependenciaD" class="gui-input" onclick="{{action('InstanciasExternasController@nuevaDependencia')}}" >
+                      <label for="DependenciaE" class="field prepend-icon">
+                      	<select id="DependenciaE" name="DependenciaE" class="gui-input" onclick="{{action('InstanciasExternasController@nuevaDependencia')}}" >
                       		@foreach($dependencias as $dependencia)
 								@if($dep == $dependencia->IdDependencia)
 									<option value="{{$dependencia->IdDependencia}}" selected="selected">{{$dependencia->NombreDependencia}}&nbsp;-&nbsp;{{$dependencia->AcronimoDependencia}}</option>

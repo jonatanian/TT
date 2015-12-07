@@ -18,6 +18,8 @@
 				$oficio->Destinatario = $inputs['Destinatario'];
 				$oficio->Correspondencia_Id = $IdOficio;
 				$oficio->Usuario_Id = Auth::id();
+				$oficio->Dependencia = $inputs['DependenciaE'];
+				$oficio->AreaDestinada = $inputs['AreaD'];
 				$oficio->save();
 	    	});
 	    	$Id = DB::table('oficio_entrante')->max('IdOficioEntrante');
