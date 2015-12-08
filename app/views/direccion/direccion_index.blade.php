@@ -73,23 +73,22 @@
 	          <table id="message-table" class="table tc-checkbox-1 admin-form theme-warning br-t">
 	            <thead>
 	              <tr class="">
-	                <th class="hidden-xs">&nbsp;</th>
-	                <th>Tipo</th>
-	                <th class="hidden-xs">Turnado el</th>
-	                <th>Emisor</th>
-	                <th class="hidden-xs">Asunto</th>
+	                <th class="hidden-xs">Tipo</th>
+	                <th>Turnado el</th>
+	                <th class="hidden-xs">Emisor</th>
+	                <th>Asunto</th>
+	                <th class="hidden-xs">Estado</th>
 	                <th class="text-center">Acciones</th>
 	              </tr>
 	            </thead>
 	            <tbody>
+	            @foreach($correspondencia as $c)
 	              <tr class="message-unread">
-	                <td class="hidden-xs">1</td>
-	                <td class="">Oficio entrante</td>
-	                <td class="hidden-xs">
-	                  <span class="badge badge-warning mr10 fs11"> 10/11/2015 </span>
-	                </td>
-	                <td class="">ESCOM</td>
-	                <td class="hidden-xs">Presentación de SISA</td>
+	                <td class="hidden-xs">{{$c->NombreTipo}}</td>
+	                <td class=""><span class="badge badge-warning mr10 fs11"> {{$c->FechaTurnadoA}} </span></td>
+	                <td class="hidden-xs">{{$c->AcronimoDependencia}}</td>
+	                <td class="">{{$c->Asunto}}</td>
+	                <td class="hidden-xs">{{$c->NombreEstatus}}</td>
 	                <td class="text-center fw600">
 	                	<div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
@@ -101,9 +100,6 @@
 						    </li>
 						    <li>
 						      <a href="#">Enviar copia a</a>
-						    </li>
-						    <li>
-						      <a href="#">Cambiar estatus</a>
 						    </li>
 						    <li>
 						      <a href="#">Descargar PDF</a>
@@ -119,6 +115,7 @@
                         </div>
 	                </td>
 	              </tr>
+	            @endforeach
 	            </tbody>
 	          </table>
 
