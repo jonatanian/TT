@@ -6,7 +6,7 @@
 	{
 
 		protected $table='USUARIO_TURNA_CORRESPONDENCIA';
-		protected $primaryKey = 'Usuario_Id,Correspondencia_Id,UTC_TurnarA_Id';
+		protected $primaryKey = 'IdUTC';
 		
 		public $timestamps = false;
 		

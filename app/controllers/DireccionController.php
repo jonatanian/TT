@@ -4,9 +4,17 @@ class DireccionController extends BaseController {
 
 	public function direccion_index()
 		{
-			$correspondencia = Correspondencia::join(
+			$correspondencia = Correspondencia::join('usuario_turna_correspondencia','IdCorrespondencia','=','usuario_turna_correspondencia.Correspondencia_Id')
+											  ->join('oficio_entrante','correspondencia.IdCorrespondencia','=','oficio_entrante.Correspondencia_Id')
+											  //->join('oficio_saliente','correspondencia.IdCorrespondencia','=','oficio_saliente.Correspondencia_Id')
+											  //->join('memorandum','correspondencia.IdCorrespondencia','=','memorandum.Correspondencia_Id')
+											  ->join('tipo','usuario_turna_correspondencia.Tipo_Id','=','tipo.IdTipo')
+											  ->join('dependencia','oficio_entrante.DependenciaEmite','=','dependencia.IdDependencia')
+											  ->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+											  ->orderBy('correspondencia.IdCorrespondencia','desc')
+											  ->get();
 		
-			return View::make('direccion.direccion_index');
+			return View::make('direccion.direccion_index',array('correspondencia'=>$correspondencia));
 		}
 		
 	public function oficialia_recibidos()
