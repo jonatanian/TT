@@ -34,7 +34,7 @@ class OficiosController extends BaseController {
 									->get();;
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
-			return View::make('oficios.oficialia_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+			return View::make('oficios.oficialia_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias, 'dependenciaFiltro'=>0));
 		}	
 		
 	public function dsbd_salientes()

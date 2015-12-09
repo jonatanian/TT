@@ -103,10 +103,10 @@
                 </table>
               </div>
             </div>
-		<div hidden>
+		<div id = "hide" hidden>
 				<div class="col-md-5" id="dependencia-filter">
                   <label class="field select">
-                    <select id="filter-category" name="filter-dependencia">
+                    <select id="filter-dependencia" name="filter-dependencia">
                       <option value="0">Seleccione la dependencia...</option>
 						  @foreach($dependencias as $dependencia)
 							<option value="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}</option>
@@ -117,13 +117,14 @@
                 </div>
 				<div class="col-md-1" id="dependencia-button">
                   <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                    
+					<p class="btn btn-success field select" id="dependencia-button">Filtrar</p>
                   </label>
                 </div>
 				
 				<div class="col-md-5" id="estatus-filter">
 					  <label class="field select" id="filter2">
-						<select id="filter-status" name="filter-estatus">
+						<select id="filter-estatus" name="filter-estatus">
 						  <option value="0">Seleccione el estado...</option>
 						  @foreach($estatus as $status)
 							<option value="{{$status->IdEstatus}}">{{$status->NombreEstatus}}</option>
@@ -134,7 +135,7 @@
 					</div>
 				<div class="col-md-1" id="estatus-button">
                   <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                    <p class="btn btn-success field select" id="estatus-button">Filtrar</a>
                   </label>
                 </div>
 				
@@ -148,9 +149,10 @@
 				</div>
 				<div class="col-md-1" id="identificador-button">
                   <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                    <p class="btn btn-success field select" id="id-button">Filtrar</a>
                   </label>
                 </div>
+			
 		</div>
 	</div>
 @stop
@@ -192,5 +194,20 @@ $( "#filter-category" ).click(function() {
 	  $( "#select-filter").append($("#identificador-button"));
   }
 });
+
+$( "#dependencia-button" ).click(function() {
+		var dependencia = $("#filter-dependencia").val();
+		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/dependencia?dependenciaFiltro="+dependencia;
+    });
+$( "#estatus-button" ).click(function() {
+		var estatus = $("#filter-estatus").val();
+		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/estatus?estatusFiltro="+estatus;
+    });
+$( "#id-button" ).click(function() {
+		var idFiltro = $("#IdOficial").val();
+		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/id?idFiltro="+idFiltro;
+    });
+
+
 </script>
 @stop

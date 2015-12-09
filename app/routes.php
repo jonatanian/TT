@@ -179,6 +179,11 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	
 	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+	
+	/////////////Consultas//////////////////////////////////
+	Route::get('/oficios/salientes/filtro/dependencia','OficiosSalientesController@oficialia_consultaDependencia');
+	Route::get('/oficios/salientes/filtro/estatus','OficiosSalientesController@oficialia_consultaEstatus');
+	Route::get('/oficios/salientes/filtro/id','OficiosSalientesController@oficialia_consultaId');
 });
 
 Route::group(array("prefix"=>'iescmpl'), function(){
