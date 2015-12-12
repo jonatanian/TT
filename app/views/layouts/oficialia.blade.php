@@ -115,7 +115,7 @@
 	          <li>
                 <a href="{{action('OficialiaController@oficialia_index')}}">
                   <span class="glyphicon glyphicon-home"></span>
-                  <span class="sidebar-title">Página principal de SISA</span>
+                  <span class="sidebar-title">Bandeja de entrada</span>
                 </a>
               </li>
 	          <li>
@@ -153,6 +153,23 @@
 	              <li>
 	                  <a href="{{action('OficiosController@oficialia_salientes')}}">
 	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
+	              </li>
+	            </ul>
+	          </li>
+	          <li>
+	            <a href="javascript:;">
+	              <span class="fa fa-folder-open"></span>
+	              <span class="sidebar-title">Memorándums</span>
+	              <span class="caret"></span>
+	            </a>
+	            <ul class="nav sub-nav acc-menu">
+	              <li>
+	                  <a href="#">
+	                  <span class="fa fa-folder"></span> Memos personales </a>
+	              </li>
+	              <li>
+	                  <a href="#">
+	                  <span class="fa fa-folder-o"></span> Memos generales </a>
 	              </li>
 	            </ul>
 	          </li>

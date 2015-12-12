@@ -8,7 +8,7 @@ class OficiosEntrantesController extends BaseController {
 			$dep_areas = DependenciaArea::select('*')->orderBy('NombreDependenciaArea')->get();
 			$entidades_externas = EntidadExterna::select('*')->orderBy('ApPaternoEntidad')->get();
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
-			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
+			$usuarios = Usuario::join('Cargo','Cargo_Id','=','Cargo.IdCargo')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
 			
 			$dep = Request::get('DependenciaE');

@@ -147,9 +147,9 @@
                         <select id="DirigidoA" name="DirigidoA" class="gui-input">
 							@foreach($usuarios as $usuario)
 								@if($usuario->Cargo_Id == 1)
-									<option selected="selected" value="{{$usuario->IdUsuario}}">{{$usuario->getNombreCompletoPMN()}}</option>
+									<option selected="selected" value="{{$usuario->IdUsuario}}">{{$usuario->getNombreCompletoPMN()}}&nbsp;({{$usuario->NombreCargo}})</option>
 								@else
-									<option value="{{$usuario->IdUsuario}}">{{$usuario->getNombreCompletoPMN()}}</option>
+									<option value="{{$usuario->IdUsuario}}">{{$usuario->getNombreCompletoPMN()}}&nbsp;({{$usuario->NombreCargo}})</option>
 								@endif
 							@endforeach
 						</select>                        
