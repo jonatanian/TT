@@ -46,11 +46,13 @@
                 <table class="table admin-form theme-warning tc-checkbox-1 fs13">
                   <thead>
                     <tr class="bg-light">
-                      <th class="text-center"><i class="fa fa-asterisk"></i></th>
+                      <th class="text-center">Folio</th>
                       <th class="">No. de oficio</th>
                       <th class="">Dependencia</th>
                       <th class="">Asunto</th>
-                      <th class="">Fecha de entrega</th>
+                      <th class="">Fecha de recepción</th>
+                      <th class="">Estatus</th>
+                      <th class="">Atendido por</th>
                       <th class="text-center">Acciones para el oficio</th>
                     </tr>
                   </thead>
@@ -70,6 +72,8 @@
 					  <td>{{$oficio->AcronimoDependencia}}</td>
 					  <td>{{$oficio->Asunto}}</td>
 					  <td>{{$oficio->FechaEntrega}}</td>
+					  <td>No se sabe</td>
+					  <td>Alguien XD</td>
                       <td class="text-center">
                         <div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
@@ -81,9 +85,6 @@
 						    </li>
 						    <li>
 						      <a href="#">Enviar copia a</a>
-						    </li>
-						    <li>
-						      <a href="#">Cambiar estatus</a>
 						    </li>
 						    <li>
 						      <a href="#">Descargar PDF</a>

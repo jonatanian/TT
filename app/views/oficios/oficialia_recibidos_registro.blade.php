@@ -6,7 +6,7 @@
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li class="active">
-					<a href="#">Oficios entrantes</a>
+					<a href="{{action('OficiosController@oficialia_recibidos')}}">Oficios entrantes</a>
 				</li>
 			</ul>
 		</div>
@@ -16,7 +16,7 @@
 		</div>
 	</header>
 	<!-- End: Topbar -->
-@stop
+@endsection
 @section('content')
 
 	<!-- Form Wizard -->
@@ -152,7 +152,7 @@
 									<option value="{{$usuario->IdUsuario}}">{{$usuario->getNombreCompletoPMN()}}&nbsp;({{$usuario->NombreCargo}})</option>
 								@endif
 							@endforeach
-						</select>                        
+						</select>
 						<label for="DirigidoA" class="field-icon">
                           <i class="fa fa-user"></i>
                         </label>
@@ -168,7 +168,7 @@
                       <label for="FechaEmision" class="field prepend-icon">
 	                    {{Form::text('FechaEmision', null, array('class'=>'gui-input','placeholder'=>'Elije una fecha...','id'=>'FechaEmision','required'=>'required'))}}
                         <label for="FechaEmision" class="field-icon">
-                          <i class="fa fa-file-o"></i>
+                          <i class="fa fa-calendar"></i>
                         </label>
                       </label>
                         <a href="#" class="button">Requerido</a>
@@ -257,6 +257,7 @@
 					  </label>
 					  	<a href="#" class="button">Requerido</a>
 	                </div>
+	                <span class="text-danger">&lowast; Debe ser en formado PDF, menor a 1 MB (&lt;1024 KB)</span>
                     <!-- end .smart-widget section -->
                   </div>
                   
@@ -274,8 +275,6 @@
 @stop
 
 @section('scripts')
-{{HTML::script('avalon/plugins/bootstrap-datepicker/bootstrap-datepicker.js')}}
-
 <script type="text/javascript">
   jQuery(document).ready(function() {
 
@@ -298,24 +297,28 @@
         return form.submit();
       }
     });
+    
+    // Init Select2 - Basic Single
+    $(".select2-single").select2();
 
     $(document).ready(function() {
 		$('#FechaEmision').datepicker({
 			todayHighlight: true,
     		startView: 3,
-    		format: 'yyyy-mm-dd'
+    		format: 'dd-mm-yyyy',
+    		languaje: 'es'
 		});
 
 		$('#FechaRecepcion').datepicker({
 			todayHighlight: true,
     		startView: 3,
-    		format: 'yyyy-mm-dd'
+    		format: 'dd-mm-yyyy'
 		});
 		
 		$('#FechaLimiteR').datepicker({
 			todayHighlight: true,
     		startView: 3,
-    		format: 'yyyy-mm-dd'
+    		format: 'dd-mm-yyyy'
 		});
 	});
   });

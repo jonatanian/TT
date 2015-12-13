@@ -20,6 +20,12 @@
   {{HTML::style("assets/admin-tools/admin-forms/css/admin-forms.css")}}
   <!-- Favicon -->
   {{HTML::style("assets/img/favicon.ico")}}
+  <!-- Required Plugin CSS -->
+  {{HTML::style("vendor/plugins/tagmanager/tagmanager.css")}}
+  {{HTML::style("vendor/plugins/daterange/daterangepicker.css")}}
+  {{HTML::style("vendor/plugins/datepicker/css/bootstrap-datetimepicker.css")}}
+  {{HTML::style("vendor/plugins/colorpicker/css/bootstrap-colorpicker.min.css")}}
+  {{HTML::style("vendor/plugins/select2/css/core.css")}}
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -246,6 +252,29 @@
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
   {{HTML::script('avalon/js/enquire.min.js')}}
   {{HTML::script('avalon/js/application.js')}}
+  
+  <!-- Time/Date Plugin Dependencies -->
+  {{HTML::script('vendor/plugins/globalize/globalize.min.js')}}
+  {{HTML::script('vendor/plugins/moment/moment.min.js')}}
+  <!-- BS Dual Listbox Plugin -->
+  {{HTML::script('vendor/plugins/duallistbox/jquery.bootstrap-duallistbox.min.js')}}
+  <!-- Bootstrap Maxlength plugin -->
+  {{HTML::script('vendor/plugins/maxlength/bootstrap-maxlength.min.js')}}
+  <!-- Select2 Plugin Plugin -->
+  {{HTML::script('vendor/plugins/select2/select2.min.js')}}
+  <!-- Typeahead Plugin -->
+  {{HTML::script('vendor/plugins/typeahead/typeahead.bundle.min.js')}}
+  <!-- TagManager Plugin -->
+  {{HTML::script('vendor/plugins/tagmanager/tagmanager.js')}}
+  <!-- DateRange Plugin -->
+  {{HTML::script('vendor/plugins/daterange/daterangepicker.min.js')}}
+  <!-- DateTime Plugin -->
+  {{HTML::script('vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js')}}
+  
+  <!-- BS Colorpicker Plugin -->
+  {{HTML::script('vendor/plugins/colorpicker/js/bootstrap-colorpicker.min.js')}}
+  <!-- MaskedInput Plugin -->
+  {{HTML::script('vendor/plugins/jquerymask/jquery.maskedinput.min.js')}}
   
   <!-- Theme Javascript -->
   
