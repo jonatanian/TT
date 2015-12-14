@@ -19287,7 +19287,7 @@ body.sb-l-m .navbar-brand {
 }
 /* Top Level Active Menu Item - Icon Color */
 .sidebar-menu > li.active > a > span:nth-child(1) {
-  color: #3498db;
+  color: #70CA63;/*#3498db*/
 }
 /* Top Level Active Item - Border Color */
 .sidebar-menu > li.active > a:after,
@@ -19311,7 +19311,7 @@ body.sb-l-m .navbar-brand {
 /* Sub-Menu Item - Border Color:hover */
 .sidebar-menu > li > ul > li:hover > a:after,
 .sidebar-menu > li > ul > li:focus > a:after {
-  background: #3498db;
+  background: #70CA63;
 }
 /* Sub-Menu Active Item - BG Color */
 .sidebar-menu > li > ul > li.active > a {
@@ -19320,12 +19320,12 @@ body.sb-l-m .navbar-brand {
 /* Sub-Menu Active Item - Icon Color */
 .sidebar-menu > li > ul > li.active > a > span:nth-child(1),
 .sidebar-menu > li > ul > li > a.menu-open > span:nth-child(1) {
-  color: #3498db;
+  color: #70CA63;
 }
 /* Sub-Menu Active Item - Border Color */
 .sidebar-menu > li > ul > li.active > a:after,
 .sidebar-menu > li > ul > li > a.menu-open:after {
-  background: #3498db;
+  background: #70CA63;
 }
 /* Multi-Menu Item - BG Color */
 .sidebar-menu > li > ul > li ul {
@@ -19365,7 +19365,7 @@ body.sb-l-m .sidebar-menu > li > a > .sidebar-title {
 }
 /* Minified Sidebar - Active Icon */
 body.sb-l-m .sidebar-menu > li.active > a > span:nth-child(1) {
-  color: #3498db;
+  color: #70CA63;
 }
 /*=======================================================
   G. Sidebar Light Color Settings
@@ -19963,7 +19963,7 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
   padding: 16px 14px 12px;
 }
 #topbar .nav.nav-list-topbar li.active a {
-  border-bottom: 3px solid #3498db;
+  border-bottom: 3px solid #70CA63;
 }
 /*===============================================
    E. Topbar Settings - Responsive
@@ -20473,7 +20473,7 @@ body.external-page.external-alt .login-links a {
   font-weight: 600;
 }
 body.external-page.external-alt .login-links a.active {
-  color: #3498db;
+  color: #70CA63;
 }
 body.external-page.external-alt .confirmation-header .fa-check {
   font-size: 32px;

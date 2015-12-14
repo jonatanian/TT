@@ -6,8 +6,13 @@
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li>
-					<a href="#">Oficios entrantes</a>
+					<a href="{{action('OficiosController@oficialia_recibidos')}}">Oficios entrantes</a>
 				</li>
+				<li>&frasl;</li>
+				<li class="">
+					<a href="{{action('OficiosEntrantesController@oficialia_nuevoOficio')}}">Nuevo</a>
+				</li>
+				<li>&frasl;</li>
 				<li class="active">
 					<a href="#">Nuevo emisor</a>
 				</li>
@@ -20,7 +25,6 @@
 	</header>
 	<!-- End: Topbar -->
 @endsection
-
 
 @section('content')
 	<!-- Validation Example -->

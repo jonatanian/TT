@@ -5,8 +5,12 @@
 	<header id="topbar" class="ph10">
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
-				<li class="active">
+				<li class="">
 					<a href="{{action('OficiosController@oficialia_recibidos')}}">Oficios entrantes</a>
+				</li>
+				<li>&frasl;</li>
+				<li class="active">
+					<a href="#">Nuevo</a>
 				</li>
 			</ul>
 		</div>
