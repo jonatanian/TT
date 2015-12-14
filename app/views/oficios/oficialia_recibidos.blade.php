@@ -81,20 +81,13 @@
                           </button>
                           <ul class="dropdown-menu" role="menu">
                             <li>
-						      <a href="#">Registrar anexos</a>
-						    </li>
-						    <li>
 						      <a href="#">Enviar copia a</a>
 						    </li>
 						    <li>
-						      <a href="#">Descargar PDF</a>
+						      <a href="#">Ver copia digital (PDF)</a>
 						    </li>
 						    <li>
 						      <a href="#">Ver detalles</a>
-						    </li>					    
-						    <li class="divider"></li>
-						    <li>
-						      <a href="#">Cancelar oficio</a>
 						    </li>
 						  </ul>
                         </div>
@@ -142,7 +135,11 @@
 				
 				<div class="col-md-5" id="identificador-filter">
 					<label for="IdOficial" class="field prepend-icon">
-						{{Form::text('IdOficial',null, array('class'=>'gui-input','id'=>'IdOficial', 'placeholder'=>'Introduce el identificador...'))}}
+						<select class="select2-single form-control gui-input">
+	                        @foreach($oficios as $oficio)
+	                        <option value="{{$oficio->IdOficioEntrante}}">{{$oficio->IdOficioDependencia}}</option>
+	                        @endforeach
+	                    </select>
 						<label for="AreaE" class="field-icon">
 							<i class="fa fa-institution"></i>
 						</label>
@@ -196,5 +193,10 @@ $( "#filter-category" ).click(function() {
 	  $( "#select-filter").append($("#identificador-button"));
   }
 });
+
+// Init Select2 - Basic Single
+    $(".select2-single").select2({
+    	width: 400,
+    });
 </script>
 @stop

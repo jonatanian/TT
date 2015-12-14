@@ -212,16 +212,27 @@
                   </div>
                   
                   <div class="section col-md-12">
-                    <label for="TipoDeOficio" class="field-label">¿Contiene datos confidenciales?</label>
+                    <label for="TagsConfidenciales" class="field-label">¿Contiene datos confidenciales?</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="TipoDeOficio" class="field prepend-icon">
-                        <select id="TipoDeOficio" name="IdOficioR" class="gui-input">
-                        	<option value="0">Selecciona el oficio al que se responde...</option>
-                      		@foreach($OEs as $OE)
-								<option value="{{$OE->Correspondencia_Id}}">{{$OE->Correspondencia_Id}}</option>
-							@endforeach
-						</select>
-                        <label for="IdOficioR" class="field-icon">
+                      <label for="TagsConfidenciales" class="field prepend-icon">
+                        <input type="text" id="TagsConfidenciales" name="TagsConfidenciales" class="form-control tm-input1" placeholder="Ingresa uno a uno los datos confidenciales, separados por un Enter...">
+                      	<div class="tag-container tags1"></div>
+                        <label for="TagsConfidenciales" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Opcional</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                  <div class="section col-md-12">
+                    <label for="TagsAnexos" class="field-label">¿Contiene anexos?</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="TagsAnexos" class="field prepend-icon">
+                        <input type="text" id="TagsAnexos" name="TagsAnexos" class="form-control tm-input2" placeholder="Ingresa uno a uno los anexos, separados por un Enter...">
+                      	<div class="tag-container tags2"></div>
+                        <label for="TagsAnexos" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>
                       </label>
@@ -278,9 +289,9 @@
                     <div class="smart-widget sm-right smr-120">
                       <label for="IdOficioR" class="field prepend-icon">
                         <select id="IdOficioR" name="IdOficioR" class="gui-input">
-                        	<option value="0">Selecciona el oficio al que se responde...</option>
-                      		@foreach($OEs as $OE)
-								<option value="{{$OE->Correspondencia_Id}}">{{$OE->Correspondencia_Id}}</option>
+                        	<option value="0">Selecciona el ID del oficio saliente al que se responde...</option>
+                        	@foreach($OSs as $OS)
+								<option value="{{$OS->Correspondencia_Id}}">{{$OS->IdOficioSaliente}}</option>
 							@endforeach
 						</select>
                         <label for="IdOficioR" class="field-icon">
@@ -357,8 +368,18 @@
       }
     });
     
+    // Init jQuery Tags Manager 
+    $(".tm-input1").tagsManager({
+      tagsContainer: '.tags1',
+      tagClass: 'tm-tag-alert',
+    });
+    $(".tm-input2").tagsManager({
+      tagsContainer: '.tags2',
+      tagClass: 'tm-tag-system',
+    });
+    
     // Init Select2 - Basic Single
-    $(".select2-single").select2();
+    $(".select2-success").select2();
 	
     $(document).ready(function() {
 		$('#FechaEmision').datepicker({

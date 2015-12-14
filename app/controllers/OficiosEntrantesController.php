@@ -9,7 +9,7 @@ class OficiosEntrantesController extends BaseController {
 			$entidades_externas = EntidadExterna::select('*')->orderBy('ApPaternoEntidad')->get();
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::join('Cargo','Cargo_Id','=','Cargo.IdCargo')->orderBy('ApPaterno')->get();
-			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioEntrante','desc')->get();
+			$oficiosSalientes = OficioSaliente::select('*')->orderBy('IdConsecutivo','desc')->get();
 			$prioridades = Prioridad::all();
 			$caracteres = Caracter::all();
 			$fecha = new DateTime();
@@ -17,7 +17,7 @@ class OficiosEntrantesController extends BaseController {
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'Fecha'=>$fecha,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
+			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OSs'=>$oficiosSalientes,'Fecha'=>$fecha,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
 	public function oficialia_nuevoOficio_registrar()
@@ -42,8 +42,18 @@ class OficiosEntrantesController extends BaseController {
 			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaEntrante = new Correspondencia();
+			$addDatosConfidenciales = new DatosConfidenciales();
+			$addAnexos = new Anexo();
 			$oficio = new OficioEntrante();
 			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$subir)){
+				if($datos['hidden-TagsConfidenciales'] != NULL){
+					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
+				}
+				
+				if($datos['hidden-TagsAnexos'] != NULL){
+					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
+				}
+
 				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia);
 				
 				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Remitente'])->first();

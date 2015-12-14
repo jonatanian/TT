@@ -16,7 +16,7 @@
 	    	DB::transaction(function () use ($inputs,$IdOficio){
 				$a = new Anexo();
 				$a ->Correspondencia_Id = $IdOficio;
-				$a ->Anexo = 'Prueba';
+				$a ->Anexo = $inputs;
 				$a ->save();
 				
 	    	});
