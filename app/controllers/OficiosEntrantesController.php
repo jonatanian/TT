@@ -10,12 +10,12 @@ class OficiosEntrantesController extends BaseController {
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::join('Cargo','Cargo_Id','=','Cargo.IdCargo')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
-			
+			$fecha = new DateTime();
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes));
+			return View::make('oficios.oficialia_recibidos_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'Fecha'=>$fecha));
 		}
 		
 	public function oficialia_nuevoOficio_registrar()

@@ -21,7 +21,7 @@
 
 	<!-- Form Wizard -->
           <div class="admin-form">
-			{{Form::open(array('class'=>'form-horizontal row-border','id'=>"form-wizard",'data-parsley-validate'=>'true','files'=>true))}}
+			{{Form::open(array('class'=>'form-horizontal row-border','id'=>"form-wizard",'files'=>true))}}
             <!--<form method="get" action="/" id="form-wizard">-->
               <div class="wizard steps-bg steps-justified">
 
@@ -180,7 +180,7 @@
                     <label for="FechaRecepcion" class="field-label">Fecha de recepción</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="FechaRecepcion" class="field prepend-icon">
-                      	{{Form::text('FechaRecepcion', null, array('class'=>'gui-input','placeholder'=>'Elije una fecha...','id'=>'FechaRecepcion','required'=>'required'))}}
+                      	{{Form::text('FechaRecepcion',$Fecha->format('d/m/Y'), array('class'=>'gui-input','id'=>'FechaRecepcion','required'=>'required'))}}
                         <label for="FechaRecepcion" class="field-icon">
                           <i class="fa fa-file-o"></i>
                         </label>
@@ -300,25 +300,25 @@
     
     // Init Select2 - Basic Single
     $(".select2-single").select2();
-
+	
     $(document).ready(function() {
 		$('#FechaEmision').datepicker({
 			todayHighlight: true,
     		startView: 3,
     		format: 'dd-mm-yyyy',
-    		languaje: 'es'
 		});
 
 		$('#FechaRecepcion').datepicker({
 			todayHighlight: true,
     		startView: 3,
-    		format: 'dd-mm-yyyy'
+    		format: 'dd-mm-yyyy',
+    		defaultDate: "12/12/2015",
 		});
 		
 		$('#FechaLimiteR').datepicker({
 			todayHighlight: true,
     		startView: 3,
-    		format: 'dd-mm-yyyy'
+    		format: 'dd-mm-yyyy',
 		});
 	});
   });

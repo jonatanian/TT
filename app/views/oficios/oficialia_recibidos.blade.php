@@ -52,7 +52,7 @@
                       <th class="">Asunto</th>
                       <th class="">Fecha de recepción</th>
                       <th class="">Estatus</th>
-                      <th class="">Atendido por</th>
+                      <th class="">Turnado a</th>
                       <th class="text-center">Acciones para el oficio</th>
                     </tr>
                   </thead>
@@ -72,8 +72,8 @@
 					  <td>{{$oficio->AcronimoDependencia}}</td>
 					  <td>{{$oficio->Asunto}}</td>
 					  <td>{{$oficio->FechaEntrega}}</td>
-					  <td>No se sabe</td>
-					  <td>Alguien XD</td>
+					  <td>{{$oficio->NombreEstatus}}</td>
+					  <td>{{$oficio->ApPaterno}}&nbsp;{{$oficio->ApMaterno}}&nbsp;{{$oficio->Nombre}}</td>
                       <td class="text-center">
                         <div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
@@ -81,7 +81,7 @@
                           </button>
                           <ul class="dropdown-menu" role="menu">
                             <li>
-						      <a href="#">Turnar a</a>
+						      <a href="#">Registrar anexos</a>
 						    </li>
 						    <li>
 						      <a href="#">Enviar copia a</a>

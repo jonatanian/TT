@@ -117,7 +117,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsTo('Area','Area_Id');
 	}
 
-
 	public function crearUsuario($inputs){
 
 		DB::transaction(function () use ($inputs){

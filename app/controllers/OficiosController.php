@@ -4,17 +4,14 @@ class OficiosController extends BaseController {
 		
 	public function oficialia_recibidos()
 		{
-			/*$oficios= OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
-									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
-									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
-									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
-									->orderBy('oficio_entrante.IdOficioEntrante','desc')
-									->get();*/
-									
 			$oficios= OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
 									->join('dependencia','DependenciaEmite','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('usuario_turna_correspondencia','correspondencia.IdCorrespondencia','=','usuario_turna_correspondencia.Correspondencia_Id')
+									->join('usuario','usuario_turna_correspondencia.UTC_TurnarA_Id','=','usuario.IdUsuario')
+									//->where('usuario.IdUsuario','usuario_turna_correspondencia.UTC_TurnarA_Id')
 									->orderBy('oficio_entrante.IdOficioEntrante','desc')
 									->get();
 
