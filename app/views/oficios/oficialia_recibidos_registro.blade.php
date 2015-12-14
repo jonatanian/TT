@@ -4,7 +4,7 @@
 	<!-- Start: Topbar -->
 	<header id="topbar" class="ph10">
 		<div class="topbar-left">
-			<ul class="nav nav-list nav-list-topbar pull-left">
+			<ul class="nav nav-list nav-list-topbar pull-left br-primary">
 				<li class="">
 					<a href="{{action('OficiosController@oficialia_recibidos')}}">Oficios entrantes</a>
 				</li>
@@ -24,7 +24,7 @@
 @section('content')
 
 	<!-- Form Wizard -->
-          <div class="admin-form">
+          <div class="admin-form theme-success">
 			{{Form::open(array('class'=>'form-horizontal row-border','id'=>"form-wizard",'files'=>true))}}
             <!--<form method="get" action="/" id="form-wizard">-->
               <div class="wizard steps-bg steps-justified">

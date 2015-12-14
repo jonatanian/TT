@@ -116,7 +116,7 @@
 
         <!-- Start: Sidebar Menu -->
         <nav role="navigation" class="widget-body">
-	        <ul class="nav sidebar-menu acc-menu">
+	        <ul class="nav sidebar-menu acc-menu active-warning">
 	          <li class="sidebar-label pt20">Men&uacute;</li>
 	          <li>
                 <a href="{{action('OficialiaController@oficialia_index')}}">
