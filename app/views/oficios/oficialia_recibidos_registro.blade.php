@@ -211,6 +211,25 @@
                     <!-- end .smart-widget section -->
                   </div>
                   
+                  <div class="section col-md-12">
+                    <label for="TipoDeOficio" class="field-label">¿Contiene datos confidenciales?</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="TipoDeOficio" class="field prepend-icon">
+                        <select id="TipoDeOficio" name="IdOficioR" class="gui-input">
+                        	<option value="0">Selecciona el oficio al que se responde...</option>
+                      		@foreach($OEs as $OE)
+								<option value="{{$OE->Correspondencia_Id}}">{{$OE->Correspondencia_Id}}</option>
+							@endforeach
+						</select>
+                        <label for="IdOficioR" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Opcional</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
                 </section>
 
                 <!-- Wizard step 3 -->
@@ -218,7 +237,43 @@
                   <i class="fa fa-cog pr5"></i> Configuración</h4>
                 <section class="wizard-section">
 
-                  <div class="section">
+				  <div class="section col-md-6">
+                    <label for="TipoDeOficio" class="field-label">Selecciona el tipo de información del oficio</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="TipoDeOficio" class="field prepend-icon">
+                        <select id="TipoDeOficio" name="TipoDeOficio" class="gui-input">
+                        	@foreach($caracteres as $caracter)
+								<option value="{{$caracter->IdCaracter}}">{{$caracter->NombreCaracter}}</option>
+							@endforeach
+						</select>
+                        <label for="TipoDeOficio" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Requerido</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+                  
+                  <div class="section col-md-6">
+                    <label for="PrioridadOE" class="field-label">Selecciona la prioridad del oficio</label>
+                    <div class="smart-widget sm-right smr-120">
+                      <label for="PrioridadOE" class="field prepend-icon">
+                        <select id="PrioridadOE" name="PrioridadOE" class="gui-input">
+                        	@foreach($prioridades as $prioridad)
+								<option value="{{$prioridad->IdPrioridad}}">{{$prioridad->NombrePrioridad}}</option>
+							@endforeach
+						</select>
+                        <label for="PrioridadOE" class="field-icon">
+                          <i class="fa fa-file-o"></i>
+                        </label>
+                      </label>
+                        <a href="#" class="button">Requerido</a>
+	                </div>
+                    <!-- end .smart-widget section -->
+                  </div>
+
+                  <div class="section col-md-12">
                     <label for="IdOficioR" class="field-label">¿Es un oficio de respuesta?</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="IdOficioR" class="field prepend-icon">
@@ -261,7 +316,7 @@
 					  </label>
 					  	<a href="#" class="button">Requerido</a>
 	                </div>
-	                <span class="text-danger">&lowast; Debe ser en formado PDF, menor a 1 MB (&lt;1024 KB)</span>
+	                <span class="text-warning">&lowast; Debe ser en formado PDF, menor a 1 MB (&lt;1024 KB)</span>
                     <!-- end .smart-widget section -->
                   </div>
                   

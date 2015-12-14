@@ -18,8 +18,8 @@
 				$correspondencia->Asunto = $inputs['Asunto'];
 				$correspondencia->URLPDF = $subir;
 				$correspondencia->Estatus_Id = 1;
-				//$correspondencia->Prioridad_Id = $inputs['Prioridad_Id'];
-				//$correspondencia->Caracter_Id = $inputs['Caracter_Id'];
+				$correspondencia->Prioridad_Id = $inputs['PrioridadOE'];
+				$correspondencia->Caracter_Id = $inputs['TipoDeOficio'];
 				
 				if($inputs['IdOficioR'] != 0)
 				{

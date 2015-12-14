@@ -52,7 +52,7 @@
                       <th class="">Asunto</th>
                       <th class="">Fecha de recepción</th>
                       <th class="">Estatus</th>
-                      <th class="">Turnado a</th>
+                      <th class="">Responsable actual</th>
                       <th class="text-center">Acciones para el oficio</th>
                     </tr>
                   </thead>
