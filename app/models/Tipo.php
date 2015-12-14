@@ -9,10 +9,11 @@
 		protected $primaryKey = 'IdTipo';
 		public $timestamps = false;
 		protected $fillable = array('IdTipo', 'NombreTipo');
+		
+		public function getTipo()
+		{
+			return $this->NombreTipo;
+		}
 	}
-	
-	public function getTipo()
-	{
-		return $this->NombreTipo;
-	}
+
 ?>
