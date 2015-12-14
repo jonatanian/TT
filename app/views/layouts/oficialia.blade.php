@@ -203,18 +203,48 @@
 	  
       <!-- Begin: Content -->
       <section id="content" class="animated fadeIn">
-        @if(Session::has('msg'))
-          <div class="alert alert-system">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msg')}}
-          </div>
-        @endif
+      	@if(Session::has('msg'))
+      		<div class="alert alert-success alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msg')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgInfo'))
+      		<div class="alert alert-info alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-info pr10"></i>
+			  {{Session::get('msgInfo')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgWarning'))
+      		<div class="alert alert-warning alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-warning pr10"></i>
+			  {{Session::get('msgWarning')}}
+			</div>
+		@endif
         @if(Session::has('msgf'))
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msgf')}}
-          </div>
+          	<div class="alert alert-danger alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-remove pr10"></i>
+			  {{Session::get('msgf')}}
+			</div>
         @endif
+        @if(Session::has('msgSystem'))
+	        <div class="alert alert-system alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-cubes pr10"></i>
+			  {{Session::get('msgSystem')}}
+			</div>
+		@endif
+		@if(Session::has('msgAlert'))
+	        <div class="alert alert-alert alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msgAlert')}}
+			</div>
+		@endif
         @yield('content')
       </section>
       
