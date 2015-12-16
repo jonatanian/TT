@@ -4,7 +4,7 @@
 	<!-- Start: Topbar -->
 	<header id="topbar" class="ph10">
 		<div class="topbar-left">
-			<ul class="nav nav-list nav-list-topbar pull-left br-primary">
+			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li class="">
 					<a href="{{action('OficiosController@oficialia_recibidos')}}">Oficios entrantes</a>
 				</li>
