@@ -40,7 +40,7 @@ class OficiosEntrantesController extends BaseController {
 			$url_docpdf = $file->getClientOriginalName();
 			
 			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
-				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\x20-\x7e]*$/');
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
 				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
 			}
 
@@ -108,10 +108,10 @@ class OficiosEntrantesController extends BaseController {
 										 ->first();
 										 
 		$pathToFile = public_path().'/'.$OficioEntrante->URLPDF;
-		$name = $OficioEntrante->IdOficioDependencia;
+		$name = 'OficioEntrante_'.$OficioEntrante->IdOficioEntrante.'_'.$OficioEntrante->FechaEntrega.'.pdf';
 		$headers = array('Content-Type'=>'application/pdf',);
 		
-		return Response::download($pathToFile, 'Manzano.pdf', $headers);
+		return Response::download($pathToFile,$name, $headers);
 	}
 }
 ?>
