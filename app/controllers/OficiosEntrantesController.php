@@ -36,9 +36,16 @@ class OficiosEntrantesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
+			
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\x20-\x7e]*$/');
+				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
+			}
 
 			//$url_docpdf = Hash::make($file->getClientOriginalName());
-			$url_docpdf = $file->getClientOriginalName();
+			
 			$path = 'oficios\\entrantes\\'.$url_docpdf;
 			$destinoPath = public_path().'\\oficios\\entrantes\\';
 			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
@@ -100,12 +107,11 @@ class OficiosEntrantesController extends BaseController {
 										 ->where('correspondencia.IdCorrespondencia',$Correspondencia)
 										 ->first();
 										 
-		$pathToFile = public_path().$OficioEntrante->URLPDF;
-		//$pathToFile = public_path()."\SISA_BD_v78.pdf";//$OficioEntrante->URLPDF;
+		$pathToFile = public_path().'/'.$OficioEntrante->URLPDF;
 		$name = $OficioEntrante->IdOficioDependencia;
 		$headers = array('Content-Type'=>'application/pdf',);
 		
-		return Response::download($pathToFile, $name, $headers);
+		return Response::download($pathToFile, 'Manzano.pdf', $headers);
 	}
 }
 ?>
