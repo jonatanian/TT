@@ -105,100 +105,55 @@
         </header>
 
         <!-- Start: Sidebar Menu -->
-        <ul class="nav sidebar-menu">
-          <li class="sidebar-label pt20">Men&uacute;</li>
-          <li>
-            <a href="http://www.sidirtel.ipn.mx" target="_blank">
-              <span class="fa fa-users"></span>
-              <span class="sidebar-title">Directorio IPN</span>
-            </a>
-          </li>
-          <li>
-            <a href="http://148.204.90.213/Directorio/Directorio.html" target="_blank">
-              <span class="glyphicon glyphicon-book"></span>
-              <span class="sidebar-title">Directorio CMPL</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{action('SIGController@SIG_index')}}" target="_blank">
-              <span class="glyphicon glyphicon-book"></span>
-              <span class="sidebar-title">SIG</span>
-            </a>
-          </li>
-          
-          <!-- sidebar resources -->
-          <li class="sidebar-label pt15">Correspondencia</li>
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-envelope"></span>
-              <span class="sidebar-title">Oficios</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
-                  <span class="fa fa-send-o"></span> Oficios entrantes </a>
+        <nav role="navigation" class="widget-body">
+	        <ul class="nav sidebar-menu acc-menu">
+	          <li class="sidebar-label pt20">Men&uacute;</li>
+	          <li>
+                <a href="{{action('AdminController@dsbd_index')}}">
+                  <span class="glyphicon glyphicon-home"></span>
+                  <span class="sidebar-title">Página principal de SISA</span>
+                </a>
               </li>
-              <li>
-                  <a href="{{action('OficiosController@oficialia_enviados')}}">
-                  <span class="fa fa-send"></span> Oficios salientes </a>
-              </li>
-              <li>
-                  <a href="{{action('OficiosController@corregir_oficio')}}">
-                  <span class="fa fa-send"></span> Oficios con observaciones </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Registrar anexos </a>
-              </li>
-            </ul>
-          </li>  
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-envelope-o"></span>
-              <span class="sidebar-title">Memorándums</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="#">
-                  <span class="fa fa-send"></span>Memos recibidos </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="fa fa-send-o"></span>Memos enviados </a>
-              </li>
-              <li>
-            </ul>
-          </li>
-
-          <!-- sidebar bullets -->
-          <li class="sidebar-label pt20">CMPL</li>
-          <li class="sidebar-proj">
-            <a href="#projectOne">
-              <span class="fa fa-dot-circle-o text-primary"></span>
-              <span class="sidebar-title">Avisos</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectTwo">
-              <span class="fa fa-dot-circle-o text-info"></span>
-              <span class="sidebar-title">Galería fotográfica</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectTwo">
-              <span class="fa fa-dot-circle-o text-danger"></span>
-              <span class="sidebar-title">Cursos</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectThree">
-              <span class="fa fa-dot-circle-o text-warning"></span>
-              <span class="sidebar-title">Material de apoyo</span>
-            </a>
-          </li>
-        </ul>  
+	          <li>
+	            <a href="http://www.sidirtel.ipn.mx" target="_blank">
+	              <span class="fa fa-users"></span>
+	              <span class="sidebar-title">Directorio IPN</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="http://148.204.90.213/Directorio/Directorio.html" target="_blank">
+	              <span class="glyphicon glyphicon-book"></span>
+	              <span class="sidebar-title">Directorio CMPL</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="{{action('SIGController@SIG_index')}}">
+	              <span class="glyphicon glyphicon-book"></span>
+	              <span class="sidebar-title">SIG</span>
+	            </a>
+	          </li>
+	          
+	          <!-- sidebar resources -->
+	          <li class="sidebar-label pt15">Control de correspondencia</li>
+	          <li>
+	            <a href="javascript:;">
+	              <span class="fa fa-folder-open"></span>
+	              <span class="sidebar-title">Oficios</span>
+	              <span class="caret"></span>
+	            </a>
+	            <ul class="nav sub-nav acc-menu">
+	              <li>
+	                  <a href="">
+	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
+	              </li>
+	              <li>
+	                  <a href="{{action('OficiosController@jefatura_salientes')}}">
+	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
+	              </li>
+	            </ul>
+	          </li>
+	        </ul>
+	    </nav> 
 	      <!-- Start: Sidebar Collapse Button -->
 	      <div class="sidebar-toggle-mini">
 	        <a href="#">
@@ -211,10 +166,11 @@
       <!-- End: Sidebar Left Content -->
 
     </aside>
+	
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-
+		@yield('Topbar')
       <!-- Begin: Content -->
       <section id="content" class="animated fadeIn">
         @if(Session::has('msg'))
@@ -229,6 +185,7 @@
             {{Session::get('msgf')}}
           </div>
         @endif
+		
         @yield('content')
       </section>
       
@@ -253,15 +210,49 @@
   <!-- jQuery -->
   
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
-  
+
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
-  <!-- Theme Javascript -->
+  
+  <!-- Page Plugins -->
+  {{HTML::script('assets/admin-tools/admin-forms/js/jquery.validate.min.js')}}
+  {{HTML::script('assets/admin-tools/admin-forms/js/jquery.steps.min.js')}}
+  {{HTML::script('vendor/plugins/magnific/jquery.magnific-popup.js')}}
+  
+  {{HTML::script('avalon/plugins/jquery-slimscroll/jquery.slimscroll.js')}}
+  {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
+  {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
+  {{HTML::script('avalon/js/enquire.min.js')}}
+  {{HTML::script('avalon/js/application.js')}}
+  
+  <!-- Time/Date Plugin Dependencies -->
+  {{HTML::script('vendor/plugins/globalize/globalize.min.js')}}
+  {{HTML::script('vendor/plugins/moment/moment.min.js')}}
+  <!-- BS Dual Listbox Plugin -->
+  {{HTML::script('vendor/plugins/duallistbox/jquery.bootstrap-duallistbox.min.js')}}
+  <!-- Bootstrap Maxlength plugin -->
+  {{HTML::script('vendor/plugins/maxlength/bootstrap-maxlength.min.js')}}
+  <!-- Select2 Plugin Plugin -->
+  {{HTML::script('vendor/plugins/select2/select2.min.js')}}
+  <!-- Typeahead Plugin -->
+  {{HTML::script('vendor/plugins/typeahead/typeahead.bundle.min.js')}}
+  <!-- TagManager Plugin -->
+  {{HTML::script('vendor/plugins/tagmanager/tagmanager.js')}}
+  <!-- DateRange Plugin -->
+  {{HTML::script('vendor/plugins/daterange/daterangepicker.min.js')}}
+  <!-- DateTime Plugin -->
+  {{HTML::script('vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js')}}
+  
+  <!-- BS Colorpicker Plugin -->
+  {{HTML::script('vendor/plugins/colorpicker/js/bootstrap-colorpicker.min.js')}}
+  <!-- MaskedInput Plugin -->
+  {{HTML::script('vendor/plugins/jquerymask/jquery.maskedinput.min.js')}}
   
   {{HTML::script('assets/js/utility/utility.js')}}
   
   {{HTML::script('assets/js/demo/demo.js')}}
   
   {{HTML::script('assets/js/main.js')}}
+  @yield('scripts')
   <script type="text/javascript">
   jQuery(document).ready(function() {
 
@@ -270,8 +261,6 @@
     // Init Theme Core    
     Core.init();
 
-    // Init Demo JS  
-    Demo.init();
 
   });
   </script>

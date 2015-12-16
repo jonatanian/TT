@@ -14,12 +14,13 @@ class OficiosSalientesController extends BaseController {
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
-			
+			$caracteres = Caracter::all();
+			$prioridades = Prioridad::all();
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.oficialia_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio));
+			return View::make('oficios.oficialia_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
 	public function oficialia_nuevoOficio_registrar()
@@ -50,22 +51,22 @@ class OficiosSalientesController extends BaseController {
 				
 				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoDestinatario']){
-					$upDestinatario = $Destinatario->updateCargo($datos);			
+				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
 				}
 				
 				if($Destinatario->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
-					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateArea($datos,$IdDepTieneArea);
+					$IdDepTieneArea = $DTA->nuevaDependenciaTieneArea($datos);
+					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
 					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
-					if($DepTieneArea->DepArea_Id != $datos['AreaD']){
+					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
 						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
-						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
+						$UpDTA = $DepTieneArea->updateDependenciaSaliente($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}
 				
@@ -137,12 +138,13 @@ class OficiosSalientesController extends BaseController {
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
-			
+			$caracteres = Caracter::all();
+			$prioridades = Prioridad::all();
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.dsbd_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio));
+			return View::make('oficios.dsbd_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
 	public function dsbd_nuevoOficio_registrar()
@@ -173,18 +175,18 @@ class OficiosSalientesController extends BaseController {
 				
 				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoDestinatario']){
-					$upDestinatario = $Destinatario->updateCargo($datos);			
+				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
 				}
 				
 				if($Destinatario->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateArea($datos,$IdDepTieneArea);
+					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
 					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
-					if($DepTieneArea->DepArea_Id != $datos['AreaD']){
+					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
 						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
@@ -216,12 +218,13 @@ class OficiosSalientesController extends BaseController {
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
-			
+			$caracteres = Caracter::all();
+			$prioridades = Prioridad::all();
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.direccion_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio));
+			return View::make('oficios.direccion_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
 	public function direccion_nuevoOficio_registrar()
@@ -252,21 +255,21 @@ class OficiosSalientesController extends BaseController {
 				
 				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoDestinatario']){
-					$upDestinatario = $Destinatario->updateCargo($datos);			
+				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
 				}
 				
 				if($Destinatario->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateArea($datos,$IdDepTieneArea);
+					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
 					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
-					if($DepTieneArea->DepArea_Id != $datos['AreaD']){
+					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
 						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
 					}
-					if($DepTieneArea->Dependencia_Id != $datos['DependenciaD']){
+					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}
@@ -280,7 +283,7 @@ class OficiosSalientesController extends BaseController {
 			}	
 			else{
 				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
-				return Redirect::action('OficiosController@oficialia_salientes');
+				return Redirect::action('OficiosController@direccion_salientes');
 			}
 		}
 		
@@ -296,12 +299,13 @@ class OficiosSalientesController extends BaseController {
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
-			
+			$caracteres = Caracter::all();
+			$prioridades = Prioridad::all();
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.subdireccion_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio));
+			return View::make('oficios.subdireccion_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
 	public function subdireccion_nuevoOficio_registrar()
@@ -332,21 +336,21 @@ class OficiosSalientesController extends BaseController {
 				
 				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoDestinatario']){
-					$upDestinatario = $Destinatario->updateCargo($datos);			
+				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
 				}
 				
 				if($Destinatario->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateArea($datos,$IdDepTieneArea);
+					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
 					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
-					if($DepTieneArea->DepArea_Id != $datos['AreaD']){
+					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
 						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
 					}
-					if($DepTieneArea->Dependencia_Id != $datos['DependenciaD']){
+					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}
@@ -376,12 +380,13 @@ class OficiosSalientesController extends BaseController {
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
-			
+			$caracteres = Caracter::all();
+			$prioridades = Prioridad::all();
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.jefatura_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio));
+			return View::make('oficios.jefatura_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
 	public function jefatura_nuevoOficio_registrar()
@@ -412,21 +417,21 @@ class OficiosSalientesController extends BaseController {
 				
 				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoDestinatario']){
-					$upDestinatario = $Destinatario->updateCargo($datos);			
+				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
 				}
 				
 				if($Destinatario->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateArea($datos,$IdDepTieneArea);
+					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
 					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
-					if($DepTieneArea->DepArea_Id != $datos['AreaD']){
+					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
 						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
 					}
-					if($DepTieneArea->Dependencia_Id != $datos['DependenciaD']){
+					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}
@@ -455,15 +460,16 @@ class OficiosSalientesController extends BaseController {
 			$cargos_entidades = CargoEntidad::select('*')->orderBy('NombreCargoEntidad')->get();
 			$usuarios = Usuario::select('*')->orderBy('ApPaterno')->get();
 			$oficiosEntrantes = OficioEntrante::select('*')->orderBy('IdOficioDependencia')->get();
-			
+			$caracteres = Caracter::all();
+			$prioridades = Prioridad::all();
 			$dep = Request::get('DependenciaE');
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.personal_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio));
+			return View::make('oficios.personal_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
-	public function personal_nuevoOficio_registrar()
+	public function iescmpl_nuevoOficio_registrar()
 		{
 			
 			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
@@ -471,13 +477,13 @@ class OficiosSalientesController extends BaseController {
 			$file = Input::file('DocPDF');
 			if($file == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@personal_nuevoOficio')->withInput();
+				return Redirect::action('OficiosEntrantesController@iescmpl_nuevoOficio')->withInput();
 			}
 			
 			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
 			if($fileExt != 'pdf' or $fileExt == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@personal_nuevoOficio')->withInput();
+				return Redirect::action('OficiosEntrantesController@iescmpl_nuevoOficio')->withInput();
 			}
 
 			$url_docpdf = Hash::make($file->getClientOriginalName());
@@ -491,14 +497,14 @@ class OficiosSalientesController extends BaseController {
 				
 				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoDestinatario']){
-					$upDestinatario = $Destinatario->updateCargo($datos);			
+				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
 				}
 				
 				if($Destinatario->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateArea($datos,$IdDepTieneArea);
+					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
 					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
@@ -515,11 +521,11 @@ class OficiosSalientesController extends BaseController {
 				//$IdUTC = $UTC->turnarA(Auth::User()->IdUsuario,$IdCorrespondencia,$datos['DirigidoA'],1,$fecha);
 				
 				Session::flash('msg','Registro de oficio saliente realizado correctamente.');
-				return Redirect::action('OficiosController@personal_salientes');
+				return Redirect::action('OficiosController@iescmpl_salientes');
 			}	
 			else{
 				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
-				return Redirect::action('OficiosController@personal_salientes');
+				return Redirect::action('OficiosController@iescmpl_salientes');
 			}
 		}
 }

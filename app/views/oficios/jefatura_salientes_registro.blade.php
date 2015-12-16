@@ -1,4 +1,4 @@
-@extends('layouts.dsbd')
+@extends('layouts.jefatura')
 
 @section('Topbar')
 	<!-- Start: Topbar -->
@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="topbar-right hidden-xs hidden-sm">
-			<a href="{{action('OficiosSalientesController@dsbd_nuevoOficio')}}" class="btn btn-default btn-sm fw600 ml10">
+			<a href="{{action('OficiosSalientesController@jefatura_nuevoOficio')}}" class="btn btn-default btn-sm fw600 ml10">
 			<span class="fa fa-plus pr5"></span> Nuevo oficio saliente</a>
 		</div>
 	</header>
@@ -47,7 +47,7 @@
                           <i class="fa fa-user"></i>
                         </label>
                       </label>
-                      <a href="{{action('InstanciasExternasController@dsbd_nuevoEmisorSaliente',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevoEmisor',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -69,7 +69,7 @@
                           <i class="fa fa-bookmark"></i>
                         </label>
                       </label>
-                      <a href="{{action('InstanciasExternasController@dsbd_nuevoCargoSaliente',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button  btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevoCargo',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button  btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -92,7 +92,7 @@
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>
-                      <a href="{{action('InstanciasExternasController@dsbd_nuevaAreaSaliente',array('DependenciaE'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevaArea',array('DependenciaE'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -114,7 +114,7 @@
                           <i class="fa fa-bank"></i>
                         </label>                        
                       </label>
-                      <a href="{{action('InstanciasExternasController@dsbd_nuevaDependenciaSaliente')}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevaDependencia')}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
 	                </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -243,7 +243,8 @@
                 <h4 class="wizard-section-title">
                   <i class="fa fa-cog pr5"></i> Configuración</h4>
                 <section class="wizard-section">
-                  <div class="section col-md-6">
+
+				<div class="section col-md-6">
                     <label for="TipoDeOficio" class="field-label">Selecciona el tipo de información del oficio</label>
                     <div class="smart-widget sm-right smr-120">
                       <label for="TipoDeOficio" class="field prepend-icon">
@@ -278,6 +279,7 @@
 	                </div>
                     <!-- end .smart-widget section -->
                   </div>
+                  
                   
 				  
 				  <div class="section">
@@ -363,6 +365,7 @@
 		$('#FechaEmision').datepicker({
 			todayHighlight: true,
     		startView: 3,
+			defaultDate: "12/12/2015",
     		format: 'yyyy-mm-dd'
 		});
 

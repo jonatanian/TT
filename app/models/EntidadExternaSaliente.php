@@ -36,41 +36,6 @@
 				
 		public function updateArea($inputs,$IdDTA){
 			DB::transaction(function () use ($inputs,$IdDTA){
-				$entidadE = EntidadExterna::find($inputs['Remitente']);
-				$entidadE -> Dependencia_Area_Id = $IdDTA;
-				$entidadE -> save();
-			});
-			
-			return true;
-		}
-		/////////////////////Salientes/////////////////////////////
-		public function nuevaEntidadSaliente($inputs,$cargo){
-			
-	    	DB::transaction(function () use ($inputs,$cargo){
-				$dep = new EntidadExterna();
-				$dep ->NombreEntidad = $inputs['NombreEntidad'];
-				$dep ->ApPaternoEntidad = $inputs['ApPaternoE'];
-				$dep ->ApMaternoEntidad = $inputs['ApMaternoE'];
-				$dep ->DepArea_Cargo_Id = $cargo;
-				$dep ->save();
-				
-	    	});
-	    $Id = DB::table('entidad_externa')->max('IdEntidadExterna');
-		return $Id;
-		}
-		
-		public function updateCargoSaliente($inputs){
-			DB::transaction(function () use ($inputs){
-				$entidadE = EntidadExterna::find($inputs['Destinatario']);
-				$entidadE -> DepArea_Cargo_Id = $inputs['CargoEmisor'];
-				$entidadE -> save();
-			});
-			
-			return true;
-		}
-				
-		public function updateAreaSaliente($inputs,$IdDTA){
-			DB::transaction(function () use ($inputs,$IdDTA){
 				$entidadE = EntidadExterna::find($inputs['Destinatario']);
 				$entidadE -> Dependencia_Area_Id = $IdDTA;
 				$entidadE -> save();

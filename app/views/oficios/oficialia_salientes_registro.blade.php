@@ -53,10 +53,10 @@
                   </div>
                   
                   <div class="section col-md-6">
-                    <label for="CargoDestinatario" class="field-label">Cargo del destinatario</label>
+                    <label for="CargoEmisor" class="field-label">Cargo del destinatario</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="CargoDestinatario" class="field prepend-icon">
-                        <select id="CargoDestinatario" name="CargoDestinatario" class="gui-input">
+                      <label for="CargoEmisor" class="field prepend-icon">
+                        <select id="CargoEmisor" name="CargoEmisor" class="gui-input">
                       		@foreach($cargos_entidades as $cargo_entidad)
                       			@if($ce == $cargo_entidad->IdCargoEntidad)
                       				<option value="{{$cargo_entidad->IdCargoEntidad}}" selected="selected">{{$cargo_entidad->NombreCargoEntidad}}</option>
@@ -65,7 +65,7 @@
                       			@endif
 							@endforeach
 						</select>
-                        <label for="CargoDestinatario" class="field-icon">
+                        <label for="CargoEmisor" class="field-icon">
                           <i class="fa fa-bookmark"></i>
                         </label>
                       </label>
@@ -76,10 +76,10 @@
                   <!-- end section -->
                 
                   <div class="section col-md-6">
-                    <label for="AreaD" class="field-label">Área del destinatario</label>
+                    <label for="AreaE" class="field-label">Área del destinatario</label>
                     <div class="smart-widget sm-right smr-120">
-                      <label for="AreaD" class="field prepend-icon">
-                        <select id="AreaD" name="AreaD" class="gui-input">
+                      <label for="AreaE" class="field prepend-icon">
+                        <select id="AreaE" name="AreaE" class="gui-input">
                       		@foreach($dep_areas as $dep_area)
 								@if($a == $dep_area->IdDependenciaArea)
 									<option value="{{$dep_area->IdDependenciaArea}}" selected="selected">{{$dep_area->NombreDependenciaArea}}</option>
@@ -88,7 +88,7 @@
 								@endif
 							@endforeach
 						</select>
-						<label for="AreaD" class="field-icon">
+						<label for="AreaE" class="field-icon">
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>
