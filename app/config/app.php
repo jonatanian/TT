@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'es',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'fallback_locale' => 'en',
+	'fallback_locale' => 'es',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -75,10 +75,10 @@ return array(
 	| This key is used by the Illuminate encrypter service and should be set
 	| to a random, 32 character string, otherwise these encrypted strings
 	| will not be safe. Please do this before deploying an application!
-	|
+	|	DQ1G8z1Msp656ljZiRaPr4czdGXqZhVH
 	*/
 
-	'key' => 'DQ1G8z1Msp656ljZiRaPr4czdGXqZhVH',
+	'key' => 'PD98CdpSe3p5Z7SCdjr34KD9fnD7W5hr',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 

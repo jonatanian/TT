@@ -90,5 +90,20 @@ class OficiosEntrantesController extends BaseController {
 			}
 		}
 	
+	public function verPDF()
+	{
+		$Correspondencia = Request::get('correspondencia');
+		
+		$OficioEntrante = Correspondencia::join('oficio_entrante','IdCorrespondencia','=','oficio_entrante.Correspondencia_Id')
+										 ->where('correspondencia.IdCorrespondencia',$Correspondencia)
+										 ->first();
+										 
+		//$pathToFile = $OficioEntrante->URLPDF;
+		$pathToFile = public_path()."\SISA_BD_v78.pdf";//$OficioEntrante->URLPDF;
+		$name = $OficioEntrante->IdOficioDependencia;
+		$headers = array('Content-Type'=>'application/pdf',);
+		
+		return Response::download($pathToFile, $name, $headers);
+	}
 }
 ?>
