@@ -206,4 +206,11 @@ Route::group(array("prefix"=>'iescmpl'), function(){
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio');
 	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio_registrar');
 });
+
+//////////////////// Funciones de manejo de documentos PDF para todos los usuarios ////////////////////
+Route::group(array("prefix"=>'correspondencia'), function(){
+	Route::get('/verOficioEntrante','OficiosEntrantesController@verPDF');
+});
+
+
 ?>
