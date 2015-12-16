@@ -180,6 +180,19 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
 	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 	
+	//Registro de nueva dependencia salientes
+		Route::get('/oficios/salientes/nueva_dependencia','InstanciasExternasController@nuevaDependenciaSaliente');
+		Route::post('/oficios/salientes/nueva_dependencia','InstanciasExternasController@registrarDependenciaSaliente');
+		//Registro de nueva área saliente
+		Route::get('/oficios/salientes/nueva_area','InstanciasExternasController@nuevaAreaSaliente');
+		Route::post('/oficios/salientes/nueva_area','InstanciasExternasController@registrarAreaSaliente');
+		//Registro de nuevo emisor saliente
+		Route::get('/oficios/salientes/nuevo_emisor','InstanciasExternasController@nuevoEmisorSaliente');
+		Route::post('/oficios/salientes/nuevo_emisor','InstanciasExternasController@registrarEmisorSaliente');
+		//Registro de nuevo cargo saliente
+		Route::get('oficios/salientes/nuevo_cargo','InstanciasExternasController@nuevoCargoSaliente');
+		Route::post('oficios/salientes/nuevo_cargo','InstanciasExternasController@registrarCargoSaliente');
+	
 	/////////////Consultas//////////////////////////////////
 	Route::get('/oficios/salientes/filtro/dependencia','OficiosSalientesController@oficialia_consultaDependencia');
 	Route::get('/oficios/salientes/filtro/estatus','OficiosSalientesController@oficialia_consultaEstatus');

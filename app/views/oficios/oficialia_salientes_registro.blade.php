@@ -47,7 +47,7 @@
                           <i class="fa fa-user"></i>
                         </label>
                       </label>
-                      <a href="{{action('InstanciasExternasController@nuevoEmisor',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevoEmisorSaliente',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -69,7 +69,7 @@
                           <i class="fa fa-bookmark"></i>
                         </label>
                       </label>
-                      <a href="{{action('InstanciasExternasController@nuevoCargo',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button  btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevoCargoSaliente',array('DependenciaD'=>1,'AreaD'=>1))}}" class="button  btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -92,7 +92,7 @@
                           <i class="fa fa-circle-o-notch"></i>
                         </label>
                       </label>
-                      <a href="{{action('InstanciasExternasController@nuevaArea',array('DependenciaE'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevaAreaSaliente',array('DependenciaE'=>1))}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
                     </div>
                     <!-- end .smart-widget section -->
                   </div>
@@ -114,7 +114,7 @@
                           <i class="fa fa-bank"></i>
                         </label>                        
                       </label>
-                      <a href="{{action('InstanciasExternasController@nuevaDependencia')}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
+                      <a href="{{action('InstanciasExternasController@nuevaDependenciaSaliente')}}" class="button btn-success"><i class="fa fa-plus-circle"></i>&nbsp;</a>
 	                </div>
                     <!-- end .smart-widget section -->
                   </div>
