@@ -37,15 +37,17 @@ class OficiosEntrantesController extends BaseController {
 				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
 			}
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
+			//$url_docpdf = Hash::make($file->getClientOriginalName());
+			$url_docpdf = $file->getClientOriginalName();
+			$path = 'oficios\\entrantes\\'.$url_docpdf;
 			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaEntrante = new Correspondencia();
 			$addDatosConfidenciales = new DatosConfidenciales();
 			$addAnexos = new Anexo();
 			$oficio = new OficioEntrante();
-			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$path)){
 				if($datos['hidden-TagsConfidenciales'] != NULL){
 					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
 				}
@@ -98,8 +100,8 @@ class OficiosEntrantesController extends BaseController {
 										 ->where('correspondencia.IdCorrespondencia',$Correspondencia)
 										 ->first();
 										 
-		//$pathToFile = $OficioEntrante->URLPDF;
-		$pathToFile = public_path()."\SISA_BD_v78.pdf";//$OficioEntrante->URLPDF;
+		$pathToFile = public_path().$OficioEntrante->URLPDF;
+		//$pathToFile = public_path()."\SISA_BD_v78.pdf";//$OficioEntrante->URLPDF;
 		$name = $OficioEntrante->IdOficioDependencia;
 		$headers = array('Content-Type'=>'application/pdf',);
 		
