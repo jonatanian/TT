@@ -8,4 +8,4 @@ php artisan db:seed --class=TipoSeeder --force
 php artisan db:seed --class=EstatusSeeder --force
 php artisan db:seed --class=CaracteresSeeder --force
 php artisan db:seed --class=GradoSeeder --force
-php artisan db:seed --class=EstatusCCPSeder --force
+php artisan db:seed --class=EstatusCCPSeeder --force
