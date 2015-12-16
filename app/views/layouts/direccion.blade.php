@@ -230,6 +230,29 @@
   {{HTML::script('avalon/js/enquire.min.js')}}
   {{HTML::script('avalon/js/application.js')}}
   
+  <!-- Time/Date Plugin Dependencies -->
+  {{HTML::script('vendor/plugins/globalize/globalize.min.js')}}
+  {{HTML::script('vendor/plugins/moment/moment.min.js')}}
+  <!-- BS Dual Listbox Plugin -->
+  {{HTML::script('vendor/plugins/duallistbox/jquery.bootstrap-duallistbox.min.js')}}
+  <!-- Bootstrap Maxlength plugin -->
+  {{HTML::script('vendor/plugins/maxlength/bootstrap-maxlength.min.js')}}
+  <!-- Select2 Plugin Plugin -->
+  {{HTML::script('vendor/plugins/select2/select2.min.js')}}
+  <!-- Typeahead Plugin -->
+  {{HTML::script('vendor/plugins/typeahead/typeahead.bundle.min.js')}}
+  <!-- TagManager Plugin -->
+  {{HTML::script('vendor/plugins/tagmanager/tagmanager.js')}}
+  <!-- DateRange Plugin -->
+  {{HTML::script('vendor/plugins/daterange/daterangepicker.min.js')}}
+  <!-- DateTime Plugin -->
+  {{HTML::script('vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js')}}
+  
+  <!-- BS Colorpicker Plugin -->
+  {{HTML::script('vendor/plugins/colorpicker/js/bootstrap-colorpicker.min.js')}}
+  <!-- MaskedInput Plugin -->
+  {{HTML::script('vendor/plugins/jquerymask/jquery.maskedinput.min.js')}}
+  
   <!-- Theme Javascript -->
   
   {{HTML::script('assets/js/utility/utility.js')}}
