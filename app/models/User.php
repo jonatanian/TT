@@ -109,12 +109,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public function rol()
 	{
-		return $this->belongsTo('Rol','Rol_Id');
+		return $this->Rol_Id;
+		//return $this->belongsTo('Rol','Rol_Id');
 	}
 	
 	public function area()
 	{
-		return $this->belongsTo('Area','Area_Id');
+		return $this->Area_Id;
+		//return $this->belongsTo('Area','Area_Id');
+	}
+	
+	public function id()
+	{
+		return $this->IdUsuario;
 	}
 
 	public function crearUsuario($inputs){
@@ -252,5 +259,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function ordenarDepartamentoSistemas()
 	{
 		return User::where('Area_Id', '=', 8)->get();
+	}
+	public function getNombreCargo()
+	{
+		$Cargo = Cargo::find($this->Cargo_Id);
+		return $Cargo->nombreCargo;
 	}
 }

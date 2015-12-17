@@ -15,5 +15,8 @@
 		{
 			return $this->hasMany('User','Cargo_Id');
 		}
+		public function nombreCargo(){
+			return $this->NombreCargo;
+		}
 	}
  ?>

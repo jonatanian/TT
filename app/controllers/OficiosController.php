@@ -28,6 +28,8 @@ class OficiosController extends BaseController {
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
 									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
 									->orderBy('oficio_saliente.IdOficioSaliente','desc')
 									->get();;
 			$dependencias = Dependencia::all();
@@ -37,13 +39,17 @@ class OficiosController extends BaseController {
 		
 	public function dsbd_salientes()
 		{
+			$IdUsuario = Auth::id();
+			$Usuario = Usuario::where('IdUsuario','=',$IdUsuario)->first();
 			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
 									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
-									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Usuario_Id','=',Auth::id())
-									->get();;
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Area_Id','=',$Usuario->area(Auth::id()))
+									->get();
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
 			return View::make('oficios.dsbd_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
@@ -51,12 +57,16 @@ class OficiosController extends BaseController {
 		
 	public function direccion_salientes()
 		{
+			$IdUsuario = Auth::id();
+			$Usuario = Usuario::where('IdUsuario','=',$IdUsuario)->first();
 			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
 									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
-									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Usuario_Id','=',Auth::id())
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Area_Id','=',$Usuario->area(Auth::id()))
 									->get();;
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
@@ -65,12 +75,16 @@ class OficiosController extends BaseController {
 		
 	public function subdireccion_salientes()
 		{
+			$IdUsuario = Auth::id();
+			$Usuario = Usuario::where('IdUsuario','=',$IdUsuario)->first();
 			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
 									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
-									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Usuario_Id','=',Auth::id())
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Area_Id','=',$Usuario->area(Auth::id()))
 									->get();;
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
@@ -79,12 +93,16 @@ class OficiosController extends BaseController {
 		
 	public function jefatura_salientes()
 		{
+			$IdUsuario = Auth::id();
+			$Usuario = Usuario::where('IdUsuario','=',$IdUsuario)->first();
 			$oficios= OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
 									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
-									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Usuario_Id','=',Auth::id())
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Area_Id','=',$Usuario->area(Auth::id()))
 									->get();;
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
@@ -98,6 +116,8 @@ class OficiosController extends BaseController {
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
 									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
 									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Usuario_Id','=',Auth::id())
 									->get();;
 			$dependencias = Dependencia::all();

@@ -31,13 +31,13 @@ class OficiosSalientesController extends BaseController {
 			$file = Input::file('DocPDF');
 			if($file == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@oficialia_nuevoOficio')->withInput();
 			}
 			
 			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
 			if($fileExt != 'pdf' or $fileExt == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@oficialia_nuevoOficio')->withInput();
 			}
 
 			$url_docpdf = Hash::make($file->getClientOriginalName());
@@ -158,13 +158,13 @@ class OficiosSalientesController extends BaseController {
 			$file = Input::file('DocPDF');
 			if($file == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@dsbd_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@dsbd_nuevoOficio')->withInput();
 			}
 			
 			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
 			if($fileExt != 'pdf' or $fileExt == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@dsbd_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@dsbd_nuevoOficio')->withInput();
 			}
 
 			$url_docpdf = Hash::make($file->getClientOriginalName());
@@ -319,13 +319,13 @@ class OficiosSalientesController extends BaseController {
 			$file = Input::file('DocPDF');
 			if($file == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@subdireccion_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@subdireccion_nuevoOficio')->withInput();
 			}
 			
 			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
 			if($fileExt != 'pdf' or $fileExt == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@subdireccion_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@subdireccion_nuevoOficio')->withInput();
 			}
 
 			$url_docpdf = Hash::make($file->getClientOriginalName());
@@ -400,13 +400,13 @@ class OficiosSalientesController extends BaseController {
 			$file = Input::file('DocPDF');
 			if($file == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@jefatura_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@jefatura_nuevoOficio')->withInput();
 			}
 			
 			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
 			if($fileExt != 'pdf' or $fileExt == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@jefatura_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@jefatura_nuevoOficio')->withInput();
 			}
 
 			$url_docpdf = Hash::make($file->getClientOriginalName());
@@ -480,13 +480,13 @@ class OficiosSalientesController extends BaseController {
 			$file = Input::file('DocPDF');
 			if($file == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@iescmpl_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@iescmpl_nuevoOficio')->withInput();
 			}
 			
 			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
 			if($fileExt != 'pdf' or $fileExt == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@iescmpl_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@iescmpl_nuevoOficio')->withInput();
 			}
 
 			$url_docpdf = Hash::make($file->getClientOriginalName());

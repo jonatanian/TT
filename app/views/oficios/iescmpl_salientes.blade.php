@@ -72,7 +72,7 @@
 					  <td>{{$oficio->Asunto}}</td>
 					  <td>{{$oficio->FechaEmision}}</td>
 					  <td>{{$oficio->NombreEstatus}}</td>
-					  <td>{{$oficio->NombreRevisor}}</td>
+					  <td>{{$oficio->getNombreRevisor($oficio->Observacion_Usuario_Id)}}</td>
                       @if($oficio->NombreEstatus == "En revisión")
 					  <td class="text-center">
                         <div class="btn-group text-center">
@@ -100,9 +100,6 @@
                           <ul class="dropdown-menu" role="menu">
                             <li>
 						      <a href="#">Corregir oficio</a>
-						    </li>
-						    <li>
-						      <a href="#">Aprobar oficio</a>
 						    </li>					    
 						    <li>
 						      <a href="#">Descargar PDF</a>
@@ -111,7 +108,6 @@
 						      <a href="#">Ver detalles</a>
 						    </li>					    
 						    <li class="divider"></li>
-						    
 						  </ul>
                         </div>
                       </td>
