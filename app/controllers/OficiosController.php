@@ -60,7 +60,7 @@ class OficiosController extends BaseController {
 									->get();;
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
-			return View::make('oficios.director_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+			return View::make('oficios.direccion_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 		}
 		
 	public function subdireccion_salientes()
@@ -74,7 +74,7 @@ class OficiosController extends BaseController {
 									->get();;
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
-			return View::make('oficios.subdirector_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+			return View::make('oficios.subdireccion_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 		}
 		
 	public function jefatura_salientes()
@@ -102,7 +102,7 @@ class OficiosController extends BaseController {
 									->get();;
 			$dependencias = Dependencia::all();
 			$estatus = Estatus::all();
-			return View::make('oficios.personal_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+			return View::make('oficios.iescmpl_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 		}
 }
 ?>

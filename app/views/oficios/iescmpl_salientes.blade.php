@@ -1,4 +1,4 @@
-@extends('layouts.direccion')
+@extends('layouts.iescmpl')
 
 @section('Topbar')
 	<!-- Start: Topbar -->
@@ -6,12 +6,12 @@
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li class="active">
-					<a href="{{action('OficiosController@direccion_salientes')}}">Oficios salientes</a>
+					<a href="{{action('OficiosController@iescmpl_salientes')}}">Oficios salientes</a>
 				</li>
 			</ul>
 		</div>
 		<div class="topbar-right hidden-xs hidden-sm">
-			<a href="{{action('OficiosSalientesController@direccion_nuevoOficio',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL))}}" class="btn btn-default btn-sm fw600 ml10">
+			<a href="{{action('OficiosSalientesController@iescmpl_nuevoOficio',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL))}}" class="btn btn-default btn-sm fw600 ml10">
 			<span class="fa fa-plus pr5"></span> Nuevo oficio saliente </a>
 		</div>
 	</header>
@@ -50,6 +50,8 @@
                       <th class="">Dependencia</th>
                       <th class="">Asunto</th>
                       <th class="">Fecha de emisión</th>
+					  <th class="">Estatus</th>
+					  <th class="">Revisión Pendiente</th>
                       <th class="text-center">Acciones para el oficio</th>
                     </tr>
                   </thead>
@@ -69,21 +71,15 @@
 					  <td>{{$oficio->AcronimoDependencia}}</td>
 					  <td>{{$oficio->Asunto}}</td>
 					  <td>{{$oficio->FechaEmision}}</td>
-                      <td class="text-center">
+					  <td>{{$oficio->NombreEstatus}}</td>
+					  <td>{{$oficio->NombreRevisor}}</td>
+                      @if($oficio->NombreEstatus == "En revisión")
+					  <td class="text-center">
                         <div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
                             <span class="caret ml50"></span>
                           </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-						      <a href="#">Turnar a</a>
-						    </li>
-						    <li>
-						      <a href="#">Enviar copia a</a>
-						    </li>
-						    <li>
-						      <a href="#">Cambiar estatus</a>
-						    </li>
+                          <ul class="dropdown-menu" role="menu">				    
 						    <li>
 						      <a href="#">Descargar PDF</a>
 						    </li>
@@ -91,23 +87,46 @@
 						      <a href="#">Ver detalles</a>
 						    </li>					    
 						    <li class="divider"></li>
-						    <li>
-						      <a href="#">Cancelar oficio</a>
-						    </li>
+						    
 						  </ul>
                         </div>
                       </td>
+					  @elseif($oficio->NombreEstatus == "Observaciones")
+                      <td class="text-center">
+                        <div class="btn-group text-center">
+                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
+                            <span class="caret ml50"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li>
+						      <a href="#">Corregir oficio</a>
+						    </li>
+						    <li>
+						      <a href="#">Aprobar oficio</a>
+						    </li>					    
+						    <li>
+						      <a href="#">Descargar PDF</a>
+						    </li>
+						    <li>
+						      <a href="#">Ver detalles</a>
+						    </li>					    
+						    <li class="divider"></li>
+						    
+						  </ul>
+                        </div>
+                      </td>
+					  @endif
                     </tr>
                     @endforeach
                   </tbody>
                 </table>
               </div>
             </div>
-		<div hidden>
+		<div id = "hide" hidden>
 				<div class="col-md-5" id="dependencia-filter">
                   <label class="field select">
-                    <select id="filter-category" name="filter-dependencia">
-                      <option value="0">Selecciones la dependencia...</option>
+                    <select id="filter-dependencia" name="filter-dependencia">
+                      <option value="0">Seleccione la dependencia...</option>
 						  @foreach($dependencias as $dependencia)
 							<option value="{{$dependencia->IdDependencia}}">{{$dependencia->NombreDependencia}}</option>
 						  @endforeach
@@ -117,13 +136,14 @@
                 </div>
 				<div class="col-md-1" id="dependencia-button">
                   <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                    
+					<p class="btn btn-success field select" id="dependencia-button">Filtrar</p>
                   </label>
                 </div>
 				
 				<div class="col-md-5" id="estatus-filter">
 					  <label class="field select" id="filter2">
-						<select id="filter-status" name="filter-estatus">
+						<select id="filter-estatus" name="filter-estatus">
 						  <option value="0">Seleccione el estado...</option>
 						  @foreach($estatus as $status)
 							<option value="{{$status->IdEstatus}}">{{$status->NombreEstatus}}</option>
@@ -134,13 +154,17 @@
 					</div>
 				<div class="col-md-1" id="estatus-button">
                   <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                    <p class="btn btn-success field select" id="estatus-button">Filtrar</a>
                   </label>
                 </div>
 				
 				<div class="col-md-5" id="identificador-filter">
 					<label for="IdOficial" class="field prepend-icon">
-						{{Form::text('IdOficial',null, array('class'=>'gui-input','id'=>'IdOficial', 'placeholder'=>'Introduce el identificador...'))}}
+						<select class="select2-single form-control gui-input" name="IdOficial" id="IdOficial">
+	                        @foreach($oficios as $oficio)
+	                        <option value="{{$oficio->IdOficioSaliente}}">{{$oficio->IdOficioSaliente}}</option>
+	                        @endforeach
+	                    </select>
 						<label for="AreaE" class="field-icon">
 							<i class="fa fa-institution"></i>
 						</label>
@@ -148,9 +172,10 @@
 				</div>
 				<div class="col-md-1" id="identificador-button">
                   <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                    <p class="btn btn-success field select" id="id-button">Filtrar</a>
                   </label>
                 </div>
+			
 		</div>
 	</div>
 @stop
@@ -192,5 +217,29 @@ $( "#filter-category" ).click(function() {
 	  $( "#select-filter").append($("#identificador-button"));
   }
 });
+
+// Init Select2 - Basic Single
+    $(".select2-single").select2({
+    	width: 400,
+    });
+
+$( "#dependencia-button" ).click(function() {
+		var dependencia = $("#filter-dependencia").val();
+		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/dependencia?dependenciaFiltro="+dependencia;
+    });
+$( "#estatus-button" ).click(function() {
+		var estatus = $("#filter-estatus").val();
+		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/estatus?estatusFiltro="+estatus;
+    });
+$( "#id-button" ).click(function() {
+		var idFiltro = $("#IdOficial").val();
+		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/id?idFiltro="+idFiltro;
+		
+    });
+// Init Select2 - Basic Single
+    $(".select2-single").select2({
+    	width: 400,
+    });
+
 </script>
 @stop

@@ -105,100 +105,55 @@
         </header>
 
         <!-- Start: Sidebar Menu -->
-        <ul class="nav sidebar-menu">
-          <li class="sidebar-label pt20">Men&uacute;</li>
-          <li>
-            <a href="http://www.sidirtel.ipn.mx" target="_blank">
-              <span class="fa fa-users"></span>
-              <span class="sidebar-title">Directorio IPN</span>
-            </a>
-          </li>
-          <li>
-            <a href="http://148.204.90.213/Directorio/Directorio.html" target="_blank">
-              <span class="glyphicon glyphicon-book"></span>
-              <span class="sidebar-title">Directorio CMPL</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{action('SIGController@SIG_index')}}" target="_blank">
-              <span class="glyphicon glyphicon-book"></span>
-              <span class="sidebar-title">SIG</span>
-            </a>
-          </li>
-          
-          <!-- sidebar resources -->
-          <li class="sidebar-label pt15">Correspondencia</li>
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-envelope"></span>
-              <span class="sidebar-title">Oficios</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
-                  <span class="fa fa-send-o"></span> Oficios entrantes </a>
+        <nav role="navigation" class="widget-body">
+	        <ul class="nav sidebar-menu acc-menu">
+	          <li class="sidebar-label pt20">Men&uacute;</li>
+	          <li>
+                <a href="{{action('AdminController@dsbd_index')}}">
+                  <span class="glyphicon glyphicon-home"></span>
+                  <span class="sidebar-title">Página principal de SISA</span>
+                </a>
               </li>
-              <li>
-                  <a href="{{action('OficiosController@oficialia_enviados')}}">
-                  <span class="fa fa-send"></span> Oficios salientes </a>
-              </li>
-              <li>
-                  <a href="{{action('OficiosController@corregir_oficio')}}">
-                  <span class="fa fa-send"></span> Oficios con observaciones </a>
-              </li>
-			  <li>
-                  <a href="{{action('OficiosController@personal_registrar_anexos')}}">
-                  <span class="fa fa-send"></span> Registrar anexos </a>
-              </li>
-            </ul>
-          </li>  
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-envelope-o"></span>
-              <span class="sidebar-title">Memorándums</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="#">
-                  <span class="fa fa-send"></span>Memos recibidos </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="fa fa-send-o"></span>Memos enviados </a>
-              </li>
-              <li>
-            </ul>
-          </li>
-
-          <!-- sidebar bullets -->
-          <li class="sidebar-label pt20">CMPL</li>
-          <li class="sidebar-proj">
-            <a href="#projectOne">
-              <span class="fa fa-dot-circle-o text-primary"></span>
-              <span class="sidebar-title">Avisos</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectTwo">
-              <span class="fa fa-dot-circle-o text-info"></span>
-              <span class="sidebar-title">Galería fotográfica</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectTwo">
-              <span class="fa fa-dot-circle-o text-danger"></span>
-              <span class="sidebar-title">Cursos</span>
-            </a>
-          </li>
-          <li class="sidebar-proj">
-            <a href="#projectThree">
-              <span class="fa fa-dot-circle-o text-warning"></span>
-              <span class="sidebar-title">Material de apoyo</span>
-            </a>
-          </li>
-        </ul>  
+	          <li>
+	            <a href="http://www.sidirtel.ipn.mx" target="_blank">
+	              <span class="fa fa-users"></span>
+	              <span class="sidebar-title">Directorio IPN</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="http://148.204.90.213/Directorio/Directorio.html" target="_blank">
+	              <span class="glyphicon glyphicon-book"></span>
+	              <span class="sidebar-title">Directorio CMPL</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="{{action('SIGController@SIG_index')}}">
+	              <span class="glyphicon glyphicon-book"></span>
+	              <span class="sidebar-title">SIG</span>
+	            </a>
+	          </li>
+	          
+	          <!-- sidebar resources -->
+	          <li class="sidebar-label pt15">Control de correspondencia</li>
+	          <li>
+	            <a href="javascript:;">
+	              <span class="fa fa-folder-open"></span>
+	              <span class="sidebar-title">Oficios</span>
+	              <span class="caret"></span>
+	            </a>
+	            <ul class="nav sub-nav acc-menu">
+	              <li>
+	                  <a href="">
+	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
+	              </li>
+	              <li>
+	                  <a href="{{action('OficiosController@subdireccion_salientes')}}">
+	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
+	              </li>
+	            </ul>
+	          </li>
+	        </ul>
+	    </nav> 
 	      <!-- Start: Sidebar Collapse Button -->
 	      <div class="sidebar-toggle-mini">
 	        <a href="#">
@@ -214,7 +169,7 @@
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-
+		@yield('Topbar')
       <!-- Begin: Content -->
       <section id="content" class="animated fadeIn">
         @if(Session::has('msg'))
@@ -305,8 +260,6 @@
     // Init Theme Core    
     Core.init();
 
-    // Init Demo JS  
-    Demo.init();
 
   });
   </script>

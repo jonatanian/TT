@@ -155,7 +155,11 @@
 				
 				<div class="col-md-5" id="identificador-filter">
 					<label for="IdOficial" class="field prepend-icon">
-						{{Form::text('IdOficial',null, array('class'=>'gui-input','id'=>'IdOficial', 'placeholder'=>'Introduce el identificador...'))}}
+						<select class="select2-single form-control gui-input" name="IdOficial" id="IdOficial">
+	                        @foreach($oficios as $oficio)
+	                        <option value="{{$oficio->IdOficioSaliente}}">{{$oficio->IdOficioSaliente}}</option>
+	                        @endforeach
+	                    </select>
 						<label for="AreaE" class="field-icon">
 							<i class="fa fa-institution"></i>
 						</label>
@@ -163,7 +167,7 @@
 				</div>
 				<div class="col-md-1" id="identificador-button">
                   <label class="field select">
-                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                    <p class="btn btn-success field select" id="id-button">Filtrar</a>
                   </label>
                 </div>
 		</div>
@@ -207,5 +211,9 @@ $( "#filter-category" ).click(function() {
 	  $( "#select-filter").append($("#identificador-button"));
   }
 });
+// Init Select2 - Basic Single
+    $(".select2-single").select2({
+    	width: 400,
+    });
 </script>
 @stop
