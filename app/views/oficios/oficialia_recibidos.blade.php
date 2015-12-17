@@ -17,6 +17,11 @@
 	</header>
 	<!-- End: Topbar -->
 @stop
+
+@section('ContentClass')
+	<section id="content" class="animated fadeIn">
+@stop
+
 @section('content')
 	<div class="panel">  
 	  
@@ -53,7 +58,7 @@
                       <th class="">Fecha de recepción</th>
                       <th class="">Estatus</th>
                       <th class="">Responsable actual</th>
-                      <th class="text-center">Acciones para el oficio</th>
+                      <th class="text-center">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -87,7 +92,7 @@
 						      <a href="{{action('OficiosEntrantesController@verPDF',array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="#">Ver detalles</a>
+						      <a href="{{action('OficiosEntrantesController@oficialia_verDetalles',array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
 						    </li>
 						  </ul>
                         </div>
