@@ -17,7 +17,18 @@
 				$correspondencia->FechaEntrega = $inputs['FechaRecepcion'];
 				$correspondencia->Asunto = $inputs['Asunto'];
 				$correspondencia->URLPDF = $subir;
-				$correspondencia->Estatus_Id = 101;
+				if($inputs['TipoDeOficio'] == 3)
+				{
+					$correspondencia->Estatus_Id = 101;
+				}
+				if($inputs['TipoDeOficio'] == 2)
+				{
+					$correspondencia->Estatus_Id = 201;
+				}
+				if($inputs['TipoDeOficio'] == 1)
+				{
+					$correspondencia->Estatus_Id = 301;
+				}
 				$correspondencia->Prioridad_Id = $inputs['PrioridadOE'];
 				$correspondencia->Caracter_Id = $inputs['TipoDeOficio'];
 				

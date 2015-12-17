@@ -170,12 +170,12 @@
 	            </a>
 	            <ul class="nav sub-nav acc-menu">
 	              <li>
-	                  <a href="#">
-	                  <span class="fa fa-folder"></span> Memos personales </a>
+	                  <a href="{{action('MemosController@oficialia_recibidos')}}">
+	                  <span class="fa fa-folder"></span> Memos recibidos</a>
 	              </li>
 	              <li>
-	                  <a href="#">
-	                  <span class="fa fa-folder-o"></span> Memos generales </a>
+	                  <a href="{{action('MemosController@oficialia_enviados')}}"> 
+	                  <span class="fa fa-folder-o"></span> Memos enviados </a>
 	              </li>
 	            </ul>
 	          </li>
@@ -202,7 +202,8 @@
       <!-- End: Topbar -->
 	  
       <!-- Begin: Content -->
-      <section id="content" class="animated fadeIn">
+      @yield('ContentClass')
+            
       	@if(Session::has('msg'))
       		<div class="alert alert-success alert-dismissable">
 			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
@@ -309,9 +310,7 @@
   <!-- Theme Javascript -->
   
   {{HTML::script('assets/js/utility/utility.js')}}
-  
   {{HTML::script('assets/js/demo/demo.js')}}
-  
   {{HTML::script('assets/js/main.js')}}
   
   @yield('scripts')
