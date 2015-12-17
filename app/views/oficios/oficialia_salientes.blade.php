@@ -81,11 +81,19 @@
                             <span class="caret ml50"></span>
                           </button>
                           <ul class="dropdown-menu" role="menu">
+							@if(Auth::id() == $oficio->Observacion_Usuario_Id)
+								<li>
+								  <a href="#">Observaciones</a>
+								</li>
+								<li>
+								  <a href="#">Aprobar</a>
+								</li>
+							@endif
 						    <li>
-						      <a href="#">Descargar PDF</a>
+						      <a href="{{action('OficiosSalientesController@verPDF', array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="#">Ver detalles</a>
+						      <a href="{{action('OficiosSalientesController@oficialia_verDetalles', array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
 						    </li>					    
 						    <li class="divider"></li>
 						  </ul>
@@ -107,10 +115,10 @@
 								</li>
 							@endif
 						    <li>
-						      <a href="#">Descargar PDF</a>
+						      <a href="{{action('OficiosSalientesController@verPDF', array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="#">Ver detalles</a>
+						      <a href="{{action('OficiosSalientesController@oficialia_verDetalles', array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
 						    </li>					    
 						    <li class="divider"></li>
 						    
@@ -128,10 +136,10 @@
 						      <a href="#">Corregir oficio</a>
 						    </li>					    
 						    <li>
-						      <a href="#">Descargar PDF</a>
+						      <a href="{{action('OficiosSalientesController@verPDF', array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="#">Ver detalles</a>
+						      <a href="{{action('OficiosSalientesController@oficialia_verDetalles', array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
 						    </li>					    
 						    <li class="divider"></li>
 						  </ul>
@@ -150,10 +158,10 @@
 								</li>
 							@endif
 						    <li>
-						      <a href="#">Descargar PDF</a>
+						      <a href="{{action('OficiosSalientesController@verPDF', array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="#">Ver detalles</a>
+						      <a href="{{action('OficiosSalientesController@oficialia_verDetalles', array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
 						    </li>					    
 						    <li class="divider"></li>
 						    

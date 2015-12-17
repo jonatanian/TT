@@ -145,6 +145,7 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	//Vista de los detalles de un oficio recibido
 	Route::get('/oficios/entrantes/detalles','OficiosEntrantesController@oficialia_verDetalles');
 	
+	
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
 		//Registro de nueva dependencia
@@ -160,6 +161,9 @@ Route::group(array("prefix"=>'oficialia'), function(){
 		Route::get('oficios/entrantes/nuevo_cargo','InstanciasExternasController@nuevoCargo');
 		Route::post('oficios/entrantes/nuevo_cargo','InstanciasExternasController@registrarCargo');
 		Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
+		
+	//Vista de los detalles de un oficio saliente
+	Route::get('/oficios/entrantes/detalles','OficiosSalientesController@oficialia_verDetalles');
 	
 	//Funciones de Oficios Salientes
 	Route::get('/oficios/salientes','OficiosController@oficialia_salientes');
@@ -228,6 +232,7 @@ Route::group(array("prefix"=>'iescmpl'), function(){
 //////////////////// Funciones de manejo de documentos PDF para todos los usuarios ////////////////////
 Route::group(array("prefix"=>'correspondencia'), function(){
 	Route::get('/verOficioEntrante','OficiosEntrantesController@verPDF');
+	Route::get('/verOficioSaliente','OficiosSalientesController@verPDF');
 });
 
 
