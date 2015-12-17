@@ -1,38 +1,47 @@
 @extends('layouts.oficialia')
 
-@section('content')
-	<div class="panel">
-	  <!-- Panel Heading -->
-	  <div class="panel-heading"><h2>Memorándums recibidos</h2></div>
-	  <div class="panel-menu table-responsive">
-		  <div class="form-group">
-			<table class="table table-striped">
-				<tr>
-					<td><a href="{{action('MemosController@oficialia_nuevo_recibido')}}" class="btn btn-success">Nuevo Memorándum</a></td>
-					<form class="form-horizontal">
-					<td><label for="inputEmail3" class="col-sm-9 control-label">Buscar memos:</label></td>
-					<td><input type="text" class="form-control" id="inputEmail3" placeholder="Ingrese búsqueda..."></td>
-					<td><label for="inputEmail3" class="col-sm-2 control-label">Por:</label></td>
-					<td><select class="form-control">
-						   <option value="1">Consecutivo</option>
-						   <option value="2">Pendientes</option>
-						   <option value="3">Atendidos</option>
-						   <option value="4">Id. de memo</option>
-						   <option value="5">Fecha de emisión</option>
-						   <option value="6">Fecha de recepción</option>
-						   <option value="7">Dirigido a</option>
-						   <option value="8">Emisor</option>
-						   <option value="9">Dependencia</option>
-						   <option value="10">Estatus</option>
-						</select> 
-					<td>
-					<td><button class="btn btn-success">Buscar</button></td>
-					</form>
-				</tr>
-			</table>
-		  </div>
-      </div>
+@section('Topbar')
+<header id="topbar" class="ph10">
+		<div class="topbar-left">
+			<ul class="nav nav-list nav-list-topbar pull-left">
+				<li class="active">
+					<a href="{{action('MemosController@oficialia_recibidos')}}">Memorándums recibidos</a>
+				</li>
+			</ul>
+		</div>
+		<div class="topbar-right hidden-xs hidden-sm">
+			<a href="{{action('MemosController@oficialia_nuevo_recibido',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL))}}" class="btn btn-default btn-sm fw600 ml10">
+			<span class="fa fa-plus pr5"></span> Nuevo Memorándum </a>
+		</div>
+	</header>
+	<!-- End: Topbar -->
+@stop
 
+@section('ContentClass')
+	<section id="content" class="animated fadeIn">
+@stop
+
+@section('content')
+	<div class="panel">  
+	  
+	  <div class="panel-menu p12 admin-form theme-primary">
+              <div class="row">
+                <div class="col-md-5">
+                  <label class="field select">
+                    <select id="filter-category" name="filter-category">
+                      <option value="0">Filtrar por...</option>
+                      <option value="1">Dependencia</option>
+                      <option value="2">Estátus</option>
+                      <option value="3">Identificador oficial</option>
+                    </select>
+                    <i class="arrow"></i>
+                  </label>
+                </div>
+                
+                <div id="select-filter">
+@stop
+
+@section('content')
 	  <!-- Panel Body with Table (no padding) -->
 	  <div class="panel-body pn">
 	      <table class="table table-striped">
