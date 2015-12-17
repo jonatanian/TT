@@ -163,7 +163,7 @@ Route::group(array("prefix"=>'oficialia'), function(){
 		Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 		
 	//Vista de los detalles de un oficio saliente
-	Route::get('/oficios/entrantes/detalles','OficiosSalientesController@oficialia_verDetalles');
+	Route::get('/oficios/salientes/detalles','OficiosSalientesController@oficialia_verDetalles');
 	
 	//Funciones de Oficios Salientes
 	Route::get('/oficios/salientes','OficiosController@oficialia_salientes');
