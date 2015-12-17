@@ -151,7 +151,7 @@
 	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
 	              </li>
 	              <li>
-	                  <a href="#">
+	                  <a href="OficiosController@direccion_salientes">
 	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
 	              </li>
 	            </ul>

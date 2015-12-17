@@ -1,4 +1,4 @@
-@extends('layouts.oficialia')
+@extends('layouts.direccion')
 
 @section('Topbar')
 	<!-- Start: Topbar -->
@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="topbar-right hidden-xs hidden-sm">
-			<a href="{{action('OficiosSalientesController@oficialia_nuevoOficio')}}" class="btn btn-default btn-sm fw600 ml10">
+			<a href="{{action('OficiosSalientesController@direccion_nuevoOficio')}}" class="btn btn-default btn-sm fw600 ml10">
 			<span class="fa fa-plus pr5"></span> Nuevo oficio saliente</a>
 		</div>
 	</header>

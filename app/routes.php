@@ -129,6 +129,7 @@ Route::group(array("prefix"=>'direccion'), function(){
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@direccion_nuevoOficio');
 	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@direccion_nuevoOficio_registrar');
+	
 });
 
 
@@ -205,6 +206,11 @@ Route::group(array("prefix"=>'iescmpl'), function(){
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio');
 	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio_registrar');
+	
+	Route::get('/oficios/salientes','OficiosController@iescmpl_salientes');
+	//Wizard: Registro de oficios entrantes
+	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@iescmpl_nuevoOficio');
+	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@iescmpl_nuevoOficio_registrar');
 });
 
 //////////////////// Funciones de manejo de documentos PDF para todos los usuarios ////////////////////

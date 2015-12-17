@@ -160,7 +160,11 @@
 				
 				<div class="col-md-5" id="identificador-filter">
 					<label for="IdOficial" class="field prepend-icon">
-						{{Form::text('IdOficial',null, array('class'=>'gui-input','id'=>'IdOficial', 'placeholder'=>'Introduce el identificador...'))}}
+						<select class="select2-single form-control gui-input" name="IdOficial" id="IdOficial">
+	                        @foreach($oficios as $oficio)
+	                        <option value="{{$oficio->IdOficioSaliente}}">{{$oficio->IdOficioSaliente}}</option>
+	                        @endforeach
+	                    </select>
 						<label for="AreaE" class="field-icon">
 							<i class="fa fa-institution"></i>
 						</label>
@@ -214,6 +218,11 @@ $( "#filter-category" ).click(function() {
   }
 });
 
+// Init Select2 - Basic Single
+    $(".select2-single").select2({
+    	width: 400,
+    });
+
 $( "#dependencia-button" ).click(function() {
 		var dependencia = $("#filter-dependencia").val();
 		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/dependencia?dependenciaFiltro="+dependencia;
@@ -225,8 +234,12 @@ $( "#estatus-button" ).click(function() {
 $( "#id-button" ).click(function() {
 		var idFiltro = $("#IdOficial").val();
 		window.location = "/SISACMPL/oficialia/oficios/salientes/filtro/id?idFiltro="+idFiltro;
+		
     });
-
+// Init Select2 - Basic Single
+    $(".select2-single").select2({
+    	width: 400,
+    });
 
 </script>
 @stop

@@ -90,6 +90,7 @@ class OficiosSalientesController extends BaseController {
 									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
 									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('IdDependencia','=',$dependencia)
 									->get();;
 			$dependencias = Dependencia::all();
@@ -105,6 +106,7 @@ class OficiosSalientesController extends BaseController {
 									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
 									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('Estatus_Id','=',$estatus)
 									->get();;
 			$dependencias = Dependencia::all();
@@ -119,6 +121,7 @@ class OficiosSalientesController extends BaseController {
 									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
 									->join('dependencia_tiene_area','entidad_externa.Dependencia_Area_Id','=','dependencia_tiene_area.IdDependenciaTieneArea')
 									->join('dependencia','dependencia_tiene_area.Dependencia_Id','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
 									->orderBy('oficio_saliente.IdOficioSaliente','desc')->where('IdOficioSaliente','=',$id)
 									->get();;
 			$dependencias = Dependencia::all();
@@ -235,13 +238,13 @@ class OficiosSalientesController extends BaseController {
 			$file = Input::file('DocPDF');
 			if($file == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@direccion_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@direccion_nuevoOficio')->withInput();
 			}
 			
 			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
 			if($fileExt != 'pdf' or $fileExt == NULL){
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
-				return Redirect::action('OficiosEntrantesController@direccion_nuevoOficio')->withInput();
+				return Redirect::action('OficiosSalientesController@direccion_nuevoOficio')->withInput();
 			}
 
 			$url_docpdf = Hash::make($file->getClientOriginalName());
@@ -450,7 +453,7 @@ class OficiosSalientesController extends BaseController {
 		}
 		
 		/////////////////////Personal CMPL////////////////////////////////
-		public function personal_nuevoOficio()
+		public function iescmpl_nuevoOficio()
 		{
 			$of = new OficioSaliente();
 			$idOficio = $of->getIdOficio();
@@ -466,7 +469,7 @@ class OficiosSalientesController extends BaseController {
 			$a = Request::get('AreaE');
 			$e = Request::get('EntidadE');
 			$ce = Request::get('CargoEntidadE');
-			return View::make('oficios.personal_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
+			return View::make('oficios.iescmpl_salientes_registro',array('dependencias'=>$dependencias,'dep_areas'=>$dep_areas,'entidades_externas'=>$entidades_externas,'cargos_entidades'=>$cargos_entidades,'usuarios'=>$usuarios, 'dep'=>$dep, 'a'=>$a,'e'=>$e,'ce'=>$ce,'OEs'=>$oficiosEntrantes,'idOficio' => $idOficio,'prioridades'=>$prioridades,'caracteres'=>$caracteres));
 		}
 		
 	public function iescmpl_nuevoOficio_registrar()
@@ -508,10 +511,10 @@ class OficiosSalientesController extends BaseController {
 				}
 				else{					
 					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
-					if($DepTieneArea->DepArea_Id != $datos['AreaD']){
+					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
 						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
 					}
-					if($DepTieneArea->Dependencia_Id != $datos['DependenciaD']){
+					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}
