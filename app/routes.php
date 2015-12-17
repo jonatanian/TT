@@ -194,6 +194,7 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	//Wizard: Registro 
 	Route::get('/memos/entrantes/nuevo','MemosController@oficialia_nuevo_recibido');
 	Route::get('/memos/salientes/nuevo','MemosController@oficialia_nuevo_saliente');
+	//Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
 });
 
 Route::group(array("prefix"=>'iescmpl'), function(){
