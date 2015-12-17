@@ -150,6 +150,7 @@
 			$Id = DB::table('correspondencia')->max('IdCorrespondencia');
 			return $Id;
 		}
+
 	}
 	
 	

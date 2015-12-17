@@ -109,7 +109,17 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public function rol()
 	{
-		return $this->belongsTo('Rol','Rol_Id');
+		return $this->Rol_Id;
+	}
+	
+	public function id()
+	{
+		return $this->IdUsuario;
+	}
+	
+	public function area()
+	{
+		return $this->Area_Id;
 	}
 
 
@@ -139,6 +149,14 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
 	public function getNombreCompleto()
 	{
 		return $this->Nombre.' '.$this->ApPaterno.' '.$this->ApMaterno;
+	}
+	
+	public function getNombreCargo()
+	{
+		$Cargo = Cargo::find($this->Cargo_Id);
+		if($this->Rol_Id == 2)
+			return "Oficialía de Partes";
+		return $Cargo->nombreCargo();
 	}
 	
 	public function getNombreCompletoPMN()

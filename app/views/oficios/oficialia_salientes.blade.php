@@ -72,14 +72,40 @@
 					  <td>{{$oficio->Asunto}}</td>
 					  <td>{{$oficio->FechaEmision}}</td>
 					  <td>{{$oficio->NombreEstatus}}</td>
-					  <td>{{$oficio->NombreRevisor}}</td>
+					  <!--<td>{{$oficio->getNombreRevisor($oficio->Observacion_Usuario_Id)}}</td>-->
+					  <td>{{$oficio->getCargoRevisor($oficio->Observacion_Usuario_Id)}}</td>
                       @if($oficio->NombreEstatus == "En revisión")
 					  <td class="text-center">
                         <div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
                             <span class="caret ml50"></span>
                           </button>
-                          <ul class="dropdown-menu" role="menu">				    
+                          <ul class="dropdown-menu" role="menu">
+						    <li>
+						      <a href="#">Descargar PDF</a>
+						    </li>
+						    <li>
+						      <a href="#">Ver detalles</a>
+						    </li>					    
+						    <li class="divider"></li>
+						  </ul>
+                        </div>
+                      </td>
+					  @elseif($oficio->NombreEstatus == "Visto")
+					  <td class="text-center">
+                        <div class="btn-group text-center">
+                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
+                            <span class="caret ml50"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+							@if(Auth::id() == $oficio->Observacion_Usuario_Id)
+								<li>
+								  <a href="#">Observaciones</a>
+								</li>
+								<li>
+								  <a href="#">Aprobar</a>
+								</li>
+							@endif
 						    <li>
 						      <a href="#">Descargar PDF</a>
 						    </li>
@@ -91,7 +117,7 @@
 						  </ul>
                         </div>
                       </td>
-					  @else
+					  @elseif($oficio->NombreEstatus == "Observaciones" && $oficio->IdUsuario == Auth::id())
                       <td class="text-center">
                         <div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
@@ -100,10 +126,29 @@
                           <ul class="dropdown-menu" role="menu">
                             <li>
 						      <a href="#">Corregir oficio</a>
+						    </li>					    
+						    <li>
+						      <a href="#">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="#">Aprobar oficio</a>
+						      <a href="#">Ver detalles</a>
 						    </li>					    
+						    <li class="divider"></li>
+						  </ul>
+                        </div>
+                      </td>
+					  @else
+                      <td class="text-center">
+                        <div class="btn-group text-center">
+                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
+                            <span class="caret ml50"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+							@if($oficio->NombreEstatus == "Aprobado")
+								<li>
+								  <a href="#">Subir acuse</a>
+								</li>
+							@endif
 						    <li>
 						      <a href="#">Descargar PDF</a>
 						    </li>
