@@ -202,7 +202,8 @@
       <!-- End: Topbar -->
 	  
       <!-- Begin: Content -->
-      <section id="content" class="animated fadeIn">
+      @yield('ContentClass')
+            
       	@if(Session::has('msg'))
       		<div class="alert alert-success alert-dismissable">
 			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
@@ -309,9 +310,7 @@
   <!-- Theme Javascript -->
   
   {{HTML::script('assets/js/utility/utility.js')}}
-  
   {{HTML::script('assets/js/demo/demo.js')}}
-  
   {{HTML::script('assets/js/main.js')}}
   
   @yield('scripts')

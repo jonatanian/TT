@@ -142,6 +142,9 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	//Vista de oficios recibidos
 	Route::get('/oficios/entrantes','OficiosController@oficialia_recibidos');
 	
+	//Vista de los detalles de un oficio recibido
+	Route::get('/oficios/entrantes/detalles','OficiosEntrantesController@oficialia_verDetalles');
+	
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
 		//Registro de nueva dependencia
