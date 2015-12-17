@@ -260,10 +260,10 @@
               <div class="message-header">
                 <img src="{{asset('images/placeholder.png')}}" class="img-responsive mw40 pull-left mr20">
                 <div class="pull-right mt5 clearfix">
-                  <a href="#"class="btn btn-success">Descargar PDF</a>
+                  <a href="{{action('OficiosEntrantesController@verPDF',array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank" class="btn btn-success">Descargar PDF</a>
                 </div>
                 <h4 class="mt15 mb5">De: {{$oficio->ApPaternoEntidad}} {{$oficio->ApMaternoEntidad}} {{$oficio->NombreEntidad}}</h4>
-                @if($oficio->NombreCargoEntidad = "Director" || $oficio->NombreCargoEntidad == 'Directora')
+                @if($oficio->NombreCargoEntidad == "Director" || $oficio->NombreCargoEntidad == 'Directora')
                 	<small class="text-muted clearfix">{{$oficio->NombreCargoEntidad}} - {{$oficio->NombreDependencia}}</small>
                 @else
                 	<small class="text-muted clearfix">{{$oficio->NombreCargoEntidad}} del área de {{$oficio->NombreDependenciaArea}} - {{$oficio->NombreDependencia}}</small>
@@ -283,7 +283,7 @@
                     	<h4 class="mt15 mb5">Para: {{$oficio->ApPaterno}} {{$oficio->ApMaterno}} {{$oficio->Nombre}}, {{$oficio->NombreCargo}} de {{$oficio->NombreArea}}</h4>
                     @endif
                   </div>
-                  <div class="panel-body panel-scroller scroller-sm scroller-success scroller-pn pn">
+                  <div class="panel-body">
                     <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last">
                       <thead>
                         <tr class="hidden">
@@ -295,21 +295,21 @@
                       <tbody>
                         <tr>
                           <td>
-                            <span class="fa fa-desktop text-warning"></span>
+                            <span class="fa fa-calendar text-warning"></span>
                           </td>
                           <td>Fecha de emisión</td>
                           <td>{{$oficio->FechaEmision}}</td>
                         </tr>
                         <tr>
                           <td>
-                            <span class="fa fa-microphone text-primary"></span>
+                            <span class="fa fa-calendar-o text-primary"></span>
                           </td>
                           <td>Fecha de recepción</td>
                           <td>{{$oficio->FechaEntrega}}</td>
                         </tr>
                         <tr>
                           <td>
-                            <span class="fa fa-newspaper-o text-info"></span>
+                            <span class="fa fa-pencil text-info"></span>
                           </td>
                           <td>&iquest;Requiere respuesta?</td>
                           @if($oficio->RequiereRespuesta == true)
@@ -338,28 +338,28 @@
                         @endif
                         <tr>
                           <td>
-                            <span class="fa fa-bank text-alert"></span>
+                            <span class="fa fa-tag text-dark light"></span>
                           </td>
                           <td>Prioridad</td>
                           <td>{{$oficio->NombrePrioridad}}</td>
                         </tr>
                         <tr>
                           <td>
-                            <span class="fa fa-bank text-alert"></span>
+                            <span class="fa fa-file-archive-o text-danger"></span>
                           </td>
                           <td>Tipo de información del oficio</td>
                           <td>{{$oficio->NombreCaracter}}</td>
                         </tr>
                         <tr>
                           <td>
-                            <span class="fa fa-bank text-alert"></span>
+                            <span class="fa fa-lock text-alert"></span>
                           </td>
                           <td>Datos confidenciales</td>
                           <td>{{$oficio->Dato}}</td>
                         </tr>
                         <tr>
                           <td>
-                            <span class="fa fa-bank text-alert"></span>
+                            <span class="fa fa-paperclip text-system"></span>
                           </td>
                           <td>Anexos</td>
                           <td>{{$oficio->Anexo}}</td>
