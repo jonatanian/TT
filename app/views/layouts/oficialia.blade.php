@@ -170,12 +170,12 @@
 	            </a>
 	            <ul class="nav sub-nav acc-menu">
 	              <li>
-	                  <a href="#">
-	                  <span class="fa fa-folder"></span> Memos personales </a>
+	                  <a href="{{action('MemosController@oficialia_recibidos')}}">
+	                  <span class="fa fa-folder"></span> Memos recibidos</a>
 	              </li>
 	              <li>
-	                  <a href="#">
-	                  <span class="fa fa-folder-o"></span> Memos generales </a>
+	                  <a href="{{action('MemosController@oficialia_enviados')}}"> 
+	                  <span class="fa fa-folder-o"></span> Memos enviados </a>
 	              </li>
 	            </ul>
 	          </li>

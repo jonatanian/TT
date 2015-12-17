@@ -186,6 +186,14 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	Route::get('/oficios/salientes/filtro/dependencia','OficiosSalientesController@oficialia_consultaDependencia');
 	Route::get('/oficios/salientes/filtro/estatus','OficiosSalientesController@oficialia_consultaEstatus');
 	Route::get('/oficios/salientes/filtro/id','OficiosSalientesController@oficialia_consultaId');
+
+	/////////////////Memorandums//////////////////////////////7
+	Route::get('/memos/recibidos','MemosController@oficialia_recibidos');
+	Route::get('/memos/enviados','MemosController@oficialia_enviados');
+
+	//Wizard: Registro 
+	Route::get('/memos/entrantes/nuevo','MemosController@oficialia_nuevo_recibido');
+	Route::get('/memos/salientes/nuevo','MemosController@oficialia_nuevo_saliente');
 });
 
 Route::group(array("prefix"=>'iescmpl'), function(){
