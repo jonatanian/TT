@@ -84,7 +84,7 @@
 						      <a href="#">Enviar copia a</a>
 						    </li>
 						    <li>
-						      <a href="{{action('OficiosEntrantesController@verPDF',array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Ver copia digital (PDF)</a>
+						      <a href="{{action('OficiosEntrantesController@verPDF',array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
 						      <a href="#">Ver detalles</a>

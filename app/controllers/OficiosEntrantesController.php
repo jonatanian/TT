@@ -36,16 +36,25 @@ class OficiosEntrantesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
+			
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
+			}
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
+			//$url_docpdf = Hash::make($file->getClientOriginalName());
+			
+			$path = 'oficios\\entrantes\\'.$url_docpdf;
 			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaEntrante = new Correspondencia();
 			$addDatosConfidenciales = new DatosConfidenciales();
 			$addAnexos = new Anexo();
 			$oficio = new OficioEntrante();
-			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaEntrante->nuevaCorrespondenciaEntrante($datos,$path)){
 				if($datos['hidden-TagsConfidenciales'] != NULL){
 					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
 				}
@@ -98,12 +107,11 @@ class OficiosEntrantesController extends BaseController {
 										 ->where('correspondencia.IdCorrespondencia',$Correspondencia)
 										 ->first();
 										 
-		//$pathToFile = $OficioEntrante->URLPDF;
-		$pathToFile = public_path()."\SISA_BD_v78.pdf";//$OficioEntrante->URLPDF;
-		$name = $OficioEntrante->IdOficioDependencia;
+		$pathToFile = public_path().'/'.$OficioEntrante->URLPDF;
+		$name = 'OficioEntrante_'.$OficioEntrante->IdOficioEntrante.'_'.$OficioEntrante->FechaEntrega.'.pdf';
 		$headers = array('Content-Type'=>'application/pdf',);
 		
-		return Response::download($pathToFile, $name, $headers);
+		return Response::download($pathToFile,$name, $headers);
 	}
 }
 ?>
