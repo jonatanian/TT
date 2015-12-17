@@ -34,6 +34,7 @@
           <!-- Message Menu -->
           <div class="list-group list-group-links mt20">
             <div class="list-group-header"> Estado actual del oficio </div>
+            
             <!-- Oficios entrantes públicos -->
             @if($oficio->Caracter_Id == 3)
               	@if($oficio->IdEstatus == 101)
@@ -87,6 +88,7 @@
 	                </div>
 		        @endif
             @endif
+            
             <!-- Oficios entrantes confidenciales -->
             @if($oficio->Caracter_Id == 2)
               	@if($oficio->IdEstatus == 201)
@@ -258,7 +260,7 @@
               <div class="message-header">
                 <img src="{{asset('images/placeholder.png')}}" class="img-responsive mw40 pull-left mr20">
                 <div class="pull-right mt5 clearfix">
-                  <a class="btn btn-success">Descargar PDF</a>
+                  <a href="#"class="btn btn-success">Descargar PDF</a>
                 </div>
                 <h4 class="mt15 mb5">De: {{$oficio->ApPaternoEntidad}} {{$oficio->ApMaternoEntidad}} {{$oficio->NombreEntidad}}</h4>
                 @if($oficio->NombreCargoEntidad = "Director" || $oficio->NombreCargoEntidad == 'Directora')

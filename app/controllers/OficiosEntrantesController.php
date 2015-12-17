@@ -125,7 +125,7 @@ class OficiosEntrantesController extends BaseController {
 									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
 									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
 									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
-									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.IdDatos')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
 									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
 									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
 									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
@@ -139,12 +139,12 @@ class OficiosEntrantesController extends BaseController {
 									->first();
 		}
 		
-		if($isDatosConfidenciales != NULL && $isAnexos == NULL)
+		elseif(($isDatosConfidenciales != NULL) && ($isAnexos == NULL))
 		{
 			$oficio = OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
 									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
-									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.IdDatos')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
 									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
 									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
 									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
@@ -158,7 +158,7 @@ class OficiosEntrantesController extends BaseController {
 									->first();
 		}
 		
-		if($isDatosConfidenciales == NULL && $isAnexos != NULL)
+		elseif($isDatosConfidenciales == NULL && $isAnexos != NULL)
 		{
 			$oficio = OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
@@ -177,7 +177,7 @@ class OficiosEntrantesController extends BaseController {
 									->first();
 		}
 		
-		if($isDatosConfidenciales == NULL && $isAnexos == NULL)
+		else//($isDatosConfidenciales == NULL && $isAnexos == NULL)
 		{
 			$oficio = OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
 									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
