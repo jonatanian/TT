@@ -21,6 +21,11 @@
 	</header>
 	<!-- End: Topbar -->
 @endsection
+
+@section('ContentClass')
+	<section id="content" class="animated fadeIn">
+@stop
+
 @section('content')
 
 	<!-- Form Wizard -->
