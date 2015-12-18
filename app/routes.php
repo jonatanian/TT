@@ -198,9 +198,10 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	Route::get('/memos/recibidos','MemosController@oficialia_recibidos');
 	Route::get('/memos/enviados','MemosController@oficialia_enviados');
 
-	//Wizard: Registro 
+	//Wizard: Registro nuevo memo 
 	Route::get('/memos/entrantes/nuevo','MemosController@oficialia_nuevo_recibido');
 	Route::get('/memos/salientes/nuevo','MemosController@oficialia_nuevo_saliente');
+	//Route::get('/memos/entrantes/nuevo','MemosEntrantesController@oficialia_nuevomemo');
 	//Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
 });
 
