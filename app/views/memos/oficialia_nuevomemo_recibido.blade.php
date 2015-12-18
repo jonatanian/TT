@@ -1,6 +1,6 @@
 ﻿@extends('layouts.oficialia')
 
-@section('content')
+@section('Topbar')
 	<!-- Begin: Content Header -->
     <div class="content-header">
       <h2>Registrar nuevo memorándum</b></h2>
@@ -16,9 +16,10 @@
           <div class="panel-body">
 
             <div class="section-divider mt20 mb40">
-              <span> Memorándum entrante </span>
+              <span> Memorándum </span>
             </div>
-			
+@endsection
+@section('content')		
 			<!-- .section-divider -->
             <div class="section row">
               <div class="col-md-6">
@@ -86,14 +87,6 @@
                   </label>
                 </label>
               </div>
-              <div class="col-md-6">
-                <label for="FechaEntrega" class="field prepend-icon">
-                  <input type="text" name="FechaEntrega" id="FechaEntrega" class="gui-input" placeholder="Dependencia que emite...">
-                  <label for="FechaEntrega" class="field-icon">
-                    <i class="fa fa-institution"></i>
-                  </label>
-                </label>
-              </div>
             </div>
 			
             <!-- end .section row section -->
@@ -118,28 +111,29 @@
       </div>
         <div class="section row">
           <div class="col-md-6 pad-r40 border-right">
-            <span>Establecer prioridad del memorándum:</span>
+            <span>Tipo de memorándum:</span>
             <br>
             <div class="option-group field">
             <label for="female" class="option option-primary block">
             <input type="radio" name="gender" id="female" value="female">
-            <span class="radio"></span> Alta
+            <span class="radio"></span> General
             </label>
             
             <label for="male" class="option block option-primary mt10">
             <input type="radio" name="gender" id="male" value="male">
-            <span class="radio"></span> Media
+            <span class="radio"></span> Personal
             </label>
             
-            <label for="other" class="option block option-primary mt10">
+            <!--<label for="other" class="option block option-primary mt10">
             <input type="radio" name="gender" id="other" value="other">
             <span class="radio"></span> Baja
-            </label>
+            </label>-->
           </div>
+
         </div>  
 
       
-      <div class="section row">
+      <!--<div class="section row">
         <div class="col-md-6">
           <label for="FechaEmision" class="field prepend-icon">
             <input type="text" name="FechaEmision" id="FechaEmision" class="gui-input" placeholder="Nombre quien recibe...">
@@ -147,7 +141,7 @@
               <i class="fa fa-user"></i>
             </label>
           </label>
-        </div>
+        </div>-->
         <div class="col-md-6">
           <label for="FechaLimite" class="field prepend-icon">
             <label class="switch block mt15 right">
