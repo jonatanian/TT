@@ -161,6 +161,18 @@
 			$Id = DB::table('correspondencia')->max('IdCorrespondencia');
 			return $Id;
 		}
+		
+		public function getIdCaracter(){
+			return $this->Caracter_Id;
+		}
+		
+		public function setEstatusAprobado($IdCorrespondencia){
+			DB::transaction(function () use ($IdCorrespondencia){
+					$oficioU = Correspondencia::find($IdCorrespondencia);
+					$oficioU->Estatus_Id = 404;
+					$oficioU->save();
+				});
+		}
 
 	}
 	

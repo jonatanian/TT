@@ -379,6 +379,34 @@
                           <td>Anexos</td>
                           <td>{{$oficio->Anexo}}</td>
                         </tr>
+						<tr>
+                          <td>
+                            <span class="fa fa-pencil text-success"></span>
+                          </td>
+                          <td>Acciones</td>
+                          @if($oficio->Observacion_Usuario_Id == Auth::id() && $oficio->NombreEstatus == "Visto")
+							  <td>
+								<div class="pull-right mt5 clearfix" id="observaciones-button">
+								  <a href="{{action('OficiosSalientesController@dsbd_observaciones', array('IdConsecutivo'=>$oficio->IdConsecutivo, 'IdRevisor'=>$oficio->Usuario_Id, 'IdCorrespondencia'=>$oficio->Correspondencia_Id, 'IdObservaciones'=>$oficio->IdObservaciones))}}" class="btn btn-success">Con Observaciones</a>
+								</div>
+							  </td>
+							  <td>
+								<div class="pull-right mt5 clearfix">
+								  <a href="" class="btn btn-success">Aprobar</a>
+								</div>
+							  </td>
+                          @elseif($oficio->NombreEstatus == "Observaciones" && $oficio->Observacion_Usuario_Id == Auth::id())
+                          	<td>
+								<div class="pull-right mt5 clearfix">
+								  <a href="{{action('OficiosSalientesController@dsbd_observacionesCorreccion', array('IdConsecutivo'=>$oficio->IdConsecutivo, 'IdRevisor'=>$oficio->Usuario_Id, 'IdCorrespondencia'=>$oficio->Correspondencia_Id, 'IdObservaciones'=>$oficio->IdObservaciones))}}" class="btn btn-success">Corregir Observaciones</a>
+								</div>
+							  </td>
+						  @else
+							  <td>
+								&nbsp;
+							  </td>
+                          @endif
+                        </tr>
                       </tbody>
                     </table>
 

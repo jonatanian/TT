@@ -379,6 +379,34 @@
                           <td>Anexos</td>
                           <td>{{$oficio->Anexo}}</td>
                         </tr>
+						<tr>
+                          <td>
+                            <span class="fa fa-pencil text-success"></span>
+                          </td>
+                          <td>Acciones</td>
+                          @if($oficio->Observacion_Usuario_Id == Auth::id() && $oficio->NombreEstatus == "Visto")
+							  <td>
+								<div class="pull-right mt5 clearfix" id="observaciones-button">
+								  <a href="{{action('OficiosSalientesController@oficialia_observaciones', array('IdConsecutivo'=>$oficio->IdConsecutivo, 'IdRevisor'=>$oficio->Usuario_Id, 'IdCorrespondencia'=>$oficio->Correspondencia_Id, 'IdObservaciones'=>$oficio->IdObservaciones))}}" class="btn btn-success">Con Observaciones</a>
+								</div>
+							  </td>
+							  <td>
+								<div class="pull-right mt5 clearfix">
+								  <a href="{{action('OficiosSalientesController@oficialia_aprobar', array('IdCorrespondencia'=>$oficio->Correspondencia_Id))}}" class="btn btn-success">Aprobar</a>
+								</div>
+							  </td>
+                          @elseif($oficio->Estatus_Id == 404)
+                          	<td>
+								<div class="pull-right mt5 clearfix">
+								  <a href="" class="btn btn-success">Subir Acuse</a>
+								</div>
+							  </td>
+						  @else
+							  <td>
+								&nbsp;
+							  </td>
+                          @endif
+                        </tr>
                       </tbody>
                     </table>
 

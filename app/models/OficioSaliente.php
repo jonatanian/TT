@@ -31,10 +31,64 @@
 				$oficioObservacion->Observacion_Usuario_Id = $oficio->getIdRevisor($Id, $inputs['TipoDeOficio']);//Auth::id();
 				$oficioObservacion->save();
 	    	});
+			$oficio = new OficioSaliente();
+			if(!($oficio->getIdRevisor($Id, $inputs['TipoDeOficio']))){
+				DB::transaction(function () use ($inputs,$IdOficio){
+					$oficioU = Correspondencia::find($IdOficio);
+					$oficioU->Estatus_Id=404;
+					$oficioU->save();
+				});
+			}
 	    	$Id = DB::table('oficio_saliente')->max('IdConsecutivo');
 		return $Id;
 		}
 		
+		public function updateObservaciones($inputs, $oficio){
+			DB::transaction(function () use ($inputs,$IdOficio){
+					$oficioU = new Correspondencia();
+					$oficioU->Oficio_Saliente_Id = $oficio->IdConsecutivo;
+					$oficioU->Observacion_Usuario_Id = $oficio->Observacion_Usuario_Id;
+					$oficioU->ObservacionesDescripcion = $inputs['observaciones'];
+					$oficioU->Estatus_Id=404;
+					$oficioU->save();
+				});
+		}
+		
+		public function updateEstatusVisto($IdOficio){
+			
+			DB::transaction(function () use ($IdOficio){
+					$oficioU = Correspondencia::find($IdOficio);
+					$oficioU->Estatus_Id=402;
+					$oficioU->save();
+				});
+		}
+		
+		public function updateEstatusAprobado($IdOficio){
+			
+			DB::transaction(function () use ($inputs,$IdOficio){
+					$oficioU = Correspondencia::find($IdOficio);
+					$oficioU->Estatus_Id=404;
+					$oficioU->save();
+				});
+		}
+		
+		public function updateEstatusEnviado($IdOficio){
+			
+			DB::transaction(function () use ($inputs,$IdOficio){
+					$oficioU = Correspondencia::find($IdOficio);
+					$oficioU->Estatus_Id=405;
+					$oficioU->save();
+				});
+		}
+		
+		public function updateEstatusFinalizado($IdOficio){
+			
+			DB::transaction(function () use ($inputs,$IdOficio){
+					$oficioU = Correspondencia::find($IdOficio);
+					$oficioU->Estatus_Id=406;
+					$oficioU->save();
+				});
+		}
 
 		
 		////////Obtiene el último id de correspondencia saliente////////

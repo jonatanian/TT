@@ -147,6 +147,28 @@ class OficiosSalientesController extends BaseController {
 			
 			return View::make('oficios.oficialia_salientes',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 	}
+	
+	public function oficialia_observaciones(){
+		$IdC = Request::get('IdConsecutivo');
+		$IdR = Request::get('IdRevisor');
+		$Id = Request::get('IdCorrespondencia');
+		$IdO = Request::get('IdObservaciones');
+		return View::make('oficios.oficialia_nuevaObservacion', array('IdConsecutivo'=>$IdC, 'IdRevisor'=>$IdR, 'IdCorrespondencia'=>$Id, 'IdObservaciones'=>$IdO));
+	}
+	
+	public function oficialia_observacionesRegistrar(){
+		$datos = Input::all();
+		$observacion = new Observaciones();
+		$observacion->nuevaObservacion($datos);
+		return Redirect::action('OficiosController@oficialia_salientes');
+	}
+	
+	public function oficialia_aprobar(){
+		$Correspondencia = new Correspondencia();
+		$IdCorrespondencia = Request::get('IdCorrespondencia');
+		$Correspondencia->setEstatusAprobado($IdCorrespondencia);
+		return Redirect::action('OficiosController@oficialia_salientes');
+	}
 		
 	///////////////////////DSBD////////////////////////////////////////
 	public function dsbd_nuevoOficio()
@@ -245,6 +267,62 @@ class OficiosSalientesController extends BaseController {
 			}
 			
 		}
+		
+	public function dsbd_observaciones(){
+		$IdC = Request::get('IdConsecutivo');
+		$IdR = Request::get('IdRevisor');
+		$Id = Request::get('IdCorrespondencia');
+		$IdO = Request::get('IdObservaciones');
+		return View::make('oficios.dsbd_nuevaObservacion', array('IdConsecutivo'=>$IdC, 'IdRevisor'=>$IdR, 'IdCorrespondencia'=>$Id, 'IdObservaciones'=>$IdO));
+	}
+	
+	public function dsbd_observacionesRegistrar(){
+		$datos = Input::all();
+		$observacion = new Observaciones();
+		$observacion->nuevaObservacion($datos);
+		return Redirect::action('OficiosController@oficialia_salientes');
+	}
+		
+	public function dsbd_observacionesCorreccion(){
+		$IdC = Request::get('IdConsecutivo');
+		$IdR = Request::get('IdRevisor');
+		$Id = Request::get('IdCorrespondencia');
+		$IdO = Request::get('IdObservaciones');
+		$Obs = Observaciones::find($IdO);
+		return View::make('oficios.dsbd_corregirObservacion', array('IdConsecutivo'=>$IdC, 'IdRevisor'=>$IdR, 'IdCorrespondencia'=>$Id, 'IdObservaciones'=>$IdO,'Observaciones'=>$Obs));
+	}
+	
+	public function dsbd_observacionesCorreccionRegistrar(){
+			
+			/*$file = Input::file('DocPDF');
+			if($file == NULL){
+				Session::flash('msgf','Debe subir un archivo en formato PDF.');
+				return Redirect::action('OficiosController@iescmpl_salientes')->withInput();
+			}
+			
+			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
+			if($fileExt != 'pdf' or $fileExt == NULL){
+				Session::flash('msgf','Debe subir un archivo en formato PDF.');
+				return Redirect::action('OficiosController@iescmpl_salientes')->withInput();
+			}
+			
+			$url_docpdf = $file->getClientOriginalName();
+
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosController@iescmpl_salientes')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);*/
+		
+		$datos = Input::all();
+		$observacion = new Observaciones();
+		$observacion->nuevaCorreccionObservacion($datos);
+		return Redirect::action('OficiosController@iescmpl_salientes');
+	}
 		
 		///////////////////Director////////////////////////
 		public function direccion_nuevoOficio()
@@ -639,6 +717,47 @@ class OficiosSalientesController extends BaseController {
 			}
 			
 		}
+	public function iescmpl_observacionesCorreccion(){
+		$IdC = Request::get('IdConsecutivo');
+		$IdR = Request::get('IdRevisor');
+		$Id = Request::get('IdCorrespondencia');
+		$IdO = Request::get('IdObservaciones');
+		$Obs = Observaciones::find($IdO);
+		return View::make('oficios.iescmpl_corregirObservacion', array('IdConsecutivo'=>$IdC, 'IdRevisor'=>$IdR, 'IdCorrespondencia'=>$Id, 'IdObservaciones'=>$IdO,'Observaciones'=>$Obs));
+	}
+	
+	public function iescmpl_observacionesCorreccionRegistrar(){
+			
+			/*$file = Input::file('DocPDF');
+			if($file == NULL){
+				Session::flash('msgf','Debe subir un archivo en formato PDF.');
+				return Redirect::action('OficiosController@iescmpl_salientes')->withInput();
+			}
+			
+			$fileExt = Input::file('DocPDF')->getClientOriginalExtension();
+			if($fileExt != 'pdf' or $fileExt == NULL){
+				Session::flash('msgf','Debe subir un archivo en formato PDF.');
+				return Redirect::action('OficiosController@iescmpl_salientes')->withInput();
+			}
+			
+			$url_docpdf = $file->getClientOriginalName();
+
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosController@iescmpl_salientes')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);*/
+		
+		$datos = Input::all();
+		$observacion = new Observaciones();
+		$observacion->nuevaCorreccionObservacion($datos);
+		return Redirect::action('OficiosController@iescmpl_salientes');
+	}
+	
 		///////////////Ver detalles y ver PDF///////////////////
 	public function verPDF()
 	{
@@ -729,7 +848,9 @@ class OficiosSalientesController extends BaseController {
 									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
 									->first();
 		}
-				  
+		
+		if($oficio->Observacion_Usuario_Id == Auth::id())
+			$oficio->updateEstatusVisto($oficio->Correspondencia_Id);
 		return View::make('oficios.oficialia_OficioSalienteDetalles',array('oficio'=>$oficio,));
 	}
 	public function dsbd_verDetalles()
@@ -805,7 +926,8 @@ class OficiosSalientesController extends BaseController {
 									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
 									->first();
 		}
-				  
+		if($oficio->Observacion_Usuario_Id == Auth::id())
+			$oficio->updateEstatusVisto($oficio->Correspondencia_Id);
 		return View::make('oficios.dsbd_OficioSalienteDetalles',array('oficio'=>$oficio,));
 	}
 	
@@ -882,7 +1004,8 @@ class OficiosSalientesController extends BaseController {
 									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
 									->first();
 		}
-				  
+		if($oficio->Observacion_Usuario_Id == Auth::id())
+			$oficio->updateEstatusVisto($oficio->Correspondencia_Id);
 		return View::make('oficios.direccion_OficioSalienteDetalles',array('oficio'=>$oficio,));
 	}
 	public function subdireccion_verDetalles()
@@ -1115,5 +1238,8 @@ class OficiosSalientesController extends BaseController {
 				  
 		return View::make('oficios.iescmpl_OficioSalienteDetalles',array('oficio'=>$oficio,));
 	}
+	
+	/////////Observaciones/////////////
+
 }
 ?>

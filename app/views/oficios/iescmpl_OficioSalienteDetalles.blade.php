@@ -379,6 +379,23 @@
                           <td>Anexos</td>
                           <td>{{$oficio->Anexo}}</td>
                         </tr>
+						<tr>
+                          <td>
+                            <span class="fa fa-pencil text-success"></span>
+                          </td>
+                          <td>Acciones</td>
+                          @if($oficio->Observacion_Usuario_Id == Auth::id() && $oficio->NombreEstatus == "Observaciones")
+							  <td>
+								<div class="pull-right mt5 clearfix" id="observaciones-button">
+								  <a href="{{action('OficiosSalientesController@iescmpl_observacionesCorreccion', array('IdConsecutivo'=>$oficio->IdConsecutivo, 'IdRevisor'=>$oficio->Usuario_Id, 'IdCorrespondencia'=>$oficio->Correspondencia_Id, 'IdObservaciones'=>$oficio->IdObservaciones))}}" class="btn btn-success">Corregir Observaciones</a>
+								</div>
+							  </td>
+
+							  <td>
+								&nbsp;
+							  </td>
+                          @endif
+                        </tr>
                       </tbody>
                     </table>
 

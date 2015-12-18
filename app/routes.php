@@ -70,6 +70,16 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::get('oficios/salientes/nuevo_cargo','InstanciasExternasController@dsbd_nuevoCargoSaliente');
 		Route::post('oficios/salientes/nuevo_cargo','InstanciasExternasController@dsbd_registrarCargoSaliente');
 		
+	//Correccion observaciones
+	Route::get('/oficios/salientes/observaciones/correccion','OficiosSalientesController@dsbd_observacionesCorreccion');
+	Route::post('/oficios/salientes/observaciones/correccion','OficiosSalientesController@dsbd_observacionesCorreccionRegistrar');
+	
+	//Oficio con observaciones
+	Route::get('/oficios/salientes/observaciones','OficiosSalientesController@dsbd_observaciones');
+	Route::post('/oficios/salientes/observaciones','OficiosSalientesController@dsbd_observacionesRegistrar');
+		
+	//Aprobar
+	Route::get('/oficios/salientes/aprobar','OficiosSalientesController@dsbd_observaciones');
 });
 
 //////////////////Jefes de departamento////////////////////
@@ -89,6 +99,7 @@ Route::group(array("prefix"=>'SIG'), function(){
 		//Funciones de Oficios Salientes
 		////Detalles Oficio
 	Route::get('/oficios/salientes/detalles','OficiosSalientesController@jefatura_verDetalles');
+	
 	Route::get('/oficios/salientes','OficiosController@jefatura_salientes');
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@jefatura_nuevoOficio');
@@ -170,12 +181,20 @@ Route::group(array("prefix"=>'oficialia'), function(){
 		Route::post('oficios/entrantes/nuevo_cargo','InstanciasExternasController@registrarCargo');
 		Route::post('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio_registrar');
 		
+	//Funciones de Oficios Salientes
+	
 	//Vista de los detalles de un oficio saliente
 	Route::get('/oficios/salientes/detalles','OficiosSalientesController@oficialia_verDetalles');
 	
-	//Funciones de Oficios Salientes
+	//Oficio con observaciones
+	Route::get('/oficios/salientes/observaciones','OficiosSalientesController@oficialia_observaciones');
+	Route::post('/oficios/salientes/observaciones','OficiosSalientesController@oficialia_observacionesRegistrar');
+	
+	//Aprobar
+	Route::get('/oficios/salientes/aprobar','OficiosSalientesController@oficialia_aprobar');
+
 	Route::get('/oficios/salientes','OficiosController@oficialia_salientes');
-	//Wizard: Registro de oficios entrantes
+	//Wizard: Registro de oficios salientes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@oficialia_nuevoOficio');
 	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@oficialia_nuevoOficio_registrar');
 	//Vista de oficios enviados
@@ -229,14 +248,18 @@ Route::group(array("prefix"=>'iescmpl'), function(){
 	//Detalles
 	Route::get('/oficios/salientes/detalles','OficiosSalientesController@iescmpl_verDetalles');
 	Route::get('/oficios/salientes','OficiosController@personal_salientes');
-	//Wizard: Registro de oficios entrantes
+	//Wizard: Registro de oficios salientes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio');
 	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio_registrar');
 	
 	Route::get('/oficios/salientes','OficiosController@iescmpl_salientes');
-	//Wizard: Registro de oficios entrantes
+	//Wizard: Registro de oficios salientes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@iescmpl_nuevoOficio');
 	Route::post('/oficios/salientes/nuevo','OficiosSalientesController@iescmpl_nuevoOficio_registrar');
+	
+	Route::get('/oficios/salientes/observaciones/correccion','OficiosSalientesController@iescmpl_observacionesCorreccion');
+	Route::post('/oficios/salientes/observaciones/correccion','OficiosSalientesController@iescmpl_observacionesCorreccionRegistrar');
+	
 });
 
 //////////////////// Funciones de manejo de documentos PDF para todos los usuarios ////////////////////
