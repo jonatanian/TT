@@ -1,4 +1,4 @@
-@extends('layouts.oficialia')
+@extends('layouts.direccion')
 
 @section('Topbar')
 	<!-- Start: Topbar -->
@@ -6,13 +6,9 @@
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li class="active">
-					<a href="{{action('OficiosController@oficialia_recibidos')}}">Oficios entrantes</a>
+					<a href="{{action('OficiosController@jefatura_recibidos')}}">Oficios entrantes</a>
 				</li>
 			</ul>
-		</div>
-		<div class="topbar-right hidden-xs hidden-sm">
-			<a href="{{action('OficiosEntrantesController@oficialia_nuevoOficio',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL))}}" class="btn btn-default btn-sm fw600 ml10">
-			<span class="fa fa-plus pr5"></span> Nuevo oficio entrante </a>
 		</div>
 	</header>
 	<!-- End: Topbar -->
@@ -80,24 +76,21 @@
 					  <td>{{$oficio->NombreEstatus}}</td>
 					  <td>{{$oficio->ApPaterno}}&nbsp;{{$oficio->ApMaterno}}&nbsp;{{$oficio->Nombre}}</td>
                       <td class="text-center">
-                      @if($oficio->Estatus_Id != 106 || $oficio->Estatus_Id != 206 || $oficio->Estatus_Id != 305)
+                        @if($oficio->Estatus_Id != 106 || $oficio->Estatus_Id != 206 || $oficio->Estatus_Id != 305)
                         <div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
                             <span class="caret ml50"></span>
                           </button>
                           <ul class="dropdown-menu" role="menu">
                             <li>
-						      <a href="#">Enviar copia a</a>
-						    </li>
-						    <li>
 						      <a href="{{action('OficiosEntrantesController@verPDF',array('correspondencia'=>$oficio->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="{{action('OficiosEntrantesController@oficialia_verDetalles',array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
+						      <a href="{{action('OficiosEntrantesController@jefatura_verDetalles',array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
 						    </li>
 						  </ul>
                         </div>
-                      @endif  
+                      @endif
                       </td>
                     </tr>
                     @endforeach

@@ -26,6 +26,10 @@
 	<!-- End: Topbar -->
 @endsection
 
+@section('ContentClass')
+	<section id="content" class="animated fadeIn">
+@stop
+
 @section('content')
 	<!-- Validation Example -->
     <div class="admin-form theme-success mw1000 center-block">

@@ -19,7 +19,98 @@ class OficiosController extends BaseController {
 			$dependencias = Dependencia::all();
 			return View::make('oficios.oficialia_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
 		}
+		
+	public function direccion_recibidos()
+		{
+			$oficios= OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','DependenciaEmite','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('usuario_turna_correspondencia','correspondencia.IdCorrespondencia','=','usuario_turna_correspondencia.Correspondencia_Id')
+									->join('usuario','usuario_turna_correspondencia.UTC_TurnarA_Id','=','usuario.IdUsuario')
+									->where('usuario.IdUsuario',Auth::user()->IdUsuario)
+									->orderBy('oficio_entrante.IdOficioEntrante','desc')
+									->get();
 
+			$estatus = Estatus::all();
+			$dependencias = Dependencia::all();
+			return View::make('oficios.direccion_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+
+	public function dsbd_recibidos()
+		{
+			$oficios= OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','DependenciaEmite','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('usuario_turna_correspondencia','correspondencia.IdCorrespondencia','=','usuario_turna_correspondencia.Correspondencia_Id')
+									->join('usuario','usuario_turna_correspondencia.UTC_TurnarA_Id','=','usuario.IdUsuario')
+									->where('usuario.IdUsuario',Auth::user()->IdUsuario)
+									->orderBy('oficio_entrante.IdOficioEntrante','desc')
+									->get();
+
+			$estatus = Estatus::all();
+			$dependencias = Dependencia::all();
+			return View::make('oficios.dsbd_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+		
+	public function iescmpl_recibidos()
+		{
+			$oficios= OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','DependenciaEmite','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('usuario_turna_correspondencia','correspondencia.IdCorrespondencia','=','usuario_turna_correspondencia.Correspondencia_Id')
+									->join('usuario','usuario_turna_correspondencia.UTC_TurnarA_Id','=','usuario.IdUsuario')
+									->where('usuario.IdUsuario',Auth::user()->IdUsuario)
+									->orderBy('oficio_entrante.IdOficioEntrante','desc')
+									->get();
+
+			$estatus = Estatus::all();
+			$dependencias = Dependencia::all();
+			return View::make('oficios.iescmpl_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+		
+	public function jefatura_recibidos()
+		{
+			$oficios= OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','DependenciaEmite','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('usuario_turna_correspondencia','correspondencia.IdCorrespondencia','=','usuario_turna_correspondencia.Correspondencia_Id')
+									->join('usuario','usuario_turna_correspondencia.UTC_TurnarA_Id','=','usuario.IdUsuario')
+									->where('usuario.IdUsuario',Auth::user()->IdUsuario)
+									->orderBy('oficio_entrante.IdOficioEntrante','desc')
+									->get();
+
+			$estatus = Estatus::all();
+			$dependencias = Dependencia::all();
+			return View::make('oficios.jefatura_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+		
+	public function subdireccion_recibidos()
+		{
+			$oficios= OficioEntrante::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('entidad_externa','Emisor','=','Entidad_Externa.IdEntidadExterna')
+									->join('dependencia_area','AreaEmite','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','DependenciaEmite','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('usuario_turna_correspondencia','correspondencia.IdCorrespondencia','=','usuario_turna_correspondencia.Correspondencia_Id')
+									->join('usuario','usuario_turna_correspondencia.UTC_TurnarA_Id','=','usuario.IdUsuario')
+									->where('usuario.IdUsuario',Auth::user()->IdUsuario)
+									->orderBy('oficio_entrante.IdOficioEntrante','desc')
+									->get();
+
+			$estatus = Estatus::all();
+			$dependencias = Dependencia::all();
+			return View::make('oficios.subdireccion_recibidos',array('oficios'=>$oficios,'estatus'=>$estatus,'dependencias'=>$dependencias));
+		}
+		
+	/////////////////// Comienza sección de Oficios Salientes /////////////////
 
 	public function oficialia_salientes()
 		{

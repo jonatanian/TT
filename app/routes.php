@@ -26,28 +26,42 @@ Route::group(array("prefix"=>'SIG'), function(){
 });
 
 //////////////////Administrador////////////////////////////
-	Route::group(array("prefix"=>'dsbd'), function(){
-		Route::get('/','AdminController@dsbd_index');
-		//RECIBIDOS Y ENVIADOS 
-		Route::get('/oficios/recibidos','AdminController@oficialia_recibidos');
-		Route::get('/oficios/enviados','AdminController@oficialia_enviados');
+Route::group(array("prefix"=>'dsbd'), function(){
+	Route::get('/','AdminController@dsbd_index');
+	
+	//Funciones de Oficios Entrantes
+	//Vista de oficios recibidos
+	Route::get('/oficios/entrantes','OficiosController@dsbd_recibidos');
+	
+	//Vista de los detalles de un oficio recibido
+	Route::get('/oficios/entrantes/detalles','OficiosEntrantesController@dsbd_verDetalles');
+	
+	//Vista para turnar oficio entrante
+	Route::get('/oficios/entrantes/turnar_a','OficiosEntrantesController@dsbd_turnarA');
+	Route::post('/oficios/entrantes/turnar_a','OficiosEntrantesController@dsbd_turnado');
+	//Vista para ccp de un oficio entrante
+	Route::get('/oficios/entrantes/ccp','OficiosEntrantesController@dsbd_ccp');
+	
+	//RECIBIDOS Y ENVIADOS 
+	Route::get('/oficios/recibidos','AdminController@oficialia_recibidos');
+	Route::get('/oficios/enviados','AdminController@oficialia_enviados');
 
-		Route::get('/corrregiroficio','OficiosController@corregir_oficio');
-		//Funciones para registrar anexos
-		Route::get('/anexos','OficiosController@personal_registrar_anexos');
-		//Funciones de control de usuarios
-		Route::get('/usuarios','UsersController@dsbd_usuarios');
-		Route::get('/usuarios/nuevo','UsersController@dsbd_nuevoUsuario');
-		Route::post('/usuarios/nuevo','UsersController@dsbd_registrarUsuario');
-		Route::get('/usuarios/editar','UsersController@dsbd_editarUsuario');
-		Route::post('/usuarios/editar','UsersController@dsbd_actualizarUsuario');
-		Route::get('/usuarios/contrasena','UsersController@dsbd_recuperarContrasenaUsuario');
-		Route::post('/usuarios/contrasena','UsersController@dsbd_actualizarContrasenaUsuario');
-		Route::get('/usuarios/estatus','UsersController@dsbd_cambiarEstatus');
-		Route::post('/usuarios/estatus','UsersController@dsbd_actualizarEstatus');
-		Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
-		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
-		Route::post('usuario/ordenar', 'UsersController@dsbd_consultarUsuarios');
+	Route::get('/corrregiroficio','OficiosController@corregir_oficio');
+	//Funciones para registrar anexos
+	Route::get('/anexos','OficiosController@personal_registrar_anexos');
+	//Funciones de control de usuarios
+	Route::get('/usuarios','UsersController@dsbd_usuarios');
+	Route::get('/usuarios/nuevo','UsersController@dsbd_nuevoUsuario');
+	Route::post('/usuarios/nuevo','UsersController@dsbd_registrarUsuario');
+	Route::get('/usuarios/editar','UsersController@dsbd_editarUsuario');
+	Route::post('/usuarios/editar','UsersController@dsbd_actualizarUsuario');
+	Route::get('/usuarios/contrasena','UsersController@dsbd_recuperarContrasenaUsuario');
+	Route::post('/usuarios/contrasena','UsersController@dsbd_actualizarContrasenaUsuario');
+	Route::get('/usuarios/estatus','UsersController@dsbd_cambiarEstatus');
+	Route::post('/usuarios/estatus','UsersController@dsbd_actualizarEstatus');
+	Route::get('/usuario/contrasena','UsersController@personal_cambiarContrasena');
+	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
+	Route::post('usuario/ordenar', 'UsersController@dsbd_consultarUsuarios');
 		
 		//Funciones de Oficios Salientes
 	//Detalles Oficio
@@ -85,6 +99,20 @@ Route::group(array("prefix"=>'SIG'), function(){
 //////////////////Jefes de departamento////////////////////
 	Route::group(array("prefix"=>'jefatura'), function(){
 		Route::get('/','JefaturaController@jefatura_index');
+		
+		//Funciones de Oficios Entrantes
+		//Vista de oficios recibidos
+		Route::get('/oficios/entrantes','OficiosController@jefatura_recibidos');
+		
+		//Vista de los detalles de un oficio recibido
+		Route::get('/oficios/entrantes/detalles','OficiosEntrantesController@jefatura_verDetalles');
+		
+		//Vista para turnar oficio entrante
+		Route::get('/oficios/entrantes/turnar_a','OficiosEntrantesController@jefatura_turnarA');
+		Route::post('/oficios/entrantes/turnar_a','OficiosEntrantesController@jefatura_turnado');
+		//Vista para ccp de un oficio entrante
+		Route::get('/oficios/entrantes/ccp','OficiosEntrantesController@jefatura_ccp');
+	
 		//RECIBIDOS Y ENVIADOS
 		Route::get('/oficios/recibidos','JefaturaController@oficialia_recibidos');
 		//Route::post('/oficios/recibidos','OficiosController@oficialia_recibidos_buscar');
@@ -108,6 +136,20 @@ Route::group(array("prefix"=>'SIG'), function(){
 //////////////////Subdirección//////////////////////////////
 	Route::group(array("prefix"=>'subdireccion'), function(){
 		Route::get('/','SubdireccionController@subdireccion_index');
+		
+		//Funciones de Oficios Entrantes
+		//Vista de oficios recibidos
+		Route::get('/oficios/entrantes','OficiosController@subdireccion_recibidos');
+		
+		//Vista de los detalles de un oficio recibido
+		Route::get('/oficios/entrantes/detalles','OficiosEntrantesController@subdireccion_verDetalles');
+		
+		//Vista para turnar oficio entrante
+		Route::get('/oficios/entrantes/turnar_a','OficiosEntrantesController@subdireccion_turnarA');
+		Route::post('/oficios/entrantes/turnar_a','OficiosEntrantesController@subdireccion_turnardo');
+		//Vista para ccp de un oficio entrante
+		Route::get('/oficios/entrantes/ccp','OficiosEntrantesController@subdireccion_ccp');
+		
 		//RECIBIDOS Y ENVIADOS
 		Route::get('/oficios/recibidos','SubdireccionController@oficialia_recibidos');
 		Route::get('/oficios/enviados','SubdireccionController@oficialia_enviados');
@@ -131,8 +173,22 @@ Route::group(array("prefix"=>'SIG'), function(){
 /////////////////Dirección//////////////////
 Route::group(array("prefix"=>'direccion'), function(){
 	Route::get('/','DireccionController@direccion_index');
+	
+	//Funciones de Oficios Entrantes
+	//Vista de oficios recibidos
+	Route::get('/oficios/entrantes','OficiosController@direccion_recibidos');
+	
+	//Vista de los detalles de un oficio recibido
+	Route::get('/oficios/entrantes/detalles','OficiosEntrantesController@direccion_verDetalles');
+	
+	//Vista para turnar oficio entrante
+	Route::get('/oficios/entrantes/turnar_a','OficiosEntrantesController@direccion_turnarA');
+	Route::post('/oficios/entrantes/turnar_a','OficiosEntrantesController@direccion_turnado');
+	//Vista para ccp de un oficio entrante
+	Route::get('/oficios/entrantes/ccp','OficiosEntrantesController@direccion_ccp');
+	
 	//RECIBIDOS Y ENVIADOS 
-	Route::get('/oficios/recibidos','DireccionController@oficialia_recibidos');
+	//Route::get('/oficios/recibidos','DireccionController@oficialia_recibidos');
 	Route::get('/oficios/enviados','DireccionController@oficialia_enviados');
 	Route::get('/corrregiroficio','OficiosController@corregir_oficio');
 	//Funciones para registrar anexos
@@ -225,14 +281,23 @@ Route::group(array("prefix"=>'oficialia'), function(){
 	Route::get('/memos/recibidos','MemosController@oficialia_recibidos');
 	Route::get('/memos/enviados','MemosController@oficialia_enviados');
 
-	//Wizard: Registro 
+	//Wizard: Registro nuevo memo 
 	Route::get('/memos/entrantes/nuevo','MemosController@oficialia_nuevo_recibido');
 	Route::get('/memos/salientes/nuevo','MemosController@oficialia_nuevo_saliente');
+	//Route::get('/memos/entrantes/nuevo','MemosEntrantesController@oficialia_nuevomemo');
 	//Route::get('/oficios/entrantes/nuevo','OficiosEntrantesController@oficialia_nuevoOficio');
 });
 
 Route::group(array("prefix"=>'iescmpl'), function(){
 	Route::get('/','IescmplController@cmpl_index');
+	
+	//Funciones de Oficios Entrantes
+	//Vista de oficios recibidos
+	Route::get('/oficios/entrantes','OficiosController@iescmpl_recibidos');
+	
+	//Vista de los detalles de un oficio recibido
+	Route::get('/oficios/entrantes/detalles','OficiosEntrantesController@iescmpl_verDetalles');
+	
 	//RECIIDOS Y ENVIADOS 
 	Route::get('/oficios/recibidos','IescmplController@oficialia_recibidos');
 	Route::get('/oficios/enviados','IescmplController@oficialia_enviados');
