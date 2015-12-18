@@ -119,7 +119,7 @@
 	        <ul class="nav sidebar-menu acc-menu active-warning">
 	          <li class="sidebar-label pt20">Men&uacute;</li>
 	          <li>
-                <a href="{{action('OficialiaController@oficialia_index')}}">
+                <a href="{{action('DireccionController@direccion_index')}}">
                   <span class="glyphicon glyphicon-home"></span>
                   <span class="sidebar-title">Bandeja de entrada</span>
                 </a>
@@ -153,11 +153,11 @@
 	            </a>
 	            <ul class="nav sub-nav acc-menu">
 	              <li>
-	                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
+	                  <a href="{{action('OficiosController@direccion_recibidos')}}">
 	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
 	              </li>
 	              <li>
-	                  <a href="{{action('OficiosController@oficialia_salientes')}}">
+	                  <a href="{{action('OficiosController@direccion_salientes')}}">
 	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
 	              </li>
 	            </ul>

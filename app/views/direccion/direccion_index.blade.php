@@ -14,10 +14,10 @@
 
 @section('content')
 <!-- Begin: Content -->
-      <section id="content" class="table-layout animated fadeIn">
-
-        
-
+@section('ContentClass')
+      <section id="content" class="animated fadeIn">
+@stop
+		<section id="content" class="table-layout animated fadeIn">
         <!-- begin: .tray-center -->
         <div class="tray tray-center pn bg-light">
 
@@ -29,9 +29,9 @@
 	              <!-- toolbar left btn group -->
 	              <div class="hidden-xs hidden-sm col-md-3 va-m pln">
 	                <div class="btn-group">
-	                  <button type="button" class="btn btn-default light">
+	                  <a href="{{action('DireccionController@direccion_index')}}" class="btn btn-default light">
 	                    <i class="fa fa-refresh"></i>
-	                  </button>
+	                  </a>
 	                  <button type="button" class="btn btn-default light">
 	                    <i class="fa fa-pencil"></i>
 	                  </button>
@@ -45,11 +45,11 @@
               <div class="row">
                 <div class="hidden-xs hidden-sm col-md-3">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default light">
-                      <i class="fa fa-refresh"></i>
-                    </button>
+                    <a href="{{action('DireccionController@direccion_index')}}" class="btn btn-default light">
+	                    <i class="fa fa-refresh"></i>
+	                  </a>
                   </div>
-                </div>
+                </div><!--
                 <div class="col-xs-12 col-md-9 text-right">
                   <button type="button" class="btn btn-danger light visible-xs-inline-block mr10">Compose</button>
                   <span class="hidden-xs va-m text-muted mr15"> Mostrando
@@ -65,7 +65,7 @@
                     </button>
 
                   </div>
-                </div>
+                </div>-->
               </div>
             </div>
 
@@ -74,10 +74,12 @@
 	            <thead>
 	              <tr class="">
 	                <th class="hidden-xs">Tipo</th>
-	                <th>Turnado el</th>
+	                <th class="text-center">Fecha de recepción</th>
+	                <th class="text-center">Turnado el</th>
 	                <th class="hidden-xs">Emisor</th>
 	                <th>Asunto</th>
-	                <th class="hidden-xs">Estado</th>
+	                <th class="hidden-xs">Estatus</th>
+	                <th>Responsable actual</th>
 	                <th class="text-center">Acciones</th>
 	              </tr>
 	            </thead>
@@ -85,10 +87,12 @@
 	            @foreach($correspondencia as $c)
 	              <tr class="message-unread">
 	                <td class="hidden-xs">{{$c->NombreTipo}}</td>
-	                <td class=""><span class="badge badge-warning mr10 fs11"> {{$c->FechaTurnadoA}} </span></td>
+	                <td class="text-center"><span class="badge badge-warning mr10 fs11"> {{$c->FechaEntrega}} </span></td>
+	                <td class="text-center"><span class="badge badge-alert mr10 fs11"> {{$c->FechaTurnadoA}} </span></td>
 	                <td class="hidden-xs">{{$c->AcronimoDependencia}}</td>
 	                <td class="">{{$c->Asunto}}</td>
 	                <td class="hidden-xs">{{$c->NombreEstatus}}</td>
+	                <td class="">{{$c->ApPaterno}}&nbsp;{{$c->ApMaterno}}&nbsp;{{$c->Nombre}}</td>
 	                <td class="text-center fw600">
 	                	<div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
@@ -96,13 +100,7 @@
                           </button>
                           <ul class="dropdown-menu" role="menu">
                             <li>
-						      <a href="#">Turnar a</a>
-						    </li>
-						    <li>
-						      <a href="#">Enviar copia a</a>
-						    </li>
-						    <li>
-						      <a href="#">Descargar PDF</a>
+						      <a href="{{action('OficiosEntrantesController@verPDF',array('correspondencia'=>$c->IdCorrespondencia))}}" target="_blank">Descargar PDF</a>
 						    </li>
 						    <li>
 						      <a href="#">Ver detalles</a>

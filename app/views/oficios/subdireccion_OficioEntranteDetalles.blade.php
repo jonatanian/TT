@@ -6,7 +6,7 @@
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li class="">
-					<a href="{{action('OficiosController@oficialia_recibidos')}}">Oficios entrantes</a>
+					<a href="{{action('OficiosController@jefatura_recibidos')}}">Oficios entrantes</a>
 				</li>
 				<li class="">
 					<span>&frasl;</span>
@@ -29,7 +29,7 @@
         <aside class="tray tray-left tray270" data-tray-height="match">
 
           <!-- Return to Inbox Button -->
-          <a href="{{action('OficialiaController@oficialia_index')}}" class="btn btn-danger light btn-block fw600">Ir a Bandeja de entrada</a>
+          <a href="#" class="btn btn-danger light btn-block fw600">Ir a Bandeja de entrada</a>
 
           <!-- Message Menu -->
           <div class="list-group list-group-links mt20">
@@ -87,6 +87,16 @@
 	                  </div>
 	                </div>
 		        @endif
+		        @if($oficio->IdEstatus == 106)
+		            <a href="#" class="list-group-item">
+		              <i class="fa fa-gear"></i>&nbsp;Folio: {{$oficio->IdOficioEntrante}}
+		              <span class="badge badge-danger">{{$oficio->NombreEstatus}}</span>
+		            </a>
+		            <div class="progress progress-bar-sm mn">
+	                  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:100%">
+	                  </div>
+	                </div>
+		        @endif
             @endif
             
             <!-- Oficios entrantes confidenciales -->
@@ -141,6 +151,16 @@
 	                  </div>
 	                </div>
 		        @endif
+		        @if($oficio->IdEstatus == 206)
+		            <a href="#" class="list-group-item">
+		              <i class="fa fa-gear"></i>&nbsp;Folio: {{$oficio->IdOficioEntrante}}
+		              <span class="badge badge-danger">{{$oficio->NombreEstatus}}</span>
+		            </a>
+		            <div class="progress progress-bar-sm mn">
+	                  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:100%">
+	                  </div>
+	                </div>
+		        @endif
             @endif
             <!-- Oficios entrantes reservados -->
             @if($oficio->Caracter_Id == 1)
@@ -181,6 +201,16 @@
 		            </a>
 		            <div class="progress progress-bar-sm mn">
 	                  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:80%">
+	                  </div>
+	                </div>
+		        @endif
+		        @if($oficio->IdEstatus == 305)
+		            <a href="#" class="list-group-item">
+		              <i class="fa fa-gear"></i>&nbsp;Folio: {{$oficio->IdOficioEntrante}}
+		              <span class="badge badge-danger">{{$oficio->NombreEstatus}}</span>
+		            </a>
+		            <div class="progress progress-bar-sm mn">
+	                  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:80%">
 	                  </div>
 	                </div>
 		        @endif
@@ -235,13 +265,32 @@
             <!-- message toolbar header -->
             <div class="panel-menu br-n br-b">
                   <div class="row">
-                    <div class="hidden-xs hidden-sm col-md-3">
+                  @if($oficio->Estatus_Id != 105 || $oficio->Estatus_Id != 205 || $oficio->Estatus_Id != 304)
+                    <div class="hidden-xs hidden-sm col-md-12">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-default light">
+                        <a href="#" class="btn btn-info light">
                           <i class="fa fa-pencil"></i> Generar oficio de respuesta
-                        </button>
+                        </a>
+                      </div>
+                    @if($oficio->IdCaracter != 1)
+                      <div class="btn-group">
+                        <a href="{{action('OficiosEntrantesController@subdireccion_ccp',array('oficioentrante'=>$oficio->IdCorrespondencia))}}" class="btn btn-warning light">
+                          <i class="fa fa-reply-all"></i> Enviar CCP
+                        </a>
+                      </div>
+                      <div class="btn-group">
+                        <a href="{{action('OficiosEntrantesController@subdireccion_turnarA',array('oficioentrante'=>$oficio->IdCorrespondencia))}}" class="btn btn-alert light">
+                          <i class="fa fa-reply"></i> Turnar oficio
+                        </a>
+                      </div>
+                    @endif
+                      <div class="btn-group">
+                        <a href="#" class="btn btn-danger light">
+                          <i class="fa fa-times"></i> Cancelar proceso
+                        </a>
                       </div>
                     </div>
+                  @endif  
                   </div>
 			
             <!-- message view -->
@@ -330,7 +379,7 @@
                         @if($oficio->RequiereRespuesta == true)
                         <tr>
                           <td>
-                            <span class="fa fa-bank text-alert"></span>
+                            <span class="fa fa-calendar-o text-alert"></span>
                           </td>
                           <td>Fecha límite de respuesta</td>
                           <td>{{$oficio->FechaLimiteR}}</td>
@@ -339,7 +388,7 @@
                         @if($oficio->EnRespuestaA != NULL)
                         <tr>
                           <td>
-                            <span class="fa fa-bank text-alert"></span>
+                            <span class="fa fa-mail-forward text-alert"></span>
                           </td>
                           <td>Este oficio es una respuesta a la correspondencia no. </td>
                           <td>{{$oficio->EnRespuestaA}}</td>

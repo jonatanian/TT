@@ -161,11 +161,11 @@
 	            </a>
 	            <ul class="nav sub-nav acc-menu">
 	              <li>
-	                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
+	                  <a href="{{action('OficiosController@dsbd_recibidos')}}">
 	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
 	              </li>
 	              <li>
-	                  <a href="{{action('OficiosController@oficialia_salientes')}}">
+	                  <a href="{{action('OficiosController@dsbd_salientes')}}">
 	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
 	              </li>
 	            </ul>

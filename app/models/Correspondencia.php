@@ -52,6 +52,16 @@
 			return $Id;
 		}
 		
+	public function upDateEstatus($IdCorrespondencia,$IdEstatus){
+			DB::transaction(function () use ($IdCorrespondencia,$IdEstatus){
+				$C = Correspondencia::find($IdCorrespondencia);
+				$C -> Estatus_Id = $IdEstatus;
+				$C -> save();
+			});
+			
+			return true;
+		}
+		
 	public function nuevaCorrespondenciaSaliente($inputs, $subir){
 			DB::transaction(function () use ($inputs, $subir){
 				$correspondencia = new Correspondencia();
