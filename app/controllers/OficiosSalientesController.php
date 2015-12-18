@@ -25,7 +25,6 @@ class OficiosSalientesController extends BaseController {
 		
 	public function oficialia_nuevoOficio_registrar()
 		{
-			
 			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
 			
 			$file = Input::file('DocPDF');
@@ -39,34 +38,52 @@ class OficiosSalientesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosSalientesController@oficialia_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
-			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosEntrantesController@oficialia_nuevoOficio')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaSaliente = new Correspondencia();
+			$addDatosConfidenciales = new DatosConfidenciales();
+			$addAnexos = new Anexo();
 			$oficio = new OficioSaliente();
-			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$path)){
+				if($datos['hidden-TagsConfidenciales'] != NULL){
+					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
+				}
+				
+				if($datos['hidden-TagsAnexos'] != NULL){
+					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
+				}
+				
 				$IdOficioE = $oficio->nuevoOficioSaliente($datos,$IdCorrespondencia);
 				
-				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
-					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
+				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upEmisor = $Emisor->updateCargoSaliente($datos);			
 				}
 				
-				if($Destinatario->Dependencia_Area_Id == NULL){
+				if($Emisor->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
-					$IdDepTieneArea = $DTA->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
+					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
+					$AgregarArea = $Emisor->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
-					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
+					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Emisor->Dependencia_Area_Id)->first();
 					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
-						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
+						$UpETA = $DepTieneArea->upDateETA($datos,$Emisor->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
-						$UpDTA = $DepTieneArea->updateDependenciaSaliente($datos,$DepTieneArea->IdDependenciaTieneArea);
+						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}
 				
@@ -78,9 +95,10 @@ class OficiosSalientesController extends BaseController {
 				return Redirect::action('OficiosController@oficialia_salientes');
 			}	
 			else{
-				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
+				Session::flash('msgf','Error al registrar nuevo oficio entrante.');
 				return Redirect::action('OficiosController@oficialia_salientes');
 			}
+			
 		}
 		
 	public function oficialia_consultaDependencia()
@@ -152,7 +170,6 @@ class OficiosSalientesController extends BaseController {
 		
 	public function dsbd_nuevoOficio_registrar()
 		{
-			
 			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
 			
 			$file = Input::file('DocPDF');
@@ -166,31 +183,49 @@ class OficiosSalientesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosSalientesController@dsbd_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
-			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosEntrantesController@dsbd_nuevoOficio')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaSaliente = new Correspondencia();
+			$addDatosConfidenciales = new DatosConfidenciales();
+			$addAnexos = new Anexo();
 			$oficio = new OficioSaliente();
-			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$path)){
+				if($datos['hidden-TagsConfidenciales'] != NULL){
+					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
+				}
+				
+				if($datos['hidden-TagsAnexos'] != NULL){
+					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
+				}
+				
 				$IdOficioE = $oficio->nuevoOficioSaliente($datos,$IdCorrespondencia);
 				
-				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
-					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
+				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upEmisor = $Emisor->updateCargoSaliente($datos);			
 				}
 				
-				if($Destinatario->Dependencia_Area_Id == NULL){
+				if($Emisor->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
+					$AgregarArea = $Emisor->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
-					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
+					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Emisor->Dependencia_Area_Id)->first();
 					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
-						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
+						$UpETA = $DepTieneArea->upDateETA($datos,$Emisor->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
@@ -205,9 +240,10 @@ class OficiosSalientesController extends BaseController {
 				return Redirect::action('OficiosController@dsbd_salientes');
 			}	
 			else{
-				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
+				Session::flash('msgf','Error al registrar nuevo oficio entrante.');
 				return Redirect::action('OficiosController@dsbd_salientes');
 			}
+			
 		}
 		
 		///////////////////Director////////////////////////
@@ -232,7 +268,6 @@ class OficiosSalientesController extends BaseController {
 		
 	public function direccion_nuevoOficio_registrar()
 		{
-			
 			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
 			
 			$file = Input::file('DocPDF');
@@ -246,31 +281,49 @@ class OficiosSalientesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosSalientesController@direccion_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
-			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosEntrantesController@direccion_nuevoOficio')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaSaliente = new Correspondencia();
+			$addDatosConfidenciales = new DatosConfidenciales();
+			$addAnexos = new Anexo();
 			$oficio = new OficioSaliente();
-			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$path)){
+				if($datos['hidden-TagsConfidenciales'] != NULL){
+					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
+				}
+				
+				if($datos['hidden-TagsAnexos'] != NULL){
+					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
+				}
+				
 				$IdOficioE = $oficio->nuevoOficioSaliente($datos,$IdCorrespondencia);
 				
-				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
-					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
+				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upEmisor = $Emisor->updateCargoSaliente($datos);			
 				}
 				
-				if($Destinatario->Dependencia_Area_Id == NULL){
+				if($Emisor->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
+					$AgregarArea = $Emisor->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
-					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
+					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Emisor->Dependencia_Area_Id)->first();
 					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
-						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
+						$UpETA = $DepTieneArea->upDateETA($datos,$Emisor->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
@@ -285,9 +338,10 @@ class OficiosSalientesController extends BaseController {
 				return Redirect::action('OficiosController@direccion_salientes');
 			}	
 			else{
-				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
+				Session::flash('msgf','Error al registrar nuevo oficio entrante.');
 				return Redirect::action('OficiosController@direccion_salientes');
 			}
+			
 		}
 		
 		//////////////////////////////Subdirección////////////////////////////
@@ -313,7 +367,6 @@ class OficiosSalientesController extends BaseController {
 		
 	public function subdireccion_nuevoOficio_registrar()
 		{
-			
 			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
 			
 			$file = Input::file('DocPDF');
@@ -327,31 +380,49 @@ class OficiosSalientesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosSalientesController@subdireccion_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
-			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosEntrantesController@subdireccion_nuevoOficio')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaSaliente = new Correspondencia();
+			$addDatosConfidenciales = new DatosConfidenciales();
+			$addAnexos = new Anexo();
 			$oficio = new OficioSaliente();
-			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$path)){
+				if($datos['hidden-TagsConfidenciales'] != NULL){
+					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
+				}
+				
+				if($datos['hidden-TagsAnexos'] != NULL){
+					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
+				}
+				
 				$IdOficioE = $oficio->nuevoOficioSaliente($datos,$IdCorrespondencia);
 				
-				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
-					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
+				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upEmisor = $Emisor->updateCargoSaliente($datos);			
 				}
 				
-				if($Destinatario->Dependencia_Area_Id == NULL){
+				if($Emisor->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
+					$AgregarArea = $Emisor->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
-					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
+					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Emisor->Dependencia_Area_Id)->first();
 					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
-						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
+						$UpETA = $DepTieneArea->upDateETA($datos,$Emisor->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
@@ -366,9 +437,10 @@ class OficiosSalientesController extends BaseController {
 				return Redirect::action('OficiosController@subdireccion_salientes');
 			}	
 			else{
-				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
+				Session::flash('msgf','Error al registrar nuevo oficio entrante.');
 				return Redirect::action('OficiosController@subdireccion_salientes');
 			}
+			
 		}
 		
 		///////////////////////Jefe de departamento//////////////////////////
@@ -394,7 +466,6 @@ class OficiosSalientesController extends BaseController {
 		
 	public function jefatura_nuevoOficio_registrar()
 		{
-			
 			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
 			
 			$file = Input::file('DocPDF');
@@ -408,31 +479,49 @@ class OficiosSalientesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosSalientesController@jefatura_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
-			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosEntrantesController@jefatura_nuevoOficio')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaSaliente = new Correspondencia();
+			$addDatosConfidenciales = new DatosConfidenciales();
+			$addAnexos = new Anexo();
 			$oficio = new OficioSaliente();
-			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$path)){
+				if($datos['hidden-TagsConfidenciales'] != NULL){
+					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
+				}
+				
+				if($datos['hidden-TagsAnexos'] != NULL){
+					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
+				}
+				
 				$IdOficioE = $oficio->nuevoOficioSaliente($datos,$IdCorrespondencia);
 				
-				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
-					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
+				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upEmisor = $Emisor->updateCargoSaliente($datos);			
 				}
 				
-				if($Destinatario->Dependencia_Area_Id == NULL){
+				if($Emisor->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
+					$AgregarArea = $Emisor->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
-					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
+					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Emisor->Dependencia_Area_Id)->first();
 					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
-						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
+						$UpETA = $DepTieneArea->upDateETA($datos,$Emisor->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
@@ -447,9 +536,10 @@ class OficiosSalientesController extends BaseController {
 				return Redirect::action('OficiosController@jefatura_salientes');
 			}	
 			else{
-				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
+				Session::flash('msgf','Error al registrar nuevo oficio entrante.');
 				return Redirect::action('OficiosController@jefatura_salientes');
 			}
+			
 		}
 		
 		/////////////////////Personal CMPL////////////////////////////////
@@ -474,7 +564,6 @@ class OficiosSalientesController extends BaseController {
 		
 	public function iescmpl_nuevoOficio_registrar()
 		{
-			
 			Input::flashOnly('IdOficio','DirigidoA','FechaEmision','FechaRecepcion','Asunto','IdOficioR','FechaLimiteR');
 			
 			$file = Input::file('DocPDF');
@@ -488,31 +577,49 @@ class OficiosSalientesController extends BaseController {
 				Session::flash('msgf','Debe subir un archivo en formato PDF.');
 				return Redirect::action('OficiosSalientesController@iescmpl_nuevoOficio')->withInput();
 			}
+			
+			$url_docpdf = $file->getClientOriginalName();
 
-			$url_docpdf = Hash::make($file->getClientOriginalName());
-			$destinoPath = public_path().'\\oficios\\entrantes\\';
-			$subir = $file->move($destinoPath,$url_docpdf.'.'.$file->guessExtension());
+			if(!preg_match('/^[\x20-\x7e]*$/',$url_docpdf)){
+				Session::flash('msgf','El nombre del archivo PDF no puede contener los caracteres /^[\-]*$');
+				return Redirect::action('OficiosEntrantesController@iescmpl_nuevoOficio')->withInput();
+			}
+			
+			$path = 'oficios\\salientes\\'.$url_docpdf;
+			$destinoPath = public_path().'\\oficios\\salientes\\';
+			
+			$subir = $file->move($destinoPath,$url_docpdf);//.'.'.$file->guessExtension());
 			$datos = Input::all();
 			$correspondenciaSaliente = new Correspondencia();
+			$addDatosConfidenciales = new DatosConfidenciales();
+			$addAnexos = new Anexo();
 			$oficio = new OficioSaliente();
-			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$subir)){
+			if($IdCorrespondencia = $correspondenciaSaliente->nuevaCorrespondenciaSaliente($datos,$path)){
+				if($datos['hidden-TagsConfidenciales'] != NULL){
+					$IdDatos = $addDatosConfidenciales->nuevoDatoConf($datos['hidden-TagsConfidenciales'],$IdCorrespondencia);
+				}
+				
+				if($datos['hidden-TagsAnexos'] != NULL){
+					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
+				}
+				
 				$IdOficioE = $oficio->nuevoOficioSaliente($datos,$IdCorrespondencia);
 				
-				$Destinatario = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
+				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Destinatario'])->first();
 				
-				if($Destinatario->DepArea_Cargo_Id != $datos['CargoEmisor']){
-					$upDestinatario = $Destinatario->updateCargoSaliente($datos);			
+				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
+					$upEmisor = $Emisor->updateCargoSaliente($datos);			
 				}
 				
-				if($Destinatario->Dependencia_Area_Id == NULL){
+				if($Emisor->Dependencia_Area_Id == NULL){
 					$DTA = new DependenciaTieneArea();
 					$IdDepTieneArea = $DTA ->nuevaDependenciaTieneArea($datos);
-					$AgregarArea = $Destinatario->updateAreaSaliente($datos,$IdDepTieneArea);
+					$AgregarArea = $Emisor->updateAreaSaliente($datos,$IdDepTieneArea);
 				}
 				else{					
-					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Destinatario->Dependencia_Area_Id)->first();
+					$DepTieneArea = DependenciaTieneArea::where('IdDependenciaTieneArea',$Emisor->Dependencia_Area_Id)->first();
 					if($DepTieneArea->DepArea_Id != $datos['AreaE']){
-						$UpETA = $DepTieneArea->upDateETA($datos,$Destinatario->Dependencia_Area_Id);
+						$UpETA = $DepTieneArea->upDateETA($datos,$Emisor->Dependencia_Area_Id);
 					}
 					if($DepTieneArea->Dependencia_Id != $datos['DependenciaE']){
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
@@ -527,9 +634,105 @@ class OficiosSalientesController extends BaseController {
 				return Redirect::action('OficiosController@iescmpl_salientes');
 			}	
 			else{
-				Session::flash('msgf','Error al registrar nuevo oficio saliente.');
+				Session::flash('msgf','Error al registrar nuevo oficio entrante.');
 				return Redirect::action('OficiosController@iescmpl_salientes');
 			}
+			
 		}
+		///////////////Ver detalles y ver PDF///////////////////
+	public function verPDF()
+	{
+		$Correspondencia = Request::get('correspondencia');
+		
+		$OficioSaliente = Correspondencia::join('oficio_saliente','IdCorrespondencia','=','oficio_saliente.Correspondencia_Id')
+										 ->where('correspondencia.IdCorrespondencia',$Correspondencia)
+										 ->first();
+										 
+		$pathToFile = public_path().'/'.$OficioSaliente->URLPDF;
+		$name = 'OficioSaliente_'.$OficioSaliente->IdConsecutivo.'_'.$OficioSaliente->FechaEntrega.'.pdf';
+		$headers = array('Content-Type'=>'application/pdf',);
+		//Cambio de estátus a Visto
+		
+		return Response::download($pathToFile,$name, $headers);
+	}
+	
+	public function oficialia_verDetalles()
+	{
+		$IdCorrespondencia = Request::get('correspondencia');
+		$isDatosConfidenciales = DatosConfidenciales::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		$isAnexos = Anexo::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		
+		if($isDatosConfidenciales != NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif(($isDatosConfidenciales != NULL) && ($isAnexos == NULL))
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif($isDatosConfidenciales == NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		else//($isDatosConfidenciales == NULL && $isAnexos == NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+				  
+		return View::make('oficios.oficialia_OficioSalienteDetalles',array('oficio'=>$oficio,));
+	}
+		
+		
 }
 ?>
