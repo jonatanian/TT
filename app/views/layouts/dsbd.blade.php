@@ -221,7 +221,7 @@
       </div>
 	  @yield('Topbar')
       <!-- End: Topbar-Dropdown -->
-
+	  @yield('ContentClass')
       <!-- Begin: Content -->
       <section id="content" class="animated fadeIn">
         @if(Session::has('msg'))

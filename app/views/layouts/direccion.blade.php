@@ -175,9 +175,9 @@
     <section id="content_wrapper">
     
       <!-- Start: Topbar -->
-      	@yield('Topbar')
+      @yield('Topbar')
       <!-- End: Topbar -->
-	  
+	  @yield('ContentClass')
       <!-- Begin: Content -->
       <section id="content" class="animated fadeIn">
         @if(Session::has('msg'))
