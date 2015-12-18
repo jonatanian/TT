@@ -38,61 +38,27 @@
                   </label>
                 </div>
                 
-                <div id="select-filter">
-@stop
+             <div id="select-filter">
 
-@section('content')
 	  <!-- Panel Body with Table (no padding) -->
 	  <div class="panel-body pn">
 	      <table class="table table-striped">
 			<tr class="success">
-				<td>Consecutivo</td>
-				<td>ID de memo</td>
+				<td>Folio</td>
+				<td>No. de memo</td>
 				<td>Dirigido a</td>
 				<td>Emisor</td>
-				<td>Asunto</td>
+				<td>Tipo</td>
 				<td>Estatus</td>
 			<tr>
-			<tr>
+			<!--<tr>
 				<td>1</td>
 				<td>CMPL/MEMO/2015/47</td>
 				<td>Nidia Orea Escalona</td>
 				<td>Rogelio Sotelo Boyás</td>
 				<td>Intranet CMPL</td>
 				<td><a href="#" class="btn btn-success">Cancelar proceso</a></td>
-			<tr>
-			<tr>
-				<td>2</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			<tr>
-			<tr>
-				<td>3</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			<tr>
-			<tr>
-				<td>4</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			<tr>
-			<tr>
-				<td>5</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			<tr>
+			<tr>-->
 		  </table>
 	  </div>
 	</div>
