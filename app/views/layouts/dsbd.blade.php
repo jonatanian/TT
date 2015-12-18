@@ -12,18 +12,28 @@
 
   <!-- Font CSS (Via CDN) -->
   {{HTML::style("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700")}}
+  <!-- Vendor CSS -->
+  {{HTML::style("vendor/plugins/magnific/magnific-popup.css")}}
   <!-- Theme CSS -->
   {{HTML::style("assets/skin/default_skin/css/theme.css")}}
   <!-- Admin Forms CSS -->
   {{HTML::style("assets/admin-tools/admin-forms/css/admin-forms.css")}}
   <!-- Favicon -->
   {{HTML::style("assets/img/favicon.ico")}}
+  <!-- Required Plugin CSS -->
+  {{HTML::style("vendor/plugins/tagmanager/tagmanager.css")}}
+  {{HTML::style("vendor/plugins/daterange/daterangepicker.css")}}
+  {{HTML::style("vendor/plugins/datepicker/css/bootstrap-datetimepicker.css")}}
+  {{HTML::style("vendor/plugins/colorpicker/css/bootstrap-colorpicker.min.css")}}
+  {{HTML::style("vendor/plugins/select2/css/core.css")}}
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  
   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  {{HTML::script('https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js')}}
 <![endif]-->
-
 </head>
 
 <body class="blank-page">
@@ -44,14 +54,14 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-				<li>
-					<div class="navbar-btn btn-group">
-	          <a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
-		          <span class="fa fa-cog"></span>
-	          </a>
-	        </div>
-				</li>
-
+        <li>
+			<div class="navbar-btn btn-group">
+				<a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
+					<span class="fa fa-cog"></span>
+				</a>
+			</div>
+		</li>
+        
         <li class="menu-divider hidden-xs">
           <i class="fa fa-circle"></i>
         </li>
@@ -111,15 +121,15 @@
             </div>
           </div>
         </header>
-        
+
         <!-- Start: Sidebar Menu -->
         <nav role="navigation" class="widget-body">
-	        <ul class="nav sidebar-menu acc-menu">
+	        <ul class="nav sidebar-menu acc-menu active-warning">
 	          <li class="sidebar-label pt20">Men&uacute;</li>
 	          <li>
-                <a href="{{action('AdminController@dsbd_index')}}">
+                <a href="{{action('OficialiaController@oficialia_index')}}">
                   <span class="glyphicon glyphicon-home"></span>
-                  <span class="sidebar-title">Página principal de SISA</span>
+                  <span class="sidebar-title">Bandeja de entrada</span>
                 </a>
               </li>
 	          <li>
@@ -151,17 +161,35 @@
 	            </a>
 	            <ul class="nav sub-nav acc-menu">
 	              <li>
-	                  <a href="">
+	                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
 	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
 	              </li>
 	              <li>
-	                  <a href="{{action('OficiosController@dsbd_salientes')}}">
+	                  <a href="{{action('OficiosController@oficialia_salientes')}}">
 	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
+	              </li>
+	            </ul>
+	          </li>
+	          <li>
+	            <a href="javascript:;">
+	              <span class="fa fa-folder-open"></span>
+	              <span class="sidebar-title">Memorándums</span>
+	              <span class="caret"></span>
+	            </a>
+	            <ul class="nav sub-nav acc-menu">
+	              <li>
+	                  <a href="{{action('MemosController@oficialia_recibidos')}}">
+	                  <span class="fa fa-folder"></span> Memos recibidos</a>
+	              </li>
+	              <li>
+	                  <a href="{{action('MemosController@oficialia_enviados')}}"> 
+	                  <span class="fa fa-folder-o"></span> Memos enviados </a>
 	              </li>
 	            </ul>
 	          </li>
 	        </ul>
 	    </nav>
+          
 	      <!-- Start: Sidebar Collapse Button -->
 	      <div class="sidebar-toggle-mini">
 	        <a href="#">
@@ -169,7 +197,6 @@
 	        </a>
 	      </div>
 	      <!-- End: Sidebar Collapse Button -->
-
       </div>
       <!-- End: Sidebar Left Content -->
 
@@ -177,7 +204,7 @@
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-
+    
       <!-- Start: Topbar-Dropdown -->
       <div id="topbar-dropmenu" class="alt">
         <div class="topbar-menu row">
@@ -219,38 +246,71 @@
           </div>
         </div>
       </div>
-	  @yield('Topbar')
-      <!-- End: Topbar-Dropdown -->
-
+    
+      <!-- Start: Topbar -->
+      	@yield('Topbar')
+      <!-- End: Topbar -->
+	  
       <!-- Begin: Content -->
-      <section id="content" class="animated fadeIn">
-        @if(Session::has('msg'))
-          <div class="alert alert-system">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msg')}}
-          </div>
-        @endif
+      @yield('ContentClass')
+            
+      	@if(Session::has('msg'))
+      		<div class="alert alert-success alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msg')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgInfo'))
+      		<div class="alert alert-info alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-info pr10"></i>
+			  {{Session::get('msgInfo')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgWarning'))
+      		<div class="alert alert-warning alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-warning pr10"></i>
+			  {{Session::get('msgWarning')}}
+			</div>
+		@endif
         @if(Session::has('msgf'))
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msgf')}}
-          </div>
+          	<div class="alert alert-danger alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-remove pr10"></i>
+			  {{Session::get('msgf')}}
+			</div>
         @endif
-		
+        @if(Session::has('msgSystem'))
+	        <div class="alert alert-system alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-cubes pr10"></i>
+			  {{Session::get('msgSystem')}}
+			</div>
+		@endif
+		@if(Session::has('msgAlert'))
+	        <div class="alert alert-alert alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msgAlert')}}
+			</div>
+		@endif
         @yield('content')
       </section>
       
-        <!-- Begin: Page Footer -->
-        <footer id="content-footer" class="affix">
-          <div class="row">
-            <div class="col-md-6">
-              <span class="footer-legal">© 2015 CMPL-IPN</span>
-            </div>
+      <!-- Begin: Page Footer -->
+      <footer id="content-footer" class="affix">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="footer-legal">© 2015 CMPL-IPN</span>
           </div>
-        </footer>
-        <!-- End: Page Footer -->
+        </div>
+      </footer>
+      <!-- End: Page Footer -->
+      
       <!-- End: Content -->
-    </section>
+    
   </div>
   <!-- End: Main -->
 
@@ -259,14 +319,14 @@
   <!-- jQuery -->
   
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
-
+  
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
   
   <!-- Page Plugins -->
   {{HTML::script('assets/admin-tools/admin-forms/js/jquery.validate.min.js')}}
   {{HTML::script('assets/admin-tools/admin-forms/js/jquery.steps.min.js')}}
   {{HTML::script('vendor/plugins/magnific/jquery.magnific-popup.js')}}
-  
+  	
   {{HTML::script('avalon/plugins/jquery-slimscroll/jquery.slimscroll.js')}}
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
@@ -296,13 +356,14 @@
   <!-- MaskedInput Plugin -->
   {{HTML::script('vendor/plugins/jquerymask/jquery.maskedinput.min.js')}}
   
+  <!-- Theme Javascript -->
+  
   {{HTML::script('assets/js/utility/utility.js')}}
-  
   {{HTML::script('assets/js/demo/demo.js')}}
-  
   {{HTML::script('assets/js/main.js')}}
   
   @yield('scripts')
+  
   <script type="text/javascript">
   jQuery(document).ready(function() {
 
@@ -311,6 +372,24 @@
     // Init Theme Core    
     Core.init();
 
+    $.datepicker.regional['es'] = {
+		 closeText: 'Cerrar',
+		 prevText: '<b>&lt;</b>',
+		 nextText: '<b>&gt;</b>',
+		 currentText: 'Hoy',
+		 monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		 monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+		 dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		 dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+		 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+		 weekHeader: 'Sm',
+		 dateFormat: 'dd/mm/yy',
+		 firstDay: 1,
+		 isRTL: false,
+		 showMonthAfterYear: false,
+		 yearSuffix: ''
+	 };
+ 	$.datepicker.setDefaults($.datepicker.regional['es']);
 
   });
   </script>

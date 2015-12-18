@@ -6,7 +6,7 @@
 		<div class="topbar-left">
 			<ul class="nav nav-list nav-list-topbar pull-left">
 				<li class="">
-					<a href="{{action('OficiosController@oficialia_salientes')}}">Oficios Salientes</a>
+					<a href="{{action('OficiosController@subdireccion_salientes')}}">Oficios Salientes</a>
 				</li>
 				<li class="">
 					<span>&frasl;</span>
@@ -29,7 +29,7 @@
         <aside class="tray tray-left tray270" data-tray-height="match">
 
           <!-- Return to Inbox Button -->
-          <a href="{{action('OficialiaController@oficialia_index')}}" class="btn btn-danger light btn-block fw600">Ir a Bandeja de entrada</a>
+          <a href="{{action('SubdireccionController@subdireccion_index')}}" class="btn btn-danger light btn-block fw600">Ir a Bandeja de entrada</a>
 
           <!-- Message Menu -->
           <div class="list-group list-group-links mt20">
@@ -223,7 +223,7 @@
             		<a href="#" class="list-group-item">
 		              <i class="fa fa-user"></i>
 		              Responsable de revisión
-		              <span class="label badge-success">{{$oficio->getCargoRevisor($oficio->Observacion_Usuario_Id)}}</span>
+		              <span class="label badge-success">{{$oficio->getNombreRevisor($oficio->Observacion_Usuario_Id)}}</span>
 		            </a>
             	@elseif($oficio->NombreEstatus == "Observaciones")
 		            <a href="#" class="list-group-item">

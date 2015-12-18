@@ -73,7 +73,7 @@
 					  <td>{{$oficio->FechaEmision}}</td>
 					  <td>{{$oficio->NombreEstatus}}</td>
 					  <td>{{$oficio->getNombreRevisor($oficio->Observacion_Usuario_Id)}}</td>
-                      @if($oficio->NombreEstatus == "En revisión")
+                      
 					  <td class="text-center">
                         <div class="btn-group text-center">
                           <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
@@ -81,37 +81,17 @@
                           </button>
                           <ul class="dropdown-menu" role="menu">				    
 						    <li>
-						      <a href="#">Descargar PDF</a>
+						      <a href="{{action('OficiosSalientesController@verPDF',array('correspondencia'=>$oficio->IdCorrespondencia))}}">Descargar PDF</a>
 						    </li>
 						    <li>
-						      <a href="#">Ver detalles</a>
+						      <a href="{{action('OficiosSalientesController@iescmpl_verDetalles',array('correspondencia'=>$oficio->IdCorrespondencia))}}">Ver detalles</a>
 						    </li>					    
 						    <li class="divider"></li>
 						    
 						  </ul>
                         </div>
                       </td>
-					  @elseif($oficio->NombreEstatus == "Observaciones")
-                      <td class="text-center">
-                        <div class="btn-group text-center">
-                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
-                            <span class="caret ml50"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <li>
-						      <a href="#">Corregir oficio</a>
-						    </li>					    
-						    <li>
-						      <a href="#">Descargar PDF</a>
-						    </li>
-						    <li>
-						      <a href="#">Ver detalles</a>
-						    </li>					    
-						    <li class="divider"></li>
-						  </ul>
-                        </div>
-                      </td>
-					  @endif
+					  
                     </tr>
                     @endforeach
                   </tbody>

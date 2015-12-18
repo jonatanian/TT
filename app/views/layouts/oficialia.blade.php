@@ -260,8 +260,7 @@
       <!-- End: Page Footer -->
       
       <!-- End: Content -->
-
-    </section>
+    
   </div>
   <!-- End: Main -->
 

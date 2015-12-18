@@ -732,7 +732,388 @@ class OficiosSalientesController extends BaseController {
 				  
 		return View::make('oficios.oficialia_OficioSalienteDetalles',array('oficio'=>$oficio,));
 	}
+	public function dsbd_verDetalles()
+	{
+		$IdCorrespondencia = Request::get('correspondencia');
+		$isDatosConfidenciales = DatosConfidenciales::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		$isAnexos = Anexo::where('Correspondencia_Id',$IdCorrespondencia)->first();
 		
+		if($isDatosConfidenciales != NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
 		
+		elseif(($isDatosConfidenciales != NULL) && ($isAnexos == NULL))
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif($isDatosConfidenciales == NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		else//($isDatosConfidenciales == NULL && $isAnexos == NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+				  
+		return View::make('oficios.dsbd_OficioSalienteDetalles',array('oficio'=>$oficio,));
+	}
+	
+	public function direccion_verDetalles()
+	{
+		$IdCorrespondencia = Request::get('correspondencia');
+		$isDatosConfidenciales = DatosConfidenciales::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		$isAnexos = Anexo::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		
+		if($isDatosConfidenciales != NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif(($isDatosConfidenciales != NULL) && ($isAnexos == NULL))
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif($isDatosConfidenciales == NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		else//($isDatosConfidenciales == NULL && $isAnexos == NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+				  
+		return View::make('oficios.direccion_OficioSalienteDetalles',array('oficio'=>$oficio,));
+	}
+	public function subdireccion_verDetalles()
+	{
+		$IdCorrespondencia = Request::get('correspondencia');
+		$isDatosConfidenciales = DatosConfidenciales::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		$isAnexos = Anexo::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		
+		if($isDatosConfidenciales != NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif(($isDatosConfidenciales != NULL) && ($isAnexos == NULL))
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif($isDatosConfidenciales == NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		else//($isDatosConfidenciales == NULL && $isAnexos == NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+				  
+		return View::make('oficios.subdireccion_OficioSalienteDetalles',array('oficio'=>$oficio,));
+	}
+		
+	public function jefatura_verDetalles()
+	{
+		$IdCorrespondencia = Request::get('correspondencia');
+		$isDatosConfidenciales = DatosConfidenciales::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		$isAnexos = Anexo::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		
+		if($isDatosConfidenciales != NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif(($isDatosConfidenciales != NULL) && ($isAnexos == NULL))
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif($isDatosConfidenciales == NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		else//($isDatosConfidenciales == NULL && $isAnexos == NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+				  
+		return View::make('oficios.jefatura_OficioSalienteDetalles',array('oficio'=>$oficio,));
+	}
+	
+	public function iescmpl_verDetalles()
+	{
+		$IdCorrespondencia = Request::get('correspondencia');
+		$isDatosConfidenciales = DatosConfidenciales::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		$isAnexos = Anexo::where('Correspondencia_Id',$IdCorrespondencia)->first();
+		
+		if($isDatosConfidenciales != NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif(($isDatosConfidenciales != NULL) && ($isAnexos == NULL))
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('datos_confidenciales','correspondencia.IdCorrespondencia','=','datos_confidenciales.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		elseif($isDatosConfidenciales == NULL && $isAnexos != NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('anexo','correspondencia.IdCorrespondencia','=','anexo.Correspondencia_Id')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+		
+		else//($isDatosConfidenciales == NULL && $isAnexos == NULL)
+		{
+			$oficio = OficioSaliente::join('correspondencia','Correspondencia_Id','=','Correspondencia.IdCorrespondencia')
+									->join('prioridad','correspondencia.Prioridad_Id','=','prioridad.IdPrioridad')
+									->join('caracter','correspondencia.Caracter_Id','=','caracter.IdCaracter')
+									->join('entidad_externa','Destinatario','=','Entidad_Externa.IdEntidadExterna')
+									->join('cargo_entidad','entidad_externa.DepArea_Cargo_Id','=','cargo_entidad.IdCargoEntidad')
+									->join('dependencia_area','AreaDestinada','=','dependencia_area.IdDependenciaArea')
+									->join('dependencia','Dependencia','=','dependencia.IdDependencia')
+									->join('estatus','correspondencia.Estatus_Id','=','estatus.IdEstatus')
+									->join('observaciones','observaciones.Oficio_Saliente_Id','=','Oficio_Saliente.IdConsecutivo')
+									->join('usuario','Oficio_Saliente.Usuario_Id','=','Usuario.IdUsuario')
+									->where('correspondencia.IdCorrespondencia',$IdCorrespondencia)
+									->first();
+		}
+				  
+		return View::make('oficios.iescmpl_OficioSalienteDetalles',array('oficio'=>$oficio,));
+	}
 }
 ?>

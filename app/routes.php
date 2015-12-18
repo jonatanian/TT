@@ -50,6 +50,8 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('usuario/ordenar', 'UsersController@dsbd_consultarUsuarios');
 		
 		//Funciones de Oficios Salientes
+	//Detalles Oficio
+	Route::get('/oficios/salientes/detalles','OficiosSalientesController@dsbd_verDetalles');
 	Route::get('/oficios/salientes','OficiosController@dsbd_salientes');
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@dsbd_nuevoOficio');
@@ -85,6 +87,8 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 		
 		//Funciones de Oficios Salientes
+		////Detalles Oficio
+	Route::get('/oficios/salientes/detalles','OficiosSalientesController@jefatura_verDetalles');
 	Route::get('/oficios/salientes','OficiosController@jefatura_salientes');
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@jefatura_nuevoOficio');
@@ -105,6 +109,8 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 		
 		//Funciones de Oficios Salientes
+	//Detalles Oficio
+	Route::get('/oficios/salientes/detalles','OficiosSalientesController@subdireccion_verDetalles');
 	Route::get('/oficios/salientes','OficiosController@subdireccion_salientes');
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@subdireccion_nuevoOficio');
@@ -125,6 +131,8 @@ Route::group(array("prefix"=>'direccion'), function(){
 		Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 		
 		//Funciones de Oficios Salientes
+	//Detalles
+	Route::get('/oficios/salientes/detalles','OficiosSalientesController@direccion_verDetalles');
 	Route::get('/oficios/salientes','OficiosController@direccion_salientes');
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@direccion_nuevoOficio');
@@ -219,6 +227,8 @@ Route::group(array("prefix"=>'iescmpl'), function(){
 	Route::post('/usuario/contrasena','UsersController@personal_actualizarContrasenaUsuario');
 	
 	//Funciones de Oficios Salientes
+	//Detalles
+	Route::get('/oficios/salientes/detalles','OficiosSalientesController@iescmpl_verDetalles');
 	Route::get('/oficios/salientes','OficiosController@personal_salientes');
 	//Wizard: Registro de oficios entrantes
 	Route::get('/oficios/salientes/nuevo','OficiosSalientesController@personal_nuevoOficio');
