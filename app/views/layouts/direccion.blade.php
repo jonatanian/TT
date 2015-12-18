@@ -20,6 +20,12 @@
   {{HTML::style("assets/admin-tools/admin-forms/css/admin-forms.css")}}
   <!-- Favicon -->
   {{HTML::style("assets/img/favicon.ico")}}
+  <!-- Required Plugin CSS -->
+  {{HTML::style("vendor/plugins/tagmanager/tagmanager.css")}}
+  {{HTML::style("vendor/plugins/daterange/daterangepicker.css")}}
+  {{HTML::style("vendor/plugins/datepicker/css/bootstrap-datetimepicker.css")}}
+  {{HTML::style("vendor/plugins/colorpicker/css/bootstrap-colorpicker.min.css")}}
+  {{HTML::style("vendor/plugins/select2/css/core.css")}}
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -110,12 +116,12 @@
 
         <!-- Start: Sidebar Menu -->
         <nav role="navigation" class="widget-body">
-	        <ul class="nav sidebar-menu acc-menu">
+	        <ul class="nav sidebar-menu acc-menu active-warning">
 	          <li class="sidebar-label pt20">Men&uacute;</li>
 	          <li>
-                <a href="{{action('DireccionController@direccion_index')}}">
+                <a href="{{action('OficialiaController@oficialia_index')}}">
                   <span class="glyphicon glyphicon-home"></span>
-                  <span class="sidebar-title">Página principal de SISA</span>
+                  <span class="sidebar-title">Bandeja de entrada</span>
                 </a>
               </li>
 	          <li>
@@ -147,12 +153,29 @@
 	            </a>
 	            <ul class="nav sub-nav acc-menu">
 	              <li>
-	                  <a href="#">
+	                  <a href="{{action('OficiosController@oficialia_recibidos')}}">
 	                  <span class="fa fa-folder"></span> Oficios entrantes </a>
 	              </li>
 	              <li>
-	                  <a href="{{action('OficiosController@direccion_salientes')}}">
+	                  <a href="{{action('OficiosController@oficialia_salientes')}}">
 	                  <span class="fa fa-folder-o"></span> Oficios salientes </a>
+	              </li>
+	            </ul>
+	          </li>
+	          <li>
+	            <a href="javascript:;">
+	              <span class="fa fa-folder-open"></span>
+	              <span class="sidebar-title">Memorándums</span>
+	              <span class="caret"></span>
+	            </a>
+	            <ul class="nav sub-nav acc-menu">
+	              <li>
+	                  <a href="{{action('MemosController@oficialia_recibidos')}}">
+	                  <span class="fa fa-folder"></span> Memos recibidos</a>
+	              </li>
+	              <li>
+	                  <a href="{{action('MemosController@oficialia_enviados')}}"> 
+	                  <span class="fa fa-folder-o"></span> Memos enviados </a>
 	              </li>
 	            </ul>
 	          </li>
@@ -175,23 +198,54 @@
     <section id="content_wrapper">
     
       <!-- Start: Topbar -->
-      @yield('Topbar')
+      	@yield('Topbar')
       <!-- End: Topbar -->
-	  @yield('ContentClass')
+	  
       <!-- Begin: Content -->
-      <section id="content" class="animated fadeIn">
-        @if(Session::has('msg'))
-          <div class="alert alert-system">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msg')}}
-          </div>
-        @endif
+      @yield('ContentClass')
+            
+      	@if(Session::has('msg'))
+      		<div class="alert alert-success alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msg')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgInfo'))
+      		<div class="alert alert-info alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-info pr10"></i>
+			  {{Session::get('msgInfo')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgWarning'))
+      		<div class="alert alert-warning alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-warning pr10"></i>
+			  {{Session::get('msgWarning')}}
+			</div>
+		@endif
         @if(Session::has('msgf'))
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msgf')}}
-          </div>
+          	<div class="alert alert-danger alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-remove pr10"></i>
+			  {{Session::get('msgf')}}
+			</div>
         @endif
+        @if(Session::has('msgSystem'))
+	        <div class="alert alert-system alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-cubes pr10"></i>
+			  {{Session::get('msgSystem')}}
+			</div>
+		@endif
+		@if(Session::has('msgAlert'))
+	        <div class="alert alert-alert alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msgAlert')}}
+			</div>
+		@endif
         @yield('content')
       </section>
       
@@ -256,9 +310,7 @@
   <!-- Theme Javascript -->
   
   {{HTML::script('assets/js/utility/utility.js')}}
-  
   {{HTML::script('assets/js/demo/demo.js')}}
-  
   {{HTML::script('assets/js/main.js')}}
   
   @yield('scripts')
@@ -271,8 +323,24 @@
     // Init Theme Core    
     Core.init();
 
-    // Init Demo JS  
-    //Demo.init();
+    $.datepicker.regional['es'] = {
+		 closeText: 'Cerrar',
+		 prevText: '<b>&lt;</b>',
+		 nextText: '<b>&gt;</b>',
+		 currentText: 'Hoy',
+		 monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		 monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+		 dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		 dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+		 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+		 weekHeader: 'Sm',
+		 dateFormat: 'dd/mm/yy',
+		 firstDay: 1,
+		 isRTL: false,
+		 showMonthAfterYear: false,
+		 yearSuffix: ''
+	 };
+ 	$.datepicker.setDefaults($.datepicker.regional['es']);
 
   });
   </script>
