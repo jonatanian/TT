@@ -458,7 +458,7 @@
 					'Nombre' =>'Ignacio',
 					'ApPaterno'	=> 'Elizalde',
 					'ApMaterno'	=> 'Martínez',
-					'Email'	=> 'ielizalde@ipn.mx',
+					'Email'	=> 'ielizaldem@ipn.mx',
 					'Password' =>'cmpl2015',
 					'Extension' => 52612,
 					'Cargo_Id' => 7,
