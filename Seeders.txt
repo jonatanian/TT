@@ -4,7 +4,6 @@ php artisan db:seed --class=RolSeeder --force
 php artisan db:seed --class=AdminsSeeder --force
 php artisan db:seed --class=UsuariosSeeder --force
 php artisan db:seed --class=PrioridadSeeder --force
-php artisan db:seed --class=TipoSeeder --force
 php artisan db:seed --class=EstatusSeeder --force
 php artisan db:seed --class=CaracteresSeeder --force
 php artisan db:seed --class=GradoSeeder --force
