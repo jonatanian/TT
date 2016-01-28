@@ -126,13 +126,13 @@
                   <span class="sidebar-title">Página principal del SIG</span>
                 </a>
               </li>
-              
+              <!--
               <li>
                 <a href="{{action('LoginController@SISA_index')}}">
                   <span class="glyphicon glyphicon-book"></span>
                   <span class="sidebar-title">SISA</span>
                 </a>
-              </li>
+              </li>-->
               
               <!-- sidebar resources -->
               <li class="sidebar-label pt15"></li>
