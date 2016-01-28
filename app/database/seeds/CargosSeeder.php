@@ -30,6 +30,7 @@
 			Cargo::create(array('NombreCargo' => 'Ingreso Auto-Generado y Presupuesto Federal','DescripcionCargo'=>''));
 			Cargo::create(array('NombreCargo' => 'Proyectos de Investigación','DescripcionCargo'=>''));
 			Cargo::create(array('NombreCargo' => 'Activo fijo','DescripcionCargo'=>'Contratación y nomina'));
+			Cargo::create(array('NombreCargo' => 'Representante de Dirección','DescripcionCargo'=>'POA'));
 	        	        
 	        $this->command->info('CargosTableSeeder: Cargos cargadas correctamente');
     	}

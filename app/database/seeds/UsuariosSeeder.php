@@ -182,7 +182,7 @@
 					'Password' =>'cmpl2015',
 					'Extension' => 52608,
 					'Cargo_Id' => 5,
-					'Rol_Id' => 5,
+					'Rol_Id' => 7,
 					'Area_Id' => 6
 				);
 			$c = new User();

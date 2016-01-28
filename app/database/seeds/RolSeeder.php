@@ -12,6 +12,7 @@
 			Rol::create(array('NombreRol' => 'Subdirector'));
 			Rol::create(array('NombreRol' => 'Jefe de Departamento'));
 			Rol::create(array('NombreRol' => 'Personal del CMPL'));
+			Rol::create(array('NombreRol' => 'Representante de Dirección'));
 			
 			$this->command->info('RolTableSeeder: Areas cargadas correctamente');
 		}
