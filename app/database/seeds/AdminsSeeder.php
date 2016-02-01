@@ -16,7 +16,7 @@
 					'FechaInicio' =>'2014/04/08',
 					'Cargo_Id' => 12,
 					'Rol_Id' => 1,
-					'Area_Id' => 8
+					'Area_Id' => 6
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
@@ -31,7 +31,7 @@
 					'FechaInicio' =>'2014/04/08',
 					'Cargo_Id' => 12,
 					'Rol_Id' => 1,
-					'Area_Id' => 8
+					'Area_Id' => 6
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
@@ -46,7 +46,7 @@
 					'FechaInicio' =>'2014/06/10',
 					'Cargo_Id' => 12,
 					'Rol_Id' => 1,
-					'Area_Id' => 8
+					'Area_Id' => 6
 				);
 			$c = new User();
 			$c->crearUsuario($datos);

@@ -21,7 +21,7 @@
 			Cargo::create(array('NombreCargo' => 'Contabilidad y Presupuestos','DescripcionCargo'=>'Asigna y gestiona recursos que entran al CMPL'));
 			Cargo::create(array('NombreCargo' => 'Contabilidad de Vinculados','DescripcionCargo'=>'Contabilidad de proyectos vinculados'));
 			Cargo::create(array('NombreCargo' => 'Responsable de Activo Fijo','DescripcionCargo'=>'Responsable activo fijo CMPL'));
-			Cargo::create(array('NombreCargo' => 'Capital Humano','DescripcionCargo'=>'Contratación y nomina'));
+			Cargo::create(array('NombreCargo' => 'Capital Humano','DescripcionCargo'=>'Contratación y nómina'));
 			Cargo::create(array('NombreCargo' => 'Ingeniero de Enlace con CONUEE','DescripcionCargo'=>'CONUEE'));
 			Cargo::create(array('NombreCargo' => 'Auxilar Administrativo','DescripcionCargo'=>'Auxilar en el área de administación'));
 			Cargo::create(array('NombreCargo' => 'Ingeniero de Sistemas','DescripcionCargo'=>'Diferentes actividades en el DSBD'));
@@ -31,8 +31,9 @@
 			Cargo::create(array('NombreCargo' => 'Proyectos de Investigación','DescripcionCargo'=>''));
 			Cargo::create(array('NombreCargo' => 'Activo fijo','DescripcionCargo'=>'Contratación y nomina'));
 			Cargo::create(array('NombreCargo' => 'Representante de Dirección','DescripcionCargo'=>'POA'));
+			Cargo::create(array('NombreCargo' => 'Encargado de Biblioteca','DescripcionCargo'=>'Bibliotecario'));
 	        	        
-	        $this->command->info('CargosTableSeeder: Cargos cargadas correctamente');
+	        $this->command->info('CargosTableSeeder: Cargos cargados correctamente');
     	}
 	}
  ?>
