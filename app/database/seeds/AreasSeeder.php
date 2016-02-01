@@ -6,17 +6,15 @@
 	{
     	public function run(){
     		
-	        Area::create(array('NombreArea' => 'Dirección','DescripcionArea' =>'Dirección del CMPL'));
-	        Area::create(array('NombreArea' => 'Subdirección Técnica','DescripcionArea' => 'Realizar proyectos de producción mas límpia y eficiencia energética'));
-	        Area::create(array('NombreArea' => 'Subdirección de Posgrado','DescripcionArea' => 'Formar recursos humanos en producción más límpia')); 	        
-	        Area::create(array('NombreArea' => 'Subdirección de Vinculación Industrial y Apoyo','DescripcionArea' => 'Ofertar los servicios del CMPL' ));
-	        Area::create(array('NombreArea' => 'Departamento de Ingeniería de Procesos','DescripcionArea' => 'Ayudar a empresas a reducir residuos','Subdireccion' => 2));
-	        Area::create(array('NombreArea' => 'Departamento de Ingeniería de Energía','DescripcionArea' => 'Ayudar a empresas a reducir residuos','Subdireccion' => 2));
-	        Area::create(array('NombreArea' => 'Departamento de Servicios Administrativos y Técnicos','DescripcionArea' => 'Administrar los recurso asignados al CMPL'));
-	        Area::create(array('NombreArea' => 'Departamento de Sistemas y Banco de Datos','DescripcionArea' => 'Administrar los sistemas'));
-	        Area::create(array('NombreArea' => 'Sala de Juntas','DescripcionArea' => 'Reuniones'));
-	        Area::create(array('NombreArea' => 'Biblioteca','DescripcionArea' => 'Biblioteca del CMPL'));
-	        Area::create(array('NombreArea' => 'Vigilancia','DescripcionArea' => 'Policia'));
+	        Area::create(array('NombreArea' => 'Dirección','Objetivo_Id' => 1,'Organigrama_Id'=> 1));
+	        Area::create(array('NombreArea' => 'Subdirección Técnica','Objetivo_Id' => 2,'Organigrama_Id'=> 2));
+	        Area::create(array('NombreArea' => 'Subdirección de Posgrado','Objetivo_Id' => 5,'Organigrama_Id'=> 3)); 	        
+	        Area::create(array('NombreArea' => 'Subdirección de Vinculación y Apoyo','Objetivo_Id' => 6,'Organigrama_Id'=> 4));
+	        Area::create(array('NombreArea' => 'Departamento de Servicios Administrativos y Técnicos','Objetivo_Id' => 7,'Organigrama_Id'=> 5));
+	        Area::create(array('NombreArea' => 'Departamento de Sistemas y Banco de Datos','Objetivo_Id' => 8,'Organigrama_Id'=> 6));
+	        Area::create(array('NombreArea' => 'Sala de Juntas','Objetivo_Id' => 9));
+	        Area::create(array('NombreArea' => 'Biblioteca','Objetivo_Id' => 10));
+	        Area::create(array('NombreArea' => 'Vigilancia','Objetivo_Id' => 11));
 
 	        $this->command->info('AreaTableSeeder: Areas cargadas correctamente');
     	}

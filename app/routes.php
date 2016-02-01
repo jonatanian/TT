@@ -15,6 +15,10 @@ Route::get('/salir','LoginController@logout');
 //Sistema Integrado de Gestión de la Calidad y del Ambiente
 Route::group(array("prefix"=>'SIG'), function(){
 	Route::get('/','SIGController@SIG_index');
+	
+	//Representante de Dirección
+	Route::get('/RD','SIGController@SIG_RD');
+	
 	Route::get('/Direccion','SIGController@SIG_Direccion');
 	Route::get('/Tecnica','SIGController@SIG_Tecnica');
 	Route::get('/Posgrado','SIGController@SIG_Posgrado');

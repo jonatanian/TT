@@ -2,6 +2,18 @@
 
 class SIGController extends BaseController {
 
+	public function SIG_RD()
+		{
+			if(Auth::User()->Rol_Id == 7)
+			{
+				return View::make('SIG.rd');
+			}
+			else
+			{
+				return Redirect::to('/SIG');
+			}
+		}
+
 	public function SIG_index()
 		{
 			if(Auth::check())

@@ -1,4 +1,8 @@
 php artisan db:seed --class=AreasSeeder --force
+php artisan db:seed --class=SubAreasSeeder --force
+php artisan db:seed --class=ObjetivoSeeder --force
+php artisan db:seed --class=OrganigramaSeeder --force
+php artisan db:seed --class=TipoDeContenidoSeeder --force
 php artisan db:seed --class=CargosSeeder --force
 php artisan db:seed --class=RolSeeder --force
 php artisan db:seed --class=AdminsSeeder --force

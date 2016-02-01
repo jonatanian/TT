@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,12 +12,21 @@
 
   <!-- Font CSS (Via CDN) -->
   {{HTML::style("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700")}}
+  <!-- Vendor CSS -->
+  {{HTML::style("vendor/plugins/magnific/magnific-popup.css")}}
   <!-- Theme CSS -->
   {{HTML::style("assets/skin/default_skin/css/theme.css")}}
   <!-- Admin Forms CSS -->
   {{HTML::style("assets/admin-tools/admin-forms/css/admin-forms.css")}}
   <!-- Favicon -->
   {{HTML::style("assets/img/favicon.ico")}}
+  <!-- Required Plugin CSS -->
+  {{HTML::style("vendor/plugins/tagmanager/tagmanager.css")}}
+  {{HTML::style("vendor/plugins/daterange/daterangepicker.css")}}
+  {{HTML::style("vendor/plugins/datepicker/css/bootstrap-datetimepicker.css")}}
+  {{HTML::style("vendor/plugins/colorpicker/css/bootstrap-colorpicker.min.css")}}
+  {{HTML::style("vendor/plugins/select2/css/core.css")}}
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -31,7 +40,7 @@
   <div id="main">
 
     <!-- Start: Header -->
-    <header class="navbar navbar-fixed-top bg-primary">
+    <header class="navbar navbar-fixed-top bg-system">
       <div class="navbar-branding">
         <a class="navbar-brand" href="#">
           <img src="{{asset('images/LogoSISA-SIG.png')}}" alt="SISA CMPL" height="60px">
@@ -45,13 +54,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		<li>
-		@if(Auth::User()->Rol_Id == 7)
 			<div class="navbar-btn btn-group">
       			<a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
           			<span class="fa fa-cog"></span>
       			</a>
     		</div>
-    	@endif
 		</li>
 
         <li class="menu-divider hidden-xs">
@@ -262,6 +269,10 @@
         </div>
       </div>
       <!-- End: Topbar-Dropdown -->
+
+	  <!-- Start: Topbar -->
+      	@yield('Topbar')
+      <!-- End: Topbar -->
 
       <!-- Begin: Content -->
       <section id="content" class="animated fadeIn">
