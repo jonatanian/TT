@@ -72,10 +72,12 @@
 
           <!-- Panel with: Basic Footable -->
           <div class="panel" id="{{$areaActual}}">
+          	{{Form::open(array('class'=>'form-horizontal row-border','id'=>"validate-form",'data-parsley-validate'=>'true'))}}
             <!-- Store Settings -->
             <div class="panel panel-success panel-border top mb35">
               <div class="panel-heading">
                 <span class="panel-title">Nueva sección para {{$areaActualNombre->NombreArea}}</span>
+                {{Form::hidden('IdArea',$areaActualNombre->IdArea, array('id'=>'IdArea'))}}
               </div>
               <div class="panel-body bg-light dark">
                 <div class="admin-form">
@@ -100,7 +102,11 @@
                       <label class="field select">
                         <select id="set-nombre" name="set-nombre">
                         @foreach($NombresSecciones as $Seccion)
-                          <option value="{{$Seccion->IdSeccion}}" selected="selected">{{$Seccion->NombreSeccion}}</option>
+                        	@if($Seccion->IdSeccion == 1)
+                          		<option value="{{$Seccion->IdSeccion}}" selected="selected">{{$Seccion->NombreSeccion}}</option>
+                          	@else
+                          		<option value="{{$Seccion->IdSeccion}}">{{$Seccion->NombreSeccion}}</option>
+                          	@endif
                         @endforeach
                         </select>
                         <i class="arrow double"></i>
@@ -112,7 +118,7 @@
                     <label for="new-nombre" class="field-label col-md-3 text-center">O crea un nuevo nombre:</label>
                     <div class="col-md-9">
                       <label for="new-nombre" class="field prepend-icon">
-                        <input type="text" name="new-nombre" id="new-nombre" class="gui-input" value="" placeholder="Usa este campo sólo si el nombre deseado no aparece en la lista de arriba">
+                        <input type="text" name="new-nombre" id="new-nombre" class="gui-input" placeholder="Usa este campo sólo si el nombre deseado no aparece en la lista de arriba">
                         <label for="new-nombre" class="field-icon">
                           <i class="fa fa-bars"></i>
                         </label>
@@ -124,7 +130,7 @@
                     <label for="set-descripcion" class="field-label col-md-3 text-center">Descripción:</label>
                     <div class="col-md-9">
                       <label class="field prepend-icon">
-                        <textarea class="gui-textarea" id="set-descripcion" name="set-descripcion" placeholder="Aparecerá como párrafo introductorio a la tabla de contenido"></textarea>
+                        <textarea class="gui-textarea" id="set-descripcion" name="set-descripcion" placeholder="Aparecerá como párrafo introductorio a la tabla de contenido" required="required"></textarea>
                         <label for="set-descripcion" class="field-icon">
                           <i class="fa fa-edit"></i>
                         </label>
@@ -133,12 +139,13 @@
                   </div>
 				
 				<div class="col-md-12 text-right">
-					<a href="{{action('SIGController@registrarSeccion')}}" class="btn btn-success btn-sm"> <i class="fa fa-check"></i> Crear sección </a>
+					<button type="submit" class="button btn-success"> Crear sección </button>
 				</div>
 
                 </div>
               </div>
             </div>
+            {{Form::close()}}
           </div>
         
           </div>
