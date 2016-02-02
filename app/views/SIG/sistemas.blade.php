@@ -5,94 +5,57 @@
       <h1 class="text-muted">Departamento de Sistemas y Banco de Datos</h1>
       <img class="responsive" src="{{asset('images/organigrama/Sistemas.png')}}" alt="Organigrama del Departamento de Sistemas y Banco de Datos" height="250px">
     </div>
-    
-    <div class="content-header">
-      <h2 class="text-primary">Objetivo</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	
-	<div class="content-header">
-      <h2 class="text-primary">Objetivos de calidad</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
- 	
+
  	<div class="content-header">
       <h2 class="text-primary">Procedimientos</h2>
 		<table class="table table-striped">
-			<tr>
+			<!--<tr>
 				<td>PROCEDIMIENTO DE AUDITORÍA INTERNA</td>
 				<td><a href = '../procedimientos/DSBD/EDITABLES/PROCEDIMIENTOS/P-DSBD-AUDITORIA INTERNA.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+			</tr>-->
+			<tr>
+				<td>PROCEDIMIENTO DE CONTROL DE DOCUMENTOS</td>
+				<td><a href = '../procedimientos/DSBD/EDITABLES/PROCEDIMIENTOS/Procedimientos de control de documentos.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
 			</tr>
 		</table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	
-	<div class="content-header">
-      <h2 class="text-primary">Formatos</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	
-	<div class="content-header">
-      <h2 class="text-primary">Documentos externos</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	
-	<div class="content-header">
-      <h2 class="text-primary">Normatividad</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
 
 	<div class="content-header">
       <h2 class="text-primary">Instructivos</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	
+			<table class="table table-striped">
+				<tr>
+					<td>INSTRUCTIVO PARA DEFINIR LA CLAVE DE LOS DOCUMENTOS DEL SIG</td>
+					<td><a href = '../procedimientos/DSBD/EDITABLES/INSTRUCTIVOS/Instructivo para definir la clave de los documentos del SIG.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+				</tr>
+			</table>
+  </div>
+
 	<div class="content-header">
-      <h2 class="text-primary">Listas</h2>
+      <h2 class="text-primary">Plantillas</h2>
+			<table class="table table-striped">
+				<tr>
+					<td>PLANTILLA PARA LA CREACIÓN DE PROCEDIMIENTOS</td>
+					<td><a href = '../procedimientos/DSBD/EDITABLES/PLANTILLAS/Plantilla para la creacion de procedimientos.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+				</tr>
+				<tr>
+					<td>PLANTILLA PARA LA CREACIÓN DE INSTRUCTIVOS</td>
+					<td><a href = '../procedimientos/DSBD/EDITABLES/PLANTILLAS/Plantilla para creacion de Instructivos.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+				</tr>
+			</table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	
+
 	<div class="content-header">
-      <h2 class="text-primary">Proceso</h2>
+      <h2 class="text-primary">Formatos</h2>
+			<table class="table table-striped">
+				<tr>
+					<td>FORMATO PARA SOLICITUD PARA APROBACIÓN DE DOCUMENTOS</td>
+					<td><a href = '../procedimientos/DSBD/EDITABLES/FORMATOS/Formato para solicitud de aprobacion de documentos.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+				</tr>
+				<tr>
+					<td>LISTA MAESTRA</td>
+					<td><a href = '../procedimientos/DSBD/EDITABLES/FORMATOS/Lista maestra.pdf' class='btn btn-primary' target="_blank">Descargar</a></td>
+				</tr>
+			</table>
     </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	    	
-	<div class="content-header">
-      <h2 class="text-primary">Etapas de diseño y desarrollo</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
-	
-	<div class="content-header">
-      <h2 class="text-primary">Directorio del Departamento de Sistemas y Banco de Datos</h2>
-    </div>
+
 @stop
