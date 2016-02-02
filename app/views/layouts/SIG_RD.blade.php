@@ -12,6 +12,8 @@
 
   <!-- Font CSS (Via CDN) -->
   {{HTML::style("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700")}}
+  <!-- FooTable Plugin CSS -->
+  {{HTML::style("vendor/plugins/footable/css/footable.core.min.css")}}
   <!-- Vendor CSS -->
   {{HTML::style("vendor/plugins/magnific/magnific-popup.css")}}
   <!-- Theme CSS -->
@@ -35,7 +37,7 @@
 
 </head>
 
-<body class="blank-page">
+<body class="tables-footable" data-spy="scroll" data-target="#nav-spy" data-offset="300">
   <!-- Start: Main -->
   <div id="main">
 
@@ -275,22 +277,8 @@
       <!-- End: Topbar -->
 
       <!-- Begin: Content -->
-      <section id="content" class="animated fadeIn">
-        @if(Session::has('msg'))
-          <div class="alert alert-system">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msg')}}
-          </div>
-        @endif
-        @if(Session::has('msgf'))
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{Session::get('msgf')}}
-          </div>
-        @endif
-        @yield('content')
-      </section>
-      
+      @yield('content')
+            
       <!-- Begin: Page Footer -->
       <footer id="content-footer" class="affix">
         <div class="row">
@@ -318,13 +306,16 @@
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
   {{HTML::script('avalon/js/enquire.min.js')}}
   {{HTML::script('avalon/js/application.js')}}
+  
+  <!-- FooTable Plugin -->
+  {{HTML::script('vendor/plugins/footable/js/footable.all.min.js')}}
 
+  <!-- FooTable Addon -->
+  {{HTML::script('vendor/plugins/footable/js/footable.filter.min.js')}}
+  
   <!-- Theme Javascript -->
-  
   {{HTML::script('assets/js/utility/utility.js')}}
-  
   {{HTML::script('assets/js/demo/demo.js')}}
-  
   {{HTML::script('assets/js/main.js')}}
   <script type="text/javascript">
   jQuery(document).ready(function() {
@@ -333,9 +324,12 @@
 
     // Init Theme Core    
     Core.init();
+    
+    // Init Demo JS
+    //Demo.init();
 
-    // Init Demo JS  
-    Demo.init();
+    // Init FooTable Examples
+    $('.footable').footable();
 
   });
   </script>

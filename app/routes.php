@@ -18,6 +18,9 @@ Route::group(array("prefix"=>'SIG'), function(){
 	
 	//Representante de Dirección
 	Route::get('/RD','SIGController@SIG_RD');
+		//Registro de nueva sección
+		Route::get('/RD/NuevaSeccion','SIGController@nuevaSeccion');
+		Route::post('/RD/NuevaSeccion','SIGController@registrarSeccion');
 	
 	Route::get('/Direccion','SIGController@SIG_Direccion');
 	Route::get('/Tecnica','SIGController@SIG_Tecnica');
