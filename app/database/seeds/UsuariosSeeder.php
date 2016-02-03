@@ -380,6 +380,20 @@
 			$c->crearUsuario($datos);
 			
 			$datos= array(
+					'Nombre' =>'Patricia',
+					'ApPaterno'	=> 'Rivera',
+					'ApMaterno'	=> 'Granados',
+					'Email'	=> 'priverag@ipn.mx',
+					'Password' =>'cmpl2015',
+					'Extension' => 52607,
+					'Cargo_Id' => 3,
+					'Rol_Id' => 6,
+					'Area_Id' => 3
+				);
+			$c = new User();
+			$c->crearUsuario($datos);
+			
+			$datos= array(
 					'Nombre' =>'Gabriel',
 					'ApPaterno'	=> 'Pineda',
 					'ApMaterno'	=> 'Flores',

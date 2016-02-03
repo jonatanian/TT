@@ -11,7 +11,7 @@
 	  <table class="table table-striped">
 		  <tr>
 			  <th>No.</th>
-			  <th>Objetivo</th>
+			  <th width="900">Objetivo</th>
 			  <th>Meta</th>
 		  </tr>
 		  <tr>
