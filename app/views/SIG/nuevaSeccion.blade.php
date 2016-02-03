@@ -34,36 +34,21 @@
           <ul class="icon-list">
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Secciones:</b> Personaliza el orden de las secciones para todas las áreas del CMPL
+              <b> Tipo de contenido:</b> Define el tipo de contenido por cada sección. Elije <b>Detalles</b> para tablas de objetivos o de carácter informativo; elije <b>Botón de descarga</b> para tablas con vínculos a archivos PDF, Word o Excel.
             </li>
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Contenido:</b> Define el tipo de contenido por cada sección
+              <b> Nombre de la seccion:</b> Selecciona un nombre registrado previamente para asignarle a la nueva sección.
             </li>
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Organigramas:</b> Actualiza facilmente las imágenes de los organigramas de cada área o en general
+              <b> Nuevo nombre de la sección:</b> Escribe un nuevo nombre de sección en caso de que no exista el nombre deseado en <b>Nombre de la sección</b>.
+            </li>
+            <li>
+              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
+              <b> Descripción:</b> Es un párrafo que describe brevemente el contenido de la nueva sección a crear.
             </li>
           </ul>
-
-          <div id="nav-spy">
-            <ul class="nav tray-nav" data-smoothscroll="-80" data-spy="affix" data-offset-top="200">
-              @foreach($areas as $area)
-              	@if($area->Organigrama_Id != NULL)
-	              @if($area->IdArea == $areaActual)
-	              <li class="active">
-	              @else
-	              <li>
-	              @endif
-	                <a href="#{{$area->IdArea}}">
-	                  <span class="fa fa-table fa-lg fa-fw mr5"></span>
-	                  {{$area->NombreArea}}</a>
-	              </li>
-	            @endif
-              @endforeach
-            </ul>
-          </div>
-
         </aside>
         <!-- end: .tray-left -->
 
@@ -97,7 +82,7 @@
                   </div>
                   
                   <div class="section row mb10">
-                    <label for="names" class="field-label col-md-3 text-center">Elije un nombre:</label>
+                    <label for="names" class="field-label col-md-3 text-center">Nombre de la sección:</label>
                     <div class="col-md-9">
                       <label class="field select">
                         <select id="set-nombre" name="set-nombre">
@@ -115,7 +100,7 @@
                   </div>
                   
                   <div class="section row mb10">
-                    <label for="new-nombre" class="field-label col-md-3 text-center">O crea un nuevo nombre:</label>
+                    <label for="new-nombre" class="field-label col-md-3 text-center">Nuevo nombre de la sección:</label>
                     <div class="col-md-9">
                       <label for="new-nombre" class="field prepend-icon">
                         <input type="text" name="new-nombre" id="new-nombre" class="gui-input" placeholder="Usa este campo sólo si el nombre deseado no aparece en la lista de arriba">
@@ -136,7 +121,7 @@
                         </label>
                       </label>
                     </div>
-                  </div>
+                  </div>				
 				
 				<div class="col-md-12 text-right">
 					<button type="submit" class="button btn-success"> Crear sección </button>

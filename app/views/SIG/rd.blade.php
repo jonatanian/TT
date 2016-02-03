@@ -67,16 +67,13 @@
           <ul class="icon-list">
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Secciones:</b> Personaliza el orden de las secciones para todas las áreas del CMPL
+              <b> Secciones:</b> Para crear una nueva sección, elije un área del CMPL y da clic en &quot;+ Nueva sección"&quot;
             </li>
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Contenido:</b> Define el tipo de contenido por cada sección
-            </li>
+            <!--
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
               <b> Organigramas:</b> Actualiza facilmente las imágenes de los organigramas de cada área o en general
-            </li>
+            </li>-->
           </ul>
 
           <div id="nav-spy">
@@ -130,9 +127,9 @@
                       <td>{{$seccion->NombreSeccion}}</td>
                       <td>{{$seccion->Descripcion}}</td>
                       <td>
-                      	<div class="col-md-12 text-left">
-							<a href="#" class="btn btn-dark btn-sm"> Modificar </a>
-							<a href="#" class="btn btn-dark btn-sm"> Alimentar </a>
+                      	<div class="col-md-12 text-left"><!--
+							<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
+							<a href="{{action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Alimentar </a>
 						</div>
                       </td>
                     </tr>

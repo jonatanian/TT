@@ -73,6 +73,29 @@ class SIGController extends BaseController {
 				return Redirect::to('/SIG');
 			}
 		}
+		
+	public function editarTabla()
+		{
+			if(Auth::User()->Rol_Id == 7)
+			{
+				$areaActual = Request::get('area');
+				$IdSeccion = Request::get('IdSeccion');
+				$IdATS = Request::get('IdATS');
+				$IdTipoContenido = Request::get('TipoContenido');
+				
+				$areaActualNombre = Area::where('IdArea',$areaActual)->first();
+				$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+											 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
+											 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
+											 ->get();
+								
+				return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
+			}
+			else
+			{
+				return Redirect::to('/SIG');
+			}
+		}
 
 	public function SIG_index()
 		{
