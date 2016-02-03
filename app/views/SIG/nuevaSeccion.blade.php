@@ -34,7 +34,7 @@
           <ul class="icon-list">
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Tipo de contenido:</b> Define el tipo de contenido por cada sección. Elije <b>Detalles</b> para tablas de objetivos o de carácter informativo; elije <b>Botón de descarga</b> para tablas con vínculos a archivos PDF, Word o Excel.
+              <b> Tipo de contenido:</b> Define el tipo de contenido por cada sección. Elije <b>Texto</b> para secciones de carácter informativo como objetivos o metas; elije <b>Botón de descarga</b> para tablas con vínculos a archivos PDF, Word o Excel.
             </li>
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
@@ -73,7 +73,11 @@
                       <label class="field select">
                         <select id="set-contenido" name="set-contenido">
                         @foreach($TipoDeContenido as $Contenido)
-                          <option value="{{$Contenido->IdTipoDeContenido}}" selected="selected">{{$Contenido->NombreContenido}}</option>
+                        	@if($Contenido->IdTipoDeContenido == 1)
+                          		<option value="{{$Contenido->IdTipoDeContenido}}" selected="selected">{{$Contenido->NombreContenido}}</option>
+                          	@else
+                          		<option value="{{$Contenido->IdTipoDeContenido}}">{{$Contenido->NombreContenido}}</option>
+                          	@endif
                         @endforeach
                         </select>
                         <i class="arrow double"></i>

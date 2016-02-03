@@ -111,6 +111,8 @@
             <div class="panel panel-success panel-border top mb35">
               <div class="panel-heading">
                 <span class="panel-title">Agregar nuevo Item</span>
+                {{Form::hidden('AreaActual',$areaActual, array('id'=>'AreaActual'))}}
+                {{Form::hidden('IdSeccion',$Seccion->IdSeccion, array('id'=>'IdSeccion'))}}
                 {{Form::hidden('IdTipoDeContenido',$TipoDeContenido, array('id'=>'IdTipoDeContenido'))}}
                 {{Form::hidden('IdATS',$IdATS, array('id'=>'IdATS'))}}
               </div>
