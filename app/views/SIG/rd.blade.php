@@ -67,7 +67,7 @@
           <ul class="icon-list">
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Secciones:</b> Para crear una nueva sección, elije un área del CMPL y da clic en &quot;+ Nueva sección"&quot;
+              <b> Secciones:</b> Para crear una nueva sección, elije un área del CMPL y da clic en <b>+ Nueva sección</b>
             </li>
             <!--
             <li>

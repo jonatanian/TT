@@ -104,20 +104,14 @@ class SIGController extends BaseController {
 			if(Auth::User()->Rol_Id == 7)
 			{
 				$datos = Input::all();
-				$areaActualNombre = Area::where('IdArea',$datos['AreaActual'])->first();
-				$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
-											 ->where('area_tiene_secciones.Area_Id','=',$datos['AreaActual'])
-											 ->where('area_tiene_secciones.Secciones_Id','=',$datos['IdSeccion'])
-											 ->get();
 				
 				$nuevoItem = new Contenido();
 				
-				if($datos['IdTipoDeContenido'] == 2)
+				if($datos['IdTipoDeContenido'] == 1)
 				{
 					$IdItem = $nuevoItem->nuevoItem($datos);
-					Session::flash('msg','Nueva sección creada correctamente.');
-					//return Redirect::to('/SIG/RD');
-					return View::make('SIG.editarContenido',array('areaActual'=>$datos['AreaActual'],'areaActualNombre'=>$areaActualNombre,'Seccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'Items'=>$TablaDeContenido,'TipoDeContenido'=>$datos['IdTipoDeContenido']));
+					Session::flash('msg','Item registrado correctamente.');
+					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
 				}
 								
 				
