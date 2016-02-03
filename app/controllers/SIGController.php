@@ -84,12 +84,43 @@ class SIGController extends BaseController {
 				$IdTipoContenido = Request::get('TipoContenido');
 				
 				$areaActualNombre = Area::where('IdArea',$areaActual)->first();
+				$Seccion = Secciones::where('IdSeccion',$IdSeccion)->first();
+				
 				$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
 											 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
 											 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
 											 ->get();
 								
-				return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
+				return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'Seccion'=>$Seccion,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
+			}
+			else
+			{
+				return Redirect::to('/SIG');
+			}
+		}
+		
+	public function actualizarTabla()
+		{
+			if(Auth::User()->Rol_Id == 7)
+			{
+				$datos = Input::all();
+				$areaActualNombre = Area::where('IdArea',$datos['AreaActual'])->first();
+				$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+											 ->where('area_tiene_secciones.Area_Id','=',$datos['AreaActual'])
+											 ->where('area_tiene_secciones.Secciones_Id','=',$datos['IdSeccion'])
+											 ->get();
+				
+				$nuevoItem = new Contenido();
+				
+				if($datos['IdTipoDeContenido'] == 2)
+				{
+					$IdItem = $nuevoItem->nuevoItem($datos);
+					Session::flash('msg','Nueva sección creada correctamente.');
+					//return Redirect::to('/SIG/RD');
+					return View::make('SIG.editarContenido',array('areaActual'=>$datos['AreaActual'],'areaActualNombre'=>$areaActualNombre,'Seccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'Items'=>$TablaDeContenido,'TipoDeContenido'=>$datos['IdTipoDeContenido']));
+				}
+								
+				
 			}
 			else
 			{

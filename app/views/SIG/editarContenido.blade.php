@@ -18,7 +18,7 @@
 				</li>
 				<li>&frasl;</li>
 				<li class="active">
-					<a href="#">Nombre de la sección</a>
+					<a href="#">{{$Seccion->NombreSeccion}}</a>
 				</li>
 			</ul>
 		</div>
@@ -27,6 +27,48 @@
 @endsection
 
 @section('content')
+	@if(Session::has('msg'))
+      		<div class="alert alert-success alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msg')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgInfo'))
+      		<div class="alert alert-info alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-info pr10"></i>
+			  {{Session::get('msgInfo')}}
+			</div>
+      	@endif
+      	@if(Session::has('msgWarning'))
+      		<div class="alert alert-warning alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-warning pr10"></i>
+			  {{Session::get('msgWarning')}}
+			</div>
+		@endif
+        @if(Session::has('msgf'))
+          	<div class="alert alert-danger alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-remove pr10"></i>
+			  {{Session::get('msgf')}}
+			</div>
+        @endif
+        @if(Session::has('msgSystem'))
+	        <div class="alert alert-system alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-cubes pr10"></i>
+			  {{Session::get('msgSystem')}}
+			</div>
+		@endif
+		@if(Session::has('msgAlert'))
+	        <div class="alert alert-alert alert-dismissable">
+			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
+			  <i class="fa fa-check pr10"></i>
+			  {{Session::get('msgAlert')}}
+			</div>
+		@endif
 	<section id="content" class="table-layout animated fadeIn">
 				
         <!-- begin: .tray-left -->
@@ -36,22 +78,25 @@
             <small>Gestión de información</small>
           </h4>
           <ul class="icon-list">
+          @if($TipoDeContenido == 2)
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Tipo de contenido:</b> Define el tipo de contenido por cada sección. Elije <b>Detalles</b> para tablas de objetivos o de carácter informativo; elije <b>Botón de descarga</b> para tablas con vínculos a archivos PDF, Word o Excel.
+              <b> Nombre del documento:</b> Es el nombre del documento que se mostrará en el SIG.
             </li>
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Nombre de la seccion:</b> Selecciona un nombre registrado previamente para asignarle a la nueva sección.
+              <b> Seleccionar archivo:</b> Selecciona el archivo PDF, Word o Excel de tu equipo de cómputo que deseas publicar en el SIG.
+            </li>
+          @else
+            <li>
+              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
+              <b> Nombre:</b> Es el nombre del item que quieres publicar como, por ejemplo, un objetivo.
             </li>
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Nuevo nombre de la sección:</b> Escribe un nuevo nombre de sección en caso de que no exista el nombre deseado en <b>Nombre de la sección</b>.
+              <b> Descripción:</b> Es el contenido que va a abordar tu item. Puede ser un desgloce del item, o bien, una pequeña descripción del mismo. Si no lo requieres, puedes dejarlo en blanco.
             </li>
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Descripción:</b> Es un párrafo que describe brevemente el contenido de la nueva sección a crear.
-            </li>
+          @endif
           </ul>
         </aside>
         <!-- end: .tray-left -->
@@ -73,11 +118,11 @@
                 <div class="admin-form">
 
                   <div class="section row mb10">
-                    <label for="new-objetivo" class="field-label col-md-3 text-center">Nombre del documento:</label>
+                    <label for="new-nombre" class="field-label col-md-3 text-center">Nombre del documento:</label>
                     <div class="col-md-9">
-                      <label for="new-objetivo" class="field prepend-icon">
-                        <input type="text" name="new-objetivo" id="new-objetivo" class="gui-input" placeholder="Escribe un nombre para el documento">
-                        <label for="new-objetivo" class="field-icon">
+                      <label for="new-nombre" class="field prepend-icon">
+                        <input type="text" name="new-nombre" id="new-nombre" class="gui-input" required ="required" placeholder="Escribe un nombre para el documento">
+                        <label for="new-nombre" class="field-icon">
                           <i class="fa fa-bars"></i>
                         </label>
                       </label>
@@ -116,6 +161,8 @@
             <div class="panel panel-success panel-border top mb35">
               <div class="panel-heading">
                 <span class="panel-title">Agregar nuevo Item</span>
+                {{Form::hidden('AreaActual',$areaActual, array('id'=>'AreaActual'))}}
+                {{Form::hidden('IdSeccion',$Seccion->IdSeccion, array('id'=>'IdSeccion'))}}
                 {{Form::hidden('IdTipoDeContenido',$TipoDeContenido, array('id'=>'IdTipoDeContenido'))}}
                 {{Form::hidden('IdATS',$IdATS, array('id'=>'IdATS'))}}
               </div>
@@ -123,11 +170,11 @@
                 <div class="admin-form">
                                   
                   <div class="section row mb10">
-                    <label for="new-objetivo" class="field-label col-md-3 text-center">Objetivo:</label>
+                    <label for="new-nombre" class="field-label col-md-3 text-center">Nombre:</label>
                     <div class="col-md-9">
-                      <label for="new-objetivo" class="field prepend-icon">
-                        <input type="text" name="new-objetivo" id="new-objetivo" class="gui-input" placeholder="Usa este campo sólo si el nombre deseado no aparece en la lista de arriba">
-                        <label for="new-objetivo" class="field-icon">
+                      <label for="new-nombre" class="field prepend-icon">
+                        <input type="text" name="new-nombre" id="new-nombre" class="gui-input" required="required" placeholder="Escribe el texto deseado">
+                        <label for="new-nombre" class="field-icon">
                           <i class="fa fa-bars"></i>
                         </label>
                       </label>
@@ -135,10 +182,10 @@
                   </div>
 
                   <div class="section row mb10">
-                    <label for="set-descripcion" class="field-label col-md-3 text-center">Metas:</label>
+                    <label for="set-descripcion" class="field-label col-md-3 text-center">Descripción:</label>
                     <div class="col-md-9">
                       <label class="field prepend-icon">
-                        <textarea class="gui-textarea" id="set-descripcion" name="set-descripcion" placeholder="Escribe las metas del objetivo (opcional)"></textarea>
+                        <textarea class="gui-textarea" id="set-descripcion" name="set-descripcion" placeholder="Escribe una pequeña reseña (opcional)"></textarea>
                         <label for="set-descripcion" class="field-icon">
                           <i class="fa fa-edit"></i>
                         </label>
@@ -168,19 +215,16 @@
 					<table class="table table-striped">
 						<tr>
 							<th>No.</th>
-							<th width="2000">Procedimiento</th>
+							<th width="2000">Nombre</th>
 							<th>Acciones</th>
 						</tr>
+						@foreach($Items as $Item)
 						<tr>
 							<td>1</td>
-							<td>PROCEDIMIENTO DE AUDITORÍA INTERNA</td>
-							<td><a href = '../procedimientos/DSBD/EDITABLES/PROCEDIMIENTOS/P-DSBD-AUDITORIA INTERNA.pdf' class='btn btn-system' target="_blank">Descargar</a></td>
+							<td>{{$Item->NombreODescripcion}}</td>
+							<td><a href = '{{$Item->AccionesOMetas}}' class='btn btn-system' target="_blank">Descargar</a></td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>PROCEDIMIENTO DE CONTROL DE DOCUMENTOS</td>
-							<td><a href = '../procedimientos/DSBD/EDITABLES/PROCEDIMIENTOS/Procedimientos de control de documentos.pdf' class='btn btn-system' target="_blank">Descargar</a></td>
-						</tr>
+						@endforeach
 					</table>
                 </div>
               </div>
@@ -197,16 +241,18 @@
 					<table class="table table-striped">
 						<tr>
 							<th>No.</th>
-							<th width="1000">Procedimiento</th>
-							<th width="1000">Metas</th>
+							<th width="1000">Nombre</th>
+							<th width="1000">Descripcion</th>
 							<th>Acciones</th>
 						</tr>
+						@foreach($Items as $Item)
 						<tr>
-							<td>1</td>
-							<td>PROCEDIMIENTO DE AUDITORÍA INTERNA</td>
-							<td>Metas de item</td>
-							<td><a href = '../procedimientos/DSBD/EDITABLES/PROCEDIMIENTOS/P-DSBD-AUDITORIA INTERNA.pdf' class='btn btn-system' target="_blank">Descargar</a></td>
+							<td>x</td>
+							<td>{{$Item->NombreODescripcion}}</td>
+							<td>{{$Item->AccionesOMetas}}</td>
+							<td class="text-center">N&frasl;A</td>
 						</tr>
+						@endforeach
 					</table>
 	            </div>
 	          </div>
