@@ -66,7 +66,7 @@
       <h2 class="text-primary">Indicadores</h2>
 	  <table class="table table-striped">
 			<tr>
-				<th width="900">Indicador</th>
+				<th width="2000">Indicador</th>
 				<th>Acciones</th>
 			</tr>
 			<tr>
@@ -80,7 +80,7 @@
       <h2 class="text-primary">Procedimientos</h2>
 		<table class="table table-striped">
 			<tr>
-				<th width="900">Procedimiento</th>
+				<th width="2000">Procedimiento</th>
 				<th>Acciones</th>
 			</tr>
 			<tr>
@@ -94,7 +94,7 @@
       <h2 class="text-primary">Formatos</h2>
 	  <table class="table table-striped">
 			<tr>
-				<th width="900">Formato</th>
+				<th width="2000">Formato</th>
 				<th>Acciones</th>
 			</tr>
 			<tr>
@@ -112,7 +112,7 @@
       <h2 class="text-primary">Proceso</h2>
 	  <table class="table table-striped">
 	  		<tr>
-				<th width="900">Proceso</th>
+				<th width="2000">Proceso</th>
 				<th>Acciones</th>
 			</tr>
 			<tr>

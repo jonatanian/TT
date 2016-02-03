@@ -15,6 +15,7 @@ class SIGController extends BaseController {
 							 ->join('area_tiene_secciones','IdArea','=','area_tiene_secciones.Area_Id')
 							 ->join('tipodecontenido','area_tiene_secciones.TipoDeContenido_Id','=','tipodecontenido.IdTipoDeContenido')
 							 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
+							 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
 							 ->orderBy('area_tiene_secciones.Precedencia','desc')
 							 ->get();			 
 							 
@@ -38,6 +39,34 @@ class SIGController extends BaseController {
 				$tipoContenido = TipoDeContenido::all();
 				$NombresSecciones = Secciones::all();
 				return View::make('SIG.nuevaSeccion',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'areas'=>$areas,'TipoDeContenido'=>$tipoContenido,'NombresSecciones'=>$NombresSecciones));
+			}
+			else
+			{
+				return Redirect::to('/SIG');
+			}
+		}
+		
+	public function registrarSeccion()
+		{
+			if(Auth::User()->Rol_Id == 7)
+			{
+				$nuevaDescripcion = new Descripcion();
+				$nuevaSeccion = new Secciones();
+				$nuevaATS = new AreaTieneSecciones();
+				$datos = Input::all();
+				if($datos['new-nombre'] == NULL)
+				{
+					$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$datos['set-nombre']);
+					$IdATS = $nuevaATS->nuevaATS($datos,$datos['set-nombre']);
+				}	
+				else
+				{
+					$IdSeccion = $nuevaSeccion->nuevaSeccion($datos);
+					$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$IdSeccion);
+					$IdATS = $nuevaATS->nuevaATS($datos,$IdSeccion);
+				}
+				Session::flash('msg','Nueva sección creada correctamente.');
+				return Redirect::to('/SIG/RD');
 			}
 			else
 			{

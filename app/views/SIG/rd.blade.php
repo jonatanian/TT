@@ -15,7 +15,6 @@
 @endsection
 
 @section('content')
-	<section id="content" class="table-layout animated fadeIn">
 		@if(Session::has('msg'))
       		<div class="alert alert-success alert-dismissable">
 			  <button class="close" aria-hidden="true" type="button" data-dismiss="alert">×</button>
@@ -58,7 +57,7 @@
 			  {{Session::get('msgAlert')}}
 			</div>
 		@endif
-		
+	<section id="content" class="table-layout animated fadeIn">		
         <!-- begin: .tray-left -->
         <aside class="tray tray-left tray320">
 
@@ -117,7 +116,7 @@
               <table class="table footable">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th>Precedencia</th>
                       <th>Nombre de la sección</th>
                       <th>Descripción</th>
                       <th>Acciones</th>
@@ -125,16 +124,14 @@
                   </thead>
                   <tbody>
                   @foreach($secciones as $seccion)
-                  @if($seccion->Area_Id == $area->IdArea)
+                  @if(($seccion->Area_Id == $area->IdArea) && ($seccion->SecDeArea == $area->IdArea))
                     <tr>
                       <td>{{$seccion->Precedencia}}</td>
                       <td>{{$seccion->NombreSeccion}}</td>
-                      <td>{{$seccion->DescripcionSeccion}}</td>
+                      <td>{{$seccion->Descripcion}}</td>
                       <td>
                       	<div class="col-md-12 text-left">
 							<a href="#" class="btn btn-dark btn-sm"> Modificar </a>
-						</div>
-						<div class="col-md-12 text-left">
 							<a href="#" class="btn btn-dark btn-sm"> Alimentar </a>
 						</div>
                       </td>
