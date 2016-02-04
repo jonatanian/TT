@@ -309,9 +309,15 @@
   
   <!-- FooTable Plugin -->
   {{HTML::script('vendor/plugins/footable/js/footable.all.min.js')}}
+  
+  <!-- PNotify -->
+  {{HTML::script('vendor/plugins/pnotify/pnotify.js')}}
 
   <!-- FooTable Addon -->
   {{HTML::script('vendor/plugins/footable/js/footable.filter.min.js')}}
+  
+  <!-- MaskedInput Plugin -->
+  {{HTML::script('vendor/plugins/jquerymask/jquery.maskedinput.min.js')}}
   
   <!-- Theme Javascript -->
   {{HTML::script('assets/js/utility/utility.js')}}

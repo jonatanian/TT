@@ -56,8 +56,17 @@ class SIGController extends BaseController {
 				$datos = Input::all();
 				if($datos['new-nombre'] == NULL)
 				{
-					$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$datos['set-nombre']);
-					$IdATS = $nuevaATS->nuevaATS($datos,$datos['set-nombre']);
+					$verificarExistencia = AreaTieneSecciones::where('Area_Id',$datos['IdArea'])->where('Secciones_Id',$datos['set-nombre'])->first();
+					if($verificarExistencia != NULL)
+					{
+						Session::flash('msgWarning','Ya existe una sección en esta área con el mismo nombre. Intenta con otro nombre.');
+						return Redirect::action('SIGController@nuevaSeccion',array('area'=>$datos['IdArea']));
+					}
+					else
+					{		
+						$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$datos['set-nombre']);
+						$IdATS = $nuevaATS->nuevaATS($datos,$datos['set-nombre']);
+					}
 				}	
 				else
 				{
@@ -103,17 +112,55 @@ class SIGController extends BaseController {
 		{
 			if(Auth::User()->Rol_Id == 7)
 			{
+				Input::flashOnly('new-nombre');
 				$datos = Input::all();
 				
 				$nuevoItem = new Contenido();
 				
 				if($datos['IdTipoDeContenido'] == 1)
 				{
-					$IdItem = $nuevoItem->nuevoItem($datos);
-					Session::flash('msg','Item registrado correctamente.');
+					$IdItem = $nuevoItem->nuevoItem($datos,NULL);
+					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
 				}
-								
+				else
+				{
+					$file = Input::file('set-archivo');
+					$fileExt = Input::file('set-archivo')->guessExtension();
+					$fileSize = Input::file('set-archivo')->getSize();
+					
+					$SizeKB = $fileSize/1000;
+					
+					if($SizeKB > 5120)
+					{
+						Session::flash('msgf','El tamaño máximo por archivo es de 5 MB.');
+						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
+					}
+					
+					if($fileExt == 'exe' or $fileExt == NULL)
+					{
+						Session::flash('msgf','Debe subir un archivo en formato PDF, Word o Excel.');
+						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
+					}
+					
+					$url_doc = $file->getClientOriginalName();
+					
+					if(!preg_match('/^[\x20-\x7e]*$/',$url_doc))
+					{
+						Session::flash('msgf','El nombre del archivo no puede contener caracteres especiales.');
+						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
+					}
+					
+					$getNombreArea = Area::where('IdArea',$datos['AreaActual'])->first();
+					$getNombreSeccion = Secciones::where('IdSeccion',$datos['IdSeccion'])->first();
+					$path = 'contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion.'\\'.$url_doc;
+					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
+					$subir = $file->move($destinoPath,$url_doc);
+					
+					$IdItem = $nuevoItem->nuevoItem($datos,$path);
+					Session::flash('msg','Item publicado correctamente.');
+					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
+				}
 				
 			}
 			else
@@ -121,6 +168,22 @@ class SIGController extends BaseController {
 				return Redirect::to('/SIG');
 			}
 		}
+		
+	public function descargarDocumento()
+	{
+		$IdContenido = Request::get('IdContenido');
+		
+		$documento = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+							  ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
+							  ->join('area','area_tiene_secciones.Area_Id','=','area.IdArea')
+		                      ->where('IdContenido',$IdContenido)->first();
+										 
+		$pathToFile = public_path().'/'.$documento->AccionesOMetas;
+		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.pdf';
+		$headers = array('Content-Type'=>'application/pdf',);
+		
+		return Response::download($pathToFile,$name, $headers);
+	}
 
 	public function SIG_index()
 		{

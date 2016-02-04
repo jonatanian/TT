@@ -10,12 +10,19 @@
 		public $timestamps = false;
 		protected $fillable = array('IdContenido', 'NombreODescripcion', 'AccionesOMetas','FechaCreacion','FechaEdicion','ATS_Id','CreadoPor','EditadoPor');
 	
-		public function nuevoItem($inputs){
+		public function nuevoItem($inputs,$urlArchivo){
 			$fecha = new DateTime();
-	    	DB::transaction(function () use ($inputs,$fecha){
+	    	DB::transaction(function () use ($inputs,$fecha,$urlArchivo){
 				$item = new Contenido();
 				$item -> NombreODescripcion = $inputs['new-nombre'];
-				$item -> AccionesOMetas = $inputs['set-descripcion'];
+				if($inputs['IdTipoDeContenido'] == 1)
+				{
+					$item -> AccionesOMetas = $inputs['set-descripcion'];
+				}
+				else
+				{
+					$item -> AccionesOMetas = $urlArchivo;
+				}
 				$item -> FechaCreacion = $fecha->format('Y-m-d');
 				$item -> FechaEdicion = $fecha->format('Y-m-d');
 				$item -> ATS_Id = $inputs['IdATS'];

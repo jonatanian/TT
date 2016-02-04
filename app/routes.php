@@ -24,7 +24,10 @@ Route::group(array("prefix"=>'SIG'), function(){
 		//Registro de nuevos datos o Items
 		Route::get('/RD/Seccion/','SIGController@editarTabla');
 		Route::post('/RD/Seccion/','SIGController@actualizarTabla');
-	
+		
+	//Manejo de Archivos comunes para todos los usuarios
+	Route::get('/verDocumento','SIGController@descargarDocumento');
+		
 	Route::get('/Direccion','SIGController@SIG_Direccion');
 	Route::get('/Tecnica','SIGController@SIG_Tecnica');
 	Route::get('/Posgrado','SIGController@SIG_Posgrado');

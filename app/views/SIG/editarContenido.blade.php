@@ -106,7 +106,7 @@
 		@if($TipoDeContenido == 2)
           <!-- Panel with: Basic Footable -->
           <div class="panel" id="{{$areaActual}}">
-          	{{Form::open(array('class'=>'form-horizontal row-border','id'=>"validate-form",'data-parsley-validate'=>'true'))}}
+          	{{Form::open(array('class'=>'form-horizontal row-border','id'=>"validate-form",'data-parsley-validate'=>'true','files'=>true))}}
             <!-- Store Settings -->
             <div class="panel panel-success panel-border top mb35">
               <div class="panel-heading">
@@ -136,8 +136,8 @@
 	                    <div class="section">
 	                      <label class="field prepend-icon file">
 	                        <span class="button bg-system">Seleccionar archivo</span>
-	                        <input type="file" class="gui-file" name="Documento" id="Documento" onChange="document.getElementById('UpDocumento').value = this.value;">
-	                        <input type="text" class="gui-input" id="UpDocumento" placeholder="Elije un archivo de tu equipo">
+	                        <input type="file" class="gui-file" name="set-archivo" id="set-archivo" required="required" onChange="document.getElementById('get-archivo').value = this.value;">
+	                        <input type="text" class="gui-input" id="get-archivo" placeholder="Elije un archivo de tu equipo" readonly>
 	                        <label class="field-icon">
 	                          <i class="fa fa-upload"></i>
 	                        </label>
@@ -222,9 +222,9 @@
 						</tr>
 						@foreach($Items as $Item)
 						<tr>
-							<td>1</td>
+							<td>x</td>
 							<td>{{$Item->NombreODescripcion}}</td>
-							<td><a href = '{{$Item->AccionesOMetas}}' class='btn btn-system' target="_blank">Descargar</a></td>
+							<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$Item->IdContenido))}}" class="btn btn-system" target="_blank">Descargar</a></td>
 						</tr>
 						@endforeach
 					</table>
