@@ -57,7 +57,7 @@
         <li class="menu-divider hidden-xs">
           <i class="fa fa-circle"></i>
         </li>
-        
+
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
           	<img src="{{asset('images/placeholder.png')}}" alt="avatar" class="mw30 br64">
@@ -135,7 +135,7 @@
                   <span class="sidebar-title">SISA</span>
                 </a>
               </li>-->
-              
+
               <!-- sidebar resources -->
               <li class="sidebar-label pt15"></li>
               <li>
@@ -146,7 +146,7 @@
                 </a>
                 <ul class="nav sub-nav acc-menu">
                   <li>
-                      <a href="{{action('SIGController@SIG_Direccion')}}">
+                      <a href="{{action('SIGController@SIG_Master')}}">
                       <span class="fa fa-bank"></span> Dirección </a>
                   </li>
                   <li>
@@ -279,7 +279,7 @@
         @endif
         @yield('content')
       </section>
-      
+
       <!-- Begin: Page Footer -->
       <footer id="content-footer" class="affix">
         <div class="row">
@@ -289,7 +289,7 @@
         </div>
       </footer>
       <!-- End: Page Footer -->
-      
+
       <!-- End: Content -->
 
     </section>
@@ -301,7 +301,7 @@
   <!-- jQuery -->
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
-  
+
   {{HTML::script('avalon/plugins/jquery-slimscroll/jquery.slimscroll.js')}}
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
@@ -309,21 +309,21 @@
   {{HTML::script('avalon/js/application.js')}}
 
   <!-- Theme Javascript -->
-  
+
   {{HTML::script('assets/js/utility/utility.js')}}
-  
+
   {{HTML::script('assets/js/demo/demo.js')}}
-  
+
   {{HTML::script('assets/js/main.js')}}
   <script type="text/javascript">
   jQuery(document).ready(function() {
 
     "use strict";
 
-    // Init Theme Core    
+    // Init Theme Core
     Core.init();
 
-    // Init Demo JS  
+    // Init Demo JS
     Demo.init();
 
   });

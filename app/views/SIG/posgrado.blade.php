@@ -8,10 +8,10 @@
 		</div>
       <img class="responsive" src="{{asset('images/organigrama/Posgrado.png')}}" alt="Organigrama de la Subdirección de Posgrado" height="450px">
     </div>
-    
+
 	<div class="content-header">
       <h2 class="text-primary">Objetivos</h2>
-    
+
 	<table class="table table-striped">
 		  <tr>
 			  <th>No.</th>
@@ -45,7 +45,7 @@
 			  <td>7</td>
 			  <td>Participar al menos en 2 convocatorias de proyectos de investigación en CONACYT.</td>
 		  </tr>
-		  
+
 	  </table>
  	</div>
  	<div class="content-header">
@@ -69,7 +69,7 @@
 		<p style="text-align:justify">Descripción</p>
 		<footer>Anotaciones importantes</footer>
 	</blockquote>
-	
+
 	<div class="content-header">
       <h2 class="text-primary">Formatos</h2>
     </div>
@@ -107,7 +107,7 @@
 		<p style="text-align:justify">Descripción</p>
 		<footer>Anotaciones importantes</footer>
 	</blockquote>
-	
+
 	<div class="content-header">
       <h2 class="text-primary">Listas</h2>
     </div>
@@ -115,7 +115,7 @@
 		<p style="text-align:justify">Descripción</p>
 		<footer>Anotaciones importantes</footer>
 	</blockquote>
-	
+
 	<div class="content-header">
       <h2 class="text-primary">Proceso</h2>
     </div>
@@ -123,7 +123,7 @@
 		<p style="text-align:justify">Descripción</p>
 		<footer>Anotaciones importantes</footer>
 	</blockquote>
-	    	
+
 	<div class="content-header">
       <h2 class="text-primary">Etapas de diseño y desarrollo</h2>
     </div>
@@ -131,7 +131,7 @@
 		<p style="text-align:justify">Descripción</p>
 		<footer>Anotaciones importantes</footer>
 	</blockquote>
-	
+
 	<div class="content-header">
       <h2 class="text-primary">Directorio de la Subdirección de Posgrado</h2>
     </div>

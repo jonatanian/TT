@@ -9,7 +9,7 @@ class SIGController extends BaseController {
 				$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
 							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
 							 ->get();
-				
+
 				$secciones = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
 							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
 							 ->join('area_tiene_secciones','IdArea','=','area_tiene_secciones.Area_Id')
@@ -17,8 +17,8 @@ class SIGController extends BaseController {
 							 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
 							 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
 							 ->orderBy('area_tiene_secciones.Precedencia','desc')
-							 ->get();			 
-							 
+							 ->get();
+
 				return View::make('SIG.rd',array('areas'=>$areas,'secciones'=>$secciones));
 			}
 			else
@@ -26,7 +26,7 @@ class SIGController extends BaseController {
 				return Redirect::to('/SIG');
 			}
 		}
-		
+
 	public function nuevaSeccion()
 		{
 			if(Auth::User()->Rol_Id == 7)
@@ -45,7 +45,7 @@ class SIGController extends BaseController {
 				return Redirect::to('/SIG');
 			}
 		}
-		
+
 	public function registrarSeccion()
 		{
 			if(Auth::User()->Rol_Id == 7)
@@ -63,11 +63,11 @@ class SIGController extends BaseController {
 						return Redirect::action('SIGController@nuevaSeccion',array('area'=>$datos['IdArea']));
 					}
 					else
-					{		
+					{
 						$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$datos['set-nombre']);
 						$IdATS = $nuevaATS->nuevaATS($datos,$datos['set-nombre']);
 					}
-				}	
+				}
 				else
 				{
 					$IdSeccion = $nuevaSeccion->nuevaSeccion($datos);
@@ -82,7 +82,7 @@ class SIGController extends BaseController {
 				return Redirect::to('/SIG');
 			}
 		}
-		
+
 	public function editarTabla()
 		{
 			if(Auth::User()->Rol_Id == 7)
@@ -91,15 +91,15 @@ class SIGController extends BaseController {
 				$IdSeccion = Request::get('IdSeccion');
 				$IdATS = Request::get('IdATS');
 				$IdTipoContenido = Request::get('TipoContenido');
-				
+
 				$areaActualNombre = Area::where('IdArea',$areaActual)->first();
 				$Seccion = Secciones::where('IdSeccion',$IdSeccion)->first();
-				
+
 				$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
 											 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
 											 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
 											 ->get();
-								
+
 				return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'Seccion'=>$Seccion,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
 			}
 			else
@@ -107,16 +107,16 @@ class SIGController extends BaseController {
 				return Redirect::to('/SIG');
 			}
 		}
-		
+
 	public function actualizarTabla()
 		{
 			if(Auth::User()->Rol_Id == 7)
 			{
 				Input::flashOnly('new-nombre');
 				$datos = Input::all();
-				
+
 				$nuevoItem = new Contenido();
-				
+
 				if($datos['IdTipoDeContenido'] == 1)
 				{
 					$IdItem = $nuevoItem->nuevoItem($datos,NULL);
@@ -128,60 +128,60 @@ class SIGController extends BaseController {
 					$file = Input::file('set-archivo');
 					$fileExt = Input::file('set-archivo')->guessExtension();
 					$fileSize = Input::file('set-archivo')->getSize();
-					
+
 					$SizeKB = $fileSize/1000;
-					
+
 					if($SizeKB > 5120)
 					{
 						Session::flash('msgf','El tamaño máximo por archivo es de 5 MB.');
 						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
 					}
-					
+
 					if($fileExt == 'exe' or $fileExt == NULL)
 					{
 						Session::flash('msgf','Debe subir un archivo en formato PDF, Word o Excel.');
 						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
 					}
-					
+
 					$url_doc = $file->getClientOriginalName();
-					
+
 					if(!preg_match('/^[\x20-\x7e]*$/',$url_doc))
 					{
 						Session::flash('msgf','El nombre del archivo no puede contener caracteres especiales.');
 						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
 					}
-					
+
 					$getNombreArea = Area::where('IdArea',$datos['AreaActual'])->first();
 					$getNombreSeccion = Secciones::where('IdSeccion',$datos['IdSeccion'])->first();
 					$path = 'contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion.'\\'.$url_doc;
 					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
 					$subir = $file->move($destinoPath,$url_doc);
-					
+
 					$IdItem = $nuevoItem->nuevoItem($datos,$path);
 					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
 				}
-				
+
 			}
 			else
 			{
 				return Redirect::to('/SIG');
 			}
 		}
-		
+
 	public function descargarDocumento()
 	{
 		$IdContenido = Request::get('IdContenido');
-		
+
 		$documento = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
 							  ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
 							  ->join('area','area_tiene_secciones.Area_Id','=','area.IdArea')
 		                      ->where('IdContenido',$IdContenido)->first();
-										 
+
 		$pathToFile = public_path().'/'.$documento->AccionesOMetas;
 		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.pdf';
 		$headers = array('Content-Type'=>'application/pdf',);
-		
+
 		return Response::download($pathToFile,$name, $headers);
 	}
 
@@ -196,31 +196,72 @@ class SIGController extends BaseController {
 				return Redirect::to('/login');
 			}
 		}
-		
-	public function SIG_Direccion()
+
+	public function SIG_Master()
 		{
 			if(Auth::check())
 			{
-				return View::make('SIG.direccion');
+
+				$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
+							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')->where('IdArea','=','1')
+							 ->get();
+
+				$secciones = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
+							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
+							 ->join('area_tiene_secciones','IdArea','=','area_tiene_secciones.Area_Id')
+							 ->join('tipodecontenido','area_tiene_secciones.TipoDeContenido_Id','=','tipodecontenido.IdTipoDeContenido')
+							 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
+							 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
+							 ->orderBy('area_tiene_secciones.Precedencia','desc')->where('IdArea','=','1')
+							 ->get();
+			 $contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+											 ->where('area_tiene_secciones.Area_Id','=','1')
+											 ->get();
+
+				foreach ($areas as $area) {
+					foreach ($secciones as $seccion) {
+						return View::make('SIG.master',array('area'=>$area,'seccion'=>$seccion, 'contenido'=>$contenido, 'secciones'=>$secciones));
+					}
+				}
 			}
 			else
 			{
 				return Redirect::to('/login');
 			}
 		}
-	
+
 	public function SIG_Tecnica()
+	{
+		if(Auth::check())
 		{
-			if(Auth::check())
-			{
-				return View::make('SIG.tecnica');
-			}
-			else
-			{
-				return Redirect::to('/login');
+
+			$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
+						 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')->where('IdArea','=','2')
+						 ->get();
+
+			$secciones = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
+						 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
+						 ->join('area_tiene_secciones','IdArea','=','area_tiene_secciones.Area_Id')
+						 ->join('tipodecontenido','area_tiene_secciones.TipoDeContenido_Id','=','tipodecontenido.IdTipoDeContenido')
+						 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
+						 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
+						 ->orderBy('area_tiene_secciones.Precedencia','desc')->where('IdArea','=','2')
+						 ->get();
+		 $contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+										 ->where('area_tiene_secciones.Area_Id','=','2')
+										 ->get();
+//return View::make('SIG.tecnica',array('area'=>$area,'seccion'=>$seccion, 'contenido'=>$contenido, 'secciones'=>$secciones));
+			foreach ($areas as $area) {
+				foreach ($secciones as $seccion) {
+					return View::make('SIG.tecnica',array('area'=>$area,'seccion'=>$seccion, 'contenido'=>$contenido, 'secciones'=>$secciones));
+				}
 			}
 		}
-	
+		else
+		{
+			return Redirect::to('/login');
+		}
+	}
 	public function SIG_Posgrado()
 		{
 			if(Auth::check())
