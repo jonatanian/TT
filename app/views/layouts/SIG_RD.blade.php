@@ -28,7 +28,7 @@
   {{HTML::style("vendor/plugins/datepicker/css/bootstrap-datetimepicker.css")}}
   {{HTML::style("vendor/plugins/colorpicker/css/bootstrap-colorpicker.min.css")}}
   {{HTML::style("vendor/plugins/select2/css/core.css")}}
-  
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -66,7 +66,7 @@
         <li class="menu-divider hidden-xs">
           <i class="fa fa-circle"></i>
         </li>
-        
+
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
           	<img src="{{asset('images/placeholder.png')}}" alt="avatar" class="mw30 br64">
@@ -144,7 +144,7 @@
                   <span class="sidebar-title">SISA</span>
                 </a>
               </li>-->
-              
+
               <!-- sidebar resources -->
               <li class="sidebar-label pt15"></li>
               <li>
@@ -155,27 +155,27 @@
                 </a>
                 <ul class="nav sub-nav acc-menu">
                   <li>
-                      <a href="{{action('SIGController@SIG_Direccion')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>1))}}">
                       <span class="fa fa-bank"></span> Dirección </a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Tecnica')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>2))}}">
                       <span class="fa fa-wrench"></span> Subdirección Técnica</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Posgrado')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>3))}}">
                       <span class="fa fa-graduation-cap"></span> Subdirección de Posgrado</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Vinculacion')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>4))}}">
                       <span class="fa fa-globe"></span> Subdirección de Vinculación y Apoyo</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Administrativa')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>5))}}">
                       <span class="fa fa-cubes"></span> Departamento de Servicios Administrativos y Técnicos</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Sistemas')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>6))}}">
                       <span class="fa fa-database"></span> Departamento de Sistemas y Banco de Datos</a>
                   </li>
                 </ul>
@@ -278,7 +278,7 @@
 
       <!-- Begin: Content -->
       @yield('content')
-            
+
       <!-- Begin: Page Footer -->
       <footer id="content-footer" class="affix">
         <div class="row">
@@ -288,7 +288,7 @@
         </div>
       </footer>
       <!-- End: Page Footer -->
-      
+
       <!-- End: Content -->
 
     </section>
@@ -300,25 +300,25 @@
   <!-- jQuery -->
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
   {{HTML::script('vendor/jquery/jquery_ui/jquery-ui.min.js')}}
-  
+
   {{HTML::script('avalon/plugins/jquery-slimscroll/jquery.slimscroll.js')}}
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
   {{HTML::script('avalon/plugins/sparklines/jquery.sparklines.min.js')}}
   {{HTML::script('avalon/js/enquire.min.js')}}
   {{HTML::script('avalon/js/application.js')}}
-  
+
   <!-- FooTable Plugin -->
   {{HTML::script('vendor/plugins/footable/js/footable.all.min.js')}}
-  
+
   <!-- PNotify -->
   {{HTML::script('vendor/plugins/pnotify/pnotify.js')}}
 
   <!-- FooTable Addon -->
   {{HTML::script('vendor/plugins/footable/js/footable.filter.min.js')}}
-  
+
   <!-- MaskedInput Plugin -->
   {{HTML::script('vendor/plugins/jquerymask/jquery.maskedinput.min.js')}}
-  
+
   <!-- Theme Javascript -->
   {{HTML::script('assets/js/utility/utility.js')}}
   {{HTML::script('assets/js/demo/demo.js')}}
@@ -328,9 +328,9 @@
 
     "use strict";
 
-    // Init Theme Core    
+    // Init Theme Core
     Core.init();
-    
+
     // Init Demo JS
     //Demo.init();
 

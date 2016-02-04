@@ -156,13 +156,13 @@ class SIGController extends BaseController {
 					$path = 'contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion.'\\'.$url_doc;
 					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
 					$subir = $file->move($destinoPath,$url_doc);
-<<<<<<< HEAD
 
+///////////////
 					$IdItem = $nuevoItem->nuevoItem($datos,$path);
-=======
-					
+
+//////////////HEAD
 					$IdItem = $nuevoItem->nuevoItem($datos,$path,$fileExt);
->>>>>>> 6768550b9cf6bad2f7a88ae19437680cf612236c
+///////////////
 					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
 				}
@@ -206,9 +206,9 @@ class SIGController extends BaseController {
 		{
 			if(Auth::check())
 			{
-
+				$IdArea = Request::get('IdArea');
 				$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
-							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')->where('IdArea','=','1')
+							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')->where('IdArea','=',$IdArea)
 							 ->get();
 
 				$secciones = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
@@ -217,15 +217,15 @@ class SIGController extends BaseController {
 							 ->join('tipodecontenido','area_tiene_secciones.TipoDeContenido_Id','=','tipodecontenido.IdTipoDeContenido')
 							 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
 							 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
-							 ->orderBy('area_tiene_secciones.Precedencia','desc')->where('IdArea','=','1')
+							 ->orderBy('area_tiene_secciones.Precedencia','desc')->where('IdArea','=',$IdArea)
 							 ->get();
 			 $contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
-											 ->where('area_tiene_secciones.Area_Id','=','1')
+											 ->where('area_tiene_secciones.Area_Id','=',$IdArea)
 											 ->get();
 
 				foreach ($areas as $area) {
 					foreach ($secciones as $seccion) {
-						return View::make('SIG.master',array('area'=>$area,'seccion'=>$seccion, 'contenido'=>$contenido, 'secciones'=>$secciones));
+						return View::make('SIG.master',array('area'=>$area, 'seccion'=>$seccion,'contenido'=>$contenido, 'secciones'=>$secciones));
 					}
 				}
 			}

@@ -146,27 +146,27 @@
                 </a>
                 <ul class="nav sub-nav acc-menu">
                   <li>
-                      <a href="{{action('SIGController@SIG_Master')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>1))}}">
                       <span class="fa fa-bank"></span> Dirección </a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Tecnica')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>2))}}">
                       <span class="fa fa-wrench"></span> Subdirección Técnica</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Posgrado')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>3))}}">
                       <span class="fa fa-graduation-cap"></span> Subdirección de Posgrado</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Vinculacion')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>4))}}">
                       <span class="fa fa-globe"></span> Subdirección de Vinculación y Apoyo</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Administrativa')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>5))}}">
                       <span class="fa fa-cubes"></span> Departamento de Servicios Administrativos y Técnicos</a>
                   </li>
                   <li>
-                      <a href="{{action('SIGController@SIG_Sistemas')}}">
+                      <a href="{{action('SIGController@SIG_Master',array('IdArea'=>6))}}">
                       <span class="fa fa-database"></span> Departamento de Sistemas y Banco de Datos</a>
                   </li>
                 </ul>
