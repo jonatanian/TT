@@ -119,7 +119,7 @@ class SIGController extends BaseController {
 				
 				if($datos['IdTipoDeContenido'] == 1)
 				{
-					$IdItem = $nuevoItem->nuevoItem($datos,NULL);
+					$IdItem = $nuevoItem->nuevoItem($datos,NULL,NULL);
 					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
 				}
@@ -157,7 +157,7 @@ class SIGController extends BaseController {
 					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
 					$subir = $file->move($destinoPath,$url_doc);
 					
-					$IdItem = $nuevoItem->nuevoItem($datos,$path);
+					$IdItem = $nuevoItem->nuevoItem($datos,$path,$fileExt);
 					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
 				}
@@ -179,7 +179,7 @@ class SIGController extends BaseController {
 		                      ->where('IdContenido',$IdContenido)->first();
 										 
 		$pathToFile = public_path().'/'.$documento->AccionesOMetas;
-		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.pdf';
+		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
 		$headers = array('Content-Type'=>'application/pdf',);
 		
 		return Response::download($pathToFile,$name, $headers);
