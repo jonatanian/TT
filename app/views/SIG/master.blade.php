@@ -2,16 +2,16 @@
 
 @section('content')
 	<div class="content-header">
-      <h1 class="text-muted">{{$area->NombreArea}}</h1><!--nombre de departamento-->
+      <h1 class="text-muted">{{$areas[0]->NombreArea}}</h1><!--nombre de departamento-->
 	  	<div class="content-header">
 				<h2 class="text-primary">Objetivo</h2>
 
 				<blockquote class="blockquote-primary">
-					<p style="text-align:justify">{{$seccion->Objetivo}}</p> <!--  Objetivo  -->
+					<p style="text-align:justify">{{$secciones[0]->Objetivo}}</p> <!--  Objetivo  -->
 					<footer>Anotaciones importantes</footer>
 				</blockquote>
 		</div>
-      <img class="img-responsive" src="{{asset($seccion->OrganigramaURL)}}" alt="Organigrama del Departamento de Servicios Administrativos y Técnicos" height="225px">
+      <img class="img-responsive" src="{{asset($secciones[0]->OrganigramaURL)}}" alt="Organigrama del Departamento de Servicios Administrativos y Técnicos" height="225px">
     </div>
 
 <!--  Secciones dadas de alta -->

@@ -1,13 +1,13 @@
-﻿<?php 
+﻿<?php
 	/**
-	* 
+	*
 	*/
 	class UsuariosSeeder extends Seeder
 	{
 		public function run()
 		{
 		/*Datos actualizados al 1 de febrero de 2016*/
-		
+
 		//Personal en Dirección
 			$datos= array(
 					'Nombre' =>'Abelardo',
@@ -22,7 +22,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Ana Isabel',
 					'ApPaterno'	=> 'Sanchis',
@@ -36,7 +36,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Kenia',
 					'ApPaterno'	=> 'González',
@@ -50,7 +50,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Rebeca Cecilia',
 					'ApPaterno'	=> 'Quezada',
@@ -64,7 +64,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			//Personal en Subdirección Técnica
 			$datos= array(
 					'Nombre' =>'Sandra Soledad',
@@ -79,7 +79,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Mario',
 					'ApPaterno'	=> 'Sandoval',
@@ -93,7 +93,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'María de Lourdes',
 					'ApPaterno'	=> 'Soto',
@@ -107,7 +107,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'María de los Angeles Adriana',
 					'ApPaterno'	=> 'Tinoco',
@@ -121,7 +121,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			//Personal en Subdirección Técnica -> Departamento de Ingeniería de Procesos
 			$datos= array(
 					'Nombre' =>'Jorge Alonso',
@@ -137,7 +137,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Alejandro Amed',
 					'ApPaterno'	=> 'Fonseca',
@@ -152,7 +152,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Gisela Esther',
 					'ApPaterno'	=> 'Tristán',
@@ -167,7 +167,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Julio Vicente',
 					'ApPaterno'	=> 'Galván',
@@ -182,7 +182,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'María Teresa',
 					'ApPaterno'	=> 'Zubillaga',
@@ -197,7 +197,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Miguel',
 					'ApPaterno'	=> 'González',
@@ -234,7 +234,7 @@
 					'ApPaterno'	=> 'Sebastián',
 					'ApMaterno'	=> 'Vargas',
 					'Email'	=> 'psebastian@ipn.mx',
-					'Password' =>'cmpl2015',
+					'Password' =>'2016RDenergia',
 					'Extension' => 52608,
 					'Cargo_Id' => 5,
 					'Rol_Id' => 7,
@@ -243,7 +243,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Diego',
 					'ApPaterno'	=> 'Repizo',
@@ -258,7 +258,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Israel',
 					'ApPaterno'	=> 'Cerecedo',
@@ -273,7 +273,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Ivan',
 					'ApPaterno'	=> 'Textle',
@@ -288,7 +288,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'José Ángel',
 					'ApPaterno'	=> 'Pérez',
@@ -303,7 +303,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'José Baltazar',
 					'ApPaterno'	=> 'López',
@@ -318,7 +318,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'José Raúl',
 					'ApPaterno'	=> 'Durán',
@@ -333,7 +333,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Luis Francisco',
 					'ApPaterno'	=> 'Chávez',
@@ -378,7 +378,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Patricia',
 					'ApPaterno'	=> 'Rivera',
@@ -392,7 +392,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Gabriel',
 					'ApPaterno'	=> 'Pineda',
@@ -406,7 +406,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Ignacio',
 					'ApPaterno'	=> 'Elizalde',
@@ -420,7 +420,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Manuel',
 					'ApPaterno'	=> 'Hernández',
@@ -434,7 +434,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Raúl',
 					'ApPaterno'	=> 'Hernández',
@@ -448,7 +448,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'María del Carmen',
 					'ApPaterno'	=> 'Monterrubio',
@@ -476,7 +476,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Yazmín',
 					'ApPaterno'	=> 'Mena',
@@ -490,7 +490,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Juan',
 					'ApPaterno'	=> 'Manuel',
@@ -504,7 +504,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Ignacio',
 					'ApPaterno'	=> 'García',
@@ -517,7 +517,7 @@
 					'Area_Id' => 3
 				);
 			$c = new User();
-			$c->crearUsuario($datos);			
+			$c->crearUsuario($datos);
 
 			$datos= array(
 					'Nombre' =>'Patricia Eugenia',
@@ -547,7 +547,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'César',
 					'ApPaterno'	=> 'Romero',
@@ -589,7 +589,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			//Personal en Departamento de Servicios Administrativos y Técnicos
 			$datos= array(
 					'Nombre' =>'Alejandro',
@@ -604,7 +604,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Gustavo',
 					'ApPaterno'	=> 'Sánchez',
@@ -618,7 +618,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Vanesa',
 					'ApPaterno'	=> 'Sánchez',
@@ -632,7 +632,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Karina Jazmín',
 					'ApPaterno'	=> 'González',
@@ -646,7 +646,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Pedro',
 					'ApPaterno'	=> 'Godínez',
@@ -660,7 +660,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			//Personal en Departamento de Sistemas y Banco de Datos
 			$datos= array(
 					'Nombre' =>'Nidia',
@@ -675,7 +675,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Gustavo',
 					'ApPaterno'	=> 'Gutiérrez',
@@ -749,7 +749,7 @@
 				);
 			$c = new User();
 			$c->crearUsuario($datos);
-			
+
 			$datos= array(
 					'Nombre' =>'Rogelio',
 					'ApPaterno'	=> 'Sotelo',

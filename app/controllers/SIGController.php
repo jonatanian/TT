@@ -223,11 +223,11 @@ class SIGController extends BaseController {
 											 ->where('area_tiene_secciones.Area_Id','=',$IdArea)
 											 ->get();
 
-				foreach ($areas as $area) {
-					foreach ($secciones as $seccion) {
-						return View::make('SIG.master',array('area'=>$area, 'seccion'=>$seccion,'contenido'=>$contenido, 'secciones'=>$secciones));
-					}
-				}
+				//foreach ($areas as $area) {
+					//foreach ($secciones as $seccion) {
+						return View::make('SIG.master',array('areas'=>$areas, 'contenido'=>$contenido, 'secciones'=>$secciones));
+					//}
+				//}
 			}
 			else
 			{
