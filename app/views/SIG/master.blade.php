@@ -2,69 +2,75 @@
 
 @section('content')
 	<div class="content-header">
-      <h1 class="text-muted">{{$areas[0]->NombreArea}}</h1><!--nombre de departamento-->
+      <h1 class="text-muted">{{$areas->NombreArea}}</h1><!--nombre de departamento-->
 	  	<div class="content-header">
 				<h2 class="text-primary">Objetivo</h2>
 
-				<blockquote class="blockquote-primary">
-					<p style="text-align:justify">{{$secciones[0]->Objetivo}}</p> <!--  Objetivo  -->
-					<footer>Anotaciones importantes</footer>
+				<blockquote class="blockquote-primary text-left">
+					<p style="text-align:justify">{{$areas->Objetivo}}</p> <!--  Objetivo  -->
+          @if(isset($responsable))
+						<footer>{{$responsable->GradoAcademico}}&nbsp;{{$responsable->ApPaterno}}&nbsp;{{$responsable->ApMaterno}}&nbsp;{{$responsable->Nombre}}&nbsp;-&nbsp;{{$responsable->NombreCargo}}</footer>
+					@else
+						<footer>&nbsp;</footer>
+					@endif
 				</blockquote>
 		</div>
-      <img class="img-responsive" src="{{asset($secciones[0]->OrganigramaURL)}}" alt="Organigrama del Departamento de Servicios Administrativos y Técnicos" height="225px">
+      <img class="img-responsive" src="{{asset($areas->OrganigramaURL)}}" alt="Organigrama de {{$areas->NombreArea}}">
     </div>
 
-<!--  Secciones dadas de alta -->
-	@foreach ($secciones as $sec)
+
+		@foreach($secciones as $sec)
 	<div class="content-header">
       <h2 class="text-primary">{{$sec->NombreSeccion}}</h2> <!--Titulo de la seccion -->
-			<p>{{$sec->Descripcion}}</p>
+			<blockquote class="blockquote-info text-left">{{$sec->Descripcion}}</blockquote>
 			@if($sec->TipoDeContenido_Id == 2 )
 					<!-- Panel with: Basic Footable -->
 					<!-- Store Settings -->
-					<div class="panel panel-light panel-border top mb35">
+					<div class="panel panel-primary panel-border top mb35">
+
 						<div class="panel-body bg-light dark">
+
 							<div class="admin-form">
-				<table class="table table-striped">
-					<tr>
-						<th>No.</th>
-						<th width="2000">Nombre</th>
-						<th>Acciones</th>
-					</tr>
-					@foreach($contenido as $con)
-						@if($con->Secciones_Id == $sec->IdSeccion)
-							<tr>
-								<td>x</td>
-								<td>{{$con->NombreODescripcion}}</td>
-								<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$Item->IdContenido))}}" class="btn btn-system" target="_blank">Descargar</a></td>
-							</tr>
-						@endif
-					@endforeach
-				</table>
+								<table class="table table-striped">
+									<tr>
+										<th>No.</th>
+										<th width="2000">Nombre</th>
+										<th>Acciones</th>
+									</tr>
+									@foreach($contenido as $con)
+										@if($con->Secciones_Id == $sec->IdSeccion)
+											<tr>
+												<td>x</td>
+												<td>{{$con->NombreODescripcion}}</td>
+												<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$con->IdContenido))}}" class="btn btn-system" target="_blank">Descargar</a></td>
+											</tr>
+										@endif
+									@endforeach
+								</table>
 							</div>
 						</div>
 					</div>
 				@else
-				<div class="panel panel-light panel-border top mb35">
+				<div class="panel panel-primary panel-border top mb35">
 					<div class="panel-body bg-light dark">
 						<div class="admin-form">
-				<table class="table table-striped">
-					<tr>
-						<th>No.</th>
-						<th width="1000">Nombre</th>
-						<th width="1000">Descripcion</th>
+							<table class="table table-striped">
+								<tr>
+									<th>No.</th>
+									<th width="1000">Nombre</th>
+									<th width="1000">Descripcion</th>
 
-					</tr>
-					@foreach($contenido as $con)
-						@if($con->Secciones_Id == $sec->IdSeccion)
-							<tr>
-								<td>x</td>
-								<td>{{$con->NombreODescripcion}}</td>
-								<td>{{$con->AccionesOMetas}}</td>
-							</tr>
-						@endif
-					@endforeach
-				</table>
+								</tr>
+								@foreach($contenido as $con)
+									@if($con->Secciones_Id == $sec->IdSeccion)
+										<tr>
+											<td>x</td>
+											<td>{{$con->NombreODescripcion}}</td>
+											<td>{{$con->AccionesOMetas}}</td>
+										</tr>
+									@endif
+								@endforeach
+							</table>
 						</div>
 					</div>
 				</div>
@@ -73,4 +79,6 @@
 
     </div>
 		@endforeach
+<!--  Secciones dadas de alta -->
+
 @stop

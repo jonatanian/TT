@@ -156,10 +156,10 @@ class SIGController extends BaseController {
 					$path = 'contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion.'\\'.$url_doc;
 					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
 					$subir = $file->move($destinoPath,$url_doc);
-					
-					
+
+
 					$IdItem = $nuevoItem->nuevoItem($datos,$path,$fileExt);
-					
+
 					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
 				}
@@ -205,26 +205,27 @@ class SIGController extends BaseController {
 			{
 				$IdArea = Request::get('IdArea');
 				$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
-							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')->where('IdArea','=',$IdArea)
-							 ->get();
-
-				$secciones = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
 							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
-							 ->join('area_tiene_secciones','IdArea','=','area_tiene_secciones.Area_Id')
-							 ->join('tipodecontenido','area_tiene_secciones.TipoDeContenido_Id','=','tipodecontenido.IdTipoDeContenido')
-							 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
-							 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
-							 ->orderBy('area_tiene_secciones.Precedencia','desc')->where('IdArea','=',$IdArea)
+							 ->join('usuario', 'Area_Id', '=', 'usuario.Area_Id')
+							 ->join('rol', 'usuario.Rol_Id', '=', 'rol.IdRol')
+							 ->where('Area.IdArea', $IdArea)
+							 ->first();
+
+				$responsable = Usuario::join('area','Area_Id', '=', 'area.IdArea')
+				       ->join('cargo', 'Cargo_Id', '=', 'cargo.IdCargo')
+				       ->where('Area.IdArea', $IdArea)
+							 ->whereIn('usuario.Cargo_Id', array(1,4,5))
+							 ->first();
+
+		  	$secciones = AreaTieneSecciones::join('secciones','Secciones_Id','=','secciones.IdSeccion')
+               ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
+							 ->where('area_tiene_secciones.Area_Id', $IdArea)
 							 ->get();
-			 $contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
-											 ->where('area_tiene_secciones.Area_Id','=',$IdArea)
-											 ->get();
+			  $contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+							 ->where('area_tiene_secciones.Area_Id','=',$IdArea)
+							 ->get();
+						return View::make('SIG.master',array('areas'=>$areas, 'secciones'=>$secciones, 'IdArea'=>$IdArea, 'contenido'=>$contenido, 'responsable'=>$responsable));
 
-				//foreach ($areas as $area) {
-					//foreach ($secciones as $seccion) {
-						return View::make('SIG.master',array('areas'=>$areas, 'contenido'=>$contenido, 'secciones'=>$secciones));
-					//}
-				//}
 			}
 			else
 			{
@@ -232,85 +233,6 @@ class SIGController extends BaseController {
 			}
 		}
 
-	public function SIG_Tecnica()
-	{
-		if(Auth::check())
-		{
-
-			$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
-						 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')->where('IdArea','=','2')
-						 ->get();
-
-			$secciones = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
-						 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
-						 ->join('area_tiene_secciones','IdArea','=','area_tiene_secciones.Area_Id')
-						 ->join('tipodecontenido','area_tiene_secciones.TipoDeContenido_Id','=','tipodecontenido.IdTipoDeContenido')
-						 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
-						 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
-						 ->orderBy('area_tiene_secciones.Precedencia','desc')->where('IdArea','=','2')
-						 ->get();
-		 $contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
-										 ->where('area_tiene_secciones.Area_Id','=','2')
-										 ->get();
-//return View::make('SIG.tecnica',array('area'=>$area,'seccion'=>$seccion, 'contenido'=>$contenido, 'secciones'=>$secciones));
-			foreach ($areas as $area) {
-				foreach ($secciones as $seccion) {
-					return View::make('SIG.tecnica',array('area'=>$area,'seccion'=>$seccion, 'contenido'=>$contenido, 'secciones'=>$secciones));
-				}
-			}
-		}
-		else
-		{
-			return Redirect::to('/login');
-		}
-	}
-	public function SIG_Posgrado()
-		{
-			if(Auth::check())
-			{
-				return View::make('SIG.posgrado');
-			}
-			else
-			{
-				return Redirect::to('/login');
-			}
-		}
-
-	public function SIG_Vinculacion()
-		{
-			if(Auth::check())
-			{
-				return View::make('SIG.vinculacion');
-			}
-			else
-			{
-				return Redirect::to('/login');
-			}
-		}
-
-	public function SIG_Administrativa()
-		{
-			if(Auth::check())
-			{
-				return View::make('SIG.administrativa');
-			}
-			else
-			{
-				return Redirect::to('/login');
-			}
-		}
-
-	public function SIG_Sistemas()
-		{
-			if(Auth::check())
-			{
-				return View::make('SIG.sistemas');
-			}
-			else
-			{
-				return Redirect::to('/login');
-			}
-		}
 
 }
 ?>
