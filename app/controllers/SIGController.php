@@ -192,10 +192,10 @@ class SIGController extends BaseController {
 		                      ->where('IdContenido',$IdContenido)->first();
 		
 		$pathToFile = public_path().'/'.$documento->AccionesOMetas;
-		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
+		//$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
 		//$headers = array('Content-Type'=>'application/pdf',);
-		$headers = array('Content-Type'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-		return Response::download($pathToFile,$name,$headers);
+		//$headers = array('Content-Type'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+		return Response::download($pathToFile);//,$name,$headers);
 	}
 
 	public function SIG_index()
