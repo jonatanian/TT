@@ -89,7 +89,7 @@
             </li>
             <li>
               <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Descripción:</b> Es un párrafo que describe brevemente el contenido de la nueva sección a crear.
+              <b> Descripción:</b> Es un párrafo que describe brevemente el contenido de la nueva sección a crear. Puede ser opcional.
             </li>
           </ul>
         </aside>
@@ -162,7 +162,7 @@
                     <label for="set-descripcion" class="field-label col-md-3 text-center">Descripción:</label>
                     <div class="col-md-9">
                       <label class="field prepend-icon">
-                        <textarea class="gui-textarea" id="set-descripcion" name="set-descripcion" placeholder="Aparecerá como párrafo introductorio a la tabla de contenido" required="required"></textarea>
+                        <textarea class="gui-textarea" id="set-descripcion" name="set-descripcion" placeholder="Aparecerá como párrafo introductorio a la tabla de contenido (opcional)"></textarea>
                         <label for="set-descripcion" class="field-icon">
                           <i class="fa fa-edit"></i>
                         </label>
