@@ -71,7 +71,14 @@ class SIGController extends BaseController {
 				else
 				{
 					$verificarNombre = Secciones::where('NombreSeccion',$datos['new-nombre'])->first();
-					$verificarExistencia = AreaTieneSecciones::where('Area_Id',$datos['IdArea'])->where('Secciones_Id',$verificarNombre->IdSeccion)->first();
+					if($verificarNombre != NULL)
+					{
+						$verificarExistencia = AreaTieneSecciones::where('Area_Id',$datos['IdArea'])->where('Secciones_Id',$verificarNombre->IdSeccion)->first();
+					}
+					else
+					{
+						$verificarExistencia = NULL;
+					}
 					
 					if($verificarExistencia != NULL)
 					{
@@ -148,7 +155,7 @@ class SIGController extends BaseController {
 						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
 					}
 
-					if($fileExt == 'exe' or $fileExt == NULL)
+					if($fileExt == 'exe' or $fileExt == 'sql')
 					{
 						Session::flash('msgf','Debe subir un archivo en formato PDF, Word o Excel.');
 						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
@@ -167,9 +174,10 @@ class SIGController extends BaseController {
 					$path = 'contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion.'\\'.$url_doc;
 					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
 					$subir = $file->move($destinoPath,$url_doc);
-
-
-					$IdItem = $nuevoItem->nuevoItem($datos,$path,$fileExt);
+					
+					$mime = Input::file('set-archivo')->getClientMimeType();
+					
+					$IdItem = $nuevoItem->nuevoItem($datos,$mime,$fileExt);
 
 					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));
@@ -192,10 +200,20 @@ class SIGController extends BaseController {
 		                      ->where('IdContenido',$IdContenido)->first();
 		
 		$pathToFile = public_path().'/'.$documento->AccionesOMetas;
-		//$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
-		//$headers = array('Content-Type'=>'application/pdf',);
-		//$headers = array('Content-Type'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-		return Response::download($pathToFile);//,$name,$headers);
+		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
+		$headers = array('Content-Type'=> 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+						 'Content-Type'=> 'application/vnd.ms-powerpoint',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+						 'Content-Type'=> 'application/vnd.ms-powerpoint',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+						 'Content-Type'=> 'application/vnd.ms-excel',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+						 'Content-Type'=> 'application/pdf',);
+		
+		$response = Response::download($pathToFile,$name,$headers);
+		ob_end_clean();
+		
+		return $response;
 	}
 
 	public function SIG_index()
