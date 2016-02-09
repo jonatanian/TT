@@ -126,7 +126,7 @@ class SIGController extends BaseController {
 				else
 				{
 					$file = Input::file('set-archivo');
-					$fileExt = Input::file('set-archivo')->guessExtension();
+					$fileExt = Input::file('set-archivo')->getClientOriginalExtension();
 					$fileSize = Input::file('set-archivo')->getSize();
 
 					$SizeKB = $fileSize/1000;
@@ -179,12 +179,12 @@ class SIGController extends BaseController {
 							  ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
 							  ->join('area','area_tiene_secciones.Area_Id','=','area.IdArea')
 		                      ->where('IdContenido',$IdContenido)->first();
-
+		
 		$pathToFile = public_path().'/'.$documento->AccionesOMetas;
 		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
-		$headers = array('Content-Type'=>'application/pdf',);
-
-		return Response::download($pathToFile,$name, $headers);
+		//$headers = array('Content-Type'=>'application/pdf',);
+		$headers = array('Content-Type'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+		return Response::download($pathToFile,$name,$headers);
 	}
 
 	public function SIG_index()

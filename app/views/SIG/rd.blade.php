@@ -125,7 +125,11 @@
                     <tr>
                       <td>{{$seccion->Precedencia}}</td>
                       <td>{{$seccion->NombreSeccion}}</td>
+                      @if($seccion->Descripcion == NULL)
+                      <td>N&frasl;A</td>
+                      @else
                       <td>{{$seccion->Descripcion}}</td>
+                      @endif
                       <td>
                       	<div class="col-md-12 text-left"><!--
 							<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->

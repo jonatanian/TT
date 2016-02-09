@@ -106,7 +106,7 @@
 		@if($TipoDeContenido == 2)
           <!-- Panel with: Basic Footable -->
           <div class="panel" id="{{$areaActual}}">
-          	{{Form::open(array('class'=>'form-horizontal row-border','id'=>"validate-form",'data-parsley-validate'=>'true','files'=>true))}}
+          	{{Form::open(array('class'=>'form-horizontal row-border','id'=>"validate-form",'data-parsley-validate'=>'true','files'=>true,'enctype'=>'multipart/form-data'))}}
             <!-- Store Settings -->
             <div class="panel panel-success panel-border top mb35">
               <div class="panel-heading">
@@ -251,7 +251,11 @@
 						<tr>
 							<td>x</td>
 							<td>{{$Item->NombreODescripcion}}</td>
+							@if($Item->AccionesOMetas == NULL)
+							<td>N&frasl;A</td>
+							@else
 							<td>{{$Item->AccionesOMetas}}</td>
+							@endif
 							<td class="text-center">N&frasl;A</td>
 						</tr>
 						@endforeach
