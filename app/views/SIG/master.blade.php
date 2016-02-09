@@ -22,7 +22,9 @@
 		@foreach($secciones as $sec)
 	<div class="content-header">
       <h2 class="text-primary">{{$sec->NombreSeccion}}</h2> <!--Titulo de la seccion -->
-			<blockquote class="blockquote-info text-left">{{$sec->Descripcion}}</blockquote>
+			@if($sec->Descripcion!=null)
+				<blockquote class="blockquote-info text-left">{{$sec->Descripcion}}</blockquote>
+			@endif
 			@if($sec->TipoDeContenido_Id == 2 )
 					<!-- Panel with: Basic Footable -->
 					<!-- Store Settings -->
@@ -66,7 +68,11 @@
 										<tr>
 											<td>x</td>
 											<td>{{$con->NombreODescripcion}}</td>
-											<td>{{$con->AccionesOMetas}}</td>
+											@if($con->AccionesOMetas!=null)
+												<td>{{$con->AccionesOMetas}}</td>
+											@else
+												<td>N&frasl;A</td>
+											@endif
 										</tr>
 									@endif
 								@endforeach
