@@ -4,7 +4,7 @@ class SIGController extends BaseController {
 
 	public function SIG_RD()
 		{
-			if(Auth::User()->Rol_Id == 7)
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 			{
 				$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
 							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
@@ -29,7 +29,7 @@ class SIGController extends BaseController {
 
 	public function nuevaSeccion()
 		{
-			if(Auth::User()->Rol_Id == 7)
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 			{
 				$areaActual = Request::get('area');
 				$areaActualNombre = Area::where('IdArea',$areaActual)->first();
@@ -48,7 +48,7 @@ class SIGController extends BaseController {
 
 	public function registrarSeccion()
 		{
-			if(Auth::User()->Rol_Id == 7)
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 			{
 				$nuevaDescripcion = new Descripcion();
 				$nuevaSeccion = new Secciones();
@@ -103,7 +103,7 @@ class SIGController extends BaseController {
 
 	public function editarTabla()
 		{
-			if(Auth::User()->Rol_Id == 7)
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 			{
 				$areaActual = Request::get('area');
 				$IdSeccion = Request::get('IdSeccion');
@@ -128,7 +128,7 @@ class SIGController extends BaseController {
 
 	public function actualizarTabla()
 		{
-			if(Auth::User()->Rol_Id == 7)
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 			{
 				Input::flashOnly('new-nombre');
 				$datos = Input::all();
@@ -175,9 +175,7 @@ class SIGController extends BaseController {
 					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
 					$subir = $file->move($destinoPath,$url_doc);
 					
-					$mime = Input::file('set-archivo')->getClientMimeType();
-					
-					$IdItem = $nuevoItem->nuevoItem($datos,$mime,$fileExt);
+					$IdItem = $nuevoItem->nuevoItem($datos,$path,$fileExt);
 
 					Session::flash('msg','Item publicado correctamente.');
 					return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']));

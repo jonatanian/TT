@@ -42,7 +42,13 @@
   <div id="main">
 
     <!-- Start: Header -->
+    @if(Auth::User()->Rol_Id == 7)
     <header class="navbar navbar-fixed-top bg-system">
+    @elseif(Auth::User()->Rol_Id == 1)
+    <header class="navbar navbar-fixed-top bg-alert">
+    @else
+    <header class="navbar navbar-fixed-top bg-danger">
+    @endif
       <div class="navbar-branding">
         <a class="navbar-brand" href="#">
           <img src="{{asset('images/LogoSISA-SIG.png')}}" alt="SISA CMPL" height="60px">

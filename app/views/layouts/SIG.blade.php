@@ -45,7 +45,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		<li>
-		@if(Auth::User()->Rol_Id == 7)
+		@if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 			<div class="navbar-btn btn-group">
       			<a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
           			<span class="fa fa-cog"></span>
