@@ -70,9 +70,20 @@ class SIGController extends BaseController {
 				}
 				else
 				{
-					$IdSeccion = $nuevaSeccion->nuevaSeccion($datos);
-					$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$IdSeccion);
-					$IdATS = $nuevaATS->nuevaATS($datos,$IdSeccion);
+					$verificarNombre = Secciones::where('NombreSeccion',$datos['new-nombre'])->first();
+					$verificarExistencia = AreaTieneSecciones::where('Area_Id',$datos['IdArea'])->where('Secciones_Id',$verificarNombre->IdSeccion)->first();
+					
+					if($verificarExistencia != NULL)
+					{
+						Session::flash('msgWarning','Ya existe una sección en esta área con el mismo nombre. Intenta con otro nombre.');
+						return Redirect::action('SIGController@nuevaSeccion',array('area'=>$datos['IdArea']));
+					}
+					else
+					{	
+						$IdSeccion = $nuevaSeccion->nuevaSeccion($datos);
+						$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$IdSeccion);
+						$IdATS = $nuevaATS->nuevaATS($datos,$IdSeccion);
+					}
 				}
 				Session::flash('msg','Nueva sección creada correctamente.');
 				return Redirect::to('/SIG/RD');
