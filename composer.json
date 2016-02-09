@@ -5,7 +5,9 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"thujohn/pdf": "dev-master"
+		"thujohn/pdf": "dev-master",
+		"phpoffice/phpword": "dev-master",
+		"phpoffice/phpexcel": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
