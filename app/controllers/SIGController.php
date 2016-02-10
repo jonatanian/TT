@@ -239,19 +239,24 @@ class SIGController extends BaseController {
 							 ->first();
 
 				$responsable = Usuario::join('area','Area_Id', '=', 'area.IdArea')
-				       ->join('cargo', 'Cargo_Id', '=', 'cargo.IdCargo')
-				       ->where('Area.IdArea', $IdArea)
-							 ->whereIn('usuario.Cargo_Id', array(1,4,5))
-							 ->first();
+				       				  ->join('cargo', 'Cargo_Id', '=', 'cargo.IdCargo')
+				       				  ->where('Area.IdArea', $IdArea)
+							 		  ->whereIn('usuario.Cargo_Id', array(1,4,5))
+							 		  ->first();
 
-		  	$secciones = AreaTieneSecciones::join('secciones','Secciones_Id','=','secciones.IdSeccion')
-               ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
-							 ->where('area_tiene_secciones.Area_Id', $IdArea)
-							 ->get();
-			  $contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
-							 ->where('area_tiene_secciones.Area_Id','=',$IdArea)
-							 ->get();
-						return View::make('SIG.master',array('areas'=>$areas, 'secciones'=>$secciones, 'IdArea'=>$IdArea, 'contenido'=>$contenido, 'responsable'=>$responsable));
+		  		$secciones = AreaTieneSecciones::join('secciones','Secciones_Id','=','secciones.IdSeccion')
+               								   ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
+							 				   ->where('area_tiene_secciones.Area_Id',$IdArea)
+							 				   ->where('descripcion.SecDeArea',$IdArea)
+							                   ->get();
+							                   
+			  	$contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+			  						  //->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
+			  						  //->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
+							 		  ->where('area_tiene_secciones.Area_Id','=',$IdArea)
+							          ->get();
+				
+				return View::make('SIG.master',array('areas'=>$areas, 'secciones'=>$secciones, 'IdArea'=>$IdArea, 'contenido'=>$contenido, 'responsable'=>$responsable));
 
 			}
 			else

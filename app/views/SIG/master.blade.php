@@ -19,7 +19,8 @@
     </div>
 
 
-		@foreach($secciones as $sec)
+	@foreach($secciones as $sec)
+	
 	<div class="content-header">
       <h2 class="text-primary">{{$sec->NombreSeccion}}</h2> <!--Titulo de la seccion -->
 			@if($sec->Descripcion!=null)
@@ -84,7 +85,8 @@
 
 
     </div>
-		@endforeach
+    
+    @endforeach
 <!--  Secciones dadas de alta -->
 
 @stop
