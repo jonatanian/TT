@@ -20,7 +20,7 @@
 
 
 	@foreach($secciones as $sec)
-	
+
 	<div class="content-header">
       <h2 class="text-primary">{{$sec->NombreSeccion}}</h2> <!--Titulo de la seccion -->
 			@if($sec->Descripcion!=null)
@@ -43,7 +43,7 @@
 									@foreach($contenido as $con)
 										@if($con->Secciones_Id == $sec->IdSeccion)
 											<tr>
-												<td>x</td>
+												<td>&nbsp;</td>
 												<td>{{$con->NombreODescripcion}}</td>
 												<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$con->IdContenido))}}" class="btn btn-system" target="_blank">Descargar</a></td>
 											</tr>
@@ -67,7 +67,7 @@
 								@foreach($contenido as $con)
 									@if($con->Secciones_Id == $sec->IdSeccion)
 										<tr>
-											<td>x</td>
+											<td>&nbsp;</td>
 											<td>{{$con->NombreODescripcion}}</td>
 											@if($con->AccionesOMetas!=null)
 												<td>{{$con->AccionesOMetas}}</td>
@@ -85,7 +85,7 @@
 
 
     </div>
-    
+
     @endforeach
 <!--  Secciones dadas de alta -->
 
