@@ -4,18 +4,33 @@
 	<div class="content-header">
       <h1 class="text-muted">{{$areas->NombreArea}}</h1><!--nombre de departamento-->
 	  	<div class="content-header">
-				<h2 class="text-primary">Objetivo</h2>
-
-				<blockquote class="blockquote-primary text-left">
-					<p style="text-align:justify">{{$areas->Objetivo}}</p> <!--  Objetivo  -->
-          @if(isset($responsable))
-						<footer>{{$responsable->GradoAcademico}}&nbsp;{{$responsable->ApPaterno}}&nbsp;{{$responsable->ApMaterno}}&nbsp;{{$responsable->Nombre}}&nbsp;-&nbsp;{{$responsable->NombreCargo}}</footer>
-					@else
-						<footer>&nbsp;</footer>
-					@endif
-				</blockquote>
 		</div>
+	  <h2 class="text-primary">Organigrama</h2>
       <img class="img-responsive" src="{{asset($areas->OrganigramaURL)}}" alt="Organigrama de {{$areas->NombreArea}}">
+      @if($areas->IdArea == 1)
+      <div class="content-header">
+			<h2 class="text-primary">Misión</h2>
+			<blockquote class="blockquote-primary text-left">
+				<p style="text-align:justify">Ofrecer servicios de formación de recursos humanos, investigación científica, desarrollo
+				tecnológico y asistencia técnica, que influyan en la industria nacional para maximizar su productividad y competividad, 
+				mediante la aplicación de la metodología de producción más limpia para minimizar el impacto ambiental y aportar beneficios
+				a la comunidad.</p> <!--  Mision  -->
+				<footer>&nbsp;</footer>
+			</blockquote>
+	  </div>
+	  <div class="content-header">
+			<h2 class="text-primary">Visión</h2>
+			<blockquote class="blockquote-primary text-left">
+				<p style="text-align:justify">Ser un centro de excelecia lider a nivel nacional con reconocimiento internacional en la
+				formación de recursos humanos, la investigación científica, el desarrollo tecnológico y la provisión de asistencia 
+				técnica de alta calidad y con valor agregado a la industria, en temas relacionados con la producción más limpia y
+				el desarrollo sustentable.</p> <!--  Vision  -->
+				<footer>&nbsp;</footer>
+			</blockquote>
+	  </div>
+
+	  @endif
+
     </div>
 
 
@@ -37,8 +52,8 @@
 								<table class="table table-striped">
 									<tr>
 										<th>No.</th>
-										<th width="2000">Nombre</th>
-										<th>Acciones</th>
+										<th width="2000">Descripción</th>
+										<th>&nbsp;</th>
 									</tr>
 									@foreach($contenido as $con)
 										@if($con->Secciones_Id == $sec->IdSeccion)
@@ -60,8 +75,8 @@
 							<table class="table table-striped">
 								<tr>
 									<th>No.</th>
-									<th width="1000">Nombre</th>
-									<th width="1000">Descripcion</th>
+									<th width="1000">Descripción</th>
+									<th width="1000">&nbsp;</th>
 
 								</tr>
 								@foreach($contenido as $con)
