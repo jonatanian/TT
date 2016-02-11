@@ -11,7 +11,7 @@
 						comprometido con la satisfacción de los clientes con productos diseñados bajo criterios ambientales y de calidad  que cumplan 
 						la legislación ambiental y otros requerimientos  aplicables, teniendo como ejes centrales la prevención de la contaminación y 
 						la mejora continua.</p>
-		<footer>Dr. Abelardo I. Flores Vela - Director</footer>
+		<footer><strong><em>Dr. Abelardo I. Flores Vela - Director</em></strong></footer>
 	</blockquote>
 	
 	<blockquote>
@@ -43,11 +43,4 @@
 		<footer>Anotaciones importantes</footer>
 	</blockquote>
  	
- 	<div class="content-header">
-      <h2 class="text-primary">Objetivos institucionales</h2>
-    </div>
-	<blockquote class="blockquote-primary">
-		<p style="text-align:justify">Descripción</p>
-		<footer>Anotaciones importantes</footer>
-	</blockquote>
 @stop
