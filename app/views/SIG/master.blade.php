@@ -51,14 +51,14 @@
 							<div class="admin-form">
 								<table class="table table-striped">
 									<tr>
-										<th>No.</th>
+										
 										<th width="2000">Descripción</th>
 										<th>&nbsp;</th>
 									</tr>
 									@foreach($contenido as $con)
 										@if($con->Secciones_Id == $sec->IdSeccion)
 											<tr>
-												<td>&nbsp;</td>
+												
 												<td>{{$con->NombreODescripcion}}</td>
 												<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$con->IdContenido))}}" class="btn btn-system" target="_blank">Descargar</a></td>
 											</tr>
@@ -74,7 +74,7 @@
 						<div class="admin-form">
 							<table class="table table-striped">
 								<tr>
-									<th>No.</th>
+									
 									<th width="1000">Descripción</th>
 									<th width="1000">&nbsp;</th>
 
@@ -82,7 +82,7 @@
 								@foreach($contenido as $con)
 									@if($con->Secciones_Id == $sec->IdSeccion)
 										<tr>
-											<td>&nbsp;</td>
+											
 											<td>{{$con->NombreODescripcion}}</td>
 											@if($con->AccionesOMetas!=null)
 												<td>{{$con->AccionesOMetas}}</td>
