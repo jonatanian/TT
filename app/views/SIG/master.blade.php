@@ -12,7 +12,7 @@
 			<h2 class="text-primary">Misión</h2>
 			<blockquote class="blockquote-primary text-left">
 				<p style="text-align:justify">Ofrecer servicios de formación de recursos humanos, investigación científica, desarrollo
-				tecnológico y asistencia técnica, que influyan en la industria nacional para maximizar su productividad y competividad, 
+				tecnológico y asistencia técnica, que influyan en la industria nacional para maximizar su productividad y competividad,
 				mediante la aplicación de la metodología de producción más limpia para minimizar el impacto ambiental y aportar beneficios
 				a la comunidad.</p> <!--  Mision  -->
 				<footer>&nbsp;</footer>
@@ -22,7 +22,7 @@
 			<h2 class="text-primary">Visión</h2>
 			<blockquote class="blockquote-primary text-left">
 				<p style="text-align:justify">Ser un centro de excelecia lider a nivel nacional con reconocimiento internacional en la
-				formación de recursos humanos, la investigación científica, el desarrollo tecnológico y la provisión de asistencia 
+				formación de recursos humanos, la investigación científica, el desarrollo tecnológico y la provisión de asistencia
 				técnica de alta calidad y con valor agregado a la industria, en temas relacionados con la producción más limpia y
 				el desarrollo sustentable.</p> <!--  Vision  -->
 				<footer>&nbsp;</footer>
@@ -51,16 +51,21 @@
 							<div class="admin-form">
 								<table class="table table-striped">
 									<tr>
-										
+
 										<th width="2000">Descripción</th>
 										<th>&nbsp;</th>
 									</tr>
 									@foreach($contenido as $con)
 										@if($con->Secciones_Id == $sec->IdSeccion)
 											<tr>
-												
 												<td>{{$con->NombreODescripcion}}</td>
-												<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$con->IdContenido))}}" class="btn btn-system" target="_blank">Descargar</a></td>
+												@if($sec->NombreSeccion == 'Objetivos de calidad' || $sec->NombreSeccion == 'Objetivos ambientales')
+													<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$con->IdContenido))}}" class="btn btn-system" target="_blank">Indicador</a></td>
+												@elseif($con->ExtensionDoc == 'pdf')
+													<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$con->IdContenido))}}" class="btn btn-system" target="_blank">PDF</a></td>
+												@else
+													<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$con->IdContenido))}}" class="btn btn-system" target="_blank">Editable</a></td>
+												@endif
 											</tr>
 										@endif
 									@endforeach
@@ -74,7 +79,7 @@
 						<div class="admin-form">
 							<table class="table table-striped">
 								<tr>
-									
+
 									<th width="1000">Descripción</th>
 									<th width="1000">&nbsp;</th>
 
@@ -82,7 +87,7 @@
 								@foreach($contenido as $con)
 									@if($con->Secciones_Id == $sec->IdSeccion)
 										<tr>
-											
+
 											<td>{{$con->NombreODescripcion}}</td>
 											@if($con->AccionesOMetas!=null)
 												<td>{{$con->AccionesOMetas}}</td>
