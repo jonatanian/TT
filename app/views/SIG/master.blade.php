@@ -81,7 +81,7 @@
 								<tr>
 
 									<th width="1000">Descripción</th>
-									<th width="1000">&nbsp;</th>
+									<!--<th width="1000">&nbsp;</th>-->
 
 								</tr>
 								@foreach($contenido as $con)
@@ -89,11 +89,11 @@
 										<tr>
 
 											<td>{{$con->NombreODescripcion}}</td>
-											@if($con->AccionesOMetas!=null)
+											<!--@if($con->AccionesOMetas!=null)
 												<td>{{$con->AccionesOMetas}}</td>
 											@else
 												<td>N&frasl;A</td>
-											@endif
+											@endif-->
 										</tr>
 									@endif
 								@endforeach
