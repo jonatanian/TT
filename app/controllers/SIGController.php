@@ -149,9 +149,9 @@ class SIGController extends BaseController {
 
 					$SizeKB = $fileSize/1000;
 
-					if($SizeKB > 5120)
+					if($SizeKB > 20000)
 					{
-						Session::flash('msgf','El tamaño máximo por archivo es de 5 MB.');
+						Session::flash('msgf','El tamaño máximo por archivo es de 20 MB.');
 						return Redirect::action('SIGController@editarTabla',array('IdSeccion'=>$datos['IdSeccion'],'IdATS'=>$datos['IdATS'],'TipoContenido'=>$datos['IdTipoDeContenido'],'area'=>$datos['AreaActual']))->withInput();
 					}
 
@@ -225,6 +225,19 @@ class SIGController extends BaseController {
 				return Redirect::to('/login');
 			}
 		}
+		
+	public function SGA_index()
+		{
+			if(Auth::check())
+			{
+				return View::make('SIG.SGA');
+			}
+			else
+			{
+				return Redirect::to('/');
+			}
+		}
+
 
 	public function SIG_Master()
 		{
