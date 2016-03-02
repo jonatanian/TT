@@ -337,12 +337,19 @@ class SIGController extends BaseController {
 					{
 						if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 						{
+
 							$seccionActual = Request::get('IdSeccion');
 							$areaActual = Request::get('IdArea');
 							$ATSActual = Request::get('IdATS');
 							$seccion = new Secciones();
 							$descripcion = new Descripcion();
 							$ATS = new AreaTieneSecciones();
+							$contenido = Contenido::where('ATS_Id',$ATSActual)->first();
+							if($contenido != NULL)
+							{
+								Session::flash('msgWarning','La sección NO está vacía! Debe eliminar primero el contenido.');
+								return Redirect::to('/SIG/RD');
+							}
 							if(!$descripcion->eliminarDescripcion($areaActual,$seccionActual))
 							{
 								Session::flash('msgWarning','Error en la aplicación, vuelva a intentarlo');

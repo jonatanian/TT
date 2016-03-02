@@ -32,8 +32,7 @@
 				$newATS = AreaTieneSecciones::where('IdATS',$IdATS)->first();
 				$newATS -> delete();
 	    	});
-	    	$Id = DB::table('area_tiene_secciones')->max('IdATS');
-		return $Id;
+		return 1;
 		}
 	}
 

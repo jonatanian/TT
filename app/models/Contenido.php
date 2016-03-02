@@ -1,6 +1,6 @@
-<?php 
+<?php
 	/**
-	* 
+	*
 	*/
 	class Contenido extends Eloquent
 	{
@@ -9,7 +9,7 @@
 		protected $primaryKey = 'IdContenido';
 		public $timestamps = false;
 		protected $fillable = array('IdContenido', 'NombreODescripcion', 'AccionesOMetas','FechaCreacion','FechaEdicion','ATS_Id','CreadoPor','EditadoPor');
-	
+
 		public function nuevoItem($inputs,$urlArchivo,$Ext){
 			$fecha = new DateTime();
 	    	DB::transaction(function () use ($inputs,$fecha,$urlArchivo,$Ext){
@@ -33,6 +33,14 @@
 	    	});
 	    	$Id = DB::table('Contenido')->max('IdContenido');
 		return $Id;
+		}
+
+		public function eliminarItem($IdContenido){
+	    	DB::transaction(function () use ($IdContenido){
+				$item = Contenido::where('IdContenido',$IdContenido)->first();
+				$item -> delete();
+	    	});
+		return 1;
 		}
 	}
 

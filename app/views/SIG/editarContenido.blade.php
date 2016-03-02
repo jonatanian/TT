@@ -70,7 +70,7 @@
 			</div>
 		@endif
 	<section id="content" class="table-layout animated fadeIn">
-				
+
         <!-- begin: .tray-left -->
         <aside class="tray tray-left tray320">
 
@@ -144,8 +144,8 @@
 	                      </label>
 	                    </div>
 	                  </div>
-	              </div>				
-				
+	              </div>
+
 				<div class="col-md-12 text-right">
 					<button type="submit" class="button btn-success"> Publicar Item </button>
 				</div>
@@ -170,7 +170,7 @@
               </div>
               <div class="panel-body bg-light dark">
                 <div class="admin-form">
-                                  
+
                   <div class="section row mb10">
                     <label for="new-nombre" class="field-label col-md-3 text-center">Nombre:</label>
                     <div class="col-md-9">
@@ -193,8 +193,8 @@
                         </label>
                       </label>
                     </div>
-                  </div>				
-				
+                  </div>
+
 				<div class="col-md-12 text-right">
 					<button type="submit" class="button btn-success"> Publicar Item </button>
 				</div>
@@ -205,7 +205,7 @@
             {{Form::close()}}
           </div>
 		@endif
-        @if($TipoDeContenido == 2)  
+        @if($TipoDeContenido == 2)
           	<!-- Panel with: Basic Footable -->
            	<!-- Store Settings -->
             <div class="panel panel-light panel-border top mb35">
@@ -217,14 +217,18 @@
 					<table class="table table-striped">
 						<tr>
 							<th>No.</th>
-							<th width="2000">Nombre</th>
+							<th width="500">Nombre</th>
 							<th>Acciones</th>
 						</tr>
 						@foreach($Items as $Item)
 						<tr>
 							<td>x</td>
 							<td>{{$Item->NombreODescripcion}}</td>
-							<td><a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$Item->IdContenido))}}" class="btn btn-system" target="_blank">Descargar</a></td>
+							<td>
+								<a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$Item->IdContenido))}}" class="btn btn-system btn-sm" target="_blank">Descargar</a>
+								<a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$Item->IdContenido))}}" class="btn btn-dark btn-sm">Editar</a>
+								<a href = "{{action('SIGController@eliminarItem',array('IdSeccion'=>$Seccion->IdSeccion,'TipoDeContenido'=>$TipoDeContenido,'IdContenido'=>$Item->IdContenido, 'IdATS'=>$IdATS,'IdArea'=>$areaActual))}}" class="btn btn-danger btn-sm">Quitar</a>
+							</td>
 						</tr>
 						@endforeach
 					</table>

@@ -43,8 +43,7 @@
 			$section = Secciones::where('IdSeccion',$IdSeccion)->first();
 			$section -> delete();
 			});
-			$Id = DB::table('secciones')->max('IdSeccion');
-			return $Id;
+			return 1;
 		}
 	}
 ?>

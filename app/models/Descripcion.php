@@ -45,8 +45,7 @@
 				$description = Descripcion::where('Secciones_Id',$IdSeccion)->where('SecDeArea',$IdArea)->first();
 				$description -> delete();
 				});
-				$Id = DB::table('secciones')->max('IdSeccion');
-		return $Id;
+		return 1;
 		}
 	}
 ?>
