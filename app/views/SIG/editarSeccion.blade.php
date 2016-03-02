@@ -106,6 +106,7 @@
               <div class="panel-heading">
                 <span class="panel-title">Nueva sección para {{$areaActualNombre->NombreArea}}</span>
                 {{Form::hidden('IdArea',$areaActualNombre->IdArea, array('id'=>'IdArea'))}}
+								{{Form::hidden('IdSeccion',$seccionActual, array('idSeccion'=>'IdSeccion'))}}
               </div>
               <div class="panel-body bg-light dark">
                 <div class="admin-form">

@@ -15,7 +15,7 @@ Route::get('/salir','LoginController@logout');
 //Sistema Integrado de Gestión de la Calidad y del Ambiente
 Route::group(array("prefix"=>'SIG'), function(){
 	Route::get('/','SIGController@SIG_index');
-	
+
 	//Sistema de Gestión Ambiental
 	Route::get('/SGA','SIGController@SGA_index');
 
@@ -28,6 +28,8 @@ Route::group(array("prefix"=>'SIG'), function(){
 		//Edicion de sección
 		Route::get('/RD/EditarSeccion','SIGController@editarSeccion');
 		Route::post('/RD/EditarSeccion','SIGController@actualizarSeccion');
+		//Eliminar sección
+		Route::get('/RD/EliminarSeccion','SIGController@eliminarSeccion');
 		//Registro de nuevos datos o Items
 		Route::get('/RD/Seccion/','SIGController@editarTabla');
 		Route::post('/RD/Seccion/','SIGController@actualizarTabla');
