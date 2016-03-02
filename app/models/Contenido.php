@@ -36,11 +36,18 @@
 		}
 
 		public function eliminarItem($IdContenido){
-	    	DB::transaction(function () use ($IdContenido){
 				$item = Contenido::where('IdContenido',$IdContenido)->first();
-				$item -> delete();
-	    	});
-		return 1;
+				if($item != NULL)
+				{
+					DB::transaction(function () use ($IdContenido){
+					$item = Contenido::where('IdContenido',$IdContenido)->first();
+					$item -> delete();
+		    	});
+					return 1;
+				}
+	    	else {
+	    		return 0;
+	    	}
 		}
 	}
 

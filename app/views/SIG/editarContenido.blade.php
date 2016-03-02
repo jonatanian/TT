@@ -14,7 +14,7 @@
 				</li>
 				<li>&frasl;</li>
 				<li>
-					<a href="#">Secciones</a>
+					<a href="{{action('SIGController@SIG_RD')}}">Secciones</a>
 				</li>
 				<li>&frasl;</li>
 				<li class="active">
@@ -216,17 +216,16 @@
                 <div class="admin-form">
 					<table class="table table-striped">
 						<tr>
-							<th>No.</th>
+
 							<th width="500">Nombre</th>
 							<th>Acciones</th>
 						</tr>
 						@foreach($Items as $Item)
 						<tr>
-							<td>x</td>
+
 							<td>{{$Item->NombreODescripcion}}</td>
 							<td>
 								<a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$Item->IdContenido))}}" class="btn btn-system btn-sm" target="_blank">Descargar</a>
-								<a href = "{{action('SIGController@descargarDocumento',array('IdContenido'=>$Item->IdContenido))}}" class="btn btn-dark btn-sm">Editar</a>
 								<a href = "{{action('SIGController@eliminarItem',array('IdSeccion'=>$Seccion->IdSeccion,'TipoDeContenido'=>$TipoDeContenido,'IdContenido'=>$Item->IdContenido, 'IdATS'=>$IdATS,'IdArea'=>$areaActual))}}" class="btn btn-danger btn-sm">Quitar</a>
 							</td>
 						</tr>
@@ -246,21 +245,19 @@
 	            <div class="admin-form">
 					<table class="table table-striped">
 						<tr>
-							<th>No.</th>
-							<th width="1000">Nombre</th>
-							<th width="1000">Descripcion</th>
+
+							<th width="500">Nombre</th>
 							<th>Acciones</th>
+
 						</tr>
 						@foreach($Items as $Item)
 						<tr>
-							<td>x</td>
+
 							<td>{{$Item->NombreODescripcion}}</td>
-							@if($Item->AccionesOMetas == NULL)
-							<td>N&frasl;A</td>
-							@else
-							<td>{{$Item->AccionesOMetas}}</td>
-							@endif
-							<td class="text-center">N&frasl;A</td>
+
+							<td>
+								<a href = "{{action('SIGController@eliminarItem',array('IdSeccion'=>$Seccion->IdSeccion,'TipoDeContenido'=>$TipoDeContenido,'IdContenido'=>$Item->IdContenido, 'IdATS'=>$IdATS,'IdArea'=>$areaActual))}}" class="btn btn-danger btn-sm">Quitar</a>
+							</td>
 						</tr>
 						@endforeach
 					</table>

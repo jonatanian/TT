@@ -373,5 +373,44 @@ class SIGController extends BaseController {
 						}
 					}
 
+					public function eliminarItem()
+						{
+							if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+							{
+								$IdContenido = Request::get('IdContenido');
+								$areaActual = Request::get('IdArea');
+								$IdSeccion = Request::get('IdSeccion');
+								$IdATS = Request::get('IdATS');
+								$IdTipoContenido = Request::get('TipoContenido');
+								$Item = new Contenido();
+								$areaActualNombre = Area::where('IdArea',$areaActual)->first();
+								$Seccion = Secciones::where('IdSeccion',$IdSeccion)->first();
+								if($Item->eliminarItem($IdContenido))
+									{
+										echo '<script type="text/javascript">alert("' . 'Se ha eliminado el Item' . '")</script>';
+										$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+																	 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
+																	 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
+																	 ->get();
+										Session::flash('msg','Item eliminado correctamente.');
+										return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'Seccion'=>$Seccion,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
+									}
+								else {
+									
+									$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+																 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
+																 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
+																 ->get();
+									Session::flash('msgWarning','Error en la aplicación, vuelva a intentarlo');
+									return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'Seccion'=>$Seccion,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
+								}
+
+							}
+							else
+							{
+								return Redirect::to('/SIG');
+							}
+						}
+
 }
 ?>
