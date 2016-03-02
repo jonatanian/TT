@@ -2,11 +2,17 @@
 
 @section('content')
 	<div class="content-header">
-      <h1 class="text-muted">{{$areas->NombreArea}}</h1><!--nombre de departamento-->
+			@if($areas->NombreArea == "Sistema de Gestión Ambiental" || $areas->NombreArea == "Formatos")
+      	<h1 class="text-muted">Sistema Integrado de Gestión de la Calidad y del Ambiente</h1><!--nombre de departamento-->
+			@else
+				<h1 class="text-muted">{{$areas->NombreArea}}</h1><!--nombre de departamento-->
+			@endif
 	  	<div class="content-header">
 		</div>
+		@if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental")
 	  <h2 class="text-primary">Organigrama</h2>
       <img class="img-responsive" src="{{asset($areas->OrganigramaURL)}}" alt="Organigrama de {{$areas->NombreArea}}">
+		@endif
       @if($areas->IdArea == 1)
       <div class="content-header">
 			<h2 class="text-primary">Misión</h2>
@@ -37,15 +43,22 @@
 	@foreach($secciones as $sec)
 
 	<div class="content-header">
-      <h2 class="text-primary">{{$sec->NombreSeccion}}</h2> <!--Titulo de la seccion -->
+			@if($sec->NombreSeccion == "Sistema de Gestión Ambiental")
+      	<h2 class="text-success">{{$sec->NombreSeccion}}</h2> <!--Titulo de la seccion -->
+			@else
+				<h2 class="text-primary">{{$sec->NombreSeccion}}</h2>
+			@endif
 			@if($sec->Descripcion!=null)
 				<blockquote class="blockquote-info text-left">{{$sec->Descripcion}}</blockquote>
 			@endif
 			@if($sec->TipoDeContenido_Id == 2)
 					<!-- Panel with: Basic Footable -->
 					<!-- Store Settings -->
-					<div class="panel panel-primary panel-border top mb35">
-
+					@if($areas->NombreArea == "Sistema de Gestión Ambiental")
+						<div class="panel panel-success panel-border top mb35">
+					@else
+						<div class="panel panel-primary panel-border top mb35">
+					@endif
 						<div class="panel-body bg-light dark">
 
 							<div class="admin-form">

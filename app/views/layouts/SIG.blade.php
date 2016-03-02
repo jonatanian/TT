@@ -171,43 +171,43 @@
                   </li>
                 </ul>
               </li>
-              
+
               <li>
                 <a href="../SGA/Definiciones.docx" target="_blank">
                   <span class="glyphicon glyphicon-bookmark"></span>
                   <span class="sidebar-title">Definiciones</span>
                 </a>
               </li>
-              
+
               <li>
-                <a href="{{action('SIGController@SIG_index')}}">
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>10))}}">
                   <span class="glyphicon glyphicon-file"></span>
                   <span class="sidebar-title">Formatos</span>
                 </a>
               </li>
-              
-              
+
+
              <li>
                 <a href="{{action('SIGController@SIG_index')}}">
                   <span class="glyphicon glyphicon-folder-open"></span>
                   <span class="sidebar-title">Registros</span>
                 </a>
               </li>
-              
+
               <li>
-                <a href="{{action('SIGController@SGA_index')}}">
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>11))}}">
                   <span class="glyphicon glyphicon-grain"></span>
                   <span class="sidebar-title">Sistema de Gestión Ambiental</span>
                 </a>
               </li>
-              
+
               <li>
                 <a href="{{action('SIGController@SIG_index')}}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   <span class="sidebar-title">Manual de organización</span>
                 </a>
               </li>
-              
+
               <li>
                 <a href="{{action('SIGController@SIG_index')}}">
                   <span class="glyphicon glyphicon-user"></span>
