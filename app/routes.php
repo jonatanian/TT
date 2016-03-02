@@ -21,6 +21,9 @@ Route::group(array("prefix"=>'SIG'), function(){
 		//Registro de nueva sección
 		Route::get('/RD/NuevaSeccion','SIGController@nuevaSeccion');
 		Route::post('/RD/NuevaSeccion','SIGController@registrarSeccion');
+		//Edicion de sección
+		Route::get('/RD/EditarSeccion','SIGController@editarSeccion');
+		Route::post('/RD/EditarSeccion','SIGController@actualizarSeccion');
 		//Registro de nuevos datos o Items
 		Route::get('/RD/Seccion/','SIGController@editarTabla');
 		Route::post('/RD/Seccion/','SIGController@actualizarTabla');
@@ -29,7 +32,7 @@ Route::group(array("prefix"=>'SIG'), function(){
 	Route::get('/verDocumento','SIGController@descargarDocumento');
 	Route::get('/Master','SIGController@SIG_Master');
 
-	
+
 	Route::get('/Direccion','SIGController@SIG_Direccion');
 	Route::get('/Tecnica','SIGController@SIG_Tecnica');
 	Route::get('/Posgrado','SIGController@SIG_Posgrado');

@@ -57,7 +57,7 @@
 			  {{Session::get('msgAlert')}}
 			</div>
 		@endif
-	<section id="content" class="table-layout animated fadeIn">		
+	<section id="content" class="table-layout animated fadeIn">
         <!-- begin: .tray-left -->
         <aside class="tray tray-left tray320">
 
@@ -134,6 +134,8 @@
                       	<div class="col-md-12 text-left"><!--
 							<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
 							<a href="{{action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Alimentar </a>
+							<a href="{{action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Editar </a>
+							<a href="{{action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Quitar </a>
 						</div>
                       </td>
                     </tr>

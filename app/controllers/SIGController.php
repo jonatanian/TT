@@ -79,14 +79,14 @@ class SIGController extends BaseController {
 					{
 						$verificarExistencia = NULL;
 					}
-					
+
 					if($verificarExistencia != NULL)
 					{
 						Session::flash('msgWarning','Ya existe una sección en esta área con el mismo nombre. Intenta con otro nombre.');
 						return Redirect::action('SIGController@nuevaSeccion',array('area'=>$datos['IdArea']));
 					}
 					else
-					{	
+					{
 						$IdSeccion = $nuevaSeccion->nuevaSeccion($datos);
 						$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$IdSeccion);
 						$IdATS = $nuevaATS->nuevaATS($datos,$IdSeccion);
@@ -174,7 +174,7 @@ class SIGController extends BaseController {
 					$path = 'contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion.'\\'.$url_doc;
 					$destinoPath = public_path().'\\contenido-sig\\archivos\\'.$getNombreArea->NombreArea.'\\'.$getNombreSeccion->NombreSeccion;
 					$subir = $file->move($destinoPath,$url_doc);
-					
+
 					$IdItem = $nuevoItem->nuevoItem($datos,$path,$fileExt);
 
 					Session::flash('msg','Item publicado correctamente.');
@@ -196,7 +196,7 @@ class SIGController extends BaseController {
 							  ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
 							  ->join('area','area_tiene_secciones.Area_Id','=','area.IdArea')
 		                      ->where('IdContenido',$IdContenido)->first();
-		
+
 		$pathToFile = public_path().'/'.$documento->AccionesOMetas;
 		$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
 		$headers = array('Content-Type'=> 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -207,10 +207,10 @@ class SIGController extends BaseController {
 						 'Content-Type'=> 'application/vnd.ms-excel',
 						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 						 'Content-Type'=> 'application/pdf',);
-		
+
 		$response = Response::download($pathToFile,$name,$headers);
 		ob_end_clean();
-		
+
 		return $response;
 	}
 
@@ -249,13 +249,13 @@ class SIGController extends BaseController {
 							 				   ->where('area_tiene_secciones.Area_Id',$IdArea)
 							 				   ->where('descripcion.SecDeArea',$IdArea)
 							                   ->get();
-							                   
+
 			  	$contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
 			  						  //->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
 			  						  //->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
 							 		  ->where('area_tiene_secciones.Area_Id','=',$IdArea)
 							          ->get();
-				
+
 				return View::make('SIG.master',array('areas'=>$areas, 'secciones'=>$secciones, 'IdArea'=>$IdArea, 'contenido'=>$contenido, 'responsable'=>$responsable));
 
 			}
@@ -264,6 +264,81 @@ class SIGController extends BaseController {
 				return Redirect::to('/login');
 			}
 		}
+
+		public function editarSeccion()
+			{
+				if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+				{
+					$areaActual = Request::get('IdArea');
+					$seccionActual = Request::get('IdSeccion');
+					$areaActualNombre = Area::where('IdArea',$areaActual)->first();
+
+					$tipoContenido = TipoDeContenido::all();
+					$NombreSeccion = Secciones::where('IdSeccion', $seccionActual)->first();
+					$Descripcion = Descripcion::where('Secciones_Id', $seccionActual)
+													->where('SecDeArea',$areaActual)
+													->first();
+					return View::make('SIG.editarSeccion',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'NombreSeccion'=>$NombreSeccion,'Descripcion'=>$Descripcion));
+				}
+				else
+				{
+					return Redirect::to('/SIG');
+				}
+			}
+
+			public function actualizarSeccion()
+				{
+					if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+					{
+						$nuevaDescripcion = new Descripcion();
+						$nuevaSeccion = new Secciones();
+						$datos = Input::all();
+						if($datos['new-nombre'] == NULL)
+						{
+							$verificarExistencia = AreaTieneSecciones::where('Area_Id',$datos['IdArea'])->where('Secciones_Id',$datos['set-nombre'])->first();
+							if($verificarExistencia != NULL)
+							{
+								Session::flash('msgWarning','Ya existe una sección en esta área con el mismo nombre. Intenta con otro nombre.');
+								return Redirect::action('SIGController@editarSeccion',array('areaActual'=>$datos['IdArea'],'areaActualNombre'=>$areaActualNombre,'NombreSeccion'=>$NombreSeccion,'Descripcion'=>$Descripcion));
+							}
+							else
+							{
+								$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$datos['set-nombre']);
+								$IdATS = $nuevaATS->nuevaATS($datos,$datos['set-nombre']);
+							}
+						}
+						else
+						{
+							$verificarNombre = Secciones::where('NombreSeccion',$datos['new-nombre'])->first();
+							if($verificarNombre != NULL)
+							{
+								$verificarExistencia = AreaTieneSecciones::where('Area_Id',$datos['IdArea'])->where('Secciones_Id',$verificarNombre->IdSeccion)->first();
+							}
+							else
+							{
+								$verificarExistencia = NULL;
+							}
+
+							if($verificarExistencia != NULL)
+							{
+								Session::flash('msgWarning','Ya existe una sección en esta área con el mismo nombre. Intenta con otro nombre.');
+								return Redirect::action('SIGController@nuevaSeccion',array('area'=>$datos['IdArea']));
+							}
+							else
+							{
+								$IdSeccion = $nuevaSeccion->nuevaSeccion($datos);
+								$IdDescripcion = $nuevaDescripcion->nuevaDescripcion($datos,$IdSeccion);
+								$IdATS = $nuevaATS->nuevaATS($datos,$IdSeccion);
+							}
+						}
+						Session::flash('msg','Nueva sección creada correctamente.');
+						return Redirect::to('/SIG/RD');
+					}
+					else
+					{
+						return Redirect::to('/SIG');
+					}
+				}
 
 
 }
