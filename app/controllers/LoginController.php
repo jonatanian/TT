@@ -107,7 +107,7 @@
 			public function logout()
 			{
 				Auth::logout();
-				Session::flash('msg','Ha cerrado sesión correctamente.');
+				Session::flash('msg','Has cerrado sesión correctamente.');
 				return Redirect::to('/login');
 			}
 		}

@@ -41,7 +41,7 @@
 			@if($sec->Descripcion!=null)
 				<blockquote class="blockquote-info text-left">{{$sec->Descripcion}}</blockquote>
 			@endif
-			@if($sec->TipoDeContenido_Id == 2 )
+			@if($sec->TipoDeContenido_Id == 2)
 					<!-- Panel with: Basic Footable -->
 					<!-- Store Settings -->
 					<div class="panel panel-primary panel-border top mb35">
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 					</div>
-				@else
+				@elseif($sec->TipoDeContenido_Id == 1)
 				<div class="panel panel-primary panel-border top mb35">
 					<div class="panel-body bg-light dark">
 						<div class="admin-form">
