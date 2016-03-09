@@ -173,7 +173,7 @@
               </li>
 
               <li>
-                <a href="../SGA/Definiciones.docx" target="_blank">
+                <a href="{{action('SIGController@descargarDocumentoDefiniciones')}}" target="_blank">
                   <span class="glyphicon glyphicon-bookmark"></span>
                   <span class="sidebar-title">Definiciones</span>
                 </a>
