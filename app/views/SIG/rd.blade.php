@@ -136,7 +136,7 @@
 							<a href="{{action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Alimentar </a>
 							<a href="{{action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Editar </a>
 							<a href="{{action('SIGController@eliminarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'IdArea'=>$area->IdArea))}}" class="btn btn-danger btn-sm"> Quitar </a>
-							<a href="{{action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Subir </a>
+							<a href="{{action('SIGController@subirSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Subir </a>
 						</div>
                       </td>
                     </tr>

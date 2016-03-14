@@ -59,6 +59,27 @@
 			}
 			return $val;
 		}
+
+		public function subirSeccion($IdArea,$IdSeccion)
+		{
+			$seccion = AreaTieneSecciones::where('Area_Id',$IdArea)->where('Secciones_Id',$IdSeccion)->first();
+			if(!$seccion)
+			{
+				return null;
+			}
+			DB::transaction(function () use ($seccion, $IdArea, $IdSeccion){//Se le asigna nueva precedencia al anterior
+				$newATS = AreaTieneSecciones::where('Area_Id',$IdArea)->where('Precedencia', $seccion->Precedencia - 1)->first();
+				$newATS -> Precedencia = $seccion->Precedencia;
+				$newATS -> save();
+			});
+
+			DB::transaction(function () use ($seccion, $IdArea, $IdSeccion){//Se le asigna nueva precedencia
+				$newATS = AreaTieneSecciones::where('Area_Id',$IdArea)->where('Secciones_Id',$IdSeccion)->first();
+				$newATS -> Precedencia = $seccion->Precedencia - 1;
+				$newATS -> save();
+			});
+			return 1;
+		}
 	}
 
 ?>

@@ -436,5 +436,32 @@ class SIGController extends BaseController {
 
 		return $response;
 	}
+
+	public function subirSeccion()
+	{
+		$IdArea = Request::get('IdArea');
+		$IdSeccion = Request::get('IdSeccion');
+		$seccion = AreaTieneSecciones::where('Area_Id',$IdArea)->where('Secciones_Id',$IdSeccion)->first();
+		if($seccion->Precedencia == 1)
+		{
+			Session::flash('msgWarning','Error, esta sección no se puede subir más');
+			return Redirect::to('/SIG/RD');
+		}
+		else
+		{
+			$ATS = new AreaTieneSecciones();
+			if($ATS->subirSeccion($IdArea, $IdSeccion))
+			{
+				echo '<script type="text/javascript">alert("' . 'Se ha movido la sección' . '")</script>';
+				Session::flash('msg','La sección se movió con éxito');
+				return Redirect::to('/SIG/RD');
+			}
+			else {
+				Session::flash('msgWarning','Error en la aplicación, vuelva a intentarlo');
+				return Redirect::to('/SIG/RD');
+			}
+		}
+	}
+
 }
 ?>

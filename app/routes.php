@@ -30,6 +30,8 @@ Route::group(array("prefix"=>'SIG'), function(){
 		Route::post('/RD/EditarSeccion','SIGController@actualizarSeccion');
 		//Eliminar sección
 		Route::get('/RD/EliminarSeccion','SIGController@eliminarSeccion');
+		//Subir sección
+		Route::get('/RD/SubirSeccion','SIGController@subirSeccion');
 		//Eliminar contenido
 		Route::get('/RD/EliminarContenido','SIGController@eliminarItem');
 		//Registro de nuevos datos o Items
