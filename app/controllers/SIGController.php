@@ -416,8 +416,30 @@ class SIGController extends BaseController {
 						{
 							return Redirect::to('/SIG');
 						}
+<<<<<<< HEAD
 					}
 
+=======
+	public function descargarDocumentoDefiniciones()
+	{
+
+		$pathToFile = public_path().'./SGA/Definiciones.docx';
+		//$name = 'SIG_'.$documento->NombreODescripcion.'_'.$documento->NombreSeccion.'_'.$documento->NombreArea.'.'.$documento->ExtensionDoc;
+		$headers = array('Content-Type'=> 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+						 'Content-Type'=> 'application/vnd.ms-powerpoint',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+						 'Content-Type'=> 'application/vnd.ms-powerpoint',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+						 'Content-Type'=> 'application/vnd.ms-excel',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+						 'Content-Type'=> 'application/pdf',);
+
+		$response = Response::download($pathToFile,'Definiciones.docx',$headers);
+		ob_end_clean();
+
+		return $response;
+	}
+>>>>>>> 5e425f984d49ea3b92a1c2501415f6c0f16131f9
 
 }
 ?>

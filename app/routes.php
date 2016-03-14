@@ -38,6 +38,7 @@ Route::group(array("prefix"=>'SIG'), function(){
 
 	//Manejo de Archivos comunes para todos los usuarios
 	Route::get('/verDocumento','SIGController@descargarDocumento');
+	Route::get('/verDocumentoDef','SIGController@descargarDocumentoDefiniciones');
 	Route::get('/Master','SIGController@SIG_Master');
 
 
