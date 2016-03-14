@@ -11,14 +11,19 @@
 
 		public function nuevaATS($inputs,$IdSeccion){
 			$fecha = new DateTime();
-	    	DB::transaction(function () use ($inputs,$IdSeccion,$fecha){
+			$IdCount = DB::table('area_tiene_secciones')->where('Area_Id',$inputs['IdArea'])->max('Precedencia');
+			if(!$IdCount)
+			{
+				$IdCount = 0;
+			}
+	    	DB::transaction(function () use ($inputs,$IdSeccion,$fecha,$IdCount){
 				$newATS = new AreaTieneSecciones();
 				$newATS -> Area_Id = $inputs['IdArea'];
 				$newATS -> Secciones_Id = $IdSeccion;
 				$newATS -> TipoDeContenido_Id = $inputs['set-contenido'];
 				$newATS -> FechaCreacion = $fecha->format('Y-m-d');
 				$newATS -> FechaEdicion = $fecha->format('Y-m-d');
-				$newATS -> Precedencia = 1;
+				$newATS -> Precedencia = $IdCount + 1;
 				$newATS -> CreadoPor = Auth::User()->IdUsuario;
 				$newATS -> EditadoPor = Auth::User()->IdUsuario;
 				$newATS -> save();
@@ -33,6 +38,26 @@
 				$newATS -> delete();
 	    	});
 		return 1;
+		}
+
+		public function reordenarATS($IdArea, $IdSeccion)
+		{
+			$secciones = AreaTieneSecciones::where('Area_Id', $IdArea)->get();
+			if(!$secciones)
+			{
+				return null;
+			}
+			$val = 1;
+			foreach($secciones as $seccion) {
+				$IdATS = $seccion->IdATS;
+				DB::transaction(function () use ($IdATS, $val){
+					$newATS = AreaTieneSecciones::where('IdATS',$IdATS)->first();
+					$newATS -> Precedencia = $val;
+					$newATS -> save();
+			});
+				$val = $val + 1;
+			}
+			return $val;
 		}
 	}
 

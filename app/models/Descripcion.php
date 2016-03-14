@@ -41,10 +41,17 @@
 		}
 
 		public function eliminarDescripcion($IdArea, $IdSeccion){
+			$description = Descripcion::where('Secciones_Id',$IdSeccion)->where('SecDeArea',$IdArea)->first();
+			if(!$description)
+				return null;
+			else {
+
+
 				DB::transaction(function () use ($IdArea,$IdSeccion){
 				$description = Descripcion::where('Secciones_Id',$IdSeccion)->where('SecDeArea',$IdArea)->first();
 				$description -> delete();
 				});
+			}
 		return 1;
 		}
 	}

@@ -16,7 +16,7 @@ class SIGController extends BaseController {
 							 ->join('tipodecontenido','area_tiene_secciones.TipoDeContenido_Id','=','tipodecontenido.IdTipoDeContenido')
 							 ->join('secciones','area_tiene_secciones.Secciones_Id','=','secciones.IdSeccion')
 							 ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
-							 ->orderBy('area_tiene_secciones.Precedencia','desc')
+							 ->orderBy('area_tiene_secciones.Precedencia','asc')
 							 ->get();
 
 				return View::make('SIG.rd',array('areas'=>$areas,'secciones'=>$secciones));
@@ -362,55 +362,62 @@ class SIGController extends BaseController {
 								return Redirect::to('/SIG/RD');
 							}
 
+							elseif(!$ATS->reordenarATS($areaActual,$seccionActual))
+							{
+								Session::flash('msgWarning','Error en la aplicación, vuelva a intentarlo');
+								return Redirect::to('/SIG/RD');
+							}
+							$val = $ATS->reordenarATS($areaActual,$seccionActual);
+							echo '<script type="text/javascript">alert("'. $val .'")</script>';
 							Session::flash('msg','Sección eliminada correctamente.');
 							return Redirect::to('/SIG/RD');
 						}
 						else
 						{
-							echo '<script type="text/javascript">alert("' . 'Se ha eliminado la Sección' . '")</script>';
-							Session::flash('msg','Sección eliminada correctamente.');
+							
 							return Redirect::to('/SIG');
 						}
 					}
 
 					public function eliminarItem()
+					{
+						if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 						{
-							if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
-							{
-								$IdContenido = Request::get('IdContenido');
-								$areaActual = Request::get('IdArea');
-								$IdSeccion = Request::get('IdSeccion');
-								$IdATS = Request::get('IdATS');
-								$IdTipoContenido = Request::get('TipoContenido');
-								$Item = new Contenido();
-								$areaActualNombre = Area::where('IdArea',$areaActual)->first();
-								$Seccion = Secciones::where('IdSeccion',$IdSeccion)->first();
-								if($Item->eliminarItem($IdContenido))
-									{
-										echo '<script type="text/javascript">alert("' . 'Se ha eliminado el Item' . '")</script>';
-										$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
-																	 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
-																	 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
-																	 ->get();
-										Session::flash('msg','Item eliminado correctamente.');
-										return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'Seccion'=>$Seccion,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
-									}
-								else {
-									
+							$IdContenido = Request::get('IdContenido');
+							$areaActual = Request::get('IdArea');
+							$IdSeccion = Request::get('IdSeccion');
+							$IdATS = Request::get('IdATS');
+							$IdTipoContenido = Request::get('TipoContenido');
+							$Item = new Contenido();
+							$areaActualNombre = Area::where('IdArea',$areaActual)->first();
+							$Seccion = Secciones::where('IdSeccion',$IdSeccion)->first();
+							if($Item->eliminarItem($IdContenido))
+								{
+									echo '<script type="text/javascript">alert("' . 'Se ha eliminado el Item' . '")</script>';
 									$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
 																 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
 																 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
 																 ->get();
-									Session::flash('msgWarning','Error en la aplicación, vuelva a intentarlo');
+									Session::flash('msg','Item eliminado correctamente.');
 									return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'Seccion'=>$Seccion,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
 								}
+							else {
 
+								$TablaDeContenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
+															 ->where('area_tiene_secciones.Area_Id','=',$areaActual)
+															 ->where('area_tiene_secciones.Secciones_Id','=',$IdSeccion)
+															 ->get();
+								Session::flash('msgWarning','Error en la aplicación, vuelva a intentarlo');
+								return View::make('SIG.editarContenido',array('areaActual'=>$areaActual,'areaActualNombre'=>$areaActualNombre,'Seccion'=>$Seccion,'IdATS'=>$IdATS,'Items'=>$TablaDeContenido,'TipoDeContenido'=>$IdTipoContenido));
 							}
-							else
-							{
-								return Redirect::to('/SIG');
-							}
+
 						}
+						else
+						{
+							return Redirect::to('/SIG');
+						}
+					}
+
 
 }
 ?>

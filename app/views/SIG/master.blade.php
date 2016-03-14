@@ -55,7 +55,7 @@
 					<!-- Panel with: Basic Footable -->
 					<!-- Store Settings -->
 					@if($areas->NombreArea == "Sistema de Gestión Ambiental")
-						<div class="panel panel-success panel-border top mb35">
+						<div class="panel panel-success panel-border top mb35"> <!--Tabla verde para el SGA -->
 					@else
 						<div class="panel panel-primary panel-border top mb35">
 					@endif
