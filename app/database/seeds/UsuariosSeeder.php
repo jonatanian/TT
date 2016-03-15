@@ -705,6 +705,7 @@
 			$c->crearUsuario($datos);
 
 			//Personal no reconocido. Registrado como inactivo.
+			/*
 			$datos= array(
 					'Nombre' =>'María Elena',
 					'ApPaterno'	=> 'González',
@@ -763,7 +764,7 @@
 					'Activo' => false
 				);
 			$c = new User();
-			$c->crearUsuario($datos);
+			$c->crearUsuario($datos);*/
 
 			$this->command->info('UsersSeeder: Registro de usuarios cargado correctamente');
 		}

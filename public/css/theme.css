@@ -378,7 +378,7 @@ footer ul.quicklinks {
   right: 0;
   top: 0;
   bottom: 0;
-  background-image: url('../img/SISA_lander.png');
+  background-image: url('../img/BingWallpaper1.jpg');
   background-repeat: none;
   background-attachment: scroll;
   background-position: center center;
@@ -395,7 +395,7 @@ footer ul.quicklinks {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(60, 83, 111, 0.85);
+  background-color: rgba(255,255,255, 0.50);
 }
 #hero .intro-text {
   padding-top: 200px;

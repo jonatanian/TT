@@ -90,9 +90,9 @@
     <header id="hero">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in hidden">This is a lead in statement!</div>
+                <div class="intro-lead-in hidden">Instituto Politécnico Nacional</div>
                 <div class="intro-heading">Sistema de Administración del <b>Centro Mexicano para la Producción más Limpia</b> SISA</div>
-                <a href="{{action('LoginController@login_index')}}" class="page-scroll btn btn-xl mr30 btn-primary">Iniciar sesión</a>
+                <a href="{{action('LoginController@login_index')}}" class="page-scroll btn btn-xl mr30 btn-success">Iniciar sesión</a>
             </div>
         </div>
     </header>

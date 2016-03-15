@@ -62,8 +62,6 @@ class OficiosEntrantesController extends BaseController {
 					$IdAnexos = $addAnexos->nuevoAnexo($datos['hidden-TagsAnexos'],$IdCorrespondencia);
 				}
 				
-				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia);
-				
 				$Emisor = EntidadExterna::where('IdEntidadExterna',$datos['Remitente'])->first();
 				
 				if($Emisor->DepArea_Cargo_Id != $datos['CargoEmisor']){
@@ -84,10 +82,14 @@ class OficiosEntrantesController extends BaseController {
 						$UpDTA = $DepTieneArea->updateDependencia($datos,$DepTieneArea->IdDependenciaTieneArea);
 					}
 				}
+
+				$getDatosDirigidoA = User::select('*')->where('IdUsuario',$datos['DirigidoA'])->first();
+
+				$IdOficioE = $oficio->nuevoOficioEntrante($datos,$IdCorrespondencia,$getDatosDirigidoA);
 				
 				$fecha = new DateTime();
 				$UTC = new UsuarioTurnaCorrespondencia();
-				$IdUTC = $UTC->turnarA(Auth::User()->IdUsuario,$IdCorrespondencia,$datos['DirigidoA'],1,$fecha);
+				$IdUTC = $UTC->turnarA(Auth::User()->IdUsuario,$IdCorrespondencia,$datos['DirigidoA'],$fecha);
 				
 				Session::flash('msg','Registro de oficio entrante realizado correctamente.');
 				return Redirect::action('OficiosController@oficialia_recibidos');
@@ -109,6 +111,7 @@ class OficiosEntrantesController extends BaseController {
 		$pathToFile = public_path().'/'.$OficioEntrante->URLPDF;
 		$name = 'OficioEntrante_'.$OficioEntrante->IdOficioEntrante.'_'.$OficioEntrante->FechaEntrega.'.pdf';
 		$headers = array('Content-Type'=>'application/pdf',);
+		ob_end_clean();
 		
 		return Response::download($pathToFile,$name, $headers);
 	}

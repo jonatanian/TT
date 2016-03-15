@@ -56,7 +56,7 @@
 
             <div class="col-xs-6 text-right va-b pr5">
               <div class="login-links">
-                <a href="{{action('LoginController@login_index')}}" class="active" title="Sign In">Iniciar sesión</a>
+                <a href="http://www.sisacmpl.com.mx" class="active" title="Sign In">Página principal</a>
               </div>
             </div>
 

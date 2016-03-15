@@ -10,15 +10,15 @@
 		
 		public $timestamps = false;
 		
-		public function turnarA($IdUsuario,$IdCorrespondencia,$TurnadoA,$tipo,$fecha){
+		public function turnarA($IdUsuario,$IdCorrespondencia,$TurnadoA,$fecha){
 			
-	    	DB::transaction(function () use ($IdUsuario,$IdCorrespondencia,$TurnadoA,$tipo,$fecha){
+	    	DB::transaction(function () use ($IdUsuario,$IdCorrespondencia,$TurnadoA,$fecha){
 				$a = new UsuarioTurnaCorrespondencia();
 				$a -> Usuario_Id = $IdUsuario;
 				$a -> Correspondencia_Id = $IdCorrespondencia;
 				$a -> UTC_TurnarA_Id = $TurnadoA;
 				$a -> FechaTurnadoA = $fecha->format('Y-m-d');
-				$a -> Tipo_Id = $tipo;
+				$a -> Activo = true;
 				$a -> save();
 				
 	    	});
