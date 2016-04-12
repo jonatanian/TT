@@ -1,0 +1,208 @@
+<?php $__env->startSection('Topbar'); ?>
+	<!-- Start: Topbar -->
+	<header id="topbar" class="ph10">
+		<div class="topbar-left">
+			<ul class="nav nav-list nav-list-topbar pull-left">
+				<li class="active">
+					<a href="<?php echo action('OficiosController@oficialia_recibidos'); ?>">Oficios entrantes</a>
+				</li>
+			</ul>
+		</div>
+		<div class="topbar-right hidden-xs hidden-sm">
+			<a href="<?php echo action('OficiosEntrantesController@oficialia_nuevoOficio',array('DependenciaE'=>NULL,'AreaE'=>NULL,'EntidadE'=>NULL,'CargoEntidadE'=>NULL)); ?>" class="btn btn-default btn-sm fw600 ml10">
+			<span class="fa fa-plus pr5"></span> Nuevo oficio entrante </a>
+		</div>
+	</header>
+	<!-- End: Topbar -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('ContentClass'); ?>
+	<section id="content" class="animated fadeIn">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<div class="panel">  
+	  
+	  <div class="panel-menu p12 admin-form theme-primary">
+              <div class="row">
+                <div class="col-md-5">
+                  <label class="field select">
+                    <select id="filter-category" name="filter-category">
+                      <option value="0">Filtrar por...</option>
+                      <option value="1">Dependencia</option>
+                      <option value="2">Estátus</option>
+                      <option value="3">Identificador oficial</option>
+                    </select>
+                    <i class="arrow"></i>
+                  </label>
+                </div>
+                
+                <div id="select-filter">
+					<!------------------------Filtro dinámico------------------------->
+				</div>
+                
+              </div>
+            </div>
+			
+            <div class="panel-body pn">
+              <div class="table-responsive">
+                <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                  <thead>
+                    <tr class="bg-light">
+                      <th class="text-center">Folio</th>
+                      <th class="">No. de oficio</th>
+                      <th class="">Dependencia</th>
+                      <th class="">Asunto</th>
+                      <th class="">Fecha de recepción</th>
+                      <th class="">Estatus</th>
+                      <th class="">Responsable actual</th>
+                      <th class="text-center">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	<?php foreach($oficios as $oficio): ?>
+						<?php if($oficio->Prioridad_Id == 1): ?>
+							<tr class="danger">
+						<?php endif; ?>
+						<?php if($oficio->Prioridad_Id == 2): ?>
+							<tr class="warning">
+						<?php endif; ?>
+						<?php if($oficio->Prioridad_Id == 3): ?>
+							<tr class="success">
+						<?php endif; ?>
+                      <td><?php echo $oficio->IdOficioEntrante; ?></td>
+					  <td><?php echo $oficio->IdOficioDependencia; ?></td>
+					  <td><?php echo $oficio->AcronimoDependencia; ?></td>
+					  <td><?php echo $oficio->Asunto; ?></td>
+					  <td><?php echo $oficio->FechaEntrega; ?></td>
+					  <td><?php echo $oficio->NombreEstatus; ?></td>
+					  <td><?php echo $oficio->ApPaterno; ?>&nbsp;<?php echo $oficio->ApMaterno; ?>&nbsp;<?php echo $oficio->Nombre; ?></td>
+                      <td class="text-center">
+                      <?php if($oficio->Estatus_Id != 106 || $oficio->Estatus_Id != 206 || $oficio->Estatus_Id != 305): ?>
+                        <div class="btn-group text-center">
+                          <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cogs"></i>
+                            <span class="caret ml50"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li>
+						      <a href="#">Enviar copia a</a>
+						    </li>
+						    <li>
+						      <a href="<?php echo action('OficiosEntrantesController@verPDF',array('correspondencia'=>$oficio->IdCorrespondencia)); ?>" target="_blank">Descargar PDF</a>
+						    </li>
+						    <li>
+						      <a href="<?php echo action('OficiosEntrantesController@oficialia_verDetalles',array('correspondencia'=>$oficio->IdCorrespondencia)); ?>">Ver detalles</a>
+						    </li>
+						  </ul>
+                        </div>
+                      <?php endif; ?>  
+                      </td>
+                    </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+		<div hidden>
+				<div class="col-md-5" id="dependencia-filter">
+                  <label class="field select">
+                    <select id="filter-category" name="filter-dependencia">
+                      <option value="0">Seleccione la dependencia...</option>
+						  <?php foreach($dependencias as $dependencia): ?>
+							<option value="<?php echo $dependencia->IdDependencia; ?>"><?php echo $dependencia->NombreDependencia; ?></option>
+						  <?php endforeach; ?>
+                    </select>
+                    <i class="arrow"></i>
+                  </label>
+                </div>
+				<div class="col-md-1" id="dependencia-button">
+                  <label class="field select">
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                  </label>
+                </div>
+				
+				<div class="col-md-5" id="estatus-filter">
+					  <label class="field select" id="filter2">
+						<select id="filter-status" name="filter-estatus">
+						  <option value="0">Seleccione el estado...</option>
+						  <?php foreach($estatus as $status): ?>
+							<option value="<?php echo $status->IdEstatus; ?>"><?php echo $status->NombreEstatus; ?></option>
+						  <?php endforeach; ?>
+						</select>
+						<i class="arrow"></i>
+					  </label>
+					</div>
+				<div class="col-md-1" id="estatus-button">
+                  <label class="field select">
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                  </label>
+                </div>
+				
+				<div class="col-md-5" id="identificador-filter">
+					<label for="IdOficial" class="field prepend-icon">
+						<select class="select2-single form-control gui-input">
+	                        <?php foreach($oficios as $oficio): ?>
+	                        <option value="<?php echo $oficio->IdOficioEntrante; ?>"><?php echo $oficio->IdOficioDependencia; ?></option>
+	                        <?php endforeach; ?>
+	                    </select>
+						<label for="AreaE" class="field-icon">
+							<i class="fa fa-institution"></i>
+						</label>
+					</label>
+				</div>
+				<div class="col-md-1" id="identificador-button">
+                  <label class="field select">
+                    <a href="#" class="btn btn-success field select">Filtrar</a>
+                  </label>
+                </div>
+		</div>
+	  
+	  
+	</div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
+<script>
+$( "#filter-category" ).click(function() {
+  var option = $('#filter-category').val()
+  if(option == 1)
+  {
+	  $( "#estatus-filter" ).hide();
+	  $( "#identificador-filter" ).hide();
+	  $( "#dependencia-filter").show();
+	  $( "#estatus-button" ).hide();
+	  $( "#identificador-button" ).hide();
+	  $( "#dependencia-button").show();
+	  $("#select-filter").append($('#dependencia-filter'));
+	  $( "#select-filter").append($("#dependencia-button"));
+  }
+  else if(option == 2)
+  {
+	  $( "#dependencia-filter" ).hide();
+	  $( "#identificador-filter" ).hide();
+	  $( "#estatus-filter").show();
+	  $( "#dependencia-button" ).hide();
+	  $( "#identificador-button" ).hide();
+	  $( "#estatus-button").show();
+	  $("#select-filter").append($('#estatus-filter'));
+	  $( "#select-filter").append($("#estatus-button"));
+  }
+  else if(option == 3)
+  {
+	  $( "#dependencia-filter" ).hide();
+	  $( "#estatus-filter" ).hide();
+	  $( "#identificador-filter").show();
+	  $( "#dependencia-button" ).hide();
+	  $( "#estatus-button" ).hide();
+	  $( "#identificador-button").show();
+	  $("#select-filter").append($('#identificador-filter'));
+	  $( "#select-filter").append($("#identificador-button"));
+  }
+});
+
+// Init Select2 - Basic Single
+    $(".select2-single").select2({
+    	width: 400,
+    });
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.oficialia', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
