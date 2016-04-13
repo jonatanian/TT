@@ -261,6 +261,7 @@ class SIGController extends BaseController {
                								   ->join('descripcion','secciones.IdSeccion','=','descripcion.Secciones_Id')
 							 				   ->where('area_tiene_secciones.Area_Id',$IdArea)
 							 				   ->where('descripcion.SecDeArea',$IdArea)
+							 				   ->orderBy('area_tiene_secciones.Precedencia','asc')
 							                   ->get();
 
 			  	$contenido = Contenido::join('area_tiene_secciones','ATS_Id','=','area_tiene_secciones.IdATS')
