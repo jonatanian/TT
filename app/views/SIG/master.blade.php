@@ -3,7 +3,7 @@
 @section('content')
 	<div class="content-header">
 			@if($areas->NombreArea == "Sistema de Gestión Ambiental" || $areas->NombreArea == "Formatos")
-      	<h1 class="text-muted">Sistema Integrado de Gestión de la Calidad y del Ambiente</h1><!--nombre de departamento-->
+      	<h1 class="text-muted">Sistema de Gestión Ambiental</h1><!--nombre de departamento-->
 			@else
 				<h1 class="text-muted">{{$areas->NombreArea}}</h1><!--nombre de departamento-->
 			@endif
