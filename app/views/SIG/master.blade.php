@@ -9,7 +9,7 @@
 			@endif
 	  	<div class="content-header">
 		</div>
-		@if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental")
+		@if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental" && $areas->NombreArea != "Instructivos" && $areas->NombreArea != "Minutas y Documentos Varios" && $areas->NombreArea != "Mapa de Procesos")
 	  <h2 class="text-primary">Organigrama</h2>
       <img class="img-responsive" src="{{asset($areas->OrganigramaURL)}}" alt="Organigrama de {{$areas->NombreArea}}">
 		@endif

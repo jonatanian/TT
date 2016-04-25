@@ -202,7 +202,7 @@
               </li>
 
               <li>
-                <a href="{{action('SIGController@SIG_index')}}">
+                <a href="{{action('SIGController@descargarManualOrg')}}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   <span class="sidebar-title">Manual de organización</span>
                 </a>
@@ -212,6 +212,27 @@
                 <a href="{{action('SIGController@SIG_index')}}">
                   <span class="glyphicon glyphicon-user"></span>
                   <span class="sidebar-title">Protección Civil</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>12))}}">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  <span class="sidebar-title">Instructivos</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>13))}}">
+                  <span class="glyphicon glyphicon-paperclip"></span>
+                  <span class="sidebar-title">Minutas y Documentos Varios</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>14))}}">
+                  <span class="glyphicon glyphicon-retweet"></span>
+                  <span class="sidebar-title">Mapa de Procesos</span>
                 </a>
               </li>
               <!--

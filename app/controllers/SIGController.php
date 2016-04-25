@@ -438,6 +438,24 @@ class SIGController extends BaseController {
 		return $response;
 	}
 
+	public function descargarManualOrg()
+	{
+		$pathToFile = public_path().'./procedimientos/ManualOrganizacion.pdf';
+		$headers = array('Content-Type'=> 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+						 'Content-Type'=> 'application/vnd.ms-powerpoint',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+						 'Content-Type'=> 'application/vnd.ms-powerpoint',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+						 'Content-Type'=> 'application/vnd.ms-excel',
+						 'Content-Type'=> 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+						 'Content-Type'=> 'application/pdf',);
+
+		$response = Response::download($pathToFile,'ManualOrganizacion.pdf',$headers);
+		ob_end_clean();
+
+		return $response;
+	}
+
 	public function subirSeccion()
 	{
 		$IdArea = Request::get('IdArea');
