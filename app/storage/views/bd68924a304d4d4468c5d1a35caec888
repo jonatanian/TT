@@ -9,7 +9,7 @@
 			<?php endif; ?>
 	  	<div class="content-header">
 		</div>
-		<?php if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental"): ?>
+		<?php if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental" && $areas->NombreArea != "Instructivos" && $areas->NombreArea != "Minutas y Documentos Varios" && $areas->NombreArea != "Mapa de Procesos"): ?>
 	  <h2 class="text-primary">Organigrama</h2>
       <img class="img-responsive" src="<?php echo asset($areas->OrganigramaURL); ?>" alt="Organigrama de <?php echo $areas->NombreArea; ?>">
 		<?php endif; ?>
