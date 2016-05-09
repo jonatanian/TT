@@ -110,7 +110,7 @@
               </span>
             </div>
             <div class="panel-body pn">
-              <table class="table footable">
+              <table class="table table-striped">
                   <thead>
                     <tr>
                       <th>Precedencia</th>
@@ -145,8 +145,8 @@
                     <tr>
                       <td colspan="4">
                       	<div class="col-md-12 text-center">
-							<a href="{{action('SIGController@nuevaSeccion',array('area'=>$area->IdArea))}}" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
-						</div>
+													<a href="{{action('SIGController@nuevaSeccion',array('area'=>$area->IdArea))}}" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
+												</div>
                       </td>
                       <td></td>
                       <td>
