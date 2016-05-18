@@ -2,14 +2,14 @@
 
 @section('content')
 	<div class="content-header">
-			@if($areas->NombreArea == "Sistema de Gestión Ambiental" || $areas->NombreArea == "Formatos")
+			@if($areas->NombreArea == "Sistema de Gestión Ambiental")
       	<h1 class="text-muted">Sistema de Gestión Ambiental</h1><!--nombre de departamento-->
 			@else
 				<h1 class="text-muted">{{$areas->NombreArea}}</h1><!--nombre de departamento-->
 			@endif
 	  	<div class="content-header">
 		</div>
-		@if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental" && $areas->NombreArea != "Instructivos" && $areas->NombreArea != "Minutas y Documentos Varios" && $areas->NombreArea != "Mapa de Procesos")
+		@if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental" && $areas->NombreArea != "Instructivos" && $areas->NombreArea != "Minutas y Documentos Varios" && $areas->NombreArea != "Mapa de Procesos" && $areas->NombreArea != "Definiciones" && $areas->NombreArea != "Registros" && $areas->NombreArea != "Manual de Organización" && $areas->NombreArea != "Protección Civil")
 	  <h2 class="text-primary">Organigrama</h2>
       <img class="img-responsive" src="{{asset($areas->OrganigramaURL)}}" alt="Organigrama de {{$areas->NombreArea}}">
 		@endif

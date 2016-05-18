@@ -173,7 +173,7 @@
               </li>
 
               <li>
-                <a href="{{action('SIGController@descargarDocumentoDefiniciones')}}" target="_blank">
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>15))}}" target="_blank">
                   <span class="glyphicon glyphicon-bookmark"></span>
                   <span class="sidebar-title">Definiciones</span>
                 </a>
@@ -188,7 +188,7 @@
 
 
              <li>
-                <a href="{{action('SIGController@SIG_index')}}">
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>16))}}">
                   <span class="glyphicon glyphicon-folder-open"></span>
                   <span class="sidebar-title">Registros</span>
                 </a>
@@ -202,14 +202,14 @@
               </li>
 
               <li>
-                <a href="{{action('SIGController@descargarManualOrg')}}">
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>17))}}">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   <span class="sidebar-title">Manual de organización</span>
                 </a>
               </li>
 
               <li>
-                <a href="{{action('SIGController@SIG_index')}}">
+                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>18))}}">
                   <span class="glyphicon glyphicon-user"></span>
                   <span class="sidebar-title">Protección Civil</span>
                 </a>
