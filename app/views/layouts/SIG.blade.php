@@ -45,13 +45,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		<li>
-		@if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
 			<div class="navbar-btn btn-group">
       			<a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
           			<span class="fa fa-cog"></span>
       			</a>
     		</div>
-    	@endif
 		</li>
 
         <li class="menu-divider hidden-xs">
@@ -323,10 +321,18 @@
               <span class="metro-title">Administrar control de equipos</span>
             </a>
           </div>-->
+          @if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+            <div class="col-xs-4 col-sm-2">
+              <a href="{{action('SIGController@SIG_RD')}}" class="metro-tile bg-warning light">
+                <span class="fa fa-gears text-muted"></span>
+                <span class="metro-title">Configuración de SIG</span>
+              </a>
+            </div>
+          @endif
           <div class="col-xs-4 col-sm-2">
             <a href="{{action('SIGController@SIG_RD')}}" class="metro-tile bg-warning light">
-              <span class="fa fa-gears text-muted"></span>
-              <span class="metro-title">Configuración de SIG</span>
+              <span class="glyphicon glyphicon-bullhorn text-muted"></span>
+              <span class="metro-title">Avisos</span>
             </a>
           </div>
         </div>

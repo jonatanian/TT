@@ -2,10 +2,10 @@
 
 class SIGController extends BaseController {
 
-	public function SIG_RD()
+	public function SIG_RD()//Validaci'on quitada provicionalmente
 		{
-			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
-			{
+			//if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+			//{
 				$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
 							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
 							 ->get();
@@ -20,18 +20,19 @@ class SIGController extends BaseController {
 							 ->get();
 
 				return View::make('SIG.rd',array('areas'=>$areas,'secciones'=>$secciones));
-			}
-			else
-			{
-				return Redirect::to('/SIG');
-			}
+			//}
+			//else
+			//{
+		//		return Redirect::to('/SIG');
+			//}
 		}
 
 	public function nuevaSeccion()
 		{
-			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+			$areaActual = Request::get('area');
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1) or ($areaActual == 19))
 			{
-				$areaActual = Request::get('area');
+				//$areaActual = Request::get('area');
 				$areaActualNombre = Area::where('IdArea',$areaActual)->first();
 				$areas = Area::join('objetivo','Objetivo_Id','=','objetivo.IdObjetivo')
 							 ->join('organigrama','Organigrama_Id','=','organigrama.IdOrganigrama')
@@ -48,7 +49,8 @@ class SIGController extends BaseController {
 
 	public function registrarSeccion()
 		{
-			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+			$datos = Input::all();
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1) or ($datos['IdArea'] == 19))
 			{
 				$nuevaDescripcion = new Descripcion();
 				$nuevaSeccion = new Secciones();
@@ -103,9 +105,10 @@ class SIGController extends BaseController {
 
 	public function editarTabla()
 		{
-			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+			$areaActual = Request::get('area');
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1) or ($areaActual == 19))
 			{
-				$areaActual = Request::get('area');
+				//$areaActual = Request::get('area');
 				$IdSeccion = Request::get('IdSeccion');
 				$IdATS = Request::get('IdATS');
 				$IdTipoContenido = Request::get('TipoContenido');
@@ -128,10 +131,11 @@ class SIGController extends BaseController {
 
 	public function actualizarTabla()
 		{
-			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+			$datos = Input::all();
+			if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1) or ($datos['AreaActual'] == 19))
 			{
 				Input::flashOnly('new-nombre');
-				$datos = Input::all();
+				//$datos = Input::all();
 
 				$nuevoItem = new Contenido();
 
@@ -218,7 +222,8 @@ class SIGController extends BaseController {
 		{
 			if(Auth::check())
 			{
-				return View::make('SIG.index');
+				return Redirect::to('/SIG/Master?IdArea=19');
+				//return View::make('SIG.index');
 			}
 			else
 			{

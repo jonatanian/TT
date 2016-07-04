@@ -75,7 +75,7 @@
               <b> Organigramas:</b> Actualiza facilmente las imágenes de los organigramas de cada área o en general
             </li>-->
           </ul>
-
+					@if(Auth::User()->Rol_Id == 7 || Auth::User()->Rol_Id == 1)
           <div id="nav-spy">
             <ul class="nav tray-nav" data-smoothscroll="-80" data-spy="affix" data-offset-top="200">
               @foreach($areas as $area)
@@ -93,7 +93,7 @@
               @endforeach
             </ul>
           </div>
-
+					@endif
         </aside>
         <!-- end: .tray-left -->
 
@@ -102,63 +102,125 @@
 
           <!-- Panel with: Basic Footable -->
         @foreach($areas as $area)
-        @if($area->Organigrama_Id != NULL)
-          <div class="panel" id="{{$area->IdArea}}">
-            <div class="panel-heading">
-              <span class="panel-title">
-                <span class="fa fa-table"></span>{{$area->NombreArea}}
-              </span>
-            </div>
-            <div class="panel-body pn">
-              <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Precedencia</th>
-                      <th>Nombre de la sección</th>
-                      <th>Descripción</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  @foreach($secciones as $seccion)
-                  @if(($seccion->Area_Id == $area->IdArea) && ($seccion->SecDeArea == $area->IdArea))
-                    <tr>
-                      <td>{{$seccion->Precedencia}}</td>
-                      <td>{{$seccion->NombreSeccion}}</td>
-                      @if($seccion->Descripcion == NULL)
-                      <td>N&frasl;A</td>
-                      @else
-                      <td>{{$seccion->Descripcion}}</td>
-                      @endif
-                      <td>
-                      	<div class="col-md-12 text-left"><!--
-							<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
-							<a href="{{action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Alimentar </a>
-							<a href="{{action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Editar </a>
-							<a href="{{action('SIGController@eliminarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'IdArea'=>$area->IdArea))}}" class="btn btn-danger btn-sm"> Quitar </a>
-							<a href="{{action('SIGController@subirSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Subir </a>
-						</div>
-                      </td>
-                    </tr>
-                  @endif
-                  @endforeach
-                    <tr>
-                      <td colspan="4">
-                      	<div class="col-md-12 text-center">
-													<a href="{{action('SIGController@nuevaSeccion',array('area'=>$area->IdArea))}}" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
-												</div>
-                      </td>
-                      <td></td>
-                      <td>
-                      </td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-          </div>
+				  @if(Auth::User()->Rol_Id == 7 || Auth::User()->Rol_Id == 1)
+	        	@if($area->Organigrama_Id != NULL)
+	          <div class="panel" id="{{$area->IdArea}}">
+	            <div class="panel-heading">
+	              <span class="panel-title">
+	                <span class="fa fa-table"></span>{{$area->NombreArea}}
+	              </span>
+	            </div>
+	            <div class="panel-body pn">
+	              <table class="table table-striped">
+	                  <thead>
+	                    <tr>
+	                      <th>Precedencia</th>
+	                      <th>Nombre de la sección</th>
+	                      <th>Descripción</th>
+	                      <th>Acciones</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                  @foreach($secciones as $seccion)
+	                  @if(($seccion->Area_Id == $area->IdArea) && ($seccion->SecDeArea == $area->IdArea))
+	                    <tr>
+	                      <td>{{$seccion->Precedencia}}</td>
+	                      <td>{{$seccion->NombreSeccion}}</td>
+	                      @if($seccion->Descripcion == NULL)
+	                      <td>N&frasl;A</td>
+	                      @else
+	                      <td>{{$seccion->Descripcion}}</td>
+	                      @endif
+	                      <td>
+	                      	<div class="col-md-12 text-left"><!--
+								<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
+								<a href="{{action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Alimentar </a>
+								<a href="{{action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Editar </a>
+								<a href="{{action('SIGController@eliminarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'IdArea'=>$area->IdArea))}}" class="btn btn-danger btn-sm"> Quitar </a>
+								<a href="{{action('SIGController@subirSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Subir </a>
+							</div>
+	                      </td>
+	                    </tr>
+	                  @endif
+	                  @endforeach
+	                    <tr>
+	                      <td colspan="4">
+	                      	<div class="col-md-12 text-center">
+														<a href="{{action('SIGController@nuevaSeccion',array('area'=>$area->IdArea))}}" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
+													</div>
+	                      </td>
+	                      <td></td>
+	                      <td>
+	                      </td>
+	                      <td></td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	            </div>
+	          </div>
 
-        @endif
+	        @endif
+			  @endif
+
+				@if($area->NombreArea == "Avisos")
+					@if($area->Organigrama_Id != NULL)
+						<div class="panel" id="{{$area->IdArea}}">
+							<div class="panel-heading">
+								<span class="panel-title">
+									<span class="fa fa-table"></span>{{$area->NombreArea}}
+								</span>
+							</div>
+							<div class="panel-body pn">
+								<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Precedencia</th>
+												<th>Nombre de la sección</th>
+												<th>Descripción</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+										@foreach($secciones as $seccion)
+										@if(($seccion->Area_Id == $area->IdArea) && ($seccion->SecDeArea == $area->IdArea))
+											<tr>
+												<td>{{$seccion->Precedencia}}</td>
+												<td>{{$seccion->NombreSeccion}}</td>
+												@if($seccion->Descripcion == NULL)
+												<td>N&frasl;A</td>
+												@else
+												<td>{{$seccion->Descripcion}}</td>
+												@endif
+												<td>
+													<div class="col-md-12 text-left"><!--
+								<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
+								<a href="{{action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Alimentar </a>
+								<a href="{{action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Editar </a>
+								<a href="{{action('SIGController@eliminarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'IdArea'=>$area->IdArea))}}" class="btn btn-danger btn-sm"> Quitar </a>
+								<a href="{{action('SIGController@subirSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea))}}" class="btn btn-dark btn-sm"> Subir </a>
+							</div>
+												</td>
+											</tr>
+										@endif
+										@endforeach
+											<tr>
+												<td colspan="4">
+													<div class="col-md-12 text-center">
+														<a href="{{action('SIGController@nuevaSeccion',array('area'=>$area->IdArea))}}" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
+													</div>
+												</td>
+												<td></td>
+												<td>
+												</td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+							</div>
+						</div>
+
+					@endif
+				@endif
 		@endforeach
           </div>
         <!-- end: .tray-center -->
