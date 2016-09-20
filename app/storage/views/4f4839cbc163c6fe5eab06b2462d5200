@@ -49,13 +49,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		<li>
-		<?php if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1)): ?>
 			<div class="navbar-btn btn-group">
       			<a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
           			<span class="fa fa-cog"></span>
       			</a>
     		</div>
-    	<?php endif; ?>
 		</li>
 
         <li class="menu-divider hidden-xs">
@@ -143,6 +141,12 @@
               <!-- sidebar resources -->
               <li class="sidebar-label pt15"></li>
               <li>
+                <a href="<?php echo action('SIGController@SIG_Master',array('IdArea'=>19)); ?>">
+                  <span class="glyphicon glyphicon-globe"></span>
+                  <span class="sidebar-title">Avisos</span>
+                </a>
+              </li>
+              <li>
                 <a href="javascript:;">
                   <span class="fa fa-envelope"></span>
                   <span class="sidebar-title">Áreas del CMPL</span>
@@ -177,7 +181,7 @@
               </li>
 
               <li>
-                <a href="<?php echo action('SIGController@descargarDocumentoDefiniciones'); ?>" target="_blank">
+                <a href="<?php echo action('SIGController@SIG_Master',array('IdArea'=>15)); ?>" target="_blank">
                   <span class="glyphicon glyphicon-bookmark"></span>
                   <span class="sidebar-title">Definiciones</span>
                 </a>
@@ -192,7 +196,7 @@
 
 
              <li>
-                <a href="<?php echo action('SIGController@SIG_index'); ?>">
+                <a href="<?php echo action('SIGController@SIG_Master',array('IdArea'=>16)); ?>">
                   <span class="glyphicon glyphicon-folder-open"></span>
                   <span class="sidebar-title">Registros</span>
                 </a>
@@ -206,14 +210,14 @@
               </li>
 
               <li>
-                <a href="<?php echo action('SIGController@descargarManualOrg'); ?>">
+                <a href="<?php echo action('SIGController@SIG_Master',array('IdArea'=>17)); ?>">
                   <span class="glyphicon glyphicon-list-alt"></span>
                   <span class="sidebar-title">Manual de organización</span>
                 </a>
               </li>
 
               <li>
-                <a href="<?php echo action('SIGController@SIG_index'); ?>">
+                <a href="<?php echo action('SIGController@SIG_Master',array('IdArea'=>18)); ?>">
                   <span class="glyphicon glyphicon-user"></span>
                   <span class="sidebar-title">Protección Civil</span>
                 </a>
@@ -321,10 +325,18 @@
               <span class="metro-title">Administrar control de equipos</span>
             </a>
           </div>-->
+          <?php if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1)): ?>
+            <div class="col-xs-4 col-sm-2">
+              <a href="<?php echo action('SIGController@SIG_RD'); ?>" class="metro-tile bg-warning light">
+                <span class="fa fa-gears text-muted"></span>
+                <span class="metro-title">Configuración de SIG</span>
+              </a>
+            </div>
+          <?php endif; ?>
           <div class="col-xs-4 col-sm-2">
             <a href="<?php echo action('SIGController@SIG_RD'); ?>" class="metro-tile bg-warning light">
-              <span class="fa fa-gears text-muted"></span>
-              <span class="metro-title">Configuración de SIG</span>
+              <span class="glyphicon glyphicon-bullhorn text-muted"></span>
+              <span class="metro-title">Avisos</span>
             </a>
           </div>
         </div>

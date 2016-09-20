@@ -79,7 +79,7 @@
               <b> Organigramas:</b> Actualiza facilmente las imágenes de los organigramas de cada área o en general
             </li>-->
           </ul>
-
+					<?php if(Auth::User()->Rol_Id == 7 || Auth::User()->Rol_Id == 1): ?>
           <div id="nav-spy">
             <ul class="nav tray-nav" data-smoothscroll="-80" data-spy="affix" data-offset-top="200">
               <?php foreach($areas as $area): ?>
@@ -97,7 +97,7 @@
               <?php endforeach; ?>
             </ul>
           </div>
-
+					<?php endif; ?>
         </aside>
         <!-- end: .tray-left -->
 
@@ -106,64 +106,127 @@
 
           <!-- Panel with: Basic Footable -->
         <?php foreach($areas as $area): ?>
-        <?php if($area->Organigrama_Id != NULL): ?>
-          <div class="panel" id="<?php echo $area->IdArea; ?>">
-            <div class="panel-heading">
-              <span class="panel-title">
-                <span class="fa fa-table"></span><?php echo $area->NombreArea; ?>
+				  <?php if(Auth::User()->Rol_Id == 7 || Auth::User()->Rol_Id == 1): ?>
+	        	<?php if($area->Organigrama_Id != NULL): ?>
+	          <div class="panel" id="<?php echo $area->IdArea; ?>">
+	            <div class="panel-heading">
+	              <span class="panel-title">
+	                <span class="fa fa-table"></span><?php echo $area->NombreArea; ?>
 
-              </span>
-            </div>
-            <div class="panel-body pn">
-              <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Precedencia</th>
-                      <th>Nombre de la sección</th>
-                      <th>Descripción</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <?php foreach($secciones as $seccion): ?>
-                  <?php if(($seccion->Area_Id == $area->IdArea) && ($seccion->SecDeArea == $area->IdArea)): ?>
-                    <tr>
-                      <td><?php echo $seccion->Precedencia; ?></td>
-                      <td><?php echo $seccion->NombreSeccion; ?></td>
-                      <?php if($seccion->Descripcion == NULL): ?>
-                      <td>N&frasl;A</td>
-                      <?php else: ?>
-                      <td><?php echo $seccion->Descripcion; ?></td>
-                      <?php endif; ?>
-                      <td>
-                      	<div class="col-md-12 text-left"><!--
-							<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
-							<a href="<?php echo action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Alimentar </a>
-							<a href="<?php echo action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Editar </a>
-							<a href="<?php echo action('SIGController@eliminarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'IdArea'=>$area->IdArea)); ?>" class="btn btn-danger btn-sm"> Quitar </a>
-							<a href="<?php echo action('SIGController@subirSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Subir </a>
+	              </span>
+	            </div>
+	            <div class="panel-body pn">
+	              <table class="table table-striped">
+	                  <thead>
+	                    <tr>
+	                      <th>Precedencia</th>
+	                      <th>Nombre de la sección</th>
+	                      <th>Descripción</th>
+	                      <th>Acciones</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                  <?php foreach($secciones as $seccion): ?>
+	                  <?php if(($seccion->Area_Id == $area->IdArea) && ($seccion->SecDeArea == $area->IdArea)): ?>
+	                    <tr>
+	                      <td><?php echo $seccion->Precedencia; ?></td>
+	                      <td><?php echo $seccion->NombreSeccion; ?></td>
+	                      <?php if($seccion->Descripcion == NULL): ?>
+	                      <td>N&frasl;A</td>
+	                      <?php else: ?>
+	                      <td><?php echo $seccion->Descripcion; ?></td>
+	                      <?php endif; ?>
+	                      <td>
+	                      	<div class="col-md-12 text-left"><!--
+								<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
+								<a href="<?php echo action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Alimentar </a>
+								<a href="<?php echo action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Editar </a>
+								<a href="<?php echo action('SIGController@eliminarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'IdArea'=>$area->IdArea)); ?>" class="btn btn-danger btn-sm"> Quitar </a>
+								<a href="<?php echo action('SIGController@subirSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Subir </a>
+							</div>
+	                      </td>
+	                    </tr>
+	                  <?php endif; ?>
+	                  <?php endforeach; ?>
+	                    <tr>
+	                      <td colspan="4">
+	                      	<div class="col-md-12 text-center">
+														<a href="<?php echo action('SIGController@nuevaSeccion',array('area'=>$area->IdArea)); ?>" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
+													</div>
+	                      </td>
+	                      <td></td>
+	                      <td>
+	                      </td>
+	                      <td></td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	            </div>
+	          </div>
+
+	        <?php endif; ?>
+			  <?php endif; ?>
+
+				<?php if($area->NombreArea == "Avisos"): ?>
+					<?php if($area->Organigrama_Id != NULL): ?>
+						<div class="panel" id="<?php echo $area->IdArea; ?>">
+							<div class="panel-heading">
+								<span class="panel-title">
+									<span class="fa fa-table"></span><?php echo $area->NombreArea; ?>
+
+								</span>
+							</div>
+							<div class="panel-body pn">
+								<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Precedencia</th>
+												<th>Nombre de la sección</th>
+												<th>Descripción</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php foreach($secciones as $seccion): ?>
+										<?php if(($seccion->Area_Id == $area->IdArea) && ($seccion->SecDeArea == $area->IdArea)): ?>
+											<tr>
+												<td><?php echo $seccion->Precedencia; ?></td>
+												<td><?php echo $seccion->NombreSeccion; ?></td>
+												<?php if($seccion->Descripcion == NULL): ?>
+												<td>N&frasl;A</td>
+												<?php else: ?>
+												<td><?php echo $seccion->Descripcion; ?></td>
+												<?php endif; ?>
+												<td>
+													<div class="col-md-12 text-left"><!--
+								<a href="#" class="btn btn-dark btn-sm"> Modificar </a>-->
+								<a href="<?php echo action('SIGController@editarTabla',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'TipoContenido'=>$seccion->TipoDeContenido_Id,'area'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Alimentar </a>
+								<a href="<?php echo action('SIGController@editarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Editar </a>
+								<a href="<?php echo action('SIGController@eliminarSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdATS'=>$seccion->IdATS,'IdArea'=>$area->IdArea)); ?>" class="btn btn-danger btn-sm"> Quitar </a>
+								<a href="<?php echo action('SIGController@subirSeccion',array('IdSeccion'=>$seccion->IdSeccion,'IdArea'=>$area->IdArea)); ?>" class="btn btn-dark btn-sm"> Subir </a>
+							</div>
+												</td>
+											</tr>
+										<?php endif; ?>
+										<?php endforeach; ?>
+											<tr>
+												<td colspan="4">
+													<div class="col-md-12 text-center">
+														<a href="<?php echo action('SIGController@nuevaSeccion',array('area'=>$area->IdArea)); ?>" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
+													</div>
+												</td>
+												<td></td>
+												<td>
+												</td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+							</div>
 						</div>
-                      </td>
-                    </tr>
-                  <?php endif; ?>
-                  <?php endforeach; ?>
-                    <tr>
-                      <td colspan="4">
-                      	<div class="col-md-12 text-center">
-													<a href="<?php echo action('SIGController@nuevaSeccion',array('area'=>$area->IdArea)); ?>" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> Nueva sección </a>
-												</div>
-                      </td>
-                      <td></td>
-                      <td>
-                      </td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-          </div>
 
-        <?php endif; ?>
+					<?php endif; ?>
+				<?php endif; ?>
 		<?php endforeach; ?>
           </div>
         <!-- end: .tray-center -->
