@@ -328,6 +328,12 @@
                 <span class="metro-title">Configuración de SIG</span>
               </a>
             </div>
+            <div class="col-xs-4 col-sm-2">
+              <a href="{{action('SIGController@editarOrganigrama')}}" class="metro-tile bg-warning light">
+                <span class="fa fa-sitemap text-muted"></span>
+                <span class="metro-title">Editar organigramas</span>
+              </a>
+            </div>
           @endif
           <div class="col-xs-4 col-sm-2">
             <a href="{{action('SIGController@SIG_RD')}}" class="metro-tile bg-warning light">

@@ -487,5 +487,48 @@ class SIGController extends BaseController {
 		}
 	}
 
+	public function editarOrganigrama(){
+		if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1)){
+			//$areas = Area::lists('NombreArea','NombreArea');
+			$areas = array('Direccion' => 'Dirección', 'Tecnica' => 'Subdirección Técnica', 'Posgrado'=>'Subdirección de Posgrado', 'Vinculacion' => 'Subdirección de Vinculación y Apoyo', 'Administrativa' => 'Departamento de Servicios Administrativos y Técnicos', 'Sistemas' => 'Departamento de Sistemas y Banco de Datos');
+			return View::make('SIG.editarOrganigramas', array('areas'=>$areas));
+		}
+		else{
+			return Redirect::to('/SIG');
+		}
+	}
+
+	public function actualizarOrganigrama(){
+		$datos = Input::all();
+		if((Auth::User()->Rol_Id == 7) or (Auth::User()->Rol_Id == 1))
+		{
+			$newOrganigrama = new Organigrama();
+			if(Input::file('set-archivo')){
+				$file = Input::file('set-archivo');
+				if($file->getClientOriginalExtension() == 'png' || $file->getClientOriginalExtension() == 'PNG'){
+					//File::delete(public_path().'\\images\\organigrama', $datos['area'].'.'.$file->getClientOriginalExtension());
+					$subir = $file->move(public_path().'\\images\\organigrama', $datos['area'].'.'.$file->getClientOriginalExtension());
+					Session::flash('msg','Organigrama actualizado correctamente.');
+					$areas = array('Direccion' => 'Dirección', 'Tecnica' => 'Subdirección Técnica', 'Posgrado'=>'Subdirección de Posgrado', 'Vinculacion' => 'Subdirección de Vinculación y Apoyo', 'Administrativa' => 'Departamento de Servicios Administrativos y Técnicos', 'Sistemas' => 'Departamento de Sistemas y Banco de Datos');
+					return Redirect::action('SIGController@editarOrganigrama', array('areas'=>$areas));
+				}
+				else{
+					Session::flash('msgf','Debe seleccionar una imagen con extensión PNG');
+					$areas = array('Direccion' => 'Dirección', 'Tecnica' => 'Subdirección Técnica', 'Posgrado'=>'Subdirección de Posgrado', 'Vinculacion' => 'Subdirección de Vinculación y Apoyo', 'Administrativa' => 'Departamento de Servicios Administrativos y Técnicos', 'Sistemas' => 'Departamento de Sistemas y Banco de Datos');
+					return Redirect::action('SIGController@editarOrganigrama', array('areas'=>$areas));
+				}
+			}
+			else{
+				Session::flash('msgf','Debe seleccionar una imagen de su equipo');
+				$areas = array('Direccion' => 'Dirección', 'Tecnica' => 'Subdirección Técnica', 'Posgrado'=>'Subdirección de Posgrado', 'Vinculacion' => 'Subdirección de Vinculación y Apoyo', 'Administrativa' => 'Departamento de Servicios Administrativos y Técnicos', 'Sistemas' => 'Departamento de Sistemas y Banco de Datos');
+				return Redirect::action('SIGController@editarOrganigrama', array('areas'=>$areas));
+			}
+		}
+		else
+		{
+			return Redirect::to('/SIG');
+		}
+	}
+
 }
 ?>
