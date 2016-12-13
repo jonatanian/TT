@@ -45,7 +45,15 @@ Route::group(array("prefix"=>'SIG'), function(){
 	Route::get('/verDocumento','SIGController@descargarDocumento');
 	Route::get('/verDocumentoDef','SIGController@descargarDocumentoDefiniciones');
 	Route::get('/verManualOrg','SIGController@descargarManualOrg');
+
 	Route::get('/Master','SIGController@SIG_Master');
+
+	//Avisos
+	Route::get('/Avisos','SIGController@SIG_Avisos');
+	Route::get('/crearAvisos','SIGController@crearAvisos');
+	Route::post('/crearAvisos','SIGController@nuevoAviso');
+	Route::get('/editarAvisos','SIGController@editarAvisos');
+	Route::post('/editarAvisos','SIGController@actualizarAviso');
 
 
 	Route::get('/Direccion','SIGController@SIG_Direccion');

@@ -20,6 +20,7 @@
   {{HTML::style("assets/img/favicon.ico")}}
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
+
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
@@ -336,7 +337,7 @@
             </div>
           @endif
           <div class="col-xs-4 col-sm-2">
-            <a href="{{action('SIGController@SIG_RD')}}" class="metro-tile bg-warning light">
+            <a href="{{action('SIGController@crearAvisos')}}" class="metro-tile bg-warning light">
               <span class="glyphicon glyphicon-bullhorn text-muted"></span>
               <span class="metro-title">Avisos</span>
             </a>

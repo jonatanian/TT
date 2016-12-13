@@ -222,7 +222,7 @@ class SIGController extends BaseController {
 		{
 			if(Auth::check())
 			{
-				return Redirect::to('/SIG/Master?IdArea=19');
+				return Redirect::to('/SIG/Avisos');
 				//return View::make('SIG.index');
 			}
 			else
@@ -283,6 +283,20 @@ class SIGController extends BaseController {
 				return Redirect::to('/login');
 			}
 		}
+
+		public function SIG_Avisos(){
+				if(Auth::check())
+				{
+					//$IdArea = Request::get('IdArea');
+					$avisos = Avisos::orderBy('prioridad','asc')->orderBy('fecha','desc')->orderBy('idAviso','desc')->get();
+					return View::make('SIG.avisos',array('avisos'=>$avisos));
+
+				}
+				else
+				{
+					return Redirect::to('/login');
+				}
+			}
 
 		public function editarSeccion()
 			{
@@ -529,6 +543,78 @@ class SIGController extends BaseController {
 			return Redirect::to('/SIG');
 		}
 	}
+
+	public function crearAvisos(){
+		if(Auth::check()){
+			//$areas = Area::lists('NombreArea','NombreArea');
+			$avisos = Avisos::orderBy('idAviso','desc')->get();
+			$prioridad = Prioridad::lists('NombrePrioridad','IdPrioridad');
+			return View::make('SIG.crearAvisos', array('avisos'=>$avisos, 'prioridad'=>$prioridad));
+		}
+		else{
+			return Redirect::to('/SIG');
+		}
+	}
+
+	public function nuevoAviso(){
+		if(Auth::check()){
+			//$areas = Area::lists('NombreArea','NombreArea');
+			$datos = Input::all();
+			$aviso = new Avisos();
+			if($aviso->crearAviso($datos)){
+				$prioridad = Prioridad::lists('NombrePrioridad','IdPrioridad');
+				$avisos = Avisos::orderBy('idAviso','desc')->get();
+				Session::flash('msg','Aviso publicado correctamente.');
+				return View::make('SIG.crearAvisos', array('avisos'=>$avisos, 'prioridad'=>$prioridad));
+			}
+			else{
+				$avisos = Avisos::orderBy('idAviso','desc')->get();
+				$prioridad = Prioridad::lists('NombrePrioridad','IdPrioridad');
+				Session::flash('msgf','Aviso no publicado. Intente más tarde.');
+				return View::make('SIG.crearAvisos', array('avisos'=>$avisos, 'prioridad'=>$prioridad));
+			}
+		}
+		else{
+			return Redirect::to('/SIG');
+		}
+	}
+
+	public function editarAvisos(){
+		if(Auth::check()){
+			//$areas = Area::lists('NombreArea','NombreArea');
+			$IdAviso = Request::get('IdAviso');
+			$aviso = Avisos::where('idAviso',$IdAviso)->first();
+			$prioridad = Prioridad::lists('NombrePrioridad','IdPrioridad');
+			return View::make('SIG.editarAvisos', array('aviso'=>$aviso, 'prioridad'=>$prioridad));
+		}
+		else{
+			return Redirect::to('/SIG');
+		}
+	}
+
+	public function actualizarAviso(){
+		if(Auth::check()){
+			//$areas = Area::lists('NombreArea','NombreArea');
+			$datos = Input::all();
+			$aviso = new Avisos();
+			if($aviso->updateAviso($datos)){
+				$prioridad = Prioridad::lists('NombrePrioridad','IdPrioridad');
+				$aviso = Avisos::where('idAviso',$datos['idAviso'])->first();
+				Session::flash('msg','Aviso modificado correctamente.');
+				return View::make('SIG.editarAvisos', array('aviso'=>$aviso, 'prioridad'=>$prioridad));
+			}
+			else{
+				$aviso = Avisos::where('idAviso',$datos['idAviso'])->first();
+				$prioridad = Prioridad::lists('NombrePrioridad','IdPrioridad');
+				Session::flash('msgf','Aviso no modificado. Intente más tarde.');
+				return View::make('SIG.editarAvisos', array('aviso'=>$aviso, 'prioridad'=>$prioridad));
+			}
+		}
+		else{
+			return Redirect::to('/SIG');
+		}
+	}
+
 
 }
 ?>

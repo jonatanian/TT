@@ -93,8 +93,8 @@
                 </div>
                 <!-- end .section row section -->
 
-        
-				
+
+
 				<div class="section">
                   <label for="Extension" class="field prepend-icon">
                     {{Form::text('Extension', $usuario->Extension, array('class'=>'gui-input', 'name'=>'Extension', 'required'=>'required'))}}
@@ -118,7 +118,7 @@
                   <!-- end .smart-widget section -->
                 </div>
                 <!-- end section -->
-				
+
 				@if(Session::has('msgf'))
 	                <div class="alert alert-danger">
 	                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -128,31 +128,31 @@
 				<div class="section row">
 					<div class="col-md-6">
 						<label for="Area" class="field-label">Área</label>
-						
+
 						  <label for="Area" class="field prepend-icon">
-						  {{Form::select('IdArea', $areas, array('$usuario->Area_Id'), array('class'=>'gui-input', 'name'=>'Area_Id'))}}
+						  {{Form::select('IdArea', $areas, $usuario->Area_Id, array('class'=>'gui-input', 'name'=>'Area_Id'))}}
 						  </label>
-						
+
 					</div>
-					
+
 					<div class="col-md-6">
 						<label for="Cargo" class="field-label">Cargo</label>
 						  <label for="Cargo" class="field prepend-icon">
-						  {{Form::select('IdCargo', $cargos, array('$usuario->Cargo_Id'), array('class'=>'gui-input', 'name'=>'Cargo_Id'))}}
+						  {{Form::select('IdCargo', $cargos, $usuario->Cargo_Id, array('class'=>'gui-input', 'name'=>'Cargo_Id'))}}
 						  </label>
-						
+
 					</div>
 				</div>
-					
+
 					<div class="section">
 						<label for="Rol" class="field-label">Rol</label>
 						<div class="smart-widget sm-right smr-120">
 						  <label for="Rol" class="field prepend-icon">
-						  {{Form::select('IdRol', $roles, array('$usuario->Rol_Id'), array('class'=>'gui-input', 'name'=>'Rol_Id'))}}
+						  {{Form::select('IdRol', $roles, $usuario->Rol_Id, array('class'=>'gui-input', 'name'=>'Rol_Id'))}}
 						  </label>
 						</div>
 					</div>
-                
+
                 <!-- end section -->
 
               </div>
@@ -161,7 +161,7 @@
 				{{Form::submit('Actualizar', array('class'=>'button btn-primary pull-right'))}}
               </div>
               <!-- end .form-footer section -->
-            {{Form::close()}} 
+            {{Form::close()}}
           </div>
         </div>
 
@@ -177,7 +177,7 @@
   <!-- BEGIN: PAGE SCRIPTS -->
 
   <!-- jQuery -->
-  
+
     <!-- jQuery -->
   <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
   {{HTML::script('vendor/jquery/jquery-1.11.1.min.js')}}
@@ -203,7 +203,7 @@
   <script type="text/javascript">
   jQuery(document).ready(function() {
     "use strict";
-    // Init Theme Core      
+    // Init Theme Core
     Core.init();
 
 

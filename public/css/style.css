@@ -797,3 +797,9 @@
 		text-transform: uppercase;
 		font-weight: 700;
 	}
+
+	/* Nuevo estilo para centrar imagen */
+	.organ{
+  width: 100%;
+  margin: 0px auto;
+}

@@ -11,7 +11,7 @@
 		</div>
 		@if($areas->NombreArea != "Formatos" && $areas->NombreArea != "Sistema de Gestión Ambiental" && $areas->NombreArea != "Instructivos" && $areas->NombreArea != "Minutas y Documentos Varios" && $areas->NombreArea != "Mapa de Procesos" && $areas->NombreArea != "Definiciones" && $areas->NombreArea != "Registros" && $areas->NombreArea != "Manual de Organización" && $areas->NombreArea != "Protección Civil" && $areas->NombreArea != "Avisos")
 	  <h2 class="text-primary">Organigrama</h2>
-      <img class="img-responsive" src="{{asset($areas->OrganigramaURL)}}" alt="Organigrama de {{$areas->NombreArea}}">
+      <img class="img-responsive organ" src="{{asset($areas->OrganigramaURL)}}" alt="Organigrama de {{$areas->NombreArea}}">
 		@endif
       @if($areas->IdArea == 1)
       <div class="content-header">

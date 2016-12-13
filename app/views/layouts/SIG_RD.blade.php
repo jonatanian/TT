@@ -252,6 +252,13 @@
             </a>
           </div>
 
+          <div class="col-xs-4 col-sm-2">
+            <a href="{{action('SIGController@crearAvisos')}}" class="metro-tile bg-warning light">
+              <span class="glyphicon glyphicon-bullhorn text-muted"></span>
+              <span class="metro-title">Avisos</span>
+            </a>
+          </div>
+
         </div>
       </div>
       <!-- End: Topbar-Dropdown -->

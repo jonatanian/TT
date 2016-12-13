@@ -8,13 +8,14 @@ class UsersController extends BaseController {
 			//if()
 			return View::make('dsbd.dsbd_index');
 		}
-	
+
 	public function dsbd_usuarios()
 	{
 		$usuarios = User::get();
-		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+		$areas = Area::get();
+		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios, 'areas'=>$areas));
 	}
-	
+
 	public function dsbd_nuevoUsuario()
 	{
 		$roles = Rol::lists('NombreRol', 'IdRol');
@@ -22,17 +23,18 @@ class UsersController extends BaseController {
 		$areas = Area::lists('NombreArea', 'IdArea');
 		return View::make('usuarios.dsbd_nuevo_usuario', array('roles'=>$roles, 'cargos'=>$cargos, 'areas'=>$areas));
 	}
-	
+
 	public function dsbd_registrarUsuario()
 	{
 		$usuarios = User::get();
 		$usuario = new User();
 		$datos = Input::all();
+		$areas = Area::get();
 		if($usuario->compararContrasena($datos))
 		{
 			$usuario->crearUsuario($datos);
 			Session::flash('msg','El usuario de registró con éxito.');
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios, 'areas'=>$areas));
 		}
 		else
 			Session::flash('msgf','Error. No coinciden las contraseñas.');
@@ -58,8 +60,9 @@ class UsersController extends BaseController {
 		$usuario = new User();
 		$usuario->actualizarUsuario($datos);
 		$usuarios = User::get();
+		$areas = Area::get();
 		Session::flash('msg','Usuario actualizado con éxito.');
-		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios, 'areas'=>$areas));
 	}
 	public function	dsbd_recuperarContrasenaUsuario()
 	{
@@ -67,17 +70,18 @@ class UsersController extends BaseController {
 		$usuario = User::find($IdUsuario);
 		return View::make('usuarios.dsbd_recuperar_contrasena_usuario', array('usuario'=>$usuario));
 	}
-	
+
 	public function dsbd_actualizarContrasenaUsuario()
 	{
 		$datos = Input::all();
 		$usuario = new User();
+		$areas = Area::get();
 		if($usuario->compararContrasena($datos))
 		{
 			$usuario->actualizarContrasenaUsuario($datos);
 			$usuarios = User::get();
 			Session::flash('msg','Cambio de contraseña exitoso.');
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios, 'areas'=>$areas));
 		}
 		else
 			$IdUsuario = Request::get('IdUsuario');
@@ -99,11 +103,12 @@ class UsersController extends BaseController {
 			$usuario = new User();
 			$usuario->actualizarEstatus($datos);
 			$usuarios = User::get();
+			$areas = Area::get();
 			Session::flash('msg','Se cambió el estátus del usuario con éxito.');
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios, 'areas'=>$areas));
 		}
 	}
-	
+
 	public function dsbd_actualizarEstatus()
 	{
 		$datos = Input::all();
@@ -112,16 +117,16 @@ class UsersController extends BaseController {
 		$usuarios = User::get();
 		$areas = Area::get();
 		Session::flash('msg','Se cambió el estátus del usuario con éxito.');
-		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios));
+		return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios, 'areas'=>$areas));
 	}
-	
+
 	public function personal_cambiarContrasena()
 	{
 		$IdUsuario = Request::get('IdUsuario');
 		$usuario = User::find($IdUsuario);
 		return View::make('usuarios.personal_cambiar_contrasena_usuario', array('usuario'=>$usuario));
 	}
-	
+
 	public function personal_actualizarContrasenaUsuario()
 	{
 		$datos = Input::all();
@@ -157,53 +162,54 @@ class UsersController extends BaseController {
 			Session::flash('msgf','Error. Tu contraseña anterior no es válida');
 			return View::make('usuarios.personal_cambiar_contrasena_usuario', array('usuario'=>$usuario));
 	}
-	
+
 	public function dsbd_consultarUsuarios()
 	{
 		$consulta = Request::get('Consulta');
 		$datos = Input::all();
 		$usuarios = new User();
+		$areas = Area::get();
 		if($consulta == 0)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarAlafabeticamente(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarAlafabeticamente(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 1)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDireccion(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDireccion(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 2)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionTecnica(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionTecnica(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 3)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionPosgrado(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionPosgrado(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 4)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionVinculacion(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarSubdireccionVinculacion(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 5)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoProcesos(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoProcesos(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 6)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoEnergia(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoEnergia(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 7)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoServicios(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoServicios(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		elseif($consulta == 8)
 		{
-			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoSistemas(), 'Consulta'=>$consulta));
+			return View::make('usuarios.dsbd_usuarios', array('usuarios'=>$usuarios->ordenarDepartamentoSistemas(), 'Consulta'=>$consulta, 'areas'=>$areas));
 		}
 		else
 		{
 			return View::make('login.login');
 		}
 	}
-	
+
 }
 ?>
