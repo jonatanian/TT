@@ -604,7 +604,7 @@ class SIGController extends BaseController {
 				return View::make('SIG.editarAvisos', array('aviso'=>$aviso, 'prioridad'=>$prioridad));
 			}
 			else{
-				$aviso = Avisos::where('idAviso',$datos['idAviso'])->first();
+				$aviso = Avisos::where('idAviso',$datos)->first();
 				$prioridad = Prioridad::lists('NombrePrioridad','IdPrioridad');
 				Session::flash('msgf','Aviso no modificado. Intente más tarde.');
 				return View::make('SIG.editarAvisos', array('aviso'=>$aviso, 'prioridad'=>$prioridad));
