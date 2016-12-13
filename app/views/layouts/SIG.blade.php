@@ -138,7 +138,7 @@
               <!-- sidebar resources -->
               <li class="sidebar-label pt15"></li>
               <li>
-                <a href="{{action('SIGController@SIG_Master',array('IdArea'=>19))}}">
+                <a href="{{action('SIGController@SIG_Avisos')}}">
                   <span class="glyphicon glyphicon-globe"></span>
                   <span class="sidebar-title">Avisos</span>
                 </a>
